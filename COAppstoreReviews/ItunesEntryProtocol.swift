@@ -7,3 +7,9 @@
 //
 
 import Foundation
+import SwiftyJSON
+
+protocol ItunesEntryProtocol {
+    var apId : String { get set }
+    init(json: JSON, insertIntoManagedObjectContext context: NSManagedObjectContext);
+}
