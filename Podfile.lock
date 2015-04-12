@@ -1,9 +1,11 @@
 PODS:
   - Alamofire (1.1.4)
+  - EDStarRating (1.1)
   - SwiftyJSON (2.1.3)
 
 DEPENDENCIES:
   - Alamofire (from `git@github.com:Alamofire/Alamofire.git`, branch `xcode-6.3`)
+  - EDStarRating (~> 1.1)
   - SwiftyJSON (from `git@github.com:SwiftyJSON/SwiftyJSON.git`, branch `xcode6.3`)
 
 EXTERNAL SOURCES:
@@ -24,6 +26,7 @@ CHECKOUT OPTIONS:
 
 SPEC CHECKSUMS:
   Alamofire: 6a2cbaebe78a6d469bc55ee37f0a24ba22af76ac
+  EDStarRating: a41a6440a945020745d0e9ff8ada7d1afa952114
   SwiftyJSON: a561c2a840121085bec8a2dfeac97a360fc66901
 
 COCOAPODS: 0.36.3

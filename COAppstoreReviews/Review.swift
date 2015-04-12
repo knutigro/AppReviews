@@ -34,9 +34,9 @@ class Review : NSManagedObject, ItunesEntryProtocol{
     @NSManaged var title : String
     @NSManaged var content : String
     @NSManaged var version : String
-    @NSManaged var rating : Float
-    @NSManaged var voteCount : Int
-    @NSManaged var voteSum : Float
+    @NSManaged var rating : NSNumber
+    @NSManaged var voteCount : NSNumber
+    @NSManaged var voteSum : NSNumber
     
     required init(json : JSON, insertIntoManagedObjectContext context: NSManagedObjectContext) {
         let entityDescription = NSEntityDescription.entityForName(kEntityNameReview, inManagedObjectContext: context)
@@ -48,9 +48,20 @@ class Review : NSManagedObject, ItunesEntryProtocol{
         self.title = json["title"]["label"].stringValue ?? ""
         self.content = json["content"]["label"].stringValue ?? ""
         self.version = json["im:version"]["label"].stringValue ?? ""
-        self.rating = (json["im:rating"]["label"].stringValue as NSString).floatValue ??  0.0
-        self.voteCount = json["im:voteCount"]["label"].stringValue.toInt() ?? 0
-        self.voteSum = (json["im:voteSum"]["label"].stringValue as NSString).floatValue ?? 0.0
+        
+        if let rating = json["im:rating"]["label"].stringValue.toInt() {
+            self.rating = NSNumber(integer: rating)
+        } else {
+            self.rating = 0
+        }
+        
+        if let voteCount = json["im:voteCount"]["label"].stringValue.toInt() {
+            self.voteCount = NSNumber(integer: voteCount)
+        } else {
+            self.voteCount = 0
+        }
+
+        self.voteCount = NSNumber(float:(json["im:voteSum"]["label"].stringValue as NSString).floatValue)
     }
     
     class func findEntryWithIdentifier(identifier : String, context: NSManagedObjectContext) -> Review? {

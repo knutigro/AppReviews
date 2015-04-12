@@ -24,6 +24,7 @@ class ReviewViewController: NSViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+
         COReviewController.sharedInstance.importController.importReviews("521142420", storeId: "gb")
     }
 
@@ -33,35 +34,4 @@ class ReviewViewController: NSViewController {
         }
     }
 }
-
-// MARK : - NSTableViewDataSource
-
-extension ReviewViewController : NSTableViewDataSource {
-    func numberOfRowsInTableView(aTableView: NSTableView) -> Int
-    {
-        //let numberOfRows:Int = 20
-        let numberOfRows:Int = getDataArray().count
-        return numberOfRows
-    }
-    
-    func tableView(tableView: NSTableView, objectValueForTableColumn tableColumn: NSTableColumn?, row: Int) -> AnyObject?
-    {
-        //        var string:String = "row " + String(row) + ", Col" + String(tableColumn.identifier)
-        //        return string
-        var newString: (AnyObject?) = getDataArray().objectAtIndex(row).objectForKey(tableColumn!.identifier)
-        return newString;
-    }
-    
-    func getDataArray () -> NSArray{
-        var dataArray:[NSDictionary] = [["FirstName": "Debasis", "LastName": "Das"],
-            ["FirstName": "Nishant", "LastName": "Singh"],
-            ["FirstName": "John", "LastName": "Doe"],
-            ["FirstName": "Jane", "LastName": "Doe"],
-            ["FirstName": "Mary", "LastName": "Jane"]];
-        println(dataArray);
-        return dataArray;
-    }
-}
-
-
 
