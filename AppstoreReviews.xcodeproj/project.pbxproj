@@ -22,6 +22,7 @@
 		49ACB86C1AD5EAF70050C1B7 /* PersistentStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49ACB86B1AD5EAF70050C1B7 /* PersistentStack.swift */; };
 		49DAA2FE1AD80DBB002807A7 /* Application.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49DAA2FD1AD80DBB002807A7 /* Application.swift */; };
 		49DAA3001AD87172002807A7 /* ItunesEntryProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49DAA2FF1AD87172002807A7 /* ItunesEntryProtocol.swift */; };
+		49F800E81ADAA0DC004A1BF1 /* ReviewCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49F800E71ADAA0DC004A1BF1 /* ReviewCellView.swift */; };
 		67821E35AE9AB2E4F46170D4 /* Pods.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5083B9909F1AD9259C461DBD /* Pods.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 /* End PBXBuildFile section */
 
@@ -55,6 +56,7 @@
 		49ACB86B1AD5EAF70050C1B7 /* PersistentStack.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PersistentStack.swift; sourceTree = "<group>"; };
 		49DAA2FD1AD80DBB002807A7 /* Application.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Application.swift; sourceTree = "<group>"; };
 		49DAA2FF1AD87172002807A7 /* ItunesEntryProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ItunesEntryProtocol.swift; sourceTree = "<group>"; };
+		49F800E71ADAA0DC004A1BF1 /* ReviewCellView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReviewCellView.swift; sourceTree = "<group>"; };
 		5083B9909F1AD9259C461DBD /* Pods.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		8E9E3A98AF3DC476EF9A0809 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 		F9CE0DF35CA051BD774393CD /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
@@ -105,6 +107,7 @@
 				49ACB8611AD5CD5C0050C1B7 /* COAppstoreReviews */,
 				49ACB8401AD5CAA00050C1B7 /* AppDelegate.swift */,
 				49ACB8421AD5CAA00050C1B7 /* ReviewViewController.swift */,
+				49F800E71ADAA0DC004A1BF1 /* ReviewCellView.swift */,
 				49A75E4D1AD9BCDF004A4742 /* ReviewArrayController.swift */,
 				49ACB8471AD5CAA00050C1B7 /* Images.xcassets */,
 				49ACB8491AD5CAA00050C1B7 /* Main.storyboard */,
@@ -334,6 +337,7 @@
 				49ACB8431AD5CAA00050C1B7 /* ReviewViewController.swift in Sources */,
 				49DAA3001AD87172002807A7 /* ItunesEntryProtocol.swift in Sources */,
 				49ACB86C1AD5EAF70050C1B7 /* PersistentStack.swift in Sources */,
+				49F800E81ADAA0DC004A1BF1 /* ReviewCellView.swift in Sources */,
 				49ACB8411AD5CAA00050C1B7 /* AppDelegate.swift in Sources */,
 				49ACB8461AD5CAA00050C1B7 /* AppstoreReviews.xcdatamodeld in Sources */,
 				49A0035B1AD68840001E10BE /* COReviewFetcher.swift in Sources */,

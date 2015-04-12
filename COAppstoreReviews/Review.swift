@@ -33,10 +33,10 @@ class Review : NSManagedObject, ItunesEntryProtocol{
     @NSManaged var uri : String
     @NSManaged var title : String
     @NSManaged var content : String
-    @NSManaged var imVersion : String
-    @NSManaged var imRating : Float
-    @NSManaged var imVoteCount : Int
-    @NSManaged var imVoteSum : Float
+    @NSManaged var version : String
+    @NSManaged var rating : Float
+    @NSManaged var voteCount : Int
+    @NSManaged var voteSum : Float
     
     required init(json : JSON, insertIntoManagedObjectContext context: NSManagedObjectContext) {
         let entityDescription = NSEntityDescription.entityForName(kEntityNameReview, inManagedObjectContext: context)
@@ -47,10 +47,10 @@ class Review : NSManagedObject, ItunesEntryProtocol{
         self.uri = json["author"]["uri"]["label"].stringValue ?? ""
         self.title = json["title"]["label"].stringValue ?? ""
         self.content = json["content"]["label"].stringValue ?? ""
-        self.imVersion = json["im:version"]["label"].stringValue ?? ""
-        self.imRating = (json["im:rating"]["label"].stringValue as NSString).floatValue ??  0.0
-        self.imVoteCount = json["im:voteCount"]["label"].stringValue.toInt() ?? 0
-        self.imVoteSum = (json["im:voteSum"]["label"].stringValue as NSString).floatValue ?? 0.0
+        self.version = json["im:version"]["label"].stringValue ?? ""
+        self.rating = (json["im:rating"]["label"].stringValue as NSString).floatValue ??  0.0
+        self.voteCount = json["im:voteCount"]["label"].stringValue.toInt() ?? 0
+        self.voteSum = (json["im:voteSum"]["label"].stringValue as NSString).floatValue ?? 0.0
     }
     
     class func findEntryWithIdentifier(identifier : String, context: NSManagedObjectContext) -> Review? {
