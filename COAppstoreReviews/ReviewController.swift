@@ -8,20 +8,20 @@
 
 import Foundation
 
-class COReviewController {
+class ReviewController {
     
     var persistentStack : PersistentStack!
-    var importController : COImportController!
+    var importController : ImportController!
     
     
     init() {
         persistentStack = PersistentStack(storeURL: storeURL(), modelURL: modelURL())
-        importController = COImportController(context: persistentStack.backgroundManagedObjectContext)
+        importController = ImportController(context: persistentStack.backgroundManagedObjectContext)
     }
     
-    class var sharedInstance: COReviewController {
+    class var sharedInstance: ReviewController {
         struct Singleton {
-            static let instance = COReviewController()
+            static let instance = ReviewController()
         }
         return Singleton.instance
     }

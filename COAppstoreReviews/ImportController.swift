@@ -10,7 +10,7 @@ import Foundation
 import AppKit
 import SwiftyJSON
 
-class COImportController {
+class ImportController {
     let context : NSManagedObjectContext
     
     init(context: NSManagedObjectContext) {
@@ -20,7 +20,7 @@ class COImportController {
     func importReviews(apId: String, storeId: String?) {
         // [unowned self]
         
-        let reviewFetcher = COReviewFetcher(apId: apId, storeId: storeId)
+        let reviewFetcher = ReviewFetcher(apId: apId, storeId: storeId)
         
         reviewFetcher.fetchReview() {
             (success: Bool, reviews: JSON?, error : NSError?)
@@ -36,14 +36,9 @@ class COImportController {
                     for var index = 0; index < blockReviews.count; index++ {
                         let entry = blockReviews[index]
                         
-                        if let identifier = entry.applicationIdentifier {
-                            if Application.findEntryWithIdentifier(identifier, context: self.context) == nil {
-                                Application(json: entry, insertIntoManagedObjectContext: self.context)
-                            }
-                        } else if let identifier = entry.reviewIdentifier {
-                            if Review.findEntryWithIdentifier(identifier, context: self.context) == nil {
-                                Review(json: entry, insertIntoManagedObjectContext: self.context)
-                            }
+                        if entry.isReviewEntity, let apID = entry.reviewApID {
+                            var review = Review.findOrCreateNewReview(apID, context: self.context)
+                            review.updateWithJSON(entry)
                         }
                     }
                     
@@ -58,5 +53,5 @@ class COImportController {
             })
         }
     }
-
+    
 }

@@ -40,6 +40,16 @@ class Application : NSManagedObject, ItunesEntryProtocol {
     @NSManaged var artist : String
     @NSManaged var image : String
     
+    override init(entity: NSEntityDescription, insertIntoManagedObjectContext context: NSManagedObjectContext?) {
+        super.init(entity: entity, insertIntoManagedObjectContext: context)
+    }
+    
+    convenience init(insertIntoManagedObjectContext context: NSManagedObjectContext) {
+        let entityDescription = NSEntityDescription.entityForName(kEntityNameReview, inManagedObjectContext: context)
+        self.init(entity: entityDescription!, insertIntoManagedObjectContext: context)
+    }
+
+    
     required init(json: JSON, insertIntoManagedObjectContext context: NSManagedObjectContext) {
         let entityDescription = NSEntityDescription.entityForName(kEntityNameApplication, inManagedObjectContext: context)
         super.init(entity: entityDescription!, insertIntoManagedObjectContext: context)
@@ -63,7 +73,7 @@ class Application : NSManagedObject, ItunesEntryProtocol {
         }
     }
 
-    class func findEntryWithIdentifier(identifier : String, context: NSManagedObjectContext) -> Application? {
+    class func findEntryWithIdentifier(identifier : String, context: NSManagedObjectContext) -> Application {
         
         let fetchRequest = NSFetchRequest(entityName: kEntityNameApplication)
         fetchRequest.predicate = NSPredicate(format: "apId = %@", identifier)
@@ -77,9 +87,12 @@ class Application : NSManagedObject, ItunesEntryProtocol {
         if let lastObject = result?.last as? Application{
             return lastObject
         } else {
-            return nil
+            let application = Application(insertIntoManagedObjectContext: context)
+            return application
         }
     }
-
     
+    class func insertNewObjectIntoContext(context: NSManagedObjectContext) -> Application {
+        return NSEntityDescription.insertNewObjectForEntityForName(kEntityNameApplication, inManagedObjectContext: context) as! Application
+    }
 }

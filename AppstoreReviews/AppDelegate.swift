@@ -14,7 +14,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     func applicationDidFinishLaunching(aNotification: NSNotification) {
         // Insert code here to initialize your application
         
-        let sharedInstance = COReviewController.sharedInstance
+        let sharedInstance = ReviewController.sharedInstance
     }
 
     func applicationWillTerminate(aNotification: NSNotification) {
@@ -23,7 +23,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     
     func applicationShouldTerminate(sender: NSApplication) -> NSApplicationTerminateReply {
         // Saves changes in the application's managed object context before the application terminates.
-        COReviewController.sharedInstance.saveContext()
+        ReviewController.sharedInstance.saveContext()
         
         return .TerminateNow
     }

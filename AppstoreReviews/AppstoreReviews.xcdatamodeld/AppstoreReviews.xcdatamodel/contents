@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <model userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="7549" systemVersion="14D131" minimumToolsVersion="Automatic" macOSVersion="Automatic" iOSVersion="Automatic">
-    <entity name="Application" syncable="YES">
+    <entity name="Application" representedClassName="Review" syncable="YES">
         <attribute name="apId" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="artist" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="bundleId" optional="YES" attributeType="String" syncable="YES"/>
@@ -12,19 +12,21 @@
         <attribute name="releaseDate" optional="YES" attributeType="Date" syncable="YES"/>
         <attribute name="title" optional="YES" attributeType="String" syncable="YES"/>
     </entity>
-    <entity name="Review" syncable="YES">
+    <entity name="Review" representedClassName="Review" syncable="YES">
         <attribute name="apId" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="author" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="content" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="country" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="rating" optional="YES" attributeType="Integer 32" defaultValueString="0.0" syncable="YES"/>
         <attribute name="title" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="uri" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="version" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="voteCount" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
         <attribute name="voteSum" optional="YES" attributeType="Float" defaultValueString="0.0" syncable="YES"/>
+        <relationship name="application" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Application" syncable="YES"/>
     </entity>
     <elements>
-        <element name="Application" positionX="-63" positionY="54" width="128" height="195"/>
-        <element name="Review" positionX="-63" positionY="-18" width="128" height="180"/>
+        <element name="Application" positionX="-63" positionY="54" width="128" height="193"/>
+        <element name="Review" positionX="-324" positionY="26" width="128" height="208"/>
     </elements>
 </model>

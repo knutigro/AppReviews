@@ -10,7 +10,7 @@ import Foundation
 import Alamofire
 import SwiftyJSON
 
-class COReviewFetcher {
+class ReviewFetcher {
     
     let apId : String?
     let storeId : String?

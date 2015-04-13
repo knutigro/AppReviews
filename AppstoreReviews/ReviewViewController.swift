@@ -14,18 +14,18 @@ class ReviewViewController: NSViewController {
     @IBOutlet var reviewArrayController: ReviewArrayController?
     
     var managedObjectContext : NSManagedObjectContext!
-    let reviewController = COReviewController()
+    let reviewController = ReviewController()
     var reviews : [Review]?
     
     required init?(coder: NSCoder) {
         super.init(coder: coder)
-        self.managedObjectContext = COReviewController.sharedInstance.persistentStack.managedObjectContext
+        self.managedObjectContext = ReviewController.sharedInstance.persistentStack.managedObjectContext
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        COReviewController.sharedInstance.importController.importReviews("521142420", storeId: "gb")
+        ReviewController.sharedInstance.importController.importReviews("521142420", storeId: "gb")
     }
 
     override var representedObject: AnyObject? {

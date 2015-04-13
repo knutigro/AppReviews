@@ -10,15 +10,19 @@ import Foundation
 import SwiftyJSON
 
 extension JSON {
-    var reviewIdentifier : String? {
+    var reviewApID : String? { get { return self["id"]["label"].string  } }
+    var reviewContent : String? { get { return self["content"]["label"].string  } }
+    var reviewAuthor : String? { get { return self["author"]["name"]["label"].string  } }
+    var reviewUri : String? { get { return self["author"]["uri"]["label"].string  } }
+    var reviewTitle : String? { get { return self["title"]["label"].string  } }
+    var reviewVersion : String? { get { return self["im:version"]["label"].string  } }
+    var reviewRating : NSNumber { get { return NSNumber(integer: self["im:rating"]["label"].stringValue.toInt() ?? 0) } }
+    var reviewVoteCount : NSNumber { get { return NSNumber(integer: self["im:voteCount"]["label"].stringValue.toInt() ?? 0) } }
+    var reviewVoteSum : NSNumber { get { return NSNumber(float:(self["im:voteSum"]["label"].stringValue as NSString).floatValue) } }
+
+    var isReviewEntity : Bool {
         get {
-            return self["id"]["label"].string
-        }
-    }
-    
-    var isReviewEntity : Bool{
-        get {
-            return self.reviewIdentifier != nil
+            return (self.reviewContent != nil || self.reviewRating > 0)
         }
     }
 }
@@ -37,37 +41,22 @@ class Review : NSManagedObject, ItunesEntryProtocol{
     @NSManaged var rating : NSNumber
     @NSManaged var voteCount : NSNumber
     @NSManaged var voteSum : NSNumber
+    @NSManaged var country : String
+    @NSManaged var application : Application
     
-    required init(json : JSON, insertIntoManagedObjectContext context: NSManagedObjectContext) {
-        let entityDescription = NSEntityDescription.entityForName(kEntityNameReview, inManagedObjectContext: context)
-        super.init(entity: entityDescription!, insertIntoManagedObjectContext: context)
-        
-        self.apId = json.reviewIdentifier ?? ""
-        self.author = json["author"]["name"]["label"].stringValue ?? ""
-        self.uri = json["author"]["uri"]["label"].stringValue ?? ""
-        self.title = json["title"]["label"].stringValue ?? ""
-        self.content = json["content"]["label"].stringValue ?? ""
-        self.version = json["im:version"]["label"].stringValue ?? ""
-        
-        if let rating = json["im:rating"]["label"].stringValue.toInt() {
-            self.rating = NSNumber(integer: rating)
-        } else {
-            self.rating = 0
-        }
-        
-        if let voteCount = json["im:voteCount"]["label"].stringValue.toInt() {
-            self.voteCount = NSNumber(integer: voteCount)
-        } else {
-            self.voteCount = 0
-        }
-
-        self.voteCount = NSNumber(float:(json["im:voteSum"]["label"].stringValue as NSString).floatValue)
+    override init(entity: NSEntityDescription, insertIntoManagedObjectContext context: NSManagedObjectContext?) {
+        super.init(entity: entity, insertIntoManagedObjectContext: context)
     }
     
-    class func findEntryWithIdentifier(identifier : String, context: NSManagedObjectContext) -> Review? {
+    convenience init(insertIntoManagedObjectContext context: NSManagedObjectContext) {
+        let entityDescription = NSEntityDescription.entityForName(kEntityNameReview, inManagedObjectContext: context)
+        self.init(entity: entityDescription!, insertIntoManagedObjectContext: context)
+    }
+    
+    class func findOrCreateNewReview(apId : String, context: NSManagedObjectContext) -> Review {
         
         let fetchRequest = NSFetchRequest(entityName: kEntityNameReview)
-        fetchRequest.predicate = NSPredicate(format: "apId = %@", identifier)
+        fetchRequest.predicate = NSPredicate(format: "apId = %@", apId)
         var error : NSError?
         
         let result = context.executeFetchRequest(fetchRequest, error: &error)
@@ -78,7 +67,26 @@ class Review : NSManagedObject, ItunesEntryProtocol{
         if let lastObject = result?.last as? Review{
             return lastObject
         } else {
-            return nil
+            let review = Review(insertIntoManagedObjectContext: context)
+            return review
         }
+    }
+}
+
+// MARK: JSON
+
+extension Review {
+    
+    func updateWithJSON(json : JSON) {
+        
+        self.apId = json.reviewApID ?? ""
+        self.author = json.reviewAuthor ?? ""
+        self.uri = json.reviewUri ?? ""
+        self.title = json.reviewTitle ?? ""
+        self.content = json.reviewContent ?? ""
+        self.version = json.reviewVersion ?? ""
+        self.rating = json.reviewRating
+        self.voteCount = json.reviewVoteCount
+        self.voteSum = json.reviewVoteSum
     }
 }

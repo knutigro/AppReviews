@@ -7,8 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		49A003591AD687A8001E10BE /* COImportController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49A003581AD687A8001E10BE /* COImportController.swift */; };
-		49A0035B1AD68840001E10BE /* COReviewFetcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49A0035A1AD68840001E10BE /* COReviewFetcher.swift */; };
+		49A003591AD687A8001E10BE /* ImportController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49A003581AD687A8001E10BE /* ImportController.swift */; };
+		49A0035B1AD68840001E10BE /* ReviewFetcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49A0035A1AD68840001E10BE /* ReviewFetcher.swift */; };
 		49A003611AD73161001E10BE /* reviews.json in Resources */ = {isa = PBXBuildFile; fileRef = 49A003601AD73161001E10BE /* reviews.json */; };
 		49A75E4E1AD9BCDF004A4742 /* ReviewArrayController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49A75E4D1AD9BCDF004A4742 /* ReviewArrayController.swift */; };
 		49ACB8411AD5CAA00050C1B7 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49ACB8401AD5CAA00050C1B7 /* AppDelegate.swift */; };
@@ -17,13 +17,17 @@
 		49ACB8481AD5CAA00050C1B7 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 49ACB8471AD5CAA00050C1B7 /* Images.xcassets */; };
 		49ACB84B1AD5CAA00050C1B7 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 49ACB8491AD5CAA00050C1B7 /* Main.storyboard */; };
 		49ACB8571AD5CAA00050C1B7 /* AppstoreReviewsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49ACB8561AD5CAA00050C1B7 /* AppstoreReviewsTests.swift */; };
-		49ACB8631AD5CE700050C1B7 /* COReviewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49ACB8621AD5CE700050C1B7 /* COReviewController.swift */; };
+		49ACB8631AD5CE700050C1B7 /* ReviewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49ACB8621AD5CE700050C1B7 /* ReviewController.swift */; };
 		49ACB8681AD5E1730050C1B7 /* Review.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49ACB8671AD5E1730050C1B7 /* Review.swift */; };
 		49ACB86C1AD5EAF70050C1B7 /* PersistentStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49ACB86B1AD5EAF70050C1B7 /* PersistentStack.swift */; };
 		49DAA2FE1AD80DBB002807A7 /* Application.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49DAA2FD1AD80DBB002807A7 /* Application.swift */; };
 		49DAA3001AD87172002807A7 /* ItunesEntryProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49DAA2FF1AD87172002807A7 /* ItunesEntryProtocol.swift */; };
 		49F800E81ADAA0DC004A1BF1 /* ReviewCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49F800E71ADAA0DC004A1BF1 /* ReviewCellView.swift */; };
 		49F800EA1ADAAD58004A1BF1 /* ApplicationArrayController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49F800E91ADAAD58004A1BF1 /* ApplicationArrayController.swift */; };
+		49F800EC1ADC5F64004A1BF1 /* AppFetcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49F800EB1ADC5F64004A1BF1 /* AppFetcher.swift */; };
+		49F800EE1ADC6358004A1BF1 /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49F800ED1ADC6358004A1BF1 /* SearchViewController.swift */; };
+		49F800F01ADC674B004A1BF1 /* ApplicationCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49F800EF1ADC674B004A1BF1 /* ApplicationCellView.swift */; };
+		49F800F31ADC7944004A1BF1 /* NSImageView+Networking.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49F800F21ADC7944004A1BF1 /* NSImageView+Networking.swift */; };
 		67821E35AE9AB2E4F46170D4 /* Pods.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5083B9909F1AD9259C461DBD /* Pods.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 /* End PBXBuildFile section */
 
@@ -38,8 +42,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		49A003581AD687A8001E10BE /* COImportController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = COImportController.swift; sourceTree = "<group>"; };
-		49A0035A1AD68840001E10BE /* COReviewFetcher.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = COReviewFetcher.swift; sourceTree = "<group>"; };
+		49A003581AD687A8001E10BE /* ImportController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImportController.swift; sourceTree = "<group>"; };
+		49A0035A1AD68840001E10BE /* ReviewFetcher.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReviewFetcher.swift; sourceTree = "<group>"; };
 		49A003601AD73161001E10BE /* reviews.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = reviews.json; sourceTree = "<group>"; };
 		49A75E4D1AD9BCDF004A4742 /* ReviewArrayController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReviewArrayController.swift; sourceTree = "<group>"; };
 		49ACB83B1AD5CAA00050C1B7 /* AppstoreReviews.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AppstoreReviews.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -52,13 +56,17 @@
 		49ACB8501AD5CAA00050C1B7 /* AppstoreReviewsTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = AppstoreReviewsTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		49ACB8551AD5CAA00050C1B7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		49ACB8561AD5CAA00050C1B7 /* AppstoreReviewsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppstoreReviewsTests.swift; sourceTree = "<group>"; };
-		49ACB8621AD5CE700050C1B7 /* COReviewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = COReviewController.swift; sourceTree = "<group>"; };
+		49ACB8621AD5CE700050C1B7 /* ReviewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReviewController.swift; sourceTree = "<group>"; };
 		49ACB8671AD5E1730050C1B7 /* Review.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Review.swift; sourceTree = "<group>"; };
 		49ACB86B1AD5EAF70050C1B7 /* PersistentStack.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PersistentStack.swift; sourceTree = "<group>"; };
 		49DAA2FD1AD80DBB002807A7 /* Application.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Application.swift; sourceTree = "<group>"; };
 		49DAA2FF1AD87172002807A7 /* ItunesEntryProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ItunesEntryProtocol.swift; sourceTree = "<group>"; };
 		49F800E71ADAA0DC004A1BF1 /* ReviewCellView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReviewCellView.swift; sourceTree = "<group>"; };
 		49F800E91ADAAD58004A1BF1 /* ApplicationArrayController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ApplicationArrayController.swift; sourceTree = "<group>"; };
+		49F800EB1ADC5F64004A1BF1 /* AppFetcher.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppFetcher.swift; sourceTree = "<group>"; };
+		49F800ED1ADC6358004A1BF1 /* SearchViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
+		49F800EF1ADC674B004A1BF1 /* ApplicationCellView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ApplicationCellView.swift; sourceTree = "<group>"; };
+		49F800F21ADC7944004A1BF1 /* NSImageView+Networking.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSImageView+Networking.swift"; sourceTree = "<group>"; };
 		5083B9909F1AD9259C461DBD /* Pods.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		8E9E3A98AF3DC476EF9A0809 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 		F9CE0DF35CA051BD774393CD /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
@@ -109,7 +117,9 @@
 				49ACB8611AD5CD5C0050C1B7 /* COAppstoreReviews */,
 				49ACB8401AD5CAA00050C1B7 /* AppDelegate.swift */,
 				49ACB8421AD5CAA00050C1B7 /* ReviewViewController.swift */,
+				49F800ED1ADC6358004A1BF1 /* SearchViewController.swift */,
 				49F800E71ADAA0DC004A1BF1 /* ReviewCellView.swift */,
+				49F800EF1ADC674B004A1BF1 /* ApplicationCellView.swift */,
 				49A75E4D1AD9BCDF004A4742 /* ReviewArrayController.swift */,
 				49F800E91ADAAD58004A1BF1 /* ApplicationArrayController.swift */,
 				49ACB8471AD5CAA00050C1B7 /* Images.xcassets */,
@@ -149,8 +159,9 @@
 		49ACB8611AD5CD5C0050C1B7 /* COAppstoreReviews */ = {
 			isa = PBXGroup;
 			children = (
+				49F800F11ADC791B004A1BF1 /* Categories */,
 				49ACB8641AD5E00F0050C1B7 /* Core Data */,
-				49ACB8621AD5CE700050C1B7 /* COReviewController.swift */,
+				49ACB8621AD5CE700050C1B7 /* ReviewController.swift */,
 			);
 			path = COAppstoreReviews;
 			sourceTree = SOURCE_ROOT;
@@ -162,10 +173,19 @@
 				49ACB8671AD5E1730050C1B7 /* Review.swift */,
 				49DAA2FD1AD80DBB002807A7 /* Application.swift */,
 				49ACB86B1AD5EAF70050C1B7 /* PersistentStack.swift */,
-				49A0035A1AD68840001E10BE /* COReviewFetcher.swift */,
-				49A003581AD687A8001E10BE /* COImportController.swift */,
+				49A0035A1AD68840001E10BE /* ReviewFetcher.swift */,
+				49F800EB1ADC5F64004A1BF1 /* AppFetcher.swift */,
+				49A003581AD687A8001E10BE /* ImportController.swift */,
 			);
 			name = "Core Data";
+			sourceTree = "<group>";
+		};
+		49F800F11ADC791B004A1BF1 /* Categories */ = {
+			isa = PBXGroup;
+			children = (
+				49F800F21ADC7944004A1BF1 /* NSImageView+Networking.swift */,
+			);
+			name = Categories;
 			sourceTree = "<group>";
 		};
 		7147F03F6DDA32E9CC0315BF /* Frameworks */ = {
@@ -336,19 +356,23 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				49F800EC1ADC5F64004A1BF1 /* AppFetcher.swift in Sources */,
 				49F800EA1ADAAD58004A1BF1 /* ApplicationArrayController.swift in Sources */,
 				49DAA2FE1AD80DBB002807A7 /* Application.swift in Sources */,
+				49F800F01ADC674B004A1BF1 /* ApplicationCellView.swift in Sources */,
 				49ACB8431AD5CAA00050C1B7 /* ReviewViewController.swift in Sources */,
 				49DAA3001AD87172002807A7 /* ItunesEntryProtocol.swift in Sources */,
 				49ACB86C1AD5EAF70050C1B7 /* PersistentStack.swift in Sources */,
 				49F800E81ADAA0DC004A1BF1 /* ReviewCellView.swift in Sources */,
 				49ACB8411AD5CAA00050C1B7 /* AppDelegate.swift in Sources */,
 				49ACB8461AD5CAA00050C1B7 /* AppstoreReviews.xcdatamodeld in Sources */,
-				49A0035B1AD68840001E10BE /* COReviewFetcher.swift in Sources */,
-				49A003591AD687A8001E10BE /* COImportController.swift in Sources */,
+				49A0035B1AD68840001E10BE /* ReviewFetcher.swift in Sources */,
+				49A003591AD687A8001E10BE /* ImportController.swift in Sources */,
 				49A75E4E1AD9BCDF004A4742 /* ReviewArrayController.swift in Sources */,
-				49ACB8631AD5CE700050C1B7 /* COReviewController.swift in Sources */,
+				49ACB8631AD5CE700050C1B7 /* ReviewController.swift in Sources */,
+				49F800EE1ADC6358004A1BF1 /* SearchViewController.swift in Sources */,
 				49ACB8681AD5E1730050C1B7 /* Review.swift in Sources */,
+				49F800F31ADC7944004A1BF1 /* NSImageView+Networking.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
