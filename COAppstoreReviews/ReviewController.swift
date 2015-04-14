@@ -11,12 +11,12 @@ import Foundation
 class ReviewController {
     
     var persistentStack : PersistentStack!
-    var importController : ImportController!
+    var dataBaseController : DataBaseController!
     
     
     init() {
-        persistentStack = PersistentStack(storeURL: storeURL(), modelURL: modelURL())
-        importController = ImportController(context: persistentStack.backgroundManagedObjectContext)
+        self.persistentStack = PersistentStack(storeURL: storeURL(), modelURL: modelURL())
+        self.dataBaseController = DataBaseController(context: self.persistentStack.backgroundManagedObjectContext)
     }
     
     class var sharedInstance: ReviewController {

@@ -43,7 +43,7 @@ class Review : NSManagedObject, ItunesEntryProtocol{
     @NSManaged var voteSum : NSNumber
     @NSManaged var country : String
     @NSManaged var application : Application
-    
+
     override init(entity: NSEntityDescription, insertIntoManagedObjectContext context: NSManagedObjectContext?) {
         super.init(entity: entity, insertIntoManagedObjectContext: context)
     }
@@ -70,6 +70,10 @@ class Review : NSManagedObject, ItunesEntryProtocol{
             let review = Review(insertIntoManagedObjectContext: context)
             return review
         }
+    }
+    
+    class func insertNewObjectIntoContext(context: NSManagedObjectContext) -> Review {
+        return NSEntityDescription.insertNewObjectForEntityForName(kEntityNameReview, inManagedObjectContext: context) as! Review
     }
 }
 

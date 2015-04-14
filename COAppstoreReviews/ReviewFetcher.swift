@@ -89,7 +89,6 @@ class ReviewFetcher {
     }
     
     func fakeFetchReview(completion: (success: Bool, reviews: JSON?, error : NSError?) -> Void) {
-        let path = NSBundle.mainBundle().pathForResource("reviews", ofType: "json")
         if let path = NSBundle.mainBundle().pathForResource("reviews", ofType: "json") {
             if let data = NSData(contentsOfMappedFile: path) {
                 var error : NSError? = nil

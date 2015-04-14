@@ -15,7 +15,7 @@ class ReviewViewController: NSViewController {
     
     var managedObjectContext : NSManagedObjectContext!
     let reviewController = ReviewController()
-    var reviews : [Review]?
+    var application : Application?
     
     required init?(coder: NSCoder) {
         super.init(coder: coder)
@@ -25,7 +25,9 @@ class ReviewViewController: NSViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        ReviewController.sharedInstance.importController.importReviews("521142420", storeId: "gb")
+        if let application = self.application {
+            ReviewController.sharedInstance.dataBaseController.importReviews(application, storeId: "gb")
+        }
     }
 
     override var representedObject: AnyObject? {

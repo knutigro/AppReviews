@@ -1,32 +1,45 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <model userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="7549" systemVersion="14D131" minimumToolsVersion="Automatic" macOSVersion="Automatic" iOSVersion="Automatic">
-    <entity name="Application" representedClassName="Review" syncable="YES">
-        <attribute name="apId" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="artist" optional="YES" attributeType="String" syncable="YES"/>
+    <entity name="Application" representedClassName="Application" syncable="YES">
+        <attribute name="artistId" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="artistName" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="artistViewUrl" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="artworkUrl60" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="artworkUrl512" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="averageUserRating" optional="YES" attributeType="Float" defaultValueString="0.0" syncable="YES"/>
+        <attribute name="averageUserRatingForCurrentVersion" optional="YES" attributeType="Float" defaultValueString="0.0" syncable="YES"/>
         <attribute name="bundleId" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="category" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="categoryId" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="contentType" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="image" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="fileSizeBytes" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="itunesDescription" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="minimumOsVersion" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="primaryGenreId" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="primaryGenreName" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="releaseDate" optional="YES" attributeType="Date" syncable="YES"/>
-        <attribute name="title" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="releaseNotes" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="sellerName" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="sellerUrl" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="trackId" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="trackName" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="trackViewUrl" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="userRatingCount" optional="YES" attributeType="Integer 64" defaultValueString="0" syncable="YES"/>
+        <attribute name="userRatingCountForCurrentVersion" optional="YES" attributeType="Integer 64" defaultValueString="0" syncable="YES"/>
+        <attribute name="version" optional="YES" attributeType="String" syncable="YES"/>
     </entity>
     <entity name="Review" representedClassName="Review" syncable="YES">
         <attribute name="apId" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="author" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="content" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="country" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="rating" optional="YES" attributeType="Integer 32" defaultValueString="0.0" syncable="YES"/>
+        <attribute name="rating" optional="YES" attributeType="Integer 64" defaultValueString="0.0" syncable="YES"/>
         <attribute name="title" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="uri" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="version" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="voteCount" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
+        <attribute name="voteCount" optional="YES" attributeType="Integer 64" defaultValueString="0" syncable="YES"/>
         <attribute name="voteSum" optional="YES" attributeType="Float" defaultValueString="0.0" syncable="YES"/>
         <relationship name="application" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Application" syncable="YES"/>
     </entity>
     <elements>
-        <element name="Application" positionX="-63" positionY="54" width="128" height="193"/>
+        <element name="Application" positionX="-63" positionY="54" width="128" height="388"/>
         <element name="Review" positionX="-324" positionY="26" width="128" height="208"/>
     </elements>
 </model>

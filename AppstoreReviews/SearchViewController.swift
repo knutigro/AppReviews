@@ -9,23 +9,34 @@
 import Cocoa
 import SwiftyJSON
 
+protocol SearchViewControllerDelegate {
+    func searchViewController(searchViewController : SearchViewController, didSelectApplication application: JSON)
+}
+
 class SearchViewController: NSViewController {
     
+    @IBOutlet var searchField: NSSearchField?
     @IBOutlet var tableView: NSTableView?
-    
     var items = [JSON]()
-    
-    var managedObjectContext : NSManagedObjectContext!
-    let reviewController = ReviewController()
-    
-    required init?(coder: NSCoder) {
-        super.init(coder: coder)
-        self.managedObjectContext = ReviewController.sharedInstance.persistentStack.managedObjectContext
-    }
+    var delegate: SearchViewControllerDelegate?
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        //ReviewController.sharedInstance.importController.importReviews("521142420", storeId: "gb")
+        
+        self.tableView?.target = self
+        self.tableView?.doubleAction = Selector("doubleClickedCell:")
+        
+        self.searchField?.becomeFirstResponder()
+        
+        println("Search \(ReviewController.sharedInstance.persistentStack.managedObjectContext)")
+    }
+    
+    func doubleClickedCell(object : AnyObject) {
+        if let rowNumber = self.tableView?.selectedRow {
+            let application = self.items[rowNumber]
+            delegate?.searchViewController(self, didSelectApplication: application)
+            self.dismissController(self)
+        }
     }
 }
 
@@ -80,13 +91,15 @@ extension SearchViewController : NSTableViewDataSource {
     func tableView(tableView: NSTableView, viewForTableColumn: NSTableColumn, row: Int) -> NSView {
         var cell = tableView.makeViewWithIdentifier(kApplicationCellIdentifier, owner: self) as! ApplicationCellView
         let application = self.items[row]
-        cell.textField?.stringValue = application["trackName"].stringValue
-        cell.authorTextField?.stringValue = application["sellerName"].stringValue
+        cell.textField?.stringValue = application.trackName ?? ""
+        cell.authorTextField?.stringValue = application.sellerName ?? ""
         
-        let urlString = application["artworkUrl60"].stringValue
+        println("trackId \(application.trackId)")
         
-        if let url = NSURL(string: urlString) {
-            cell.imageView? .setImageWithUrl(url, placeHolderImage: nil)
+        if let urlString = application.artworkUrl60 {
+            if let url = NSURL(string: urlString) {
+                cell.imageView?.setImageWithUrl(url, placeHolderImage: nil)
+            }
         }
 
         return cell;
