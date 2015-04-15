@@ -12,7 +12,7 @@ import SwiftyJSON
 
 class ReviewFetcher {
     
-    let apId : String?
+    let apId : String
     let storeId : String?
     
     var updated : NSDate?
@@ -58,34 +58,36 @@ class ReviewFetcher {
         println("nextPage \(nextPage)")
     }
     
-    func fetchReview(completion: (success: Bool, reviews: JSON?, error : NSError?) -> Void) {
+    func fetchReview(completion: (success: Bool, reviews: [JSON]?, error : NSError?) -> Void) {
         
-        self.fakeFetchReview(completion)
-        return
+//        self.fakeFetchReview(completion)
+//        return
 
-//        let storePath = storeId != nil ? ("/" + storeId!) : ""
-//        var url = "https://itunes.apple.com" +  storePath + "/rss/customerreviews/id=" + appId + "/json"
-//        
-//        let params = ["foo": "bar"]
-//        
-//        println(url)
-//        
-//        Alamofire.request(.GET, url, parameters: nil)
-//            .responseJSON { (request, response, json, error) in
-//                
-//                if(error != nil) {
-//                    NSLog("Error: \(error)")
-//                    println(request)
-//                    println(response)
-//        updateWithJSON(json)
-//                    completion(success: false, reviews: nil, error : error)
-//                } else {
-//                    var json = JSON(json!)
-//                    let reviews = json["feed"]["entry"]
+        let storePath = storeId != nil ? ("/" + storeId!) : ""
+        var url = "https://itunes.apple.com" +  storePath + "/rss/customerreviews/id=" + self.apId + "/json"
+        
+        let params = ["foo": "bar"]
+        
+        println(url)
+        
+        Alamofire.request(.GET, url, parameters: nil)
+            .responseJSON { (request, response, json, error) in
+                
+                if error != nil {
+                    NSLog("Error: \(error)")
+                    println(request)
+                    println(response)
+                    completion(success: false, reviews: nil, error : error)
+                } else {
+                    var json = JSON(json!)
+                    let reviews = json["feed"]["entry"].arrayValue
+                    
+                    println("found " + String(reviews.count) + " reviews.")
 
-//                    completion(success: true, reviews: reviews, error : nil)
-//                }
-//        }
+                    self.updateWithJSON(json)
+                    completion(success: true, reviews: reviews, error : nil)
+                }
+        }
     }
     
     func fakeFetchReview(completion: (success: Bool, reviews: JSON?, error : NSError?) -> Void) {

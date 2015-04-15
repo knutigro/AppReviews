@@ -36,8 +36,6 @@ class ReviewCellView : NSTableCellView {
             starRating.displayMode = UInt(EDStarRatingDisplayAccurate)
             starRating.rating = 3.5
         }
-        
-        println("self.objectValue \(self.objectValue)")
     }
     
     override func observeValueForKeyPath(keyPath: String, ofObject object: AnyObject, change: [NSObject : AnyObject], context: UnsafeMutablePointer<Void>) {

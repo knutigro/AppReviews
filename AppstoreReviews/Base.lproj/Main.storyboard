@@ -685,7 +685,7 @@
                                             <color key="backgroundColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
                                             <color key="gridColor" name="gridColor" catalog="System" colorSpace="catalog"/>
                                             <tableColumns>
-                                                <tableColumn width="600" minWidth="40" maxWidth="1000" id="4UH-Ro-LmK">
+                                                <tableColumn width="590" minWidth="40" maxWidth="1000" id="4UH-Ro-LmK">
                                                     <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border" alignment="left">
                                                         <font key="font" metaFont="smallSystem"/>
                                                         <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
@@ -699,7 +699,7 @@
                                                     <tableColumnResizingMask key="resizingMask" resizeWithTable="YES" userResizable="YES"/>
                                                     <prototypeCellViews>
                                                         <tableCellView id="tQe-YB-VfM" customClass="ReviewCellView" customModule="AppstoreReviews" customModuleProvider="target">
-                                                            <rect key="frame" x="1" y="1" width="600" height="80"/>
+                                                            <rect key="frame" x="1" y="1" width="590" height="80"/>
                                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                             <subviews>
                                                                 <imageView horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Q2k-1j-0He">
@@ -739,7 +739,7 @@
                                                                         <constraint firstAttribute="width" constant="100" id="YTh-7a-KdY"/>
                                                                     </constraints>
                                                                 </customView>
-                                                                <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="Izq-Vw-AH7">
+                                                                <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Izq-Vw-AH7">
                                                                     <rect key="frame" x="70" y="35" width="520" height="20"/>
                                                                     <constraints>
                                                                         <constraint firstAttribute="height" constant="20" id="OuV-Ih-Vsm"/>
@@ -753,7 +753,7 @@
                                                                         <binding destination="tQe-YB-VfM" name="value" keyPath="objectValue.title" id="L0O-rq-tr6"/>
                                                                     </connections>
                                                                 </textField>
-                                                                <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" allowsExpansionToolTips="YES" translatesAutoresizingMaskIntoConstraints="NO" id="5Ad-j7-rMu">
+                                                                <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" misplaced="YES" allowsExpansionToolTips="YES" translatesAutoresizingMaskIntoConstraints="NO" id="5Ad-j7-rMu">
                                                                     <rect key="frame" x="70" y="18" width="520" height="17"/>
                                                                     <textFieldCell key="cell" lineBreakMode="truncatingTail" sendsActionOnEndEditing="YES" title="Content" id="WVn-3m-Agh">
                                                                         <font key="font" metaFont="system"/>
@@ -768,7 +768,7 @@
                                                                         </binding>
                                                                     </connections>
                                                                 </textField>
-                                                                <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="qbv-zx-rM4">
+                                                                <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="qbv-zx-rM4">
                                                                     <rect key="frame" x="70" y="3" width="520" height="15"/>
                                                                     <constraints>
                                                                         <constraint firstAttribute="height" constant="15" id="R8E-xS-fiu"/>
@@ -817,7 +817,7 @@
                                     </subviews>
                                     <color key="backgroundColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
                                 </clipView>
-                                <scroller key="horizontalScroller" verticalHuggingPriority="750" horizontal="YES" id="Rcz-XI-thS">
+                                <scroller key="horizontalScroller" hidden="YES" verticalHuggingPriority="750" horizontal="YES" id="Rcz-XI-thS">
                                     <rect key="frame" x="1" y="119" width="223" height="15"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                 </scroller>
@@ -851,7 +851,7 @@
                 </arrayController>
                 <userDefaultsController representsSharedInstance="YES" id="k2v-RE-iNo"/>
             </objects>
-            <point key="canvasLocation" x="300" y="1666"/>
+            <point key="canvasLocation" x="254" y="1591"/>
         </scene>
         <!--Tab View Controller-->
         <scene sceneID="Iny-Lv-njr">
@@ -1022,12 +1022,12 @@
                                             </tableColumns>
                                             <connections>
                                                 <binding destination="3uf-4a-TMD" name="content" keyPath="arrangedObjects" id="4Kl-Aq-qqw"/>
-                                                <binding destination="3uf-4a-TMD" name="doubleClickArgument" keyPath="selectedObjects" id="Emi-NM-iF6">
+                                                <binding destination="3uf-4a-TMD" name="doubleClickArgument" keyPath="arrangedObjects" id="1nU-Bf-tlY">
                                                     <dictionary key="options">
                                                         <string key="NSSelectorName">cellDoubleClicked:</string>
                                                     </dictionary>
                                                 </binding>
-                                                <binding destination="tJy-Yh-9gh" name="doubleClickTarget" keyPath="self" previousBinding="Emi-NM-iF6" id="Qrj-UB-z7t">
+                                                <binding destination="tJy-Yh-9gh" name="doubleClickTarget" keyPath="self" previousBinding="1nU-Bf-tlY" id="aXt-Ey-hhr">
                                                     <dictionary key="options">
                                                         <string key="NSSelectorName">cellDoubleClicked:</string>
                                                     </dictionary>
@@ -1069,7 +1069,7 @@
                                 </connections>
                             </button>
                             <button translatesAutoresizingMaskIntoConstraints="NO" id="7pm-DQ-Ed4">
-                                <rect key="frame" x="29" y="5" width="25" height="25"/>
+                                <rect key="frame" x="30" y="5" width="25" height="25"/>
                                 <buttonCell key="cell" type="square" title="-" bezelStyle="shadowlessSquare" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="uXV-eQ-D8E">
                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                     <font key="font" metaFont="system"/>
@@ -1078,6 +1078,14 @@
                                     <binding destination="3uf-4a-TMD" name="argument" keyPath="arrangedObjects" id="aEo-MI-pR4">
                                         <dictionary key="options">
                                             <string key="NSSelectorName">removeButtonClicked:</string>
+                                        </dictionary>
+                                    </binding>
+                                    <binding destination="tJy-Yh-9gh" name="enabled" keyPath="self.tableView.selectedRow" id="mvh-Jr-qpc">
+                                        <dictionary key="options">
+                                            <integer key="NSMultipleValuesPlaceholder" value="1"/>
+                                            <integer key="NSNoSelectionPlaceholder" value="0"/>
+                                            <integer key="NSNotApplicablePlaceholder" value="0"/>
+                                            <integer key="NSNullPlaceholder" value="0"/>
                                         </dictionary>
                                     </binding>
                                     <binding destination="tJy-Yh-9gh" name="target" keyPath="self" previousBinding="aEo-MI-pR4" id="l7Z-ZP-PP9">
@@ -1093,7 +1101,7 @@
                             <constraint firstItem="CWR-fc-JKQ" firstAttribute="leading" secondItem="sAN-a2-N3t" secondAttribute="leading" constant="5" id="C1R-c0-uBb"/>
                             <constraint firstItem="JcR-82-CZP" firstAttribute="leading" secondItem="sAN-a2-N3t" secondAttribute="leading" constant="5" id="CVu-7D-g7k"/>
                             <constraint firstItem="CWR-fc-JKQ" firstAttribute="top" secondItem="sAN-a2-N3t" secondAttribute="top" constant="6" id="FDx-Fb-l5s"/>
-                            <constraint firstItem="7pm-DQ-Ed4" firstAttribute="leading" secondItem="JcR-82-CZP" secondAttribute="trailing" constant="-1" id="QOy-OG-tVV"/>
+                            <constraint firstItem="7pm-DQ-Ed4" firstAttribute="leading" secondItem="JcR-82-CZP" secondAttribute="trailing" id="QOy-OG-tVV"/>
                             <constraint firstAttribute="bottom" secondItem="CWR-fc-JKQ" secondAttribute="bottom" constant="35" id="hS1-r6-Qd5"/>
                             <constraint firstItem="JcR-82-CZP" firstAttribute="top" secondItem="CWR-fc-JKQ" secondAttribute="bottom" constant="5" id="nsP-rZ-ddY"/>
                             <constraint firstItem="7pm-DQ-Ed4" firstAttribute="centerY" secondItem="JcR-82-CZP" secondAttribute="centerY" id="tTR-95-cXy"/>

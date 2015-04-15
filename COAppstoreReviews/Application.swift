@@ -81,7 +81,10 @@ class Application : NSManagedObject, ItunesEntryProtocol {
     @NSManaged var minimumOsVersion : String
     @NSManaged var averageUserRating : NSNumber
     @NSManaged var userRatingCount : NSNumber
-    
+    @NSManaged var createdAt : NSDate
+    @NSManaged var updatedAt : NSDate
+    @NSManaged var reviews : NSSet
+
     override init(entity: NSEntityDescription, insertIntoManagedObjectContext context: NSManagedObjectContext?) {
         super.init(entity: entity, insertIntoManagedObjectContext: context)
     }
@@ -106,6 +109,8 @@ class Application : NSManagedObject, ItunesEntryProtocol {
             return lastObject
         } else {
             let application = Application(insertIntoManagedObjectContext: context)
+            application.createdAt = NSDate()
+            application.updatedAt = NSDate()
             return application
         }
     }

@@ -9,6 +9,7 @@
         <attribute name="averageUserRating" optional="YES" attributeType="Float" defaultValueString="0.0" syncable="YES"/>
         <attribute name="averageUserRatingForCurrentVersion" optional="YES" attributeType="Float" defaultValueString="0.0" syncable="YES"/>
         <attribute name="bundleId" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="createdAt" optional="YES" attributeType="Date" syncable="YES"/>
         <attribute name="fileSizeBytes" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="itunesDescription" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="minimumOsVersion" optional="YES" attributeType="String" syncable="YES"/>
@@ -21,25 +22,29 @@
         <attribute name="trackId" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="trackName" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="trackViewUrl" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="updatedAt" optional="YES" attributeType="Date" syncable="YES"/>
         <attribute name="userRatingCount" optional="YES" attributeType="Integer 64" defaultValueString="0" syncable="YES"/>
         <attribute name="userRatingCountForCurrentVersion" optional="YES" attributeType="Integer 64" defaultValueString="0" syncable="YES"/>
         <attribute name="version" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="reviews" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="Review" inverseName="application" inverseEntity="Review" syncable="YES"/>
     </entity>
     <entity name="Review" representedClassName="Review" syncable="YES">
         <attribute name="apId" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="author" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="content" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="country" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="createdAt" optional="YES" attributeType="Date" syncable="YES"/>
         <attribute name="rating" optional="YES" attributeType="Integer 64" defaultValueString="0.0" syncable="YES"/>
         <attribute name="title" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="updatedAt" optional="YES" attributeType="Date" syncable="YES"/>
         <attribute name="uri" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="version" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="voteCount" optional="YES" attributeType="Integer 64" defaultValueString="0" syncable="YES"/>
         <attribute name="voteSum" optional="YES" attributeType="Float" defaultValueString="0.0" syncable="YES"/>
-        <relationship name="application" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Application" syncable="YES"/>
+        <relationship name="application" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Application" inverseName="reviews" inverseEntity="Application" syncable="YES"/>
     </entity>
     <elements>
-        <element name="Application" positionX="-63" positionY="54" width="128" height="388"/>
-        <element name="Review" positionX="-324" positionY="26" width="128" height="208"/>
+        <element name="Application" positionX="-63" positionY="54" width="128" height="433"/>
+        <element name="Review" positionX="-324" positionY="26" width="128" height="238"/>
     </elements>
 </model>

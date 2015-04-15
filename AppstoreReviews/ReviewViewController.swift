@@ -26,7 +26,8 @@ class ReviewViewController: NSViewController {
         super.viewDidLoad()
 
         if let application = self.application {
-            ReviewController.sharedInstance.dataBaseController.importReviews(application, storeId: "gb")
+            self.reviewArrayController?.filterPredicate = NSPredicate(format: "application = %@", application)
+            ReviewController.sharedInstance.dataBaseController.updateReviews(application, storeId: nil)
         }
     }
 

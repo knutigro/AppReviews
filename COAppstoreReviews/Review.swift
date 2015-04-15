@@ -43,6 +43,8 @@ class Review : NSManagedObject, ItunesEntryProtocol{
     @NSManaged var voteSum : NSNumber
     @NSManaged var country : String
     @NSManaged var application : Application
+    @NSManaged var createdAt : NSDate
+    @NSManaged var updatedAt : NSDate
 
     override init(entity: NSEntityDescription, insertIntoManagedObjectContext context: NSManagedObjectContext?) {
         super.init(entity: entity, insertIntoManagedObjectContext: context)
@@ -68,6 +70,8 @@ class Review : NSManagedObject, ItunesEntryProtocol{
             return lastObject
         } else {
             let review = Review(insertIntoManagedObjectContext: context)
+            review.createdAt = NSDate()
+            review.updatedAt = NSDate()
             return review
         }
     }

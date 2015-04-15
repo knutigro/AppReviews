@@ -37,8 +37,11 @@ class ApplicationViewController: NSViewController {
             }
         } else if segue.identifier == kOpenReviewListSegue {
             if let reviewViewController = segue.destinationController as? ReviewViewController,
-                let applications = sender as? [Application] {
-                reviewViewController.application = applications.first
+                let applications = sender as? [Application], let rowNumber = self.tableView?.selectedRow {
+                    if applications.count > rowNumber && rowNumber >= 0{
+                        let application = applications[rowNumber]
+                        reviewViewController.application = application
+                    }
             }
         }
     }
@@ -49,17 +52,17 @@ class ApplicationViewController: NSViewController {
 extension ApplicationViewController {
     
     @IBAction func removeButtonClicked(objects:AnyObject?) {
-        if let applications = objects as? [Application], let rowNumber = self.tableView?.selectedRow{
-            if applications.count > rowNumber && rowNumber > 0{
+        if let applications = objects as? [Application], let rowNumber = self.tableView?.selectedRow {
+            if applications.count > rowNumber && rowNumber >= 0{
                 let application = applications[rowNumber]
                 ReviewController.sharedInstance.dataBaseController.removeApplication(application)
             }
         }
     }
     
-    @IBAction func cellDoubleClicked(application:Application?) {
-        if let application = application {
-            self.performSegueWithIdentifier(kOpenReviewListSegue, sender: application)
+    func cellDoubleClicked(applications: [Application]?) {
+        if let applications = applications {
+            self.performSegueWithIdentifier(kOpenReviewListSegue, sender: applications)
         }
     }
 }
@@ -68,6 +71,6 @@ extension ApplicationViewController {
 
 extension ApplicationViewController : SearchViewControllerDelegate {
     func searchViewController(searchViewController : SearchViewController, didSelectApplication application: JSON) {
-        ReviewController.sharedInstance.dataBaseController.addApplication(application)
+        ReviewController.sharedInstance.dataBaseController.updateApplication(application)
     }
 }
