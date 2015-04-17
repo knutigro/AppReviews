@@ -22,7 +22,7 @@ class ApplicationViewController: NSViewController {
     
     required init?(coder: NSCoder) {
         super.init(coder: coder)
-        self.managedObjectContext = ReviewController.sharedInstance.persistentStack.managedObjectContext
+        self.managedObjectContext = DBController.sharedInstance.persistentStack.managedObjectContext
     }
     
     override func viewDidLoad() {
@@ -46,7 +46,7 @@ extension ApplicationViewController {
         if let applications = objects as? [Application], let rowNumber = self.tableView?.selectedRow {
             if applications.count > rowNumber && rowNumber >= 0{
                 let application = applications[rowNumber]
-                ReviewController.sharedInstance.dataBaseController.removeApplication(application)
+                DBController.sharedInstance.reviewController.removeApplication(application)
             }
         }
     }
@@ -65,6 +65,6 @@ extension ApplicationViewController {
 
 extension ApplicationViewController : SearchViewControllerDelegate {
     func searchViewController(searchViewController : SearchViewController, didSelectApplication application: JSON) {
-        ReviewController.sharedInstance.dataBaseController.updateApplication(application)
+        DBController.sharedInstance.reviewController.updateApplication(application)
     }
 }

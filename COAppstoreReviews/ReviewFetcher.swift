@@ -50,12 +50,6 @@ class ReviewFetcher {
                 self.nextPage = attributes["href"].string
             }
         }
-        
-        println("updated \(updated)")
-        println("lastPage \(lastPage)")
-        println("firstPage \(firstPage)")
-        println("previousPage \(previousPage)")
-        println("nextPage \(nextPage)")
     }
     
     func fetchReview(completion: (success: Bool, reviews: [JSON]?, error : NSError?) -> Void) {
@@ -71,7 +65,7 @@ class ReviewFetcher {
         println(url)
         
         Alamofire.request(.GET, url, parameters: nil)
-            .responseJSON { (request, response, json, error) in
+            .responseJSON { [weak self] (request, response, json, error) in
                 
                 if error != nil {
                     NSLog("Error: \(error)")
@@ -83,8 +77,11 @@ class ReviewFetcher {
                     let reviews = json["feed"]["entry"].arrayValue
                     
                     println("found " + String(reviews.count) + " reviews.")
+                    
+                    if let strongSelf = self {
+                        strongSelf.updateWithJSON(json)
+                    }
 
-                    self.updateWithJSON(json)
                     completion(success: true, reviews: reviews, error : nil)
                 }
         }

@@ -18,16 +18,9 @@ class AppFetcher {
         var url = "https://itunes.apple.com/search"
         let params = ["term": name, "entity" : "software"]
         
-        Alamofire.request(.GET, "https://itunes.apple.com/search", parameters: params)
-            .responseString(encoding: NSUTF8StringEncoding) { (_, _, string, _) in
-                println(string)
-        }
-        
         Alamofire.request(.GET, url, parameters: params)
-            .responseJSON { (request, response, json, error) in
+            .responseJSON { [weak self] (request, response, json, error) in
                 
-                println("JSON")
-
                 if(error != nil) {
                     NSLog("Error: \(error)")
                     println(request)

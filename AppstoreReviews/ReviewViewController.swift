@@ -14,7 +14,7 @@ class ReviewViewController: NSViewController {
     @IBOutlet var reviewArrayController: ReviewArrayController?
     
     var managedObjectContext : NSManagedObjectContext!
-    private let reviewController = ReviewController()
+    private let dbController = DBController()
     private var application : Application?
     var applicationId : NSString? {
         didSet {
@@ -26,7 +26,7 @@ class ReviewViewController: NSViewController {
     
     required init?(coder: NSCoder) {
         super.init(coder: coder)
-        self.managedObjectContext = ReviewController.sharedInstance.persistentStack.managedObjectContext
+        self.managedObjectContext = DBController.sharedInstance.persistentStack.managedObjectContext
     }
     
     override func viewDidLoad() {
@@ -41,7 +41,7 @@ class ReviewViewController: NSViewController {
             
             if let application = self.application {
                 self.reviewArrayController?.filterPredicate = NSPredicate(format: "application = %@", application)
-                ReviewController.sharedInstance.dataBaseController.updateReviews(application, storeId: nil)
+                DBController.sharedInstance.reviewController.updateReviews(application, storeId: nil)
             }
             
             self.tableView?.reloadData()

@@ -1,56 +1,92 @@
 //
-//  COReviewController.swift
+//  COImportController.swift
 //  AppstoreReviews
 //
-//  Created by Knut Inge Grosland on 2015-04-08.
+//  Created by Knut Inge Grosland on 2015-04-09.
 //  Copyright (c) 2015 Cocmoc. All rights reserved.
 //
 
 import Foundation
+import AppKit
+import SwiftyJSON
 
 class ReviewController {
+    let context : NSManagedObjectContext
     
-    var persistentStack : PersistentStack!
-    var dataBaseController : DataBaseController!
-    
-    
-    init() {
-        self.persistentStack = PersistentStack(storeURL: storeURL(), modelURL: modelURL())
-        self.dataBaseController = DataBaseController(context: self.persistentStack.backgroundManagedObjectContext)
+    init(context: NSManagedObjectContext) {
+        self.context = context
     }
     
-    class var sharedInstance: ReviewController {
-        struct Singleton {
-            static let instance = ReviewController()
-        }
-        return Singleton.instance
-    }
-    
-    // MARK: - Core Data stack
-    
-    func saveContext() {
+    private func saveContext() {
         var error : NSError? = nil
-        self.persistentStack.managedObjectContext.save(&error)
-        if error != nil {
-            println("error saving: \(error?.localizedDescription)")
+        self.context.save(&error)
+        if error != nil { println("error: " + error!.localizedDescription) }
+    }
+    
+    func updateReviews(application: Application, storeId: String?) {
+        println("import reviews for \(application.trackName) store \(storeId)")
+        
+        var managedApplication = Application.findOrCreateNewApplication(application.trackId, context: self.context)
+        
+        let reviewFetcher = ReviewFetcher(apId: application.trackId, storeId: storeId)
+        
+        reviewFetcher.fetchReview() {  [weak self]
+            (success: Bool, reviews: [JSON]?, error : NSError?)
+             in
+
+            let blockSuccess = success as Bool
+            let blockError = error
+
+            if let strongSelf = self {
+                strongSelf.context.performBlock({ () -> Void in
+                    
+                    if let blockReviews = reviews {
+                        
+                        for var index = 0; index < blockReviews.count; index++ {
+                            let entry = blockReviews[index]
+                            
+                            if entry.isReviewEntity, let apID = entry.reviewApID {
+                                var review = Review.findOrCreateNewReview(apID, context: strongSelf.context)
+                                review.updateWithJSON(entry)
+                                review.country = storeId ?? ""
+                                review.updatedAt = NSDate()
+                                var reviews = managedApplication.mutableSetValueForKey("reviews")
+                                reviews.addObject(review)
+                                review.application = managedApplication
+                            }
+                        }
+                        strongSelf.saveContext()
+                    }
+                })
+            }
         }
     }
     
-    func storeURL() -> NSURL {
-        var error: NSError? = nil
-        let documentsDirectory = NSFileManager.defaultManager().URLForDirectory(.DocumentDirectory, inDomain: .UserDomainMask, appropriateForURL: nil, create: true, error: &error)
-        let url = documentsDirectory?.URLByAppendingPathComponent("db.sqlite")
-        if error != nil {
-            println("error storeURL: \(error?.localizedDescription)")
+    func updateApplication(application : JSON) {
+        if application.isApplicationEntity, let apID = application.trackId {
+            var managedApplication = Application.findOrCreateNewApplication(apID, context: self.context)
+            managedApplication.updatedAt = NSDate()
+            managedApplication.updateWithJSON(application)
+            self.saveContext()
         }
-
-        return url!
     }
     
-    func modelURL() -> NSURL {
-        return NSBundle.mainBundle().URLForResource("AppstoreReviews", withExtension: "momd")!
+    func removeApplication(application : Application) {
+        var managedApplication = Application.findOrCreateNewApplication(application.trackId, context: self.context)
+        self.context.deleteObject(managedApplication)
+        self.saveContext()
     }
     
-    // MARK: - Fetching Reviews
-
+    func fetchAllApplications() -> [Application]? {
+        let fetchRequest = NSFetchRequest(entityName: kEntityNameApplication)
+        var error : NSError?
+        
+        let result = context.executeFetchRequest(fetchRequest, error: &error)
+        
+        if error != nil {
+            println(error)
+        }
+        
+        return result as? [Application]
+    }
 }

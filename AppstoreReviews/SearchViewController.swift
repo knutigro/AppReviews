@@ -27,8 +27,6 @@ class SearchViewController: NSViewController {
         self.tableView?.doubleAction = Selector("doubleClickedCell:")
         
         self.searchField?.becomeFirstResponder()
-        
-        println("Search \(ReviewController.sharedInstance.persistentStack.managedObjectContext)")
     }
     
     func doubleClickedCell(object : AnyObject) {
@@ -61,7 +59,7 @@ extension SearchViewController  {
         
         let appFetcher = AppFetcher()
         
-        appFetcher.fetchApplications(name) {
+        appFetcher.fetchApplications(name) { [weak self]
             (success: Bool, applications: JSON?, error : NSError?)
             in
             
@@ -73,8 +71,10 @@ extension SearchViewController  {
             }
             
             if let applications = applications?.arrayValue {
-                self.items = applications
-                self.tableView?.reloadData()
+                if let strongSelf = self {
+                    strongSelf.items = applications
+                    strongSelf.tableView?.reloadData()
+                }
             }
         }
     }
@@ -93,8 +93,6 @@ extension SearchViewController : NSTableViewDataSource {
         let application = self.items[row]
         cell.textField?.stringValue = application.trackName ?? ""
         cell.authorTextField?.stringValue = application.sellerName ?? ""
-        
-        println("trackId \(application.trackId)")
         
         if let urlString = application.artworkUrl60 {
             if let url = NSURL(string: urlString) {

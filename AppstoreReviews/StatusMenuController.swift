@@ -33,7 +33,7 @@ class StatusMenuController : NSObject {
         
         self.updateApplicationItems()
         
-        let backgroundManagedObjectContext = ReviewController.sharedInstance.persistentStack.backgroundManagedObjectContext;
+        let backgroundManagedObjectContext = DBController.sharedInstance.persistentStack.backgroundManagedObjectContext;
         
         let newToken = NSNotificationCenter.defaultCenter().addObserverForName(NSManagedObjectContextDidSaveNotification, object: nil, queue: nil) { notification in
             if notification.object as? NSManagedObjectContext == backgroundManagedObjectContext {
@@ -87,7 +87,7 @@ class StatusMenuController : NSObject {
     }
     
     func updateApplicationItems(){
-        if let applications = ReviewController.sharedInstance.dataBaseController.fetchAllApplications() {
+        if let applications = DBController.sharedInstance.reviewController.fetchAllApplications() {
             self.applicationItems.removeAll(keepCapacity: false)
             for application in applications {
                 if !application.trackName.isEmpty && !application.trackId.isEmpty  {

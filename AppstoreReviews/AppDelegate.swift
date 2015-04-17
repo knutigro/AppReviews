@@ -21,12 +21,9 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     func applicationDidFinishLaunching(aNotification: NSNotification) {
         // Insert code here to initialize your application
         
-        let sharedInstance = ReviewController.sharedInstance
+        let sharedInstance = DBController.sharedInstance
         
         self.statusMenuController = StatusMenuController()
-        
-        
-        println("settingsWindowController \(settingsWindowController)")
         
     }
     
@@ -58,7 +55,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     
     func applicationShouldTerminate(sender: NSApplication) -> NSApplicationTerminateReply {
         // Saves changes in the application's managed object context before the application terminates.
-        ReviewController.sharedInstance.saveContext()
+        DBController.sharedInstance.saveContext()
         
         return .TerminateNow
     }
