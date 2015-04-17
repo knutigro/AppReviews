@@ -8,9 +8,6 @@
 
 import Foundation
 
-// Update interval in seconds
-let UpdateInterval = 0.5
-
 class DBController {
 
     var persistentStack : PersistentStack!

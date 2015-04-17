@@ -90,12 +90,6 @@ class StatusMenuController : NSObject {
         self.statusItem.menu = menu;
     }
     
-}
-
-// MARK: - Actions
-
-extension StatusMenuController {
-    
     func updateApplicationItems(){
         if let applications = DBController.sharedInstance.reviewController.fetchAllApplications() {
             self.applicationItems.removeAll(keepCapacity: false)
@@ -107,6 +101,11 @@ extension StatusMenuController {
         }
         self.updateMenu()
     }
+}
+
+// MARK: - Actions
+
+extension StatusMenuController {
     
     func openReviewsForApp(sender : AnyObject) {
         if let menuItem = sender as? NSMenuItem {

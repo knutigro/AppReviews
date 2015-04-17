@@ -8,9 +8,17 @@
 
 import AppKit
 
+// Update interval in seconds
+let UpdateInterval = 0.5
+
 class ReviewUpdater {
     
+    class ApplicationUpdateObject {
+        
+    }
+    
     var timer: Timer?
+    var applications = [ApplicationUpdateObject]()
     
     // MARK: - Init & teardown
     
