@@ -15,17 +15,12 @@ class DBController {
 
     var persistentStack : PersistentStack!
     var reviewController : ReviewController!
-    var timer: Timer?
     
+    // MARK: - Init & teardown
+
     init() {
         self.persistentStack = PersistentStack(storeURL: storeURL(), modelURL: modelURL())
         self.reviewController = ReviewController(context: self.persistentStack.backgroundManagedObjectContext)
-        
-        self.timer = Timer.repeatEvery(UpdateInterval) { [weak self] inTimer in
-            if let strongSelf = self {
-//                strongSelf.updateStatusItem()
-            }
-        }
     }
     
     class var sharedInstance: DBController {
@@ -59,7 +54,4 @@ class DBController {
     func modelURL() -> NSURL {
         return NSBundle.mainBundle().URLForResource("AppstoreReviews", withExtension: "momd")!
     }
-    
-    // MARK: - Fetching Reviews
-
 }

@@ -24,16 +24,22 @@ class ReviewViewController: NSViewController {
         }
     }
     
+    // MARK: - Init & teardown
+    
     required init?(coder: NSCoder) {
         super.init(coder: coder)
         self.managedObjectContext = DBController.sharedInstance.persistentStack.managedObjectContext
     }
+    
+    // MARK: - View & Navigation
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         self.updateReviews()
     }
+    
+    // MARK: - Data
     
     private func updateReviews() {
         if self.applicationId as? String != nil {

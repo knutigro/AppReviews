@@ -20,11 +20,15 @@ class ApplicationViewController: NSViewController {
     
     var managedObjectContext : NSManagedObjectContext!
     
+    // MARK: - Init & Teardown
+
     required init?(coder: NSCoder) {
         super.init(coder: coder)
         self.managedObjectContext = DBController.sharedInstance.persistentStack.managedObjectContext
     }
     
+    // MARK: - View & Navigation
+
     override func viewDidLoad() {
         super.viewDidLoad()
     }
@@ -38,7 +42,7 @@ class ApplicationViewController: NSViewController {
     }
 }
 
-// Mark: Actions
+// Mark: - Actions
 
 extension ApplicationViewController {
     
@@ -61,7 +65,7 @@ extension ApplicationViewController {
     }
 }
 
-// Mark: SearchViewControllerDelegate
+// Mark: - SearchViewControllerDelegate
 
 extension ApplicationViewController : SearchViewControllerDelegate {
     func searchViewController(searchViewController : SearchViewController, didSelectApplication application: JSON) {

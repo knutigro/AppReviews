@@ -24,6 +24,8 @@ class StatusMenuController : NSObject {
     var statusItem: NSStatusItem!
     var applicationItems = [StatusMenuApplicationItem]()
 
+    // MARK: - Init & teardown
+
     override init() {
         super.init()
         self.statusItem = NSStatusBar.systemStatusBar().statusItemWithLength(-1) // NSVariableStatusItemLength
@@ -57,6 +59,8 @@ class StatusMenuController : NSObject {
         }
     }
     
+    // MARK: - Handling menu items
+
     func updateMenu() {
         var menu = NSMenu()
         
@@ -85,6 +89,12 @@ class StatusMenuController : NSObject {
         
         self.statusItem.menu = menu;
     }
+    
+}
+
+// MARK: - Actions
+
+extension StatusMenuController {
     
     func updateApplicationItems(){
         if let applications = DBController.sharedInstance.reviewController.fetchAllApplications() {

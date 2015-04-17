@@ -38,7 +38,7 @@ class SearchViewController: NSViewController {
     }
 }
 
-// MARK: SearchField
+// MARK: - SearchField
 
 extension SearchViewController  {
     override func controlTextDidEndEditing(notification : NSNotification) {
@@ -50,7 +50,7 @@ extension SearchViewController  {
     }
 }
 
-// MARK: Search Apps
+// MARK: - Search Apps
 
 extension SearchViewController  {
     
@@ -80,7 +80,7 @@ extension SearchViewController  {
     }
 }
 
-// MARK: NSTableViewDataSource
+// MARK: - NSTableViewDataSource
 
 extension SearchViewController : NSTableViewDataSource {
     
