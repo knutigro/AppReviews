@@ -14,8 +14,15 @@ class ReviewViewController: NSViewController {
     @IBOutlet var reviewArrayController: ReviewArrayController?
     
     var managedObjectContext : NSManagedObjectContext!
-    let reviewController = ReviewController()
-    var application : Application?
+    private let reviewController = ReviewController()
+    private var application : Application?
+    var applicationId : NSString? {
+        didSet {
+            if self.tableView != nil && oldValue != self.applicationId {
+                self.updateReviews()
+            }
+        }
+    }
     
     required init?(coder: NSCoder) {
         super.init(coder: coder)
@@ -24,16 +31,20 @@ class ReviewViewController: NSViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        if let application = self.application {
-            self.reviewArrayController?.filterPredicate = NSPredicate(format: "application = %@", application)
-            ReviewController.sharedInstance.dataBaseController.updateReviews(application, storeId: nil)
-        }
+        
+        self.updateReviews()
     }
-
-    override var representedObject: AnyObject? {
-        didSet {
-        // Update the view, if already loaded.
+    
+    private func updateReviews() {
+        if self.applicationId as? String != nil {
+            self.application = Application.findApplication(self.applicationId! as String, context: self.managedObjectContext)
+            
+            if let application = self.application {
+                self.reviewArrayController?.filterPredicate = NSPredicate(format: "application = %@", application)
+                ReviewController.sharedInstance.dataBaseController.updateReviews(application, storeId: nil)
+            }
+            
+            self.tableView?.reloadData()
         }
     }
 }

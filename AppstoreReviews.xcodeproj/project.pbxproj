@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		498111E31AE002E5000CBFBF /* StatusMenuController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 498111E21AE002E5000CBFBF /* StatusMenuController.swift */; };
+		498111E71AE07BC0000CBFBF /* ReviewWindow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 498111E61AE07BC0000CBFBF /* ReviewWindow.swift */; };
 		49997B7C1ADDB3F000B56590 /* TableImageCellTransformer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49997B7B1ADDB3F000B56590 /* TableImageCellTransformer.swift */; };
 		49997B7E1ADDC7A700B56590 /* application.json in Resources */ = {isa = PBXBuildFile; fileRef = 49997B7D1ADDC7A700B56590 /* application.json */; };
 		49A003591AD687A8001E10BE /* DataBaseController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49A003581AD687A8001E10BE /* DataBaseController.swift */; };
@@ -45,6 +47,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		498111E21AE002E5000CBFBF /* StatusMenuController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StatusMenuController.swift; sourceTree = "<group>"; };
+		498111E61AE07BC0000CBFBF /* ReviewWindow.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReviewWindow.swift; sourceTree = "<group>"; };
 		49997B7B1ADDB3F000B56590 /* TableImageCellTransformer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TableImageCellTransformer.swift; sourceTree = "<group>"; };
 		49997B7D1ADDC7A700B56590 /* application.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = application.json; sourceTree = "<group>"; };
 		49A003581AD687A8001E10BE /* DataBaseController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataBaseController.swift; sourceTree = "<group>"; };
@@ -205,9 +209,11 @@
 		49F800F51ADC840C004A1BF1 /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
+				498111E61AE07BC0000CBFBF /* ReviewWindow.swift */,
 				49ACB8421AD5CAA00050C1B7 /* ReviewViewController.swift */,
 				49F800F71ADC84A7004A1BF1 /* ApplicationViewController.swift */,
 				49F800ED1ADC6358004A1BF1 /* SearchViewController.swift */,
+				498111E21AE002E5000CBFBF /* StatusMenuController.swift */,
 			);
 			name = ViewControllers;
 			sourceTree = "<group>";
@@ -402,11 +408,13 @@
 				49F800E81ADAA0DC004A1BF1 /* ReviewCellView.swift in Sources */,
 				49ACB8411AD5CAA00050C1B7 /* AppDelegate.swift in Sources */,
 				49ACB8461AD5CAA00050C1B7 /* AppstoreReviews.xcdatamodeld in Sources */,
+				498111E71AE07BC0000CBFBF /* ReviewWindow.swift in Sources */,
 				49A0035B1AD68840001E10BE /* ReviewFetcher.swift in Sources */,
 				49F800F81ADC84A7004A1BF1 /* ApplicationViewController.swift in Sources */,
 				49A003591AD687A8001E10BE /* DataBaseController.swift in Sources */,
 				49A75E4E1AD9BCDF004A4742 /* ReviewArrayController.swift in Sources */,
 				49ACB8631AD5CE700050C1B7 /* ReviewController.swift in Sources */,
+				498111E31AE002E5000CBFBF /* StatusMenuController.swift in Sources */,
 				49F800EE1ADC6358004A1BF1 /* SearchViewController.swift in Sources */,
 				49ACB8681AD5E1730050C1B7 /* Review.swift in Sources */,
 				49F800F31ADC7944004A1BF1 /* NSImageView+Networking.swift in Sources */,

@@ -93,9 +93,8 @@ class Application : NSManagedObject, ItunesEntryProtocol {
         let entityDescription = NSEntityDescription.entityForName(kEntityNameApplication, inManagedObjectContext: context)
         self.init(entity: entityDescription!, insertIntoManagedObjectContext: context)
     }
-
-    class func findOrCreateNewApplication(identifier : String, context: NSManagedObjectContext) -> Application {
-        
+    
+    class func findApplication(identifier : String, context: NSManagedObjectContext) -> Application? {
         let fetchRequest = NSFetchRequest(entityName: kEntityNameApplication)
         fetchRequest.predicate = NSPredicate(format: "trackId = %@", identifier)
         var error : NSError?
@@ -105,12 +104,17 @@ class Application : NSManagedObject, ItunesEntryProtocol {
         if error != nil {
             println(error)
         }
-        if let lastObject = result?.last as? Application {
-            return lastObject
+        return result?.last as? Application
+    }
+
+    class func findOrCreateNewApplication(identifier : String, context: NSManagedObjectContext) -> Application {
+        if let application = Application.findApplication(identifier, context: context) {
+            return application
         } else {
             let application = Application(insertIntoManagedObjectContext: context)
             application.createdAt = NSDate()
             application.updatedAt = NSDate()
+            
             return application
         }
     }

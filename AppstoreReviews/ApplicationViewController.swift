@@ -10,7 +10,6 @@
 import Cocoa
 import SwiftyJSON
 
-let kOpenReviewListSegue = "openReviewListSegue"
 let kOpenApplicationSearchSegue = "openApplicationSearchSegue"
 
 class ApplicationViewController: NSViewController {
@@ -35,14 +34,6 @@ class ApplicationViewController: NSViewController {
             if let searchViewController = segue.destinationController as? SearchViewController {
                 searchViewController.delegate = self
             }
-        } else if segue.identifier == kOpenReviewListSegue {
-            if let reviewViewController = segue.destinationController as? ReviewViewController,
-                let applications = sender as? [Application], let rowNumber = self.tableView?.selectedRow {
-                    if applications.count > rowNumber && rowNumber >= 0{
-                        let application = applications[rowNumber]
-                        reviewViewController.application = application
-                    }
-            }
         }
     }
 }
@@ -61,8 +52,11 @@ extension ApplicationViewController {
     }
     
     func cellDoubleClicked(applications: [Application]?) {
-        if let applications = applications {
-            self.performSegueWithIdentifier(kOpenReviewListSegue, sender: applications)
+        if let applications = applications, let rowNumber = self.tableView?.selectedRow {
+            if applications.count > rowNumber && rowNumber >= 0{
+                let application = applications[rowNumber]
+                ReviewWindowController.show(application.trackId)
+            }
         }
     }
 }

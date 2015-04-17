@@ -75,4 +75,17 @@ class DataBaseController {
         self.context.deleteObject(managedApplication)
         self.saveContext()
     }
+    
+    func fetchAllApplications() -> [Application]? {
+        let fetchRequest = NSFetchRequest(entityName: kEntityNameApplication)
+        var error : NSError?
+        
+        let result = context.executeFetchRequest(fetchRequest, error: &error)
+        
+        if error != nil {
+            println(error)
+        }
+        
+        return result as? [Application]
+    }
 }
