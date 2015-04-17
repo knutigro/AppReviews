@@ -14,17 +14,20 @@ class ReviewFetcher {
     
     let apId : String
     let storeId : String?
-    
     var updated : NSDate?
     var previousPage : String?
     var nextPage : String?
     var firstPage : String?
     var lastPage : String?
     
+    // MARK: Init & teardown
+
     init(apId: String, storeId: String?) {
         self.apId = apId
         self.storeId = storeId
     }
+    
+    // MARK: Update object
     
     func updateWithJSON(json : JSON) {
         
@@ -52,17 +55,11 @@ class ReviewFetcher {
         }
     }
     
-    func fetchReview(completion: (success: Bool, reviews: [JSON]?, error : NSError?) -> Void) {
-        
-//        self.fakeFetchReview(completion)
-//        return
+    // MARK: Fetching
 
+    func fetchReview(completion: (success: Bool, reviews: [JSON]?, error : NSError?) -> Void) {
         let storePath = storeId != nil ? ("/" + storeId!) : ""
         var url = "https://itunes.apple.com" +  storePath + "/rss/customerreviews/id=" + self.apId + "/json"
-        
-        let params = ["foo": "bar"]
-        
-        println(url)
         
         Alamofire.request(.GET, url, parameters: nil)
             .responseJSON { [weak self] (request, response, json, error) in
@@ -84,24 +81,6 @@ class ReviewFetcher {
 
                     completion(success: true, reviews: reviews, error : nil)
                 }
-        }
-    }
-    
-    func fakeFetchReview(completion: (success: Bool, reviews: JSON?, error : NSError?) -> Void) {
-        if let path = NSBundle.mainBundle().pathForResource("reviews", ofType: "json") {
-            if let data = NSData(contentsOfMappedFile: path) {
-                var error : NSError? = nil
-                let json = JSON(data: data, options: NSJSONReadingOptions.AllowFragments, error: &error)
-                
-                if error != nil {
-                    println("error: \(error?.localizedDescription)")
-                }
-                
-                updateWithJSON(json)
-                let reviews = json["feed"]["entry"]
-
-                completion(success: true, reviews: reviews, error : error)
-            }
         }
     }
 }

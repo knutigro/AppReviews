@@ -17,6 +17,8 @@ class DBController {
     var reviewController : ReviewController!
     var timer: Timer?
     
+    // MARK: Init & teardown
+
     init() {
         self.persistentStack = PersistentStack(storeURL: storeURL(), modelURL: modelURL())
         self.reviewController = ReviewController(context: self.persistentStack.backgroundManagedObjectContext)
@@ -59,7 +61,4 @@ class DBController {
     func modelURL() -> NSURL {
         return NSBundle.mainBundle().URLForResource("AppstoreReviews", withExtension: "momd")!
     }
-    
-    // MARK: - Fetching Reviews
-
 }

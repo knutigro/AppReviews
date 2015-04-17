@@ -13,15 +13,21 @@ import SwiftyJSON
 class ReviewController {
     let context : NSManagedObjectContext
     
+    // MARK: Init & teardown
+
     init(context: NSManagedObjectContext) {
         self.context = context
     }
     
+    // MARK: Managing context
+
     private func saveContext() {
         var error : NSError? = nil
         self.context.save(&error)
         if error != nil { println("error: " + error!.localizedDescription) }
     }
+    
+    // MARK: Reviews handling
     
     func updateReviews(application: Application, storeId: String?) {
         println("import reviews for \(application.trackName) store \(storeId)")
@@ -61,6 +67,8 @@ class ReviewController {
             }
         }
     }
+    
+    // MARK: Applications handling
     
     func updateApplication(application : JSON) {
         if application.isApplicationEntity, let apID = application.trackId {

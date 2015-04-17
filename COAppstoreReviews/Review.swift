@@ -9,24 +9,6 @@
 import Foundation
 import SwiftyJSON
 
-extension JSON {
-    var reviewApID : String? { get { return self["id"]["label"].string  } }
-    var reviewContent : String? { get { return self["content"]["label"].string  } }
-    var reviewAuthor : String? { get { return self["author"]["name"]["label"].string  } }
-    var reviewUri : String? { get { return self["author"]["uri"]["label"].string  } }
-    var reviewTitle : String? { get { return self["title"]["label"].string  } }
-    var reviewVersion : String? { get { return self["im:version"]["label"].string  } }
-    var reviewRating : NSNumber { get { return NSNumber(integer: self["im:rating"]["label"].stringValue.toInt() ?? 0) } }
-    var reviewVoteCount : NSNumber { get { return NSNumber(integer: self["im:voteCount"]["label"].stringValue.toInt() ?? 0) } }
-    var reviewVoteSum : NSNumber { get { return NSNumber(float:(self["im:voteSum"]["label"].stringValue as NSString).floatValue) } }
-
-    var isReviewEntity : Bool {
-        get {
-            return (self.reviewContent != nil || self.reviewRating > 0)
-        }
-    }
-}
-
 let kEntityNameReview = "Review"
 
 @objc(Review)
@@ -46,6 +28,8 @@ class Review : NSManagedObject, ItunesEntryProtocol{
     @NSManaged var createdAt : NSDate
     @NSManaged var updatedAt : NSDate
 
+    // MARK: init & teardown
+
     override init(entity: NSEntityDescription, insertIntoManagedObjectContext context: NSManagedObjectContext?) {
         super.init(entity: entity, insertIntoManagedObjectContext: context)
     }
@@ -54,6 +38,8 @@ class Review : NSManagedObject, ItunesEntryProtocol{
         let entityDescription = NSEntityDescription.entityForName(kEntityNameReview, inManagedObjectContext: context)
         self.init(entity: entityDescription!, insertIntoManagedObjectContext: context)
     }
+    
+    // MARK: class functions for create and insert
     
     class func findOrCreateNewReview(apId : String, context: NSManagedObjectContext) -> Review {
         
@@ -81,7 +67,7 @@ class Review : NSManagedObject, ItunesEntryProtocol{
     }
 }
 
-// MARK: JSON
+// MARK: Review extension of JSON
 
 extension Review {
     
@@ -96,5 +82,25 @@ extension Review {
         self.rating = json.reviewRating
         self.voteCount = json.reviewVoteCount
         self.voteSum = json.reviewVoteSum
+    }
+}
+
+// MARK: JSON extension of Review
+
+extension JSON {
+    var reviewApID : String? { get { return self["id"]["label"].string  } }
+    var reviewContent : String? { get { return self["content"]["label"].string  } }
+    var reviewAuthor : String? { get { return self["author"]["name"]["label"].string  } }
+    var reviewUri : String? { get { return self["author"]["uri"]["label"].string  } }
+    var reviewTitle : String? { get { return self["title"]["label"].string  } }
+    var reviewVersion : String? { get { return self["im:version"]["label"].string  } }
+    var reviewRating : NSNumber { get { return NSNumber(integer: self["im:rating"]["label"].stringValue.toInt() ?? 0) } }
+    var reviewVoteCount : NSNumber { get { return NSNumber(integer: self["im:voteCount"]["label"].stringValue.toInt() ?? 0) } }
+    var reviewVoteSum : NSNumber { get { return NSNumber(float:(self["im:voteSum"]["label"].stringValue as NSString).floatValue) } }
+    
+    var isReviewEntity : Bool {
+        get {
+            return (self.reviewContent != nil || self.reviewRating > 0)
+        }
     }
 }
