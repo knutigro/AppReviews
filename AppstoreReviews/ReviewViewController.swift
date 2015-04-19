@@ -15,11 +15,20 @@ class ReviewViewController: NSViewController {
     
     var managedObjectContext : NSManagedObjectContext!
     private let dbController = DBController()
-    private var application : Application?
+
+    private var application : Application? {
+        didSet {
+            self.reviewArrayController?.application = self.application
+            self.tableView?.reloadData()
+        }
+    }
+    
     var applicationId : NSString? {
         didSet {
             if self.tableView != nil && oldValue != self.applicationId {
-                self.updateReviews()
+                if self.applicationId as? String != nil {
+                    self.application = Application.get(self.applicationId! as String, context: self.managedObjectContext)
+                }
             }
         }
     }
@@ -30,28 +39,4 @@ class ReviewViewController: NSViewController {
         super.init(coder: coder)
         self.managedObjectContext = DBController.sharedInstance.persistentStack.managedObjectContext
     }
-    
-    // MARK: - View & Navigation
-    
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        
-        self.updateReviews()
-    }
-    
-    // MARK: - Data
-    
-    private func updateReviews() {
-        if self.applicationId as? String != nil {
-            self.application = Application.findApplication(self.applicationId! as String, context: self.managedObjectContext)
-            
-            if let application = self.application {
-                self.reviewArrayController?.filterPredicate = NSPredicate(format: "application = %@", application)
-                DBController.sharedInstance.reviewController.updateReviews(application, storeId: nil)
-            }
-            
-            self.tableView?.reloadData()
-        }
-    }
 }
-

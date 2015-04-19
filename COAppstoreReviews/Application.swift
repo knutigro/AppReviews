@@ -40,6 +40,7 @@ class Application : NSManagedObject, ItunesEntryProtocol {
     @NSManaged var userRatingCount : NSNumber
     @NSManaged var createdAt : NSDate
     @NSManaged var updatedAt : NSDate
+    @NSManaged var reviewsUpdatedAt : NSDate
     @NSManaged var reviews : NSSet
 
     // MARK: - Init & teardown
@@ -55,7 +56,7 @@ class Application : NSManagedObject, ItunesEntryProtocol {
     
     // MARK: - Class functions for create and insert and search
     
-    class func findApplication(identifier : String, context: NSManagedObjectContext) -> Application? {
+    class func get(identifier : String, context: NSManagedObjectContext) -> Application? {
         let fetchRequest = NSFetchRequest(entityName: kEntityNameApplication)
         fetchRequest.predicate = NSPredicate(format: "trackId = %@", identifier)
         var error : NSError?
@@ -68,15 +69,20 @@ class Application : NSManagedObject, ItunesEntryProtocol {
         return result?.last as? Application
     }
     
-    class func findOrCreateNewApplication(identifier : String, context: NSManagedObjectContext) -> Application {
-        if let application = Application.findApplication(identifier, context: context) {
+    class func new(identifier : String, context: NSManagedObjectContext) -> Application {
+        let application = Application(insertIntoManagedObjectContext: context)
+        application.trackId = identifier;
+        application.createdAt = NSDate()
+        application.updatedAt = NSDate()
+        
+        return application
+    }
+
+    class func getOrCreateNew(identifier : String, context: NSManagedObjectContext) -> Application {
+        if let application = Application.get(identifier, context: context) {
             return application
         } else {
-            let application = Application(insertIntoManagedObjectContext: context)
-            application.createdAt = NSDate()
-            application.updatedAt = NSDate()
-            
-            return application
+            return Application.new(identifier, context: context)
         }
     }
     

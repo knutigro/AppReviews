@@ -50,7 +50,7 @@ extension ApplicationViewController {
         if let applications = objects as? [Application], let rowNumber = self.tableView?.selectedRow {
             if applications.count > rowNumber && rowNumber >= 0{
                 let application = applications[rowNumber]
-                DBController.sharedInstance.reviewController.removeApplication(application)
+                DBController.sharedInstance.appstoreReviewController.removeApplication(application)
             }
         }
     }
@@ -69,6 +69,6 @@ extension ApplicationViewController {
 
 extension ApplicationViewController : SearchViewControllerDelegate {
     func searchViewController(searchViewController : SearchViewController, didSelectApplication application: JSON) {
-        DBController.sharedInstance.reviewController.updateApplication(application)
+        DBController.sharedInstance.appstoreReviewController.saveApplication(application)
     }
 }

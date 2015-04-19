@@ -7,11 +7,13 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		496522A21AE31ED1004C126C /* Array+Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 496522A11AE31ED1004C126C /* Array+Utils.swift */; };
+		496522A41AE45C44004C126C /* Application+Version.swift in Sources */ = {isa = PBXBuildFile; fileRef = 496522A31AE45C44004C126C /* Application+Version.swift */; };
 		498111E31AE002E5000CBFBF /* StatusMenuController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 498111E21AE002E5000CBFBF /* StatusMenuController.swift */; };
 		498111E71AE07BC0000CBFBF /* ReviewWindow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 498111E61AE07BC0000CBFBF /* ReviewWindow.swift */; };
 		49997B7C1ADDB3F000B56590 /* TableImageCellTransformer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49997B7B1ADDB3F000B56590 /* TableImageCellTransformer.swift */; };
 		49997B7E1ADDC7A700B56590 /* application.json in Resources */ = {isa = PBXBuildFile; fileRef = 49997B7D1ADDC7A700B56590 /* application.json */; };
-		49A003591AD687A8001E10BE /* ReviewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49A003581AD687A8001E10BE /* ReviewController.swift */; };
+		49A003591AD687A8001E10BE /* AppstoreReviewsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49A003581AD687A8001E10BE /* AppstoreReviewsController.swift */; };
 		49A0035B1AD68840001E10BE /* ReviewFetcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49A0035A1AD68840001E10BE /* ReviewFetcher.swift */; };
 		49A003611AD73161001E10BE /* reviews.json in Resources */ = {isa = PBXBuildFile; fileRef = 49A003601AD73161001E10BE /* reviews.json */; };
 		49A75E4E1AD9BCDF004A4742 /* ReviewArrayController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49A75E4D1AD9BCDF004A4742 /* ReviewArrayController.swift */; };
@@ -27,7 +29,7 @@
 		49DAA2FE1AD80DBB002807A7 /* Application.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49DAA2FD1AD80DBB002807A7 /* Application.swift */; };
 		49DAA3001AD87172002807A7 /* ItunesEntryProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49DAA2FF1AD87172002807A7 /* ItunesEntryProtocol.swift */; };
 		49EF51051AE1BC5900E5901C /* Timer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49EF51041AE1BC5900E5901C /* Timer.swift */; };
-		49EF51081AE1CE8B00E5901C /* ReviewUpdater.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49EF51071AE1CE8B00E5901C /* ReviewUpdater.swift */; };
+		49EF51081AE1CE8B00E5901C /* ApplicationMonitor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49EF51071AE1CE8B00E5901C /* ApplicationMonitor.swift */; };
 		49F800E81ADAA0DC004A1BF1 /* ReviewCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49F800E71ADAA0DC004A1BF1 /* ReviewCellView.swift */; };
 		49F800EA1ADAAD58004A1BF1 /* ApplicationArrayController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49F800E91ADAAD58004A1BF1 /* ApplicationArrayController.swift */; };
 		49F800EC1ADC5F64004A1BF1 /* AppFetcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49F800EB1ADC5F64004A1BF1 /* AppFetcher.swift */; };
@@ -49,11 +51,13 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		496522A11AE31ED1004C126C /* Array+Utils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Array+Utils.swift"; sourceTree = "<group>"; };
+		496522A31AE45C44004C126C /* Application+Version.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Application+Version.swift"; sourceTree = "<group>"; };
 		498111E21AE002E5000CBFBF /* StatusMenuController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StatusMenuController.swift; sourceTree = "<group>"; };
 		498111E61AE07BC0000CBFBF /* ReviewWindow.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReviewWindow.swift; sourceTree = "<group>"; };
 		49997B7B1ADDB3F000B56590 /* TableImageCellTransformer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TableImageCellTransformer.swift; sourceTree = "<group>"; };
 		49997B7D1ADDC7A700B56590 /* application.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = application.json; sourceTree = "<group>"; };
-		49A003581AD687A8001E10BE /* ReviewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReviewController.swift; sourceTree = "<group>"; };
+		49A003581AD687A8001E10BE /* AppstoreReviewsController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppstoreReviewsController.swift; sourceTree = "<group>"; };
 		49A0035A1AD68840001E10BE /* ReviewFetcher.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReviewFetcher.swift; sourceTree = "<group>"; };
 		49A003601AD73161001E10BE /* reviews.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = reviews.json; sourceTree = "<group>"; };
 		49A75E4D1AD9BCDF004A4742 /* ReviewArrayController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReviewArrayController.swift; sourceTree = "<group>"; };
@@ -73,7 +77,7 @@
 		49DAA2FD1AD80DBB002807A7 /* Application.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Application.swift; sourceTree = "<group>"; };
 		49DAA2FF1AD87172002807A7 /* ItunesEntryProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ItunesEntryProtocol.swift; sourceTree = "<group>"; };
 		49EF51041AE1BC5900E5901C /* Timer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Timer.swift; sourceTree = "<group>"; };
-		49EF51071AE1CE8B00E5901C /* ReviewUpdater.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReviewUpdater.swift; sourceTree = "<group>"; };
+		49EF51071AE1CE8B00E5901C /* ApplicationMonitor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ApplicationMonitor.swift; path = ../AppstoreReviews/ApplicationMonitor.swift; sourceTree = "<group>"; };
 		49F800E71ADAA0DC004A1BF1 /* ReviewCellView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReviewCellView.swift; sourceTree = "<group>"; };
 		49F800E91ADAAD58004A1BF1 /* ApplicationArrayController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ApplicationArrayController.swift; sourceTree = "<group>"; };
 		49F800EB1ADC5F64004A1BF1 /* AppFetcher.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppFetcher.swift; sourceTree = "<group>"; };
@@ -179,8 +183,9 @@
 				49ACB86B1AD5EAF70050C1B7 /* PersistentStack.swift */,
 				49A0035A1AD68840001E10BE /* ReviewFetcher.swift */,
 				49F800EB1ADC5F64004A1BF1 /* AppFetcher.swift */,
-				49A003581AD687A8001E10BE /* ReviewController.swift */,
+				49A003581AD687A8001E10BE /* AppstoreReviewsController.swift */,
 				49ACB8621AD5CE700050C1B7 /* DBController.swift */,
+				49EF51071AE1CE8B00E5901C /* ApplicationMonitor.swift */,
 			);
 			name = "Core Data";
 			path = ../COAppstoreReviews;
@@ -199,6 +204,8 @@
 			isa = PBXGroup;
 			children = (
 				49F800F21ADC7944004A1BF1 /* NSImageView+Networking.swift */,
+				496522A11AE31ED1004C126C /* Array+Utils.swift */,
+				496522A31AE45C44004C126C /* Application+Version.swift */,
 			);
 			name = Categories;
 			path = ../COAppstoreReviews;
@@ -231,7 +238,6 @@
 				49F800E91ADAAD58004A1BF1 /* ApplicationArrayController.swift */,
 				49A75E4D1AD9BCDF004A4742 /* ReviewArrayController.swift */,
 				49997B7B1ADDB3F000B56590 /* TableImageCellTransformer.swift */,
-				49EF51071AE1CE8B00E5901C /* ReviewUpdater.swift */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -412,16 +418,18 @@
 				49F800F01ADC674B004A1BF1 /* ApplicationCellView.swift in Sources */,
 				49ACB8431AD5CAA00050C1B7 /* ReviewViewController.swift in Sources */,
 				49DAA3001AD87172002807A7 /* ItunesEntryProtocol.swift in Sources */,
+				496522A21AE31ED1004C126C /* Array+Utils.swift in Sources */,
 				49ACB86C1AD5EAF70050C1B7 /* PersistentStack.swift in Sources */,
 				49F800E81ADAA0DC004A1BF1 /* ReviewCellView.swift in Sources */,
 				49EF51051AE1BC5900E5901C /* Timer.swift in Sources */,
 				49ACB8411AD5CAA00050C1B7 /* AppDelegate.swift in Sources */,
-				49EF51081AE1CE8B00E5901C /* ReviewUpdater.swift in Sources */,
+				49EF51081AE1CE8B00E5901C /* ApplicationMonitor.swift in Sources */,
 				49ACB8461AD5CAA00050C1B7 /* AppstoreReviews.xcdatamodeld in Sources */,
 				498111E71AE07BC0000CBFBF /* ReviewWindow.swift in Sources */,
 				49A0035B1AD68840001E10BE /* ReviewFetcher.swift in Sources */,
 				49F800F81ADC84A7004A1BF1 /* ApplicationViewController.swift in Sources */,
-				49A003591AD687A8001E10BE /* ReviewController.swift in Sources */,
+				496522A41AE45C44004C126C /* Application+Version.swift in Sources */,
+				49A003591AD687A8001E10BE /* AppstoreReviewsController.swift in Sources */,
 				49A75E4E1AD9BCDF004A4742 /* ReviewArrayController.swift in Sources */,
 				49ACB8631AD5CE700050C1B7 /* DBController.swift in Sources */,
 				498111E31AE002E5000CBFBF /* StatusMenuController.swift in Sources */,

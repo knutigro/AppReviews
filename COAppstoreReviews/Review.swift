@@ -41,24 +41,31 @@ class Review : NSManagedObject, ItunesEntryProtocol{
     
     // MARK: - Class functions for create and insert
     
-    class func findOrCreateNewReview(apId : String, context: NSManagedObjectContext) -> Review {
-        
+    class func get(apId : String, context: NSManagedObjectContext) -> Review? {
         let fetchRequest = NSFetchRequest(entityName: kEntityNameReview)
         fetchRequest.predicate = NSPredicate(format: "apId = %@", apId)
         var error : NSError?
-        
         let result = context.executeFetchRequest(fetchRequest, error: &error)
-        
         if error != nil {
             println(error)
         }
-        if let lastObject = result?.last as? Review{
-            return lastObject
-        } else {
-            let review = Review(insertIntoManagedObjectContext: context)
-            review.createdAt = NSDate()
-            review.updatedAt = NSDate()
+        
+        return result?.last as? Review
+    }
+
+    class func new(apId : String, context: NSManagedObjectContext) -> Review {
+        let review = Review(insertIntoManagedObjectContext: context)
+        review.apId = apId;
+        review.createdAt = NSDate()
+        review.updatedAt = NSDate()
+        return review
+    }
+    
+    class func getOrCreateNew(apId : String, context: NSManagedObjectContext) -> Review {
+        if let review = Review.get(apId, context: context) {
             return review
+        } else {
+            return Review.new(apId, context: context)
         }
     }
     

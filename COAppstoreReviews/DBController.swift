@@ -11,13 +11,13 @@ import Foundation
 class DBController {
 
     var persistentStack : PersistentStack!
-    var reviewController : ReviewController!
+    var appstoreReviewController : AppstoreReviewsController!
     
     // MARK: - Init & teardown
 
     init() {
         self.persistentStack = PersistentStack(storeURL: storeURL(), modelURL: modelURL())
-        self.reviewController = ReviewController(context: self.persistentStack.backgroundManagedObjectContext)
+        self.appstoreReviewController = AppstoreReviewsController(context: self.persistentStack.backgroundManagedObjectContext)
     }
     
     class var sharedInstance: DBController {

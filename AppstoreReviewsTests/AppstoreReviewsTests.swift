@@ -8,6 +8,7 @@
 
 import Cocoa
 import XCTest
+//import SwiftyJSON
 
 class AppstoreReviewsTests: XCTestCase {
     
@@ -24,6 +25,22 @@ class AppstoreReviewsTests: XCTestCase {
     func testExample() {
         // This is an example of a functional test case.
         XCTAssert(true, "Pass")
+        
+//        var application1 = Application()
+//        application1.version = "1.2.3"
+//
+//        var application2 = Application()
+//        application2.version = "1.2.4"
+//
+//        var applicationArray = [application1, application2]
+//        
+//        let sortDescriptors1 = [NSSortDescriptor(key: "version", ascending: false), NSSortDescriptor(key: "createdAt", ascending: true)]
+//
+//        let sortDescriptors2 = [NSSortDescriptor(key: "version", ascending: false, selector: Selector("compareVersion:toVersion:"))]
+//        
+//        var sortedArray = NSArray(array: applicationArray).sortedArrayUsingDescriptors(sortDescriptors1)
+//        
+//        println("\(sortedArray)")
     }
     
     func testPerformanceExample() {

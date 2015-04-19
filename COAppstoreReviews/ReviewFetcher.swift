@@ -73,7 +73,7 @@ class ReviewFetcher {
                     var json = JSON(json!)
                     let reviews = json["feed"]["entry"].arrayValue
                     
-                    println("found " + String(reviews.count) + " reviews.")
+                    println("found " + String(reviews.count) + " reviews. \(url)" )
                     
                     if let strongSelf = self {
                         strongSelf.updateWithJSON(json)

@@ -10,7 +10,7 @@ import Foundation
 import AppKit
 import SwiftyJSON
 
-class ReviewController {
+class AppstoreReviewsController {
     let context : NSManagedObjectContext
     
     // MARK: - Init & teardown
@@ -29,10 +29,11 @@ class ReviewController {
     
     // MARK: - Reviews handling
     
-    func updateReviews(application: Application, storeId: String?) {
+    func fetchReviewsFromItunes(application: Application, storeId: String?) {
         println("import reviews for \(application.trackName) store \(storeId)")
         
-        var managedApplication = Application.findOrCreateNewApplication(application.trackId, context: self.context)
+        var managedApplication = Application.getOrCreateNew(application.trackId, context: self.context)
+        managedApplication.reviewsUpdatedAt = NSDate()
         
         let reviewFetcher = ReviewFetcher(apId: application.trackId, storeId: storeId)
         
@@ -52,7 +53,7 @@ class ReviewController {
                             let entry = blockReviews[index]
                             
                             if entry.isReviewEntity, let apID = entry.reviewApID {
-                                var review = Review.findOrCreateNewReview(apID, context: strongSelf.context)
+                                var review = Review.getOrCreateNew(apID, context: strongSelf.context)
                                 review.updateWithJSON(entry)
                                 review.country = storeId ?? ""
                                 review.updatedAt = NSDate()
@@ -70,22 +71,27 @@ class ReviewController {
     
     // MARK: - Applications handling
     
-    func updateApplication(application : JSON) {
+    func saveApplication(application : JSON) {
         if application.isApplicationEntity, let apID = application.trackId {
-            var managedApplication = Application.findOrCreateNewApplication(apID, context: self.context)
-            managedApplication.updatedAt = NSDate()
-            managedApplication.updateWithJSON(application)
+            if let managedApplication = Application.get(apID, context: self.context) {
+                managedApplication.updatedAt = NSDate()
+                managedApplication.updateWithJSON(application)
+            } else {
+                let managedApplication = Application.getOrCreateNew(apID, context: self.context)
+                managedApplication.updateWithJSON(application)
+            }
             self.saveContext()
         }
     }
     
     func removeApplication(application : Application) {
-        var managedApplication = Application.findOrCreateNewApplication(application.trackId, context: self.context)
-        self.context.deleteObject(managedApplication)
-        self.saveContext()
+        if let managedApplication = Application.get(application.trackId, context: self.context) {
+            self.context.deleteObject(managedApplication)
+            self.saveContext()
+        }
     }
     
-    func fetchAllApplications() -> [Application]? {
+    func allApplications() -> [Application]? {
         let fetchRequest = NSFetchRequest(entityName: kEntityNameApplication)
         var error : NSError?
         

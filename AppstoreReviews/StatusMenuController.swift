@@ -35,28 +35,6 @@ class StatusMenuController : NSObject {
         
         self.updateApplicationItems()
         
-        let backgroundManagedObjectContext = DBController.sharedInstance.persistentStack.backgroundManagedObjectContext;
-        
-        let newToken = NSNotificationCenter.defaultCenter().addObserverForName(NSManagedObjectContextDidSaveNotification, object: nil, queue: nil) { notification in
-            if notification.object as? NSManagedObjectContext == backgroundManagedObjectContext {
-                
-                if let insertedObjects = notification.userInfo?[NSInsertedObjectsKey] as? NSSet {
-                    for object in insertedObjects {
-                        if let application = object as? Application {
-                            self.updateApplicationItems()
-                            return
-                        }
-                    }
-                }
-                if let deletedObjects = notification.userInfo?[NSDeletedObjectsKey] as? NSSet {
-                    for object in deletedObjects {
-                        if let application = object as? Application {
-                            self.updateApplicationItems()
-                        }
-                    }
-                }
-            }
-        }
     }
     
     // MARK: - Handling menu items
@@ -91,7 +69,7 @@ class StatusMenuController : NSObject {
     }
     
     func updateApplicationItems(){
-        if let applications = DBController.sharedInstance.reviewController.fetchAllApplications() {
+        if let applications = DBController.sharedInstance.appstoreReviewController.allApplications() {
             self.applicationItems.removeAll(keepCapacity: false)
             for application in applications {
                 if !application.trackName.isEmpty && !application.trackId.isEmpty  {
@@ -130,3 +108,17 @@ extension StatusMenuController {
         NSApplication.sharedApplication().terminate(sender)
     }
 }
+
+// MARK: - ApplicationMonitorDelegate
+
+extension StatusMenuController : ApplicationMonitorDelegate{
+    
+    func applicationMonitor(applicationMonitor : ApplicationMonitor, didUpdateApplications applications: [Application]) {
+        self.updateApplicationItems()
+    }
+
+    func applicationMonitor(applicationMonitor : ApplicationMonitor, didUpdateReviews reviews: [Review]) {
+        
+    }
+}
+

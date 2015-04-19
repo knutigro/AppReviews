@@ -17,7 +17,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     lazy var reviewsWindowController: NSWindowController = self.initialReviewWindowController()
 
     var statusMenuController: StatusMenuController!
-    var reviewUpdater: ReviewUpdater!
+    var applicationMonitor: ApplicationMonitor!
     
     // MARK : Application Process
 
@@ -30,7 +30,8 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         self.statusMenuController = StatusMenuController()
         
         // Create ReviewUpdater
-        self.reviewUpdater = ReviewUpdater()
+        self.applicationMonitor = ApplicationMonitor()
+        self.applicationMonitor.delegate = self.statusMenuController
     }
     
     func applicationWillTerminate(aNotification: NSNotification) {
