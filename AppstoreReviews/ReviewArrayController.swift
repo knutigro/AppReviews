@@ -20,10 +20,10 @@ class ReviewArrayController : NSArrayController {
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        self.sortDescriptors = [NSSortDescriptor(key: "version", ascending: false), NSSortDescriptor(key: "createdAt", ascending: true)]
-        
-//        NSSortDescriptor(key: <#String#>, ascending: <#Bool#>, comparator: <#NSComparator##(AnyObject!, AnyObject!) -> NSComparisonResult#>)
-        
-//        self.sortDescriptors = [NSSortDescriptor(key: "version", ascending: false, selector: Selector("compareVersion:toVersion:"))]
+
+        self.sortDescriptors = [
+            NSSortDescriptor(key: "version", ascending: false, selector: Selector("compareVersion:")),
+            NSSortDescriptor(key: "createdAt", ascending: true)
+        ]
     }
 }

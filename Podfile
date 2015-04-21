@@ -1,5 +1,7 @@
 source 'https://github.com/CocoaPods/Specs.git'
 
+link_with 'AppstoreReviews', 'AppstoreReviewsTests'
+
 platform :osx, '10.10'
 
 use_frameworks!

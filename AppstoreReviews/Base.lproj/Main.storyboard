@@ -817,7 +817,6 @@
                                             </tableColumns>
                                             <connections>
                                                 <binding destination="M7Y-IO-gaN" name="content" keyPath="arrangedObjects" id="31d-qb-TuY"/>
-                                                <binding destination="M7Y-IO-gaN" name="sortDescriptors" keyPath="arrangedObjects" previousBinding="31d-qb-TuY" id="Xfo-x0-EQm"/>
                                                 <outlet property="delegate" destination="XfG-lQ-9wD" id="vRZ-Sv-8Bs"/>
                                             </connections>
                                         </tableView>
