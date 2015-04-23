@@ -10,11 +10,9 @@
 import Cocoa
 import SwiftyJSON
 
-let kOpenApplicationSearchSegue = "openApplicationSearchSegue"
-
 class ApplicationViewController: NSViewController {
     
-    @IBOutlet var tableView: NSTableView?
+    @IBOutlet weak var tableView: NSTableView!
     @IBOutlet var applicationArrayController: ApplicationArrayController?
     var applications = [Application]()
     
@@ -31,14 +29,6 @@ class ApplicationViewController: NSViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-    }
-    
-    override func prepareForSegue(segue: NSStoryboardSegue, sender: AnyObject?) {
-        if segue.identifier == kOpenApplicationSearchSegue {
-            if let searchViewController = segue.destinationController as? SearchViewController {
-                searchViewController.delegate = self
-            }
-        }
     }
 }
 
@@ -62,13 +52,5 @@ extension ApplicationViewController {
                 ReviewWindowController.show(application.trackId)
             }
         }
-    }
-}
-
-// Mark: - SearchViewControllerDelegate
-
-extension ApplicationViewController : SearchViewControllerDelegate {
-    func searchViewController(searchViewController : SearchViewController, didSelectApplication application: JSON) {
-        DBController.sharedInstance.appstoreReviewController.saveApplication(application)
     }
 }

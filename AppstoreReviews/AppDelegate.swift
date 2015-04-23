@@ -14,7 +14,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
 
     lazy var settingsWindowController: NSWindowController = self.initialSettingsWindowController()
     lazy var aboutWindowController: NSWindowController = self.initialAboutWindowController()
-    lazy var reviewsWindowController: NSWindowController = self.initialReviewWindowController()
+    lazy var reviewsWindowController: ReviewWindowController = self.initialReviewWindowController()
 
     var statusMenuController: StatusMenuController!
     var applicationMonitor: ApplicationMonitor!
@@ -52,14 +52,14 @@ extension AppDelegate {
     
     func initialSettingsWindowController() -> NSWindowController {
         let storyboard = NSStoryboard(name: "Main", bundle: nil)!
-        var windowController = storyboard.instantiateControllerWithIdentifier("SettingsWindowsController") as! NSWindowController
+        var windowController = storyboard.instantiateControllerWithIdentifier("ApplicationWindow") as! NSWindowController
         
         return windowController
     }
     
-    func initialReviewWindowController() -> NSWindowController {
+    func initialReviewWindowController() -> ReviewWindowController {
         let storyboard = NSStoryboard(name: "Main", bundle: nil)!
-        var windowController = storyboard.instantiateControllerWithIdentifier("ReviewWindowsController") as! NSWindowController
+        var windowController = storyboard.instantiateControllerWithIdentifier("ReviewWindowsController") as! ReviewWindowController
         
         return windowController
     }

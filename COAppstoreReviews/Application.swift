@@ -42,6 +42,14 @@ class Application : NSManagedObject, ItunesEntryProtocol {
     @NSManaged var updatedAt : NSDate
     @NSManaged var reviewsUpdatedAt : NSDate
     @NSManaged var reviews : NSSet
+    
+    var fileSizeMb : Float {
+        get {
+            var fileSize = self.fileSizeBytes.toInt() ?? 0
+            var mb = Float(fileSize) / 1000000
+            return max(mb, 0.0)
+        }
+    }
 
     // MARK: - Init & teardown
 

@@ -11,72 +11,54 @@ import SwiftyJSON
 
 protocol SearchViewControllerDelegate {
     func searchViewController(searchViewController : SearchViewController, didSelectApplication application: JSON)
+    func searchViewControllerDidCancel(searchViewController : SearchViewController)
+}
+
+enum SearchViewControllerState {
+    case Idle
+    case Loading
 }
 
 class SearchViewController: NSViewController {
-    
-    @IBOutlet var searchField: NSSearchField?
-    @IBOutlet var tableView: NSTableView?
+
+    @IBOutlet weak var tableView: NSTableView!
+    @IBOutlet weak var progressIndicator: NSProgressIndicator!
+
     var items = [JSON]()
     var delegate: SearchViewControllerDelegate?
+    var state : SearchViewControllerState = .Idle {
+        didSet {
+            switch self.state {
+            case .Idle:
+                self.progressIndicator.stopAnimation(nil)
+            case .Loading:
+                self.progressIndicator.startAnimation(nil)
+            }
+        }
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        self.tableView?.target = self
-        self.tableView?.doubleAction = Selector("doubleClickedCell:")
-        
-        self.searchField?.becomeFirstResponder()
+        self.tableView.target = self
+        self.tableView.doubleAction = Selector("doubleClickedCell:")
     }
+}
+
+// MARK: - Actions
+
+extension SearchViewController {
     
     func doubleClickedCell(object : AnyObject) {
         if let rowNumber = self.tableView?.selectedRow {
-            let application = self.items[rowNumber]
-            delegate?.searchViewController(self, didSelectApplication: application)
-            self.dismissController(self)
-        }
-    }
-}
-
-// MARK: - SearchField
-
-extension SearchViewController  {
-    override func controlTextDidEndEditing(notification : NSNotification) {
-        if let textField = notification.object as? NSTextField {
-            if !textField.stringValue.isEmpty {
-                self.searchApp(textField.stringValue)
+            if rowNumber < self.items.count {
+                let application = self.items[rowNumber]
+                delegate?.searchViewController(self, didSelectApplication: application)
             }
         }
     }
-}
-
-// MARK: - Search Apps
-
-extension SearchViewController  {
     
-    func searchApp(name: String) {
-        // [unowned self]
-        
-        let appFetcher = AppFetcher()
-        
-        appFetcher.fetchApplications(name) { [weak self]
-            (success: Bool, applications: JSON?, error : NSError?)
-            in
-            
-            let blockSuccess = success as Bool
-            let blockError = error
-            
-            if blockError != nil {
-                println("error: " + blockError!.localizedDescription)
-            }
-            
-            if let applications = applications?.arrayValue {
-                if let strongSelf = self {
-                    strongSelf.items = applications
-                    strongSelf.tableView?.reloadData()
-                }
-            }
-        }
+    @IBAction func cancelButtonClicked(sender: AnyObject) {
+        delegate?.searchViewControllerDidCancel(self)
     }
 }
 
@@ -101,6 +83,14 @@ extension SearchViewController : NSTableViewDataSource {
         }
 
         return cell;
+    }
+}
+
+// MARK: NSResponder
+
+extension SearchViewController {
+    override func cancelOperation(sender: AnyObject?) {
+        delegate?.searchViewControllerDidCancel(self)
     }
 }
 
