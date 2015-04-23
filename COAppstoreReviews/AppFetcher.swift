@@ -29,6 +29,7 @@ class AppFetcher {
                 } else {
                     var json = JSON(json!)
                     completion(success: true, applications: json["results"], error : nil)
+                    println("found " + name + ". \(url)" )
                 }
         }
     }
