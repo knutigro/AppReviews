@@ -24,7 +24,7 @@ class Application : NSManagedObject, ItunesEntryProtocol {
     @NSManaged var userRatingCountForCurrentVersion : NSNumber
     @NSManaged var trackViewUrl : String
     @NSManaged var version : String
-    @NSManaged var releaseDate : NSDate
+    @NSManaged var releaseDate : NSDate?
     @NSManaged var sellerName : String
     @NSManaged var artistId : String
     @NSManaged var artistName : String
@@ -115,7 +115,7 @@ extension Application {
         self.userRatingCountForCurrentVersion = json.userRatingCountForCurrentVersion
         self.trackViewUrl = json.trackViewUrl ?? ""
         self.version = json.version ?? ""
-        self.releaseDate = json.releaseDate ?? NSDate()
+        self.releaseDate = json.releaseDate
         self.sellerName = json.sellerName ?? ""
         self.artistId = json.artistId ?? ""
         self.artistName = json.artistName ?? ""
@@ -152,7 +152,7 @@ extension JSON {
             if let dateString = self["releaseDate"].string {
                 let dateFormatter = NSDateFormatter()
                 dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss-SS:SS'"
-                date =  dateFormatter.dateFromString(dateString)
+                date = dateFormatter.dateFromString(dateString)
             }
             return date
         }

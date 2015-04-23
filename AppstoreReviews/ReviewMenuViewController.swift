@@ -7,11 +7,15 @@
 //
 
 import AppKit
+import EDStarRating
 
 class ReviewMenuViewController: NSViewController {
     
     var managedObjectContext : NSManagedObjectContext!
-    
+    let dateFormatter = NSDateFormatter()
+
+    @IBOutlet weak var currentVersionStarRating: EDStarRating?
+    @IBOutlet weak var allVersionsStarRating: EDStarRating?
     @IBOutlet weak var titleLabel: NSTextField!
     @IBOutlet weak var sellerNameLabel: NSTextField!
     @IBOutlet weak var categoryLabel: NSTextField!
@@ -44,6 +48,24 @@ class ReviewMenuViewController: NSViewController {
         if self.application != nil {
             self.updateApplicationInfo()
         }
+        
+        if let starRating = self.currentVersionStarRating {
+            starRating.starImage = NSImage(named: "star")
+            starRating.starHighlightedImage = NSImage(named: "star-highlighted")
+            starRating.maxRating = 5
+            starRating.horizontalMargin = 5
+            starRating.displayMode = UInt(EDStarRatingDisplayAccurate)
+            starRating.rating = 3.5
+        }
+
+        if let starRating = self.allVersionsStarRating {
+            starRating.starImage = NSImage(named: "star")
+            starRating.starHighlightedImage = NSImage(named: "star-highlighted")
+            starRating.maxRating = 5
+            starRating.horizontalMargin = 5
+            starRating.displayMode = UInt(EDStarRatingDisplayAccurate)
+            starRating.rating = 3.5
+        }
     }
     
     // MARK: - UI
@@ -57,6 +79,7 @@ class ReviewMenuViewController: NSViewController {
         if averageUserRatingForCurrentVersion > 0 {
             averageUserRatingForCurrentVersionString = (NSString(format: "%.1f", averageUserRatingForCurrentVersion) as String)
         }
+        self.currentVersionStarRating?.rating = averageUserRatingForCurrentVersion
         
         let numberUserRatingForCurrentVersion = self.application?.userRatingCountForCurrentVersion.integerValue ?? 0
 
@@ -65,17 +88,22 @@ class ReviewMenuViewController: NSViewController {
         if averageUserRating > 0 {
             averageUserRatingString = (NSString(format: "%.1f", averageUserRating) as String)
         }
-        
+        self.allVersionsStarRating?.rating = averageUserRating
+
         let userRatingCount = self.application?.userRatingCount.integerValue ?? 0
 
         self.titleLabel.stringValue = self.application?.trackName ?? ""
         self.sellerNameLabel.stringValue =  NSLocalizedString("By: ", comment: "review.menu.by") + (self.application?.sellerName ?? "")
         self.categoryLabel.stringValue =   NSLocalizedString("Category: ", comment: "review.menu.category") + (self.application?.primaryGenreName ?? "")
-        self.updatedAtLabel.stringValue =  NSLocalizedString("Updated: ", comment: "review.menu.updated") //+ (self.releaseDate?.primaryGenreName ?? "")
+
+        self.dateFormatter.dateStyle = .LongStyle
+        self.dateFormatter.timeStyle = .NoStyle
+        let releasedAt = self.application?.releaseDate != nil ? dateFormatter.stringFromDate(self.application!.releaseDate!) : ""
+        self.updatedAtLabel.stringValue =  NSLocalizedString("Updated: ", comment: "review.menu.updated") + releasedAt
         self.versionLabel.stringValue =   NSLocalizedString("Version: ", comment: "review.menu.version") + (self.application?.version ?? "")
         self.sizeLabel.stringValue =   NSLocalizedString("Size: ", comment: "review.menu.size") + fileSize + " Mb"
         
-        self.averageRatingCurrentLabel.stringValue =   NSLocalizedString("Average rating: ", comment: "review.menu.currentAverageRating") + fileSize
+        self.averageRatingCurrentLabel.stringValue =   NSLocalizedString("Average rating: ", comment: "review.menu.currentAverageRating") + averageUserRatingForCurrentVersionString
 
         self.numberOfRatingsCurrentLabel.stringValue =   NSLocalizedString("Number of ratings: ", comment: "review.menu.currentAverageRating") + (NSString(format: "%i", numberUserRatingForCurrentVersion) as String)
 
@@ -83,6 +111,9 @@ class ReviewMenuViewController: NSViewController {
         
         self.numberOfRatingsAllLabel.stringValue =   NSLocalizedString("Number of ratings: ", comment: "review.menu.currentAverageRating") + (NSString(format: "%i", userRatingCount) as String)
         
-        self.reviewsUpdatedAtLabel.stringValue = "Updated at:" //String(self.application?.reviewsUpdatedAt)
+        self.dateFormatter.dateStyle = .LongStyle
+        self.dateFormatter.timeStyle = .MediumStyle
+        let updatedAt = self.application?.reviewsUpdatedAt != nil ? dateFormatter.stringFromDate(self.application!.reviewsUpdatedAt) : ""
+        self.reviewsUpdatedAtLabel.stringValue = NSLocalizedString("Updated: ", comment: "review.menu.reviewUpdated") + updatedAt
     }
 }
