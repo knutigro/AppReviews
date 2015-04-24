@@ -101,5 +101,3 @@ extension ApplicationWindowController : SearchViewControllerDelegate {
         }
     }
 }
-
-

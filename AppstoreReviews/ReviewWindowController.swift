@@ -65,4 +65,11 @@ extension ReviewWindowController {
             DBController.sharedInstance.appstoreReviewController.fetchReviewsFromItunes(application, storeId: nil)
         }
     }
+    
+    @IBAction func openInAppstore(objects:AnyObject?) {
+        let itunesUrl = "http://itunes.apple.com/app/id" + (self.application?.trackId ?? "")
+        if let url = NSURL(string: itunesUrl) {
+            NSWorkspace.sharedWorkspace().openURL(url)
+        }
+    }
 }
