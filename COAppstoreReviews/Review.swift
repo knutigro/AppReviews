@@ -12,7 +12,7 @@ import SwiftyJSON
 let kEntityNameReview = "Review"
 
 @objc(Review)
-class Review : NSManagedObject, ItunesEntryProtocol{
+class Review : NSManagedObject {
     
     @NSManaged var apId : String
     @NSManaged var author : String

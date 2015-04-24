@@ -39,7 +39,7 @@ class ReviewMenuViewController: NSViewController {
     
     required init?(coder: NSCoder) {
         super.init(coder: coder)
-        self.managedObjectContext = DBController.sharedInstance.persistentStack.managedObjectContext
+        self.managedObjectContext = ReviewManager.managedObjectContext()
     }
     
     override func viewDidLoad() {

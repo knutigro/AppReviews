@@ -17,21 +17,17 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     lazy var reviewsWindowController: ReviewWindowController = self.initialReviewWindowController()
 
     var statusMenuController: StatusMenuController!
-    var applicationMonitor: ApplicationMonitor!
     
     // MARK : Application Process
 
     func applicationDidFinishLaunching(aNotification: NSNotification) {
 
-        // Create database singleton object
-        let sharedInstance = DBController.sharedInstance
+        // Create ReviewManager shared object
+        var manager = ReviewManager.start()
         
         // Create StatusMenu
         self.statusMenuController = StatusMenuController()
-        
-        // Create ReviewUpdater
-        self.applicationMonitor = ApplicationMonitor()
-        self.applicationMonitor.delegate = self.statusMenuController
+        manager.applicationHandler.delegate = self.statusMenuController
     }
     
     func applicationWillTerminate(aNotification: NSNotification) {
@@ -40,7 +36,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     
     func applicationShouldTerminate(sender: NSApplication) -> NSApplicationTerminateReply {
         // Saves changes in the application's managed object context before the application terminates.
-        DBController.sharedInstance.saveContext()
+        ReviewManager.saveContext()
         
         return .TerminateNow
     }

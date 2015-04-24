@@ -10,7 +10,7 @@ import Foundation
 import Alamofire
 import SwiftyJSON
 
-class ReviewFetcher {
+class RequestHandler {
     
     let apId : String
     let storeId : String?
@@ -80,6 +80,27 @@ class ReviewFetcher {
                     }
 
                     completion(success: true, reviews: reviews, error : nil)
+                }
+        }
+    }
+    
+    class func fetchApplications(name: String, completion: (success: Bool, applications: JSON?, error : NSError?) -> Void) {
+        
+        var url = "https://itunes.apple.com/search"
+        let params = ["term": name, "entity" : "software"]
+        
+        Alamofire.request(.GET, url, parameters: params)
+            .responseJSON { (request, response, json, error) in
+                
+                if(error != nil) {
+                    NSLog("Error: \(error)")
+                    println(request)
+                    println(response)
+                    completion(success: false, applications: nil, error : error)
+                } else {
+                    var json = JSON(json!)
+                    completion(success: true, applications: json["results"], error : nil)
+                    println("found " + name + ". \(url)" )
                 }
         }
     }

@@ -11,7 +11,6 @@ import AppKit
 class ReviewWindowController : NSWindowController {
     
     var managedObjectContext : NSManagedObjectContext!
-    private let dbController = DBController()
     
     private var application : Application? {
         didSet {
@@ -39,7 +38,7 @@ class ReviewWindowController : NSWindowController {
     class func show(applicationId : NSString) {
         let appdelegate = NSApplication.sharedApplication().delegate as! AppDelegate
         let windowController = appdelegate.reviewsWindowController
-        windowController.managedObjectContext = DBController.sharedInstance.persistentStack.managedObjectContext
+        windowController.managedObjectContext = ReviewManager.managedObjectContext()
         windowController.applicationId = applicationId
         windowController.showWindow(self)
         NSApp.activateIgnoringOtherApps(true)
@@ -62,7 +61,7 @@ extension ReviewWindowController {
     
     @IBAction func refreshApplication(sender: AnyObject) {
         if let application = self.application {
-            DBController.sharedInstance.appstoreReviewController.fetchReviewsFromItunes(application, storeId: nil)
+            ReviewManager.appHandler().fetchReviewsFromItunes(application, storeId: nil)
         }
     }
     

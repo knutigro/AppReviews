@@ -70,7 +70,7 @@ class StatusMenuController : NSObject {
     }
     
     func updateApplicationItems(){
-        if let applications = DBController.sharedInstance.appstoreReviewController.allApplications() {
+        if let applications = ReviewManager.dbHandler().allApplications() {
             self.applicationItems.removeAll(keepCapacity: false)
             for application in applications {
                 if !application.trackName.isEmpty && !application.trackId.isEmpty  {
@@ -110,15 +110,15 @@ extension StatusMenuController {
     }
 }
 
-// MARK: - ApplicationMonitorDelegate
+// MARK: - ApplicationHandlerDelegate
 
-extension StatusMenuController : ApplicationMonitorDelegate{
+extension StatusMenuController : ApplicationHandlerDelegate {
     
-    func applicationMonitor(applicationMonitor : ApplicationMonitor, didUpdateApplications applications: [Application]) {
+    func applicationHandler(applicationHandler : ApplicationHandler, didUpdateApplications applications: [Application]) {
         self.updateApplicationItems()
     }
 
-    func applicationMonitor(applicationMonitor : ApplicationMonitor, didUpdateReviews reviews: [Review]) {
+    func applicationHandler(applicationHandler : ApplicationHandler, didUpdateReviews reviews: [Review]) {
         
     }
 }

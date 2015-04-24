@@ -13,7 +13,7 @@ let kEntityNameApplication = "Application"
 
 @objc(Application)
 
-class Application : NSManagedObject, ItunesEntryProtocol {
+class Application : NSManagedObject {
     
     @NSManaged var artworkUrl60 : String
     @NSManaged var artworkUrl512 : String

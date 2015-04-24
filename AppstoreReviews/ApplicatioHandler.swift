@@ -7,13 +7,14 @@
 //
 
 import AppKit
+import SwiftyJSON
 
 // Update interval in seconds
 let UpdateInterval = 60.0 * 60  // Each Hour
 
-protocol ApplicationMonitorDelegate {
-    func applicationMonitor(applicationMonitor : ApplicationMonitor, didUpdateApplications applications: [Application])
-    func applicationMonitor(applicationMonitor : ApplicationMonitor, didUpdateReviews reviews: [Review])
+protocol ApplicationHandlerDelegate {
+    func applicationHandler(applicationHandler : ApplicationHandler, didUpdateApplications applications: [Application])
+    func applicationHandler(applicationHandler : ApplicationHandler, didUpdateReviews reviews: [Review])
 }
 
 // MARK: - ApplicationMonitor
@@ -27,11 +28,11 @@ extension Application {
 }
 
 
-class ApplicationMonitor {
+class ApplicationHandler {
     
     var timer: Timer?
     var applications = [Application]()
-    var delegate: ApplicationMonitorDelegate?
+    var delegate: ApplicationHandlerDelegate?
 
     // MARK: - Init & teardown
     
@@ -39,7 +40,7 @@ class ApplicationMonitor {
         
         self.updateApplications()
 
-        let backgroundManagedObjectContext = DBController.sharedInstance.persistentStack.backgroundManagedObjectContext;
+        let backgroundManagedObjectContext = ReviewManager.backgroundManagedObjectContext();
 
         let databaseMonitor = NSNotificationCenter.defaultCenter().addObserverForName(NSManagedObjectContextDidSaveNotification, object: nil, queue: nil) {  [weak self] notification in
             if notification.object as? NSManagedObjectContext == backgroundManagedObjectContext, let strongSelf = self {
@@ -72,18 +73,18 @@ class ApplicationMonitor {
     func updateReviewsForAllApplications() {
         for application in self.applications {
             if application.secondsSinceLastReviewFetch == 0 || application.secondsSinceLastReviewFetch > Int(UpdateInterval) {
-                DBController.sharedInstance.appstoreReviewController.fetchReviewsFromItunes(application, storeId: nil)
+                self.fetchReviewsFromItunes(application, storeId: nil)
             }
         }
     }
     
     func updateApplications(){
-        if let dBApplications = DBController.sharedInstance.appstoreReviewController.allApplications() {
+        if let dBApplications = ReviewManager.dbHandler().allApplications() {
             for dBApplication in dBApplications {
                 
                 if !contains(applications, dBApplication) {
                     applications.append(dBApplication)
-                    DBController.sharedInstance.appstoreReviewController.fetchReviewsFromItunes(dBApplication, storeId: nil)
+                    self.fetchReviewsFromItunes(dBApplication, storeId: nil)
                 }
             }
             
@@ -105,6 +106,48 @@ class ApplicationMonitor {
         }
         println("-------")
 
-        self.delegate?.applicationMonitor(self, didUpdateApplications: self.applications)
+        self.delegate?.applicationHandler(self, didUpdateApplications: self.applications)
     }
+    
+    // MARK: - Reviews handling
+    
+    func fetchReviewsFromItunes(application: Application, storeId: String?) {
+        println("import reviews for \(application.trackName) store \(storeId)")
+
+        var context = ReviewManager.dbHandler().context
+        var managedApplication = Application.getOrCreateNew(application.trackId, context: context)
+        managedApplication.reviewsUpdatedAt = NSDate()
+        
+        RequestHandler(apId: application.trackId, storeId: storeId).fetchReview() {  [weak self]
+            (success: Bool, reviews: [JSON]?, error : NSError?)
+            in
+            
+            let blockSuccess = success as Bool
+            let blockError = error
+            
+            ReviewManager.dbHandler().context
+
+            context.performBlock({ () -> Void in
+                
+                if let blockReviews = reviews {
+                    
+                    for var index = 0; index < blockReviews.count; index++ {
+                        let entry = blockReviews[index]
+                        
+                        if entry.isReviewEntity, let apID = entry.reviewApID {
+                            var review = Review.getOrCreateNew(apID, context: context)
+                            review.updateWithJSON(entry)
+                            review.country = storeId ?? ""
+                            review.updatedAt = NSDate()
+                            var reviews = managedApplication.mutableSetValueForKey("reviews")
+                            reviews.addObject(review)
+                            review.application = managedApplication
+                        }
+                    }
+                    ReviewManager.dbHandler().saveContext()
+                }
+            })
+        }
+    }
+
 }

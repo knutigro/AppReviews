@@ -32,9 +32,8 @@ extension ApplicationWindowController  {
 extension ApplicationWindowController  {
     
     func searchApp(name: String) {
-        let appFetcher = AppFetcher()
         
-        appFetcher.fetchApplications(name) { [weak self]
+        RequestHandler.fetchApplications(name) { [weak self]
             (success: Bool, applications: JSON?, error : NSError?)
             in
             
@@ -88,7 +87,7 @@ extension ApplicationWindowController  {
 extension ApplicationWindowController : SearchViewControllerDelegate {
     func searchViewController(searchViewController : SearchViewController, didSelectApplication application: JSON) {
         self.searchField?.stringValue = ""
-        DBController.sharedInstance.appstoreReviewController.saveApplication(application)
+        ReviewManager.dbHandler().saveApplication(application)
         if let searchWindow = self.searchWindowController?.window {
             self.window?.endSheet(searchWindow)
         }

@@ -22,7 +22,7 @@ class ApplicationViewController: NSViewController {
 
     required init?(coder: NSCoder) {
         super.init(coder: coder)
-        self.managedObjectContext = DBController.sharedInstance.persistentStack.managedObjectContext
+        self.managedObjectContext = ReviewManager.managedObjectContext()
     }
     
     // MARK: - View & Navigation
@@ -40,7 +40,7 @@ extension ApplicationViewController {
         if let applications = objects as? [Application], let rowNumber = self.tableView?.selectedRow {
             if applications.count > rowNumber && rowNumber >= 0{
                 let application = applications[rowNumber]
-                DBController.sharedInstance.appstoreReviewController.removeApplication(application)
+                ReviewManager.dbHandler().removeApplication(application)
             }
         }
     }
