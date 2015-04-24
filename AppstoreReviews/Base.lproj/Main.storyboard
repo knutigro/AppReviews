@@ -645,12 +645,55 @@
                 <customObject id="Ady-hI-5gd" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
                 <userDefaultsController id="9Su-6Y-XzG"/>
             </objects>
-            <point key="canvasLocation" x="75" y="0.0"/>
+            <point key="canvasLocation" x="-298.5" y="-268"/>
+        </scene>
+        <!--Window Controller-->
+        <scene sceneID="lsw-7U-SVb">
+            <objects>
+                <windowController storyboardIdentifier="AboutWindowController" id="dy1-5C-KDl" sceneMemberID="viewController">
+                    <window key="window" title="Window" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" oneShot="NO" releasedWhenClosed="NO" showsToolbarButton="NO" visibleAtLaunch="NO" animationBehavior="default" id="Xvv-ge-YX9">
+                        <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES" resizable="YES"/>
+                        <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
+                        <rect key="contentRect" x="163" y="208" width="300" height="300"/>
+                        <rect key="screenRect" x="0.0" y="0.0" width="1280" height="800"/>
+                        <value key="minSize" type="size" width="300" height="300"/>
+                        <value key="maxSize" type="size" width="300" height="300"/>
+                    </window>
+                    <connections>
+                        <segue destination="uib-Qp-duf" kind="relationship" relationship="window.shadowedContentViewController" id="BbD-3h-OEW"/>
+                    </connections>
+                </windowController>
+                <customObject id="DeI-V3-hPc" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-760" y="19"/>
+        </scene>
+        <!--View Controller-->
+        <scene sceneID="1AA-vu-7Ja">
+            <objects>
+                <viewController id="uib-Qp-duf" sceneMemberID="viewController">
+                    <view key="view" id="5rj-bW-yOJ">
+                        <rect key="frame" x="0.0" y="0.0" width="300" height="300"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <subviews>
+                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="0NS-o1-xLG">
+                                <rect key="frame" x="73" y="214" width="116" height="17"/>
+                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Appstore Reviews" id="USR-Ul-gwb">
+                                    <font key="font" metaFont="system"/>
+                                    <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                                </textFieldCell>
+                            </textField>
+                        </subviews>
+                    </view>
+                </viewController>
+                <customObject id="KIk-KI-Wvl" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-760" y="433"/>
         </scene>
         <!--Window Controller-->
         <scene sceneID="R2V-B0-nI4">
             <objects>
-                <windowController storyboardIdentifier="ApplicationWindow" id="B8D-0N-5wS" customClass="ApplicationWindowController" customModule="AppstoreReviews" customModuleProvider="target" sceneMemberID="viewController">
+                <windowController storyboardIdentifier="ApplicationWindowController" id="B8D-0N-5wS" customClass="ApplicationWindowController" customModule="AppstoreReviews" customModuleProvider="target" sceneMemberID="viewController">
                     <window key="window" title="Applications" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" oneShot="NO" releasedWhenClosed="NO" showsToolbarButton="NO" visibleAtLaunch="NO" animationBehavior="default" id="IQv-IB-iLA">
                         <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES" resizable="YES"/>
                         <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
@@ -890,7 +933,7 @@
                 </arrayController>
                 <userDefaultsController representsSharedInstance="YES" id="k2v-RE-iNo"/>
             </objects>
-            <point key="canvasLocation" x="1476" y="1374"/>
+            <point key="canvasLocation" x="820" y="1058"/>
         </scene>
         <!--Window Controller-->
         <scene sceneID="RZB-AF-mML">
@@ -910,7 +953,7 @@
                 </windowController>
                 <customObject id="uAh-Nb-UNn" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-299" y="1174"/>
+            <point key="canvasLocation" x="27" y="26"/>
         </scene>
         <!--Window Controller-->
         <scene sceneID="p6V-mE-HDQ">
@@ -957,7 +1000,7 @@
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                         <popUpButtonCell key="cell" type="roundTextured" bezelStyle="texturedRounded" alignment="center" lineBreakMode="truncatingTail" state="on" borderStyle="border" imageScaling="proportionallyDown" inset="2" pullsDown="YES" arrowPosition="arrowAtCenter" id="QDp-ep-0Ia">
                                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
-                                            <font key="font" metaFont="system"/>
+                                            <font key="font" metaFont="menu"/>
                                             <menu key="menu" id="hQD-RF-WYJ">
                                                 <items>
                                                     <menuItem state="on" image="NSActionTemplate" hidden="YES" id="n7W-XG-F69"/>
@@ -990,7 +1033,7 @@
                 </windowController>
                 <customObject id="9pG-Lf-0kW" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="424" y="802"/>
+            <point key="canvasLocation" x="720" y="88"/>
         </scene>
         <!--Review Split View Controller-->
         <scene sceneID="ZMN-X7-X0t">
@@ -1011,7 +1054,7 @@
                 </splitViewController>
                 <customObject id="zWi-Dh-HQz" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1308" y="787"/>
+            <point key="canvasLocation" x="704" y="495"/>
         </scene>
         <!--Review Menu View Controller-->
         <scene sceneID="Jyz-Ag-rPD">
@@ -1290,7 +1333,7 @@
                 </viewController>
                 <customObject id="lLq-8y-t1Z" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="996" y="1404"/>
+            <point key="canvasLocation" x="404" y="1088"/>
         </scene>
         <!--Application View Controller-->
         <scene sceneID="QXW-tm-J9t">
@@ -1476,7 +1519,7 @@
                     </connections>
                 </arrayController>
             </objects>
-            <point key="canvasLocation" x="-326" y="685"/>
+            <point key="canvasLocation" x="-326" y="653"/>
         </scene>
         <!--Search View Controller-->
         <scene sceneID="pqx-y8-jGT">
@@ -1630,7 +1673,7 @@ Gw
                 <userDefaultsController id="6aj-5i-Azt"/>
                 <tabViewItem label="Notifications" identifier="" id="4eM-Fh-F0l"/>
             </objects>
-            <point key="canvasLocation" x="-299" y="1745"/>
+            <point key="canvasLocation" x="27" y="441"/>
         </scene>
     </scenes>
     <resources>

@@ -53,7 +53,7 @@ class StatusMenuController : NSObject {
             menu.addItem(NSMenuItem.separatorItem())
         }
         
-        var menuItemApplications = NSMenuItem(title: NSLocalizedString("Add / Remove Apps", comment: "statusbar.menu.applications"), action: Selector("openSettings:"), keyEquivalent: "")
+        var menuItemApplications = NSMenuItem(title: NSLocalizedString("Add / Remove Apps", comment: "statusbar.menu.applications"), action: Selector("openApplications:"), keyEquivalent: "")
         var menuItemAbout = NSMenuItem(title: NSLocalizedString("About App Reviews", comment: "statusbar.menu.about"), action: Selector("openAbout:"), keyEquivalent: "")
         var menuItemQuit = NSMenuItem(title: NSLocalizedString("Quit App Reviews", comment: "statusbar.menu.quit"), action: Selector("quit:"), keyEquivalent: "")
 
@@ -95,12 +95,15 @@ extension StatusMenuController {
     }
     
     func openAbout(sender : AnyObject) {
-        
+        let appdelegate = NSApplication.sharedApplication().delegate as! AppDelegate
+        let windowController = appdelegate.aboutWindowController
+        windowController.showWindow(self)
+        NSApp.activateIgnoringOtherApps(true)
     }
     
-    func openSettings(sender : AnyObject) {
+    func openApplications(sender : AnyObject) {
         let appdelegate = NSApplication.sharedApplication().delegate as! AppDelegate
-        let windowController = appdelegate.settingsWindowController
+        let windowController = appdelegate.applicationWindowController
         windowController.showWindow(self)
         NSApp.activateIgnoringOtherApps(true)
     }

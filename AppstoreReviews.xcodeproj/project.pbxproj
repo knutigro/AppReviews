@@ -141,12 +141,10 @@
 		49ACB83D1AD5CAA00050C1B7 /* AppstoreReviews */ = {
 			isa = PBXGroup;
 			children = (
-				49ACB8401AD5CAA00050C1B7 /* AppDelegate.swift */,
-				49ACB8491AD5CAA00050C1B7 /* Main.storyboard */,
-				49ACB8641AD5E00F0050C1B7 /* Core Data */,
+				49ACB8641AD5E00F0050C1B7 /* Review Data Handling */,
 				49F800F51ADC840C004A1BF1 /* Window & ViewControllers */,
-				49F800F41ADC83EC004A1BF1 /* Cells */,
-				49F800F61ADC844A004A1BF1 /* Controllers */,
+				49F800F41ADC83EC004A1BF1 /* Views and Cells */,
+				49F800F61ADC844A004A1BF1 /* Data Controllers */,
 				49F800F11ADC791B004A1BF1 /* Categories */,
 				49EF51061AE1CB4400E5901C /* Utilities */,
 				49ACB8471AD5CAA00050C1B7 /* Images.xcassets */,
@@ -183,7 +181,7 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
-		49ACB8641AD5E00F0050C1B7 /* Core Data */ = {
+		49ACB8641AD5E00F0050C1B7 /* Review Data Handling */ = {
 			isa = PBXGroup;
 			children = (
 				49ACB8621AD5CE700050C1B7 /* ReviewManager.swift */,
@@ -193,8 +191,9 @@
 				49A0035A1AD68840001E10BE /* RequestHandler.swift */,
 				49DAA2FD1AD80DBB002807A7 /* Application.swift */,
 				49ACB8671AD5E1730050C1B7 /* Review.swift */,
+				496522A31AE45C44004C126C /* String+AppVersion.swift */,
 			);
-			name = "Core Data";
+			name = "Review Data Handling";
 			path = ../COAppstoreReviews;
 			sourceTree = "<group>";
 		};
@@ -212,7 +211,6 @@
 			children = (
 				49F800F21ADC7944004A1BF1 /* NSImageView+Networking.swift */,
 				496522A11AE31ED1004C126C /* Array+Utils.swift */,
-				496522A31AE45C44004C126C /* String+AppVersion.swift */,
 				493218F51AE5A580008996EC /* AutoSizedTextField.swift */,
 				49AAB8D61AE9AC9C00B412A8 /* String+Size.swift */,
 			);
@@ -220,18 +218,20 @@
 			path = ../COAppstoreReviews;
 			sourceTree = "<group>";
 		};
-		49F800F41ADC83EC004A1BF1 /* Cells */ = {
+		49F800F41ADC83EC004A1BF1 /* Views and Cells */ = {
 			isa = PBXGroup;
 			children = (
 				49F800E71ADAA0DC004A1BF1 /* ReviewCellView.swift */,
 				49F800EF1ADC674B004A1BF1 /* ApplicationCellView.swift */,
 			);
-			name = Cells;
+			name = "Views and Cells";
 			sourceTree = "<group>";
 		};
 		49F800F51ADC840C004A1BF1 /* Window & ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
+				49ACB8401AD5CAA00050C1B7 /* AppDelegate.swift */,
+				49ACB8491AD5CAA00050C1B7 /* Main.storyboard */,
 				498111E21AE002E5000CBFBF /* StatusMenuController.swift */,
 				4930D5091AE7013600C90FDE /* ApplicationWindowController.swift */,
 				49F800F71ADC84A7004A1BF1 /* ApplicationViewController.swift */,
@@ -244,14 +244,14 @@
 			name = "Window & ViewControllers";
 			sourceTree = "<group>";
 		};
-		49F800F61ADC844A004A1BF1 /* Controllers */ = {
+		49F800F61ADC844A004A1BF1 /* Data Controllers */ = {
 			isa = PBXGroup;
 			children = (
 				49F800E91ADAAD58004A1BF1 /* ApplicationArrayController.swift */,
 				49A75E4D1AD9BCDF004A4742 /* ReviewArrayController.swift */,
 				49997B7B1ADDB3F000B56590 /* TableImageCellTransformer.swift */,
 			);
-			name = Controllers;
+			name = "Data Controllers";
 			sourceTree = "<group>";
 		};
 		7147F03F6DDA32E9CC0315BF /* Frameworks */ = {

@@ -12,7 +12,7 @@ import AppKit
 @NSApplicationMain
 class AppDelegate: NSObject, NSApplicationDelegate {
 
-    lazy var settingsWindowController: NSWindowController = self.initialSettingsWindowController()
+    lazy var applicationWindowController: NSWindowController = self.initialApplicationWindowController()
     lazy var aboutWindowController: NSWindowController = self.initialAboutWindowController()
     lazy var reviewsWindowController: ReviewWindowController = self.initialReviewWindowController()
 
@@ -46,9 +46,9 @@ class AppDelegate: NSObject, NSApplicationDelegate {
 
 extension AppDelegate {
     
-    func initialSettingsWindowController() -> NSWindowController {
+    func initialApplicationWindowController() -> NSWindowController {
         let storyboard = NSStoryboard(name: "Main", bundle: nil)!
-        var windowController = storyboard.instantiateControllerWithIdentifier("ApplicationWindow") as! NSWindowController
+        var windowController = storyboard.instantiateControllerWithIdentifier("ApplicationWindowController") as! NSWindowController
         
         return windowController
     }
@@ -62,7 +62,7 @@ extension AppDelegate {
     
     func initialAboutWindowController() -> NSWindowController {
         let storyboard = NSStoryboard(name: "Main", bundle: nil)!
-        var windowController = storyboard.instantiateControllerWithIdentifier("ReviewWindowsController") as! NSWindowController
+        var windowController = storyboard.instantiateControllerWithIdentifier("AboutWindowController") as! NSWindowController
         
         return windowController
     }
