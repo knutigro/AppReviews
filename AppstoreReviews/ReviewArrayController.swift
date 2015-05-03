@@ -23,7 +23,7 @@ class ReviewArrayController : NSArrayController {
 
         self.sortDescriptors = [
             NSSortDescriptor(key: "version", ascending: false, selector: Selector("compareVersion:")),
-            NSSortDescriptor(key: "createdAt", ascending: true)
+            NSSortDescriptor(key: "createdAt", ascending: false)
         ]
     }
 }

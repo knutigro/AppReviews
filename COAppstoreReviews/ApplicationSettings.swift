@@ -51,6 +51,7 @@ class ApplicationSettings : NSManagedObject {
     class func new(application : Application, context: NSManagedObjectContext) -> ApplicationSettings {
         let settings = ApplicationSettings(insertIntoManagedObjectContext: context)
         settings.application = application;
+        settings.automaticUpdate = true
         settings.createdAt = NSDate()
         settings.updatedAt = NSDate()
         

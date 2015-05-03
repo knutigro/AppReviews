@@ -9,10 +9,29 @@
 import AppKit
 import EDStarRating
 
+
+enum UpdateLabelState {
+    case LastUpdate
+    case NextUpdate
+}
 class ReviewMenuViewController: NSViewController {
     
     var managedObjectContext : NSManagedObjectContext!
     let dateFormatter = NSDateFormatter()
+    var updateLabelState = UpdateLabelState.LastUpdate {
+        didSet {
+            self.dateFormatter.dateStyle = .LongStyle
+            self.dateFormatter.timeStyle = .MediumStyle
+            switch self.updateLabelState {
+            case .LastUpdate:
+                let updatedAt = self.application?.settings.reviewsUpdatedAt != nil ? dateFormatter.stringFromDate(self.application!.settings.reviewsUpdatedAt!) : ""
+                self.reviewsUpdatedAtLabel.stringValue = NSLocalizedString("Updated: ", comment: "review.menu.reviewUpdated") + updatedAt
+            case .NextUpdate:
+                let nextUpdate = self.application?.settings.nextUpdateAt != nil ? dateFormatter.stringFromDate(self.application!.settings.nextUpdateAt!) : ""
+                self.reviewsUpdatedAtLabel.stringValue = NSLocalizedString("Next: ", comment: "review.menu.reviewNextUpdate") + nextUpdate
+            }
+        }
+    }
 
     @IBOutlet weak var currentVersionStarRating: EDStarRating?
     @IBOutlet weak var allVersionsStarRating: EDStarRating?
@@ -28,7 +47,6 @@ class ReviewMenuViewController: NSViewController {
     @IBOutlet weak var averageRatingAllLabel: NSTextField!
     @IBOutlet weak var numberOfRatingsAllLabel: NSTextField!
     @IBOutlet weak var reviewsUpdatedAtLabel: NSTextField!
-    @IBOutlet weak var nextUpdatedLabel: NSTextField!
 
     var application : Application? {
         didSet {
@@ -66,6 +84,22 @@ class ReviewMenuViewController: NSViewController {
             starRating.horizontalMargin = 5
             starRating.displayMode = UInt(EDStarRatingDisplayAccurate)
             starRating.rating = 3.5
+        }
+        
+        let applicationMonitor = NSNotificationCenter.defaultCenter().addObserverForName(kDidUpdateApplicationNotification, object: nil, queue: nil) {  [weak self] notification in
+            if let strongSelf = self {
+                dispatch_async(dispatch_get_main_queue(), { () -> Void in
+                    strongSelf.updateApplicationInfo()
+                })
+            }
+        }
+        
+        let applicationSettingsMonitor = NSNotificationCenter.defaultCenter().addObserverForName(kDidUpdateApplicationSettingsNotification, object: nil, queue: nil) {  [weak self] notification in
+            if let strongSelf = self {
+                dispatch_async(dispatch_get_main_queue(), { () -> Void in
+                    strongSelf.updateApplicationInfo()
+                })
+            }
         }
     }
     
@@ -112,13 +146,14 @@ class ReviewMenuViewController: NSViewController {
         
         self.numberOfRatingsAllLabel.stringValue =   NSLocalizedString("Number of ratings: ", comment: "review.menu.currentAverageRating") + (NSString(format: "%i", userRatingCount) as String)
         
-        self.dateFormatter.dateStyle = .LongStyle
-        self.dateFormatter.timeStyle = .MediumStyle
-        let updatedAt = self.application?.settings.reviewsUpdatedAt != nil ? dateFormatter.stringFromDate(self.application!.settings.reviewsUpdatedAt!) : ""
-        let nextUpdate = self.application?.settings.nextUpdateAt != nil ? dateFormatter.stringFromDate(self.application!.settings.nextUpdateAt!) : ""
-
-        self.reviewsUpdatedAtLabel.stringValue = NSLocalizedString("Updated: ", comment: "review.menu.reviewUpdated") + updatedAt
-        
-        self.nextUpdatedLabel.stringValue = NSLocalizedString("Next: ", comment: "review.menu.reviewNextUpdate") + nextUpdate
+        self.updateLabelState = .LastUpdate
+    }
+    
+    @IBAction func toogleUpdateLabel(objects:AnyObject?) {
+        if (self.updateLabelState == .LastUpdate) {
+            self.updateLabelState = .NextUpdate
+        } else {
+            self.updateLabelState = .LastUpdate
+        }
     }
 }

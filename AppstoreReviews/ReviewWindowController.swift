@@ -12,7 +12,7 @@ class ReviewWindowController : NSWindowController {
     
     var managedObjectContext : NSManagedObjectContext!
     
-    private var application : Application? {
+    var application : Application? {
         didSet {
             if let title = application?.trackName {
                 self.window?.title = title

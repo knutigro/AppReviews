@@ -25,8 +25,8 @@ class StatusMenuController : NSObject {
     override init() {
         super.init()
         self.statusItem = NSStatusBar.systemStatusBar().statusItemWithLength(-1) // NSVariableStatusItemLength
-        self.statusItem.image = NSImage(named: "star-highlighted")
-        self.statusItem.alternateImage = NSImage(named: "star")
+        self.statusItem.image = NSImage(named: "stausBarIcon")
+        self.statusItem.alternateImage = NSImage(named: "stausBarIcon")
         self.statusItem.highlightMode = true
         
         self.applicationArrayController = ApplicationArrayController(content: nil)
@@ -58,12 +58,16 @@ class StatusMenuController : NSObject {
 
     func updateMenu() {
         var menu = NSMenu()
-        
+
+        var newReviews = false
+
         for application in self.applications {
+            
 //            application.addObserver(self, forKeyPath: "settings.newReviews", options: .New, context: &kvoContext)
             var title = application.trackName
             
             if application.settings.newReviews.integerValue > 0 {
+                newReviews = true
                 title = title + " (" + String(application.settings.newReviews.integerValue) +  ")"
             }
 
@@ -92,6 +96,14 @@ class StatusMenuController : NSObject {
         menu.addItem(menuItemQuit)
         
         self.statusItem.menu = menu;
+        
+        if newReviews {
+            self.statusItem.image = NSImage(named: "stausBarIconHappy")
+            self.statusItem.alternateImage = NSImage(named: "stausBarIconHappy")
+        } else {
+            self.statusItem.image = NSImage(named: "stausBarIcon")
+            self.statusItem.alternateImage = NSImage(named: "stausBarIcon")
+        }
     }
 }
 

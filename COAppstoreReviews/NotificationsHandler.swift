@@ -61,6 +61,7 @@ class NotificationsHandler : NSObject {
         
         var notification:NSUserNotification = NSUserNotification()
         notification.title = title
+        notification.userInfo = ["apId" : application.trackId]
         notification.informativeText = message
         notification.actionButtonTitle = NSLocalizedString("Open Reviews", comment: "review.notification.openReviews")
         notification.hasActionButton = true
@@ -76,7 +77,6 @@ class NotificationsHandler : NSObject {
 extension NotificationsHandler : NSUserNotificationCenterDelegate {
     
     func userNotificationCenter(center: NSUserNotificationCenter, didDeliverNotification notification: NSUserNotification) {
-        println("didDeliverNotification")  //this does not print
     }
     
     func userNotificationCenter(center: NSUserNotificationCenter, shouldPresentNotification notification: NSUserNotification) -> Bool {
@@ -85,5 +85,9 @@ extension NotificationsHandler : NSUserNotificationCenterDelegate {
     
     func userNotificationCenter(center: NSUserNotificationCenter, didActivateNotification notification: NSUserNotification) {
         println("didActivateNotification \(notification)")  //this does not print
+
+        if let apId = notification.userInfo?["apId"] as? String {
+                ReviewWindowController.show(apId)
+        }
     }
 }

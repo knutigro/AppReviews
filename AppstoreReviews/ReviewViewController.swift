@@ -19,8 +19,6 @@ class ReviewViewController: NSViewController {
         didSet {
             self.reviewArrayController?.application = self.application
             if let application = self.application {
-                println("resetNewReviews")
-                ReviewManager.dbHandler()
                 ReviewManager.appUpdater().resetNewReviews(application)
             }
             self.tableView?.reloadData()

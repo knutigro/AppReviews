@@ -62,7 +62,6 @@ class ApplicationUpdater {
             for dBApplication in dBApplications {
                 
                 if !contains(self.applications, dBApplication) {
-                    println("New application" + dBApplication.trackName)
                     applications.append(dBApplication)
                     self.fetchReviews(dBApplication, storeId: nil)
                 }
@@ -76,7 +75,6 @@ class ApplicationUpdater {
             }
             
             for applicationToRemove in applicationsToRemove {
-                println("removing app")
                 self.applications.removeObject(applicationToRemove)
             }
         }
@@ -132,8 +130,6 @@ class ApplicationUpdater {
                     managedApplication.settings.reviewsUpdatedAt = NSDate()
                     managedApplication.settings.nextUpdateAt = NSDate().dateByAddingTimeInterval(kDefaultReviewUpdateInterval)
                     
-                    println("nextUpdateAt: \(managedApplication.settings.nextUpdateAt)" )
-
                     ReviewManager.dbHandler().saveContext()
                 }
             })

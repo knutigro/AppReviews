@@ -14,6 +14,7 @@
 		496522A21AE31ED1004C126C /* Array+Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 496522A11AE31ED1004C126C /* Array+Utils.swift */; };
 		496522A41AE45C44004C126C /* String+AppVersion.swift in Sources */ = {isa = PBXBuildFile; fileRef = 496522A31AE45C44004C126C /* String+AppVersion.swift */; };
 		4974240A1AF55023004A65A8 /* NotificationsHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 497424091AF55023004A65A8 /* NotificationsHandler.swift */; };
+		4974240C1AF61C35004A65A8 /* AutomaticUpdateTransformer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4974240B1AF61C35004A65A8 /* AutomaticUpdateTransformer.swift */; };
 		497E10341AEBE1AC006726F0 /* ApplicationSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 497E10331AEBE1AC006726F0 /* ApplicationSettings.swift */; };
 		498111E31AE002E5000CBFBF /* StatusMenuController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 498111E21AE002E5000CBFBF /* StatusMenuController.swift */; };
 		498111E71AE07BC0000CBFBF /* ReviewWindowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 498111E61AE07BC0000CBFBF /* ReviewWindowController.swift */; };
@@ -63,6 +64,7 @@
 		496522A11AE31ED1004C126C /* Array+Utils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Array+Utils.swift"; sourceTree = "<group>"; };
 		496522A31AE45C44004C126C /* String+AppVersion.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "String+AppVersion.swift"; sourceTree = "<group>"; };
 		497424091AF55023004A65A8 /* NotificationsHandler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NotificationsHandler.swift; sourceTree = "<group>"; };
+		4974240B1AF61C35004A65A8 /* AutomaticUpdateTransformer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AutomaticUpdateTransformer.swift; sourceTree = "<group>"; };
 		497E10331AEBE1AC006726F0 /* ApplicationSettings.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ApplicationSettings.swift; sourceTree = "<group>"; };
 		498111E21AE002E5000CBFBF /* StatusMenuController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StatusMenuController.swift; sourceTree = "<group>"; };
 		498111E61AE07BC0000CBFBF /* ReviewWindowController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReviewWindowController.swift; sourceTree = "<group>"; };
@@ -264,6 +266,7 @@
 				49F800E91ADAAD58004A1BF1 /* ApplicationArrayController.swift */,
 				49A75E4D1AD9BCDF004A4742 /* ReviewArrayController.swift */,
 				49997B7B1ADDB3F000B56590 /* TableImageCellTransformer.swift */,
+				4974240B1AF61C35004A65A8 /* AutomaticUpdateTransformer.swift */,
 			);
 			name = "Data Controllers";
 			sourceTree = "<group>";
@@ -340,6 +343,7 @@
 				TargetAttributes = {
 					49ACB83A1AD5CAA00050C1B7 = {
 						CreatedOnToolsVersion = 6.2;
+						DevelopmentTeam = 2PRW676NCQ;
 					};
 					49ACB84F1AD5CAA00050C1B7 = {
 						CreatedOnToolsVersion = 6.2;
@@ -495,6 +499,7 @@
 				496522A21AE31ED1004C126C /* Array+Utils.swift in Sources */,
 				49ACB86C1AD5EAF70050C1B7 /* PersistentStack.swift in Sources */,
 				49F800E81ADAA0DC004A1BF1 /* ReviewCellView.swift in Sources */,
+				4974240C1AF61C35004A65A8 /* AutomaticUpdateTransformer.swift in Sources */,
 				49EF51051AE1BC5900E5901C /* Timer.swift in Sources */,
 				4974240A1AF55023004A65A8 /* NotificationsHandler.swift in Sources */,
 				49ACB8411AD5CAA00050C1B7 /* AppDelegate.swift in Sources */,
@@ -631,10 +636,12 @@
 			baseConfigurationReference = 8E9E3A98AF3DC476EF9A0809 /* Pods.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "Mac Developer";
 				COMBINE_HIDPI_IMAGES = YES;
 				INFOPLIST_FILE = AppstoreReviews/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "a2ba7700-279a-4659-a69d-7551135a97ac";
 			};
 			name = Debug;
 		};
@@ -643,10 +650,12 @@
 			baseConfigurationReference = F9CE0DF35CA051BD774393CD /* Pods.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "Mac Developer";
 				COMBINE_HIDPI_IMAGES = YES;
 				INFOPLIST_FILE = AppstoreReviews/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "a2ba7700-279a-4659-a69d-7551135a97ac";
 			};
 			name = Release;
 		};
