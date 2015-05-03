@@ -40,9 +40,9 @@ class Application : NSManagedObject {
     @NSManaged var userRatingCount : NSNumber
     @NSManaged var createdAt : NSDate
     @NSManaged var updatedAt : NSDate
-    @NSManaged var reviewsUpdatedAt : NSDate
     @NSManaged var reviews : NSSet
-    
+    @NSManaged var settings : ApplicationSettings
+
     var fileSizeMb : Float {
         get {
             var fileSize = self.fileSizeBytes.toInt() ?? 0
@@ -64,7 +64,21 @@ class Application : NSManagedObject {
     
     // MARK: - Class functions for create and insert and search
     
-    class func get(identifier : String, context: NSManagedObjectContext) -> Application? {
+    class func getWithIds(ids : Set<NSManagedObjectID>, context: NSManagedObjectContext) -> [Application]? {
+        let fetchRequest = NSFetchRequest(entityName: kEntityNameApplication)
+        
+        fetchRequest.predicate = NSPredicate(format: "self in %@", Array(ids))
+        var error : NSError?
+        
+        let result = context.executeFetchRequest(fetchRequest, error: &error)
+        
+        if error != nil {
+            println(error)
+        }
+        return result as? [Application]
+    }
+
+    class func getWithAppId(identifier : String, context: NSManagedObjectContext) -> Application? {
         let fetchRequest = NSFetchRequest(entityName: kEntityNameApplication)
         fetchRequest.predicate = NSPredicate(format: "trackId = %@", identifier)
         var error : NSError?
@@ -80,6 +94,7 @@ class Application : NSManagedObject {
     class func new(identifier : String, context: NSManagedObjectContext) -> Application {
         let application = Application(insertIntoManagedObjectContext: context)
         application.trackId = identifier;
+        application.settings = ApplicationSettings.new(application, context: context)
         application.createdAt = NSDate()
         application.updatedAt = NSDate()
         
@@ -87,7 +102,7 @@ class Application : NSManagedObject {
     }
 
     class func getOrCreateNew(identifier : String, context: NSManagedObjectContext) -> Application {
-        if let application = Application.get(identifier, context: context) {
+        if let application = Application.getWithAppId(identifier, context: context) {
             return application
         } else {
             return Application.new(identifier, context: context)

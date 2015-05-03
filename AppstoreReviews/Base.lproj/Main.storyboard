@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="7531" systemVersion="14D136" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
+<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="7702" systemVersion="14D136" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="7531"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="7702"/>
     </dependencies>
     <scenes>
         <!--Application-->
@@ -734,11 +734,7 @@
                     </connections>
                 </windowController>
                 <customObject id="Oky-zY-oP4" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
-                <customObject id="86x-iU-Nv1" customClass="AppDelegate" customModule="AppstoreReviews" customModuleProvider="target">
-                    <connections>
-                        <outlet property="settingsWindowController" destination="B8D-0N-5wS" id="WFO-gw-7Uh"/>
-                    </connections>
-                </customObject>
+                <customObject id="86x-iU-Nv1" customClass="AppDelegate" customModule="AppstoreReviews" customModuleProvider="target"/>
             </objects>
             <point key="canvasLocation" x="-326" y="106"/>
         </scene>
@@ -998,7 +994,7 @@
                                     <popUpButton key="view" verticalHuggingPriority="750" id="86s-19-3Op">
                                         <rect key="frame" x="0.0" y="14" width="38" height="28"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                        <popUpButtonCell key="cell" type="roundTextured" bezelStyle="texturedRounded" alignment="center" lineBreakMode="truncatingTail" state="on" borderStyle="border" imageScaling="proportionallyDown" inset="2" pullsDown="YES" arrowPosition="arrowAtCenter" id="QDp-ep-0Ia">
+                                        <popUpButtonCell key="cell" type="roundTextured" bezelStyle="texturedRounded" alignment="center" lineBreakMode="truncatingTail" state="on" borderStyle="border" imageScaling="proportionallyDown" inset="2" pullsDown="YES" arrowPosition="arrowAtCenter" selectedItem="g9R-Ib-VhM" id="QDp-ep-0Ia">
                                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                             <font key="font" metaFont="menu"/>
                                             <menu key="menu" id="hQD-RF-WYJ">
@@ -1010,6 +1006,11 @@
                                                         </connections>
                                                     </menuItem>
                                                     <menuItem title="Export reviews..." id="f1n-ML-MFv"/>
+                                                    <menuItem isSeparatorItem="YES" id="tzK-qR-fGi"/>
+                                                    <menuItem title="Refresh Automatically" state="on" id="g9R-Ib-VhM">
+                                                        <modifierMask key="keyEquivalentModifierMask"/>
+                                                    </menuItem>
+                                                    <menuItem title="Refresh" id="3if-UU-Y8u"/>
                                                 </items>
                                             </menu>
                                         </popUpButtonCell>
@@ -1277,9 +1278,9 @@
                                         </textFieldCell>
                                     </textField>
                                     <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="Xac-Et-DWE">
-                                        <rect key="frame" x="3" y="0.0" width="194" height="20"/>
+                                        <rect key="frame" x="3" y="13" width="194" height="15"/>
                                         <constraints>
-                                            <constraint firstAttribute="height" constant="20" id="ff0-PW-cSU"/>
+                                            <constraint firstAttribute="height" constant="15" id="ff0-PW-cSU"/>
                                         </constraints>
                                         <textFieldCell key="cell" controlSize="small" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="center" title="Updated" id="AhE-GQ-PZg">
                                             <font key="font" metaFont="miniSystem"/>
@@ -1287,16 +1288,29 @@
                                             <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                         </textFieldCell>
                                     </textField>
+                                    <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="rNy-0G-wwP">
+                                        <rect key="frame" x="3" y="0.0" width="194" height="13"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="13" id="8bs-Wz-Pz6"/>
+                                        </constraints>
+                                        <textFieldCell key="cell" controlSize="small" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="center" title="Next Update" id="bk8-A6-dUW">
+                                            <font key="font" metaFont="miniSystem"/>
+                                            <color key="textColor" name="controlShadowColor" catalog="System" colorSpace="catalog"/>
+                                            <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                                        </textFieldCell>
+                                    </textField>
                                 </subviews>
                                 <constraints>
+                                    <constraint firstItem="rNy-0G-wwP" firstAttribute="leading" secondItem="fpg-Vy-Gnp" secondAttribute="leading" constant="5" id="1mZ-tZ-nnm"/>
                                     <constraint firstItem="duH-jh-Fdz" firstAttribute="leading" secondItem="fpg-Vy-Gnp" secondAttribute="leading" constant="5" id="1o5-1c-Ba2"/>
                                     <constraint firstAttribute="trailing" secondItem="NH0-cD-Izj" secondAttribute="trailing" constant="5" id="4Ca-5z-GhG"/>
                                     <constraint firstItem="Xac-Et-DWE" firstAttribute="leading" secondItem="fpg-Vy-Gnp" secondAttribute="leading" constant="5" id="B6o-JV-DV6"/>
                                     <constraint firstItem="NH0-cD-Izj" firstAttribute="top" secondItem="duH-jh-Fdz" secondAttribute="bottom" constant="5" id="ED1-2W-wbx"/>
                                     <constraint firstItem="U5V-Jf-Pnn" firstAttribute="top" secondItem="fpg-Vy-Gnp" secondAttribute="top" constant="5" id="Fmn-NE-fyH"/>
-                                    <constraint firstAttribute="bottom" secondItem="Xac-Et-DWE" secondAttribute="bottom" id="Hgg-0b-LxB"/>
                                     <constraint firstAttribute="trailing" secondItem="ecL-sY-6RS" secondAttribute="trailing" id="JAs-wj-bQm"/>
                                     <constraint firstAttribute="trailing" secondItem="Xac-Et-DWE" secondAttribute="trailing" constant="5" id="NkW-IS-t8B"/>
+                                    <constraint firstAttribute="trailing" secondItem="rNy-0G-wwP" secondAttribute="trailing" constant="5" id="PSo-at-2xH"/>
+                                    <constraint firstAttribute="bottom" secondItem="rNy-0G-wwP" secondAttribute="bottom" id="YVW-21-Y2K"/>
                                     <constraint firstItem="U5V-Jf-Pnn" firstAttribute="leading" secondItem="fpg-Vy-Gnp" secondAttribute="leading" constant="5" id="acT-NJ-ylw"/>
                                     <constraint firstItem="duH-jh-Fdz" firstAttribute="top" secondItem="U5V-Jf-Pnn" secondAttribute="bottom" constant="5" id="bI6-3a-e7E"/>
                                     <constraint firstItem="NH0-cD-Izj" firstAttribute="leading" secondItem="fpg-Vy-Gnp" secondAttribute="leading" constant="5" id="hFT-9l-5M7"/>
@@ -1305,6 +1319,7 @@
                                     <constraint firstAttribute="width" constant="200" id="j2X-6Q-CIf"/>
                                     <constraint firstAttribute="trailing" secondItem="duH-jh-Fdz" secondAttribute="trailing" constant="5" id="nL6-9x-CA5"/>
                                     <constraint firstAttribute="trailing" secondItem="U5V-Jf-Pnn" secondAttribute="trailing" constant="5" id="q58-sz-STV"/>
+                                    <constraint firstItem="rNy-0G-wwP" firstAttribute="top" secondItem="Xac-Et-DWE" secondAttribute="bottom" id="qOl-N9-5xC"/>
                                 </constraints>
                             </customView>
                         </subviews>
@@ -1321,6 +1336,7 @@
                         <outlet property="averageRatingCurrentLabel" destination="Ord-3f-03p" id="Neb-6E-rV6"/>
                         <outlet property="categoryLabel" destination="CuZ-iK-m4n" id="4wi-jV-JbK"/>
                         <outlet property="currentVersionStarRating" destination="Q7a-CE-04U" id="Q6v-ry-iEg"/>
+                        <outlet property="nextUpdatedLabel" destination="rNy-0G-wwP" id="Ps3-mu-WXR"/>
                         <outlet property="numberOfRatingsAllLabel" destination="HBC-En-0J8" id="zcn-VA-sec"/>
                         <outlet property="numberOfRatingsCurrentLabel" destination="BQ4-gv-NpL" id="qWD-Ce-7hl"/>
                         <outlet property="reviewsUpdatedAtLabel" destination="Xac-Et-DWE" id="qbc-Ro-zWW"/>

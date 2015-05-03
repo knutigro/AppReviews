@@ -41,6 +41,20 @@ class Review : NSManagedObject {
     
     // MARK: - Class functions for create and insert
     
+    class func getWithId(id : NSManagedObjectID, context: NSManagedObjectContext) -> Review? {
+        
+        let fetchRequest = NSFetchRequest(entityName: kEntityNameReview)
+        
+        var error : NSError?
+        let result = context.existingObjectWithID(id, error: &error)
+        
+        if error != nil {
+            println(error)
+        }
+        
+        return result as? Review
+    }
+
     class func get(apId : String, context: NSManagedObjectContext) -> Review? {
         let fetchRequest = NSFetchRequest(entityName: kEntityNameReview)
         fetchRequest.predicate = NSPredicate(format: "apId = %@", apId)

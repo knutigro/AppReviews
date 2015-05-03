@@ -27,7 +27,7 @@ class ReviewWindowController : NSWindowController {
         didSet {
             if oldValue != self.applicationId {
                 if self.applicationId as? String != nil {
-                    self.application = Application.get(self.applicationId! as String, context: self.managedObjectContext)
+                    self.application = Application.getWithAppId(self.applicationId! as String, context: self.managedObjectContext)
                 }
             }
         }
@@ -61,7 +61,7 @@ extension ReviewWindowController {
     
     @IBAction func refreshApplication(sender: AnyObject) {
         if let application = self.application {
-            ReviewManager.appHandler().fetchReviewsFromItunes(application, storeId: nil)
+            ReviewManager.appUpdater().fetchReviews(application, storeId: nil)
         }
     }
     

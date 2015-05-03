@@ -8,23 +8,19 @@
 
 import AppKit
 
-class StatusMenuApplicationItem {
-    var applicationName : String
-    var applicationId : String
-    var numberOfNewReviews = 0
-    
-    init(applicationName : String, applicationId : String) {
-        self.applicationName = applicationName
-        self.applicationId = applicationId
-    }
-}
-
 class StatusMenuController : NSObject {
     
     var statusItem: NSStatusItem!
-    var applicationItems = [StatusMenuApplicationItem]()
-
+    var applications = [Application]()
+    var newReviews = [Int]()
+    var applicationArrayController : ApplicationArrayController!
+    private var kvoContext = 0
+    
     // MARK: - Init & teardown
+
+    deinit {
+        self.removeObserver(self, forKeyPath: "applications", context: &kvoContext)
+    }
 
     override init() {
         super.init()
@@ -33,8 +29,29 @@ class StatusMenuController : NSObject {
         self.statusItem.alternateImage = NSImage(named: "star")
         self.statusItem.highlightMode = true
         
-        self.updateApplicationItems()
+        self.applicationArrayController = ApplicationArrayController(content: nil)
+        self.applicationArrayController.managedObjectContext = ReviewManager.managedObjectContext()
+        self.applicationArrayController.entityName = kEntityNameApplication
+        var error : NSError? = nil
+        var result = self.applicationArrayController.fetchWithRequest(nil, merge: true, error: &error)
         
+        self.bind("applications", toObject: self.applicationArrayController, withKeyPath: "arrangedObjects", options: nil)
+        
+        self.addObserver(self, forKeyPath: "applications", options: .New, context: &kvoContext)
+        
+        let applicationMonitor = NSNotificationCenter.defaultCenter().addObserverForName(kDidUpdateApplicationNotification, object: nil, queue: nil) {  [weak self] notification in
+            if let strongSelf = self {
+                strongSelf.updateMenu()
+            }
+        }
+        
+        let applicationSettingsMonitor = NSNotificationCenter.defaultCenter().addObserverForName(kDidUpdateApplicationSettingsNotification, object: nil, queue: nil) {  [weak self] notification in
+            if let strongSelf = self {
+                strongSelf.updateMenu()
+            }
+        }
+
+        self.updateMenu()
     }
     
     // MARK: - Handling menu items
@@ -42,14 +59,22 @@ class StatusMenuController : NSObject {
     func updateMenu() {
         var menu = NSMenu()
         
-        for application in applicationItems {
-            var menuItem = NSMenuItem(title: application.applicationName, action: Selector("openReviewsForApp:"), keyEquivalent: "")
+        for application in self.applications {
+//            application.addObserver(self, forKeyPath: "settings.newReviews", options: .New, context: &kvoContext)
+            var title = application.trackName
+            
+            if application.settings.newReviews.integerValue > 0 {
+                title = title + " (" + String(application.settings.newReviews.integerValue) +  ")"
+            }
+
+            var menuItem = NSMenuItem(title: title, action: Selector("openReviewsForApp:"), keyEquivalent: "")
+
             menuItem.representedObject = application
             menuItem.target = self
             menu.addItem(menuItem)
         }
         
-        if (applicationItems.count > 0) {
+        if (applications.count > 0) {
             menu.addItem(NSMenuItem.separatorItem())
         }
         
@@ -68,18 +93,6 @@ class StatusMenuController : NSObject {
         
         self.statusItem.menu = menu;
     }
-    
-    func updateApplicationItems(){
-        if let applications = ReviewManager.dbHandler().allApplications() {
-            self.applicationItems.removeAll(keepCapacity: false)
-            for application in applications {
-                if !application.trackName.isEmpty && !application.trackId.isEmpty  {
-                    self.applicationItems.append(StatusMenuApplicationItem(applicationName: application.trackName, applicationId: application.trackId))
-                }
-            }
-        }
-        self.updateMenu()
-    }
 }
 
 // MARK: - Actions
@@ -88,8 +101,8 @@ extension StatusMenuController {
     
     func openReviewsForApp(sender : AnyObject) {
         if let menuItem = sender as? NSMenuItem {
-            if let application = menuItem.representedObject as? StatusMenuApplicationItem {
-                ReviewWindowController.show(application.applicationId)
+            if let application = menuItem.representedObject as? Application {
+                ReviewWindowController.show(application.trackId)
             }
         }
     }
@@ -113,16 +126,18 @@ extension StatusMenuController {
     }
 }
 
-// MARK: - ApplicationHandlerDelegate
+// MARK: - KVO
 
-extension StatusMenuController : ApplicationHandlerDelegate {
+extension StatusMenuController {
     
-    func applicationHandler(applicationHandler : ApplicationHandler, didUpdateApplications applications: [Application]) {
-        self.updateApplicationItems()
+    override func observeValueForKeyPath(keyPath: String, ofObject object: AnyObject, change: [NSObject : AnyObject], context: UnsafeMutablePointer<Void>) {
+        if context == &kvoContext {
+//            println("observeValueForKeyPath: " + keyPath +  "change: \(change)" )
+//            self.updateMenu()
+        }
+        else {
+            super.observeValueForKeyPath(keyPath, ofObject: object, change: change, context: context)
+        }
     }
 
-    func applicationHandler(applicationHandler : ApplicationHandler, didUpdateReviews reviews: [Review]) {
-        
-    }
 }
-

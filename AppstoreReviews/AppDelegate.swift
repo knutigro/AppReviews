@@ -27,7 +27,6 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         
         // Create StatusMenu
         self.statusMenuController = StatusMenuController()
-        manager.applicationHandler.delegate = self.statusMenuController
     }
     
     func applicationWillTerminate(aNotification: NSNotification) {
@@ -67,3 +66,4 @@ extension AppDelegate {
         return windowController
     }
 }
+

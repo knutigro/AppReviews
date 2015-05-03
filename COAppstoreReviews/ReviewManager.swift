@@ -13,13 +13,15 @@ final class ReviewManager {
 
     private var persistentStack : PersistentStack!
     private var coreDataHandler : DatabaseHandler!
-    var applicationHandler: ApplicationHandler!
+    var applicationUpdater: ApplicationUpdater!
+    var notificationsHandler : NotificationsHandler!
 
     // MARK: - Init & teardown
 
     init() {
         self.persistentStack = PersistentStack(storeURL: storeURL(), modelURL: modelURL())
         self.coreDataHandler = DatabaseHandler(context: self.persistentStack.backgroundManagedObjectContext)
+        self.notificationsHandler = NotificationsHandler()
     }
     
     class var defaultManager: ReviewManager {
@@ -32,7 +34,7 @@ final class ReviewManager {
     class func start() -> ReviewManager {
         
         var manager = ReviewManager.defaultManager
-        manager.applicationHandler = ApplicationHandler()
+        manager.applicationUpdater = ApplicationUpdater()
 
         return manager
     }
@@ -43,8 +45,8 @@ final class ReviewManager {
         return ReviewManager.defaultManager.coreDataHandler
     }
 
-    class func appHandler() -> ApplicationHandler {
-        return ReviewManager.defaultManager.applicationHandler
+    class func appUpdater() -> ApplicationUpdater {
+        return ReviewManager.defaultManager.applicationUpdater
     }
 
     class func managedObjectContext() -> NSManagedObjectContext {

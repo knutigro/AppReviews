@@ -17,7 +17,6 @@
         <attribute name="primaryGenreName" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="releaseDate" optional="YES" attributeType="Date" syncable="YES"/>
         <attribute name="releaseNotes" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="reviewsUpdatedAt" optional="YES" attributeType="Date" syncable="YES"/>
         <attribute name="sellerName" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="sellerUrl" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="trackId" optional="YES" attributeType="String" syncable="YES"/>
@@ -28,6 +27,16 @@
         <attribute name="userRatingCountForCurrentVersion" optional="YES" attributeType="Integer 64" defaultValueString="0" syncable="YES"/>
         <attribute name="version" optional="YES" attributeType="String" syncable="YES"/>
         <relationship name="reviews" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="Review" inverseName="application" inverseEntity="Review" syncable="YES"/>
+        <relationship name="settings" optional="YES" maxCount="1" deletionRule="Cascade" destinationEntity="ApplicationSettings" inverseName="application" inverseEntity="ApplicationSettings" syncable="YES"/>
+    </entity>
+    <entity name="ApplicationSettings" representedClassName="ApplicationSettings" syncable="YES">
+        <attribute name="automaticUpdate" optional="YES" attributeType="Boolean" defaultValueString="YES" syncable="YES"/>
+        <attribute name="createdAt" optional="YES" attributeType="Date" syncable="YES"/>
+        <attribute name="newReviews" optional="YES" attributeType="Integer 64" defaultValueString="0" syncable="YES"/>
+        <attribute name="nextUpdateAt" optional="YES" attributeType="Date" syncable="YES"/>
+        <attribute name="reviewsUpdatedAt" optional="YES" attributeType="Date" syncable="YES"/>
+        <attribute name="updatedAt" optional="YES" attributeType="Date" syncable="YES"/>
+        <relationship name="application" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Application" inverseName="settings" inverseEntity="Application" syncable="YES"/>
     </entity>
     <entity name="Review" representedClassName="Review" syncable="YES">
         <attribute name="apId" optional="YES" attributeType="String" syncable="YES"/>
@@ -47,5 +56,6 @@
     <elements>
         <element name="Application" positionX="-63" positionY="54" width="128" height="450"/>
         <element name="Review" positionX="-324" positionY="26" width="128" height="238"/>
+        <element name="ApplicationSettings" positionX="-189" positionY="180" width="128" height="150"/>
     </elements>
 </model>

@@ -10,7 +10,7 @@ import Foundation
 import Alamofire
 import SwiftyJSON
 
-class RequestHandler {
+class ItunesService {
     
     let apId : String
     let storeId : String?

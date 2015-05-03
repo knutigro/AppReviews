@@ -28,6 +28,7 @@ class ReviewMenuViewController: NSViewController {
     @IBOutlet weak var averageRatingAllLabel: NSTextField!
     @IBOutlet weak var numberOfRatingsAllLabel: NSTextField!
     @IBOutlet weak var reviewsUpdatedAtLabel: NSTextField!
+    @IBOutlet weak var nextUpdatedLabel: NSTextField!
 
     var application : Application? {
         didSet {
@@ -113,7 +114,11 @@ class ReviewMenuViewController: NSViewController {
         
         self.dateFormatter.dateStyle = .LongStyle
         self.dateFormatter.timeStyle = .MediumStyle
-        let updatedAt = self.application?.reviewsUpdatedAt != nil ? dateFormatter.stringFromDate(self.application!.reviewsUpdatedAt) : ""
+        let updatedAt = self.application?.settings.reviewsUpdatedAt != nil ? dateFormatter.stringFromDate(self.application!.settings.reviewsUpdatedAt!) : ""
+        let nextUpdate = self.application?.settings.nextUpdateAt != nil ? dateFormatter.stringFromDate(self.application!.settings.nextUpdateAt!) : ""
+
         self.reviewsUpdatedAtLabel.stringValue = NSLocalizedString("Updated: ", comment: "review.menu.reviewUpdated") + updatedAt
+        
+        self.nextUpdatedLabel.stringValue = NSLocalizedString("Next: ", comment: "review.menu.reviewNextUpdate") + nextUpdate
     }
 }

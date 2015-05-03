@@ -33,7 +33,7 @@ extension ApplicationWindowController  {
     
     func searchApp(name: String) {
         
-        RequestHandler.fetchApplications(name) { [weak self]
+        ItunesService.fetchApplications(name) { [weak self]
             (success: Bool, applications: JSON?, error : NSError?)
             in
             

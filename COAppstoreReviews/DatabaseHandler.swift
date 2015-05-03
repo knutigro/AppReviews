@@ -31,7 +31,7 @@ class DatabaseHandler {
     
     func saveApplication(application : JSON) {
         if application.isApplicationEntity, let apID = application.trackId {
-            if let managedApplication = Application.get(apID, context: self.context) {
+            if let managedApplication = Application.getWithAppId(apID, context: self.context) {
                 managedApplication.updatedAt = NSDate()
                 managedApplication.updateWithJSON(application)
             } else {
@@ -43,7 +43,7 @@ class DatabaseHandler {
     }
     
     func removeApplication(application : Application) {
-        if let managedApplication = Application.get(application.trackId, context: self.context) {
+        if let managedApplication = Application.getWithAppId(application.trackId, context: self.context) {
             self.context.deleteObject(managedApplication)
             self.saveContext()
         }
