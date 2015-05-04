@@ -23,6 +23,9 @@
 		49A003591AD687A8001E10BE /* DatabaseHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49A003581AD687A8001E10BE /* DatabaseHandler.swift */; };
 		49A0035B1AD68840001E10BE /* ItunesService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49A0035A1AD68840001E10BE /* ItunesService.swift */; };
 		49A003611AD73161001E10BE /* reviews.json in Resources */ = {isa = PBXBuildFile; fileRef = 49A003601AD73161001E10BE /* reviews.json */; };
+		49A5C20A1AF65E8500B3BBC5 /* InAppPurchaseManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49A5C2091AF65E8500B3BBC5 /* InAppPurchaseManager.swift */; };
+		49A5C20C1AF6627900B3BBC5 /* AboutViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49A5C20B1AF6627900B3BBC5 /* AboutViewController.swift */; };
+		49A5C20E1AF686EC00B3BBC5 /* NSApplicationDelegate+Version.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49A5C20D1AF686EC00B3BBC5 /* NSApplicationDelegate+Version.swift */; };
 		49A75E4E1AD9BCDF004A4742 /* ReviewArrayController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49A75E4D1AD9BCDF004A4742 /* ReviewArrayController.swift */; };
 		49AAB8C11AE8518500B412A8 /* ReviewSplitViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49AAB8C01AE8518500B412A8 /* ReviewSplitViewController.swift */; };
 		49AAB8C31AE854EA00B412A8 /* ReviewMenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49AAB8C21AE854EA00B412A8 /* ReviewMenuViewController.swift */; };
@@ -73,6 +76,9 @@
 		49A003581AD687A8001E10BE /* DatabaseHandler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DatabaseHandler.swift; sourceTree = "<group>"; };
 		49A0035A1AD68840001E10BE /* ItunesService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ItunesService.swift; sourceTree = "<group>"; };
 		49A003601AD73161001E10BE /* reviews.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = reviews.json; sourceTree = "<group>"; };
+		49A5C2091AF65E8500B3BBC5 /* InAppPurchaseManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = InAppPurchaseManager.swift; path = ../AppstoreReviews/InAppPurchaseManager.swift; sourceTree = "<group>"; };
+		49A5C20B1AF6627900B3BBC5 /* AboutViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AboutViewController.swift; sourceTree = "<group>"; };
+		49A5C20D1AF686EC00B3BBC5 /* NSApplicationDelegate+Version.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSApplicationDelegate+Version.swift"; sourceTree = "<group>"; };
 		49A75E4D1AD9BCDF004A4742 /* ReviewArrayController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReviewArrayController.swift; sourceTree = "<group>"; };
 		49AAB8C01AE8518500B412A8 /* ReviewSplitViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReviewSplitViewController.swift; sourceTree = "<group>"; };
 		49AAB8C21AE854EA00B412A8 /* ReviewMenuViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReviewMenuViewController.swift; sourceTree = "<group>"; };
@@ -216,6 +222,7 @@
 		49EF51061AE1CB4400E5901C /* Utilities */ = {
 			isa = PBXGroup;
 			children = (
+				49A5C2091AF65E8500B3BBC5 /* InAppPurchaseManager.swift */,
 				49EF51041AE1BC5900E5901C /* Timer.swift */,
 			);
 			name = Utilities;
@@ -229,6 +236,7 @@
 				496522A11AE31ED1004C126C /* Array+Utils.swift */,
 				493218F51AE5A580008996EC /* AutoSizedTextField.swift */,
 				49AAB8D61AE9AC9C00B412A8 /* String+Size.swift */,
+				49A5C20D1AF686EC00B3BBC5 /* NSApplicationDelegate+Version.swift */,
 			);
 			name = Categories;
 			path = ../COAppstoreReviews;
@@ -256,6 +264,7 @@
 				49AAB8C01AE8518500B412A8 /* ReviewSplitViewController.swift */,
 				49AAB8C21AE854EA00B412A8 /* ReviewMenuViewController.swift */,
 				49ACB8421AD5CAA00050C1B7 /* ReviewViewController.swift */,
+				49A5C20B1AF6627900B3BBC5 /* AboutViewController.swift */,
 			);
 			name = "Window & ViewControllers";
 			sourceTree = "<group>";
@@ -492,6 +501,7 @@
 				49F800EA1ADAAD58004A1BF1 /* ApplicationArrayController.swift in Sources */,
 				49997B7C1ADDB3F000B56590 /* TableImageCellTransformer.swift in Sources */,
 				49DAA2FE1AD80DBB002807A7 /* Application.swift in Sources */,
+				49A5C20A1AF65E8500B3BBC5 /* InAppPurchaseManager.swift in Sources */,
 				49F800F01ADC674B004A1BF1 /* ApplicationCellView.swift in Sources */,
 				49ACB8431AD5CAA00050C1B7 /* ReviewViewController.swift in Sources */,
 				49AAB8D71AE9AC9C00B412A8 /* String+Size.swift in Sources */,
@@ -512,10 +522,12 @@
 				4930D50A1AE7013600C90FDE /* ApplicationWindowController.swift in Sources */,
 				49AAB8C31AE854EA00B412A8 /* ReviewMenuViewController.swift in Sources */,
 				49A003591AD687A8001E10BE /* DatabaseHandler.swift in Sources */,
+				49A5C20C1AF6627900B3BBC5 /* AboutViewController.swift in Sources */,
 				497E10341AEBE1AC006726F0 /* ApplicationSettings.swift in Sources */,
 				49A75E4E1AD9BCDF004A4742 /* ReviewArrayController.swift in Sources */,
 				49ACB8631AD5CE700050C1B7 /* ReviewManager.swift in Sources */,
 				498111E31AE002E5000CBFBF /* StatusMenuController.swift in Sources */,
+				49A5C20E1AF686EC00B3BBC5 /* NSApplicationDelegate+Version.swift in Sources */,
 				49F800EE1ADC6358004A1BF1 /* SearchViewController.swift in Sources */,
 				49ACB8681AD5E1730050C1B7 /* Review.swift in Sources */,
 				49F800F31ADC7944004A1BF1 /* NSImageView+Networking.swift in Sources */,
