@@ -40,7 +40,7 @@ extension ApplicationViewController {
         if let applications = objects as? [Application], let rowNumber = self.tableView?.selectedRow {
             if applications.count > rowNumber && rowNumber >= 0{
                 let application = applications[rowNumber]
-                ReviewManager.dbHandler().removeApplication(application)
+                ReviewManager.dbUpdater().removeApplication(application)
             }
         }
     }

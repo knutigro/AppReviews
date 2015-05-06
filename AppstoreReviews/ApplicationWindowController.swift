@@ -87,7 +87,7 @@ extension ApplicationWindowController  {
 extension ApplicationWindowController : SearchViewControllerDelegate {
     func searchViewController(searchViewController : SearchViewController, didSelectApplication application: JSON) {
         self.searchField?.stringValue = ""
-        ReviewManager.dbHandler().saveApplication(application)
+        ReviewManager.dbUpdater().saveApplication(application)
         if let searchWindow = self.searchWindowController?.window {
             self.window?.endSheet(searchWindow)
         }

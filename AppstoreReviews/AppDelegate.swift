@@ -9,6 +9,8 @@
 import Cocoa
 import AppKit
 
+// #define Color(value) (value) / 255.0
+
 @NSApplicationMain
 class AppDelegate: NSObject, NSApplicationDelegate {
 

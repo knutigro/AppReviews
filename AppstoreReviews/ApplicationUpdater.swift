@@ -47,37 +47,44 @@ class ApplicationUpdater {
                 strongSelf.updateReviewsForAllApplications()
             }
         }
+        
+            self.updateMonitoredApplications();
     }
     
     private func updateReviewsForAllApplications() {
-        for application in self.applications {
-            if application.settings.shouldUpdateReviews {
-                self.fetchReviews(application, storeId: nil)
+        dispatch_async(dispatch_get_main_queue(), { () -> Void in
+            for application in self.applications {
+                if application.settings.shouldUpdateReviews {
+                    self.fetchReviews(application, storeId: nil)
+                }
             }
-        }
+        })
     }
     
     private func updateMonitoredApplications(){
-        if let dBApplications = ReviewManager.dbHandler().allApplications() {
-            for dBApplication in dBApplications {
+        dispatch_async(dispatch_get_main_queue(), { () -> Void in
+            if let dBApplications = ReviewManager.dbFetcher().allApplications() {
+                for dBApplication in dBApplications {
+                    
+                    if !contains(self.applications, dBApplication) {
+                        self.applications.append(dBApplication)
+                        self.fetchReviews(dBApplication, storeId: nil)
+                    }
+                }
                 
-                if !contains(self.applications, dBApplication) {
-                    applications.append(dBApplication)
-                    self.fetchReviews(dBApplication, storeId: nil)
+                var applicationsToRemove = [Application]()
+                for application in self.applications {
+                    if !contains(dBApplications, application) {
+                        applicationsToRemove.append(application)
+                    }
+                }
+                
+                for applicationToRemove in applicationsToRemove {
+                    self.applications.removeObject(applicationToRemove)
                 }
             }
-            
-            var applicationsToRemove = [Application]()
-            for application in self.applications {
-                if !contains(dBApplications, application) {
-                    applicationsToRemove.append(application)
-                }
-            }
-            
-            for applicationToRemove in applicationsToRemove {
-                self.applications.removeObject(applicationToRemove)
-            }
-        }
+        })
+
     }
     
     // MARK: - Reviews handling
@@ -85,8 +92,8 @@ class ApplicationUpdater {
     func fetchReviews(application: Application, storeId: String?) {
         println("import reviews for \(application.trackName) store \(storeId)")
 
-        var context = ReviewManager.dbHandler().context
-        var managedApplication = Application.getOrCreateNew(application.trackId, context: context)
+        var dbManager = ReviewManager.dbUpdater()
+        var managedApplication = Application.getOrCreateNew(application.trackId, context: dbManager.context)
         
         ItunesService(apId: application.trackId, storeId: storeId).fetchReview() {  [weak self]
             (success: Bool, reviews: [JSON]?, error : NSError?) in
@@ -94,9 +101,7 @@ class ApplicationUpdater {
             let blockSuccess = success as Bool
             let blockError = error
             
-            ReviewManager.dbHandler().context
-
-            context.performBlock({ () -> Void in
+            dbManager.context.performBlock({ () -> Void in
                 
                 if let blockReviews = reviews {
                     
@@ -108,12 +113,12 @@ class ApplicationUpdater {
                         if entry.isReviewEntity, let apID = entry.reviewApID {
                             var review : Review!
                             
-                            if let newReview = Review.get(apID, context: context) {
+                            if let newReview = Review.get(apID, context: dbManager.context) {
                                 // Review allready exist in database
                                 review = newReview
                             } else {
                                 // create new review
-                                review = Review.new(apID, context: context)
+                                review = Review.new(apID, context: dbManager.context)
                                 managedApplication.settings.increaseNewReviews()
                             }
                             
@@ -130,16 +135,17 @@ class ApplicationUpdater {
                     managedApplication.settings.reviewsUpdatedAt = NSDate()
                     managedApplication.settings.nextUpdateAt = NSDate().dateByAddingTimeInterval(kDefaultReviewUpdateInterval)
                     
-                    ReviewManager.dbHandler().saveContext()
+                    dbManager.saveContext()
                 }
             })
         }
     }
     
     func resetNewReviews(application: Application) {
-        if let managedApplication = Application.getWithAppId(application.trackId, context: ReviewManager.dbHandler().context){
+        var dbManager = ReviewManager.dbUpdater()
+        if let managedApplication = Application.getWithAppId(application.trackId, context: dbManager.context){
             managedApplication.settings.resetNewReviews()
-            ReviewManager.dbHandler().saveContext()
+            dbManager.saveContext()
         }
     }
 }

@@ -57,7 +57,13 @@ class NotificationsHandler : NSObject {
         var title = application.trackName
         var plural =  (reviews.count > 1 ? "s" : "")
 
-        let message = (NSString(format: NSLocalizedString("%@ new review%@. Average: %.1f\n%@", comment: "review.notification.reviewstext"), String(reviews.count), plural, averageRating, firstReview.title)) as String
+        let ratingMessage = reviews.count > 1 ? (NSString(format: NSLocalizedString("%.1f (avg)", comment: "review.notification.reviewstext2"), averageRating)) as String : (NSString(format: "%li", firstReview.rating.integerValue)) as String
+
+        var message = (NSString(format: NSLocalizedString("%@ new review%@. Rating: %@", comment: "review.notification.reviewstext"), String(reviews.count), plural, ratingMessage)) as String
+        
+        if (!firstReview.title.isEmpty) {
+            message = message + "\n" + firstReview.title
+        }
         
         var notification:NSUserNotification = NSUserNotification()
         notification.title = title

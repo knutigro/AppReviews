@@ -49,6 +49,8 @@ class DatabaseHandler {
         }
     }
     
+    
+    // Should be called with speccific thread
     func allApplications() -> [Application]? {
         let fetchRequest = NSFetchRequest(entityName: kEntityNameApplication)
         var error : NSError?

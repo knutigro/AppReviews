@@ -9,13 +9,16 @@
 import AppKit
 import EDStarRating
 
-
 enum UpdateLabelState {
     case LastUpdate
     case NextUpdate
 }
+
 class ReviewMenuViewController: NSViewController {
     
+    var slices = [Float]()
+    var sliceColors : [NSColor]!
+
     var managedObjectContext : NSManagedObjectContext!
     let dateFormatter = NSDateFormatter()
     var updateLabelState = UpdateLabelState.LastUpdate {
@@ -47,6 +50,7 @@ class ReviewMenuViewController: NSViewController {
     @IBOutlet weak var averageRatingAllLabel: NSTextField!
     @IBOutlet weak var numberOfRatingsAllLabel: NSTextField!
     @IBOutlet weak var reviewsUpdatedAtLabel: NSTextField!
+    @IBOutlet weak var pieChart: PieChart!
 
     var application : Application? {
         didSet {
@@ -101,6 +105,14 @@ class ReviewMenuViewController: NSViewController {
                 })
             }
         }
+        self.pieChart.dataSource = self
+        self.pieChart.delegate = self
+        self.pieChart.pieCenter = CGPointMake(240, 240)
+        self.pieChart.showPercentage = false
+        
+        self.slices = [20, 40, 10, 5, 25]
+        self.sliceColors = [NSColor.redColor(), NSColor.blueColor(), NSColor.orangeColor(), NSColor.greenColor(), NSColor.yellowColor()]
+        self.pieChart.reloadData()
     }
     
     // MARK: - UI
@@ -155,5 +167,20 @@ class ReviewMenuViewController: NSViewController {
         } else {
             self.updateLabelState = .LastUpdate
         }
+    }
+}
+
+extension ReviewMenuViewController : PieChartDataSource, PieChartDelegate {
+    
+    func numberOfSlicesInPieChart(pieChart: PieChart!) -> UInt {
+        return UInt(self.slices.count)
+    }
+    
+    func pieChart(pieChart: PieChart!, valueForSliceAtIndex index: UInt) -> CGFloat {
+        return CGFloat(self.slices[Int(index)])
+    }
+    
+    func pieChart(pieChart: PieChart!, colorForSliceAtIndex index: UInt) -> NSColor! {
+        return self.sliceColors[Int(index) % self.sliceColors.count]
     }
 }

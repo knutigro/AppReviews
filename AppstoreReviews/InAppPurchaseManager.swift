@@ -36,6 +36,17 @@ class InAppPurchaseManager : NSObject {
         self.requestPremiumUpgradeProductData()
     }
     
+    func hasReceipt() -> Bool {
+        var receiptData : NSData?
+        if let receiptURLpath = NSBundle.mainBundle().appStoreReceiptURL?.path {
+            if NSFileManager.defaultManager().fileExistsAtPath(receiptURLpath) {
+                receiptData = NSData(contentsOfURL: NSBundle.mainBundle().appStoreReceiptURL!)
+            }
+        }
+        
+        return receiptData == nil;
+    }
+    
     func canMakePurchases() -> Bool {
         return SKPaymentQueue.canMakePayments()
     }
@@ -145,12 +156,15 @@ extension InAppPurchaseManager : SKPaymentTransactionObserver {
             if let trans:SKPaymentTransaction = transaction as? SKPaymentTransaction{
                 switch trans.transactionState {
                 case SKPaymentTransactionStatePurchased:
+                    println("SKPaymentTransactionStatePurchased");
                     self.finishTransaction(transaction as! SKPaymentTransaction)
                     break;
                 case SKPaymentTransactionStateFailed:
+                    println("SKPaymentTransactionStateFailed");
                     self.failedTransaction(transaction as! SKPaymentTransaction)
                     break;
                 case SKPaymentTransactionStateRestored:
+                    println("SKPaymentTransactionStateRestored");
                     self.restoreTransaction(transaction as! SKPaymentTransaction)
                     break;
                 default:

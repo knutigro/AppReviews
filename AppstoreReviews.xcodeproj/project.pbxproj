@@ -10,6 +10,10 @@
 		33EAB290AB0EE07A95E14FC0 /* Pods.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5083B9909F1AD9259C461DBD /* Pods.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 		4930D50A1AE7013600C90FDE /* ApplicationWindowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4930D5091AE7013600C90FDE /* ApplicationWindowController.swift */; };
 		493218F61AE5A580008996EC /* AutoSizedTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 493218F51AE5A580008996EC /* AutoSizedTextField.swift */; };
+		493FC55E1AF81D220043304C /* BackgroundView.m in Sources */ = {isa = PBXBuildFile; fileRef = 493FC5561AF81D220043304C /* BackgroundView.m */; };
+		493FC55F1AF81D220043304C /* NSColor+CGColor.m in Sources */ = {isa = PBXBuildFile; fileRef = 493FC5581AF81D220043304C /* NSColor+CGColor.m */; };
+		493FC5601AF81D220043304C /* PieChart.m in Sources */ = {isa = PBXBuildFile; fileRef = 493FC55A1AF81D220043304C /* PieChart.m */; };
+		493FC5611AF81D220043304C /* SliceLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 493FC55C1AF81D220043304C /* SliceLayer.m */; };
 		494844AE1AE4713200696E4A /* String+AppVersion.swift in Sources */ = {isa = PBXBuildFile; fileRef = 496522A31AE45C44004C126C /* String+AppVersion.swift */; };
 		496522A21AE31ED1004C126C /* Array+Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 496522A11AE31ED1004C126C /* Array+Utils.swift */; };
 		496522A41AE45C44004C126C /* String+AppVersion.swift in Sources */ = {isa = PBXBuildFile; fileRef = 496522A31AE45C44004C126C /* String+AppVersion.swift */; };
@@ -26,6 +30,7 @@
 		49A5C20A1AF65E8500B3BBC5 /* InAppPurchaseManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49A5C2091AF65E8500B3BBC5 /* InAppPurchaseManager.swift */; };
 		49A5C20C1AF6627900B3BBC5 /* AboutViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49A5C20B1AF6627900B3BBC5 /* AboutViewController.swift */; };
 		49A5C20E1AF686EC00B3BBC5 /* NSApplicationDelegate+Version.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49A5C20D1AF686EC00B3BBC5 /* NSApplicationDelegate+Version.swift */; };
+		49A5C22C1AF8157E00B3BBC5 /* ReviewPieChart.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49A5C22B1AF8157E00B3BBC5 /* ReviewPieChart.swift */; };
 		49A75E4E1AD9BCDF004A4742 /* ReviewArrayController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49A75E4D1AD9BCDF004A4742 /* ReviewArrayController.swift */; };
 		49AAB8C11AE8518500B412A8 /* ReviewSplitViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49AAB8C01AE8518500B412A8 /* ReviewSplitViewController.swift */; };
 		49AAB8C31AE854EA00B412A8 /* ReviewMenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49AAB8C21AE854EA00B412A8 /* ReviewMenuViewController.swift */; };
@@ -64,6 +69,15 @@
 /* Begin PBXFileReference section */
 		4930D5091AE7013600C90FDE /* ApplicationWindowController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ApplicationWindowController.swift; sourceTree = "<group>"; };
 		493218F51AE5A580008996EC /* AutoSizedTextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AutoSizedTextField.swift; sourceTree = "<group>"; };
+		493FC5551AF81D220043304C /* BackgroundView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BackgroundView.h; sourceTree = "<group>"; };
+		493FC5561AF81D220043304C /* BackgroundView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BackgroundView.m; sourceTree = "<group>"; };
+		493FC5571AF81D220043304C /* NSColor+CGColor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSColor+CGColor.h"; sourceTree = "<group>"; };
+		493FC5581AF81D220043304C /* NSColor+CGColor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSColor+CGColor.m"; sourceTree = "<group>"; };
+		493FC5591AF81D220043304C /* PieChart.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PieChart.h; sourceTree = "<group>"; };
+		493FC55A1AF81D220043304C /* PieChart.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PieChart.m; sourceTree = "<group>"; };
+		493FC55B1AF81D220043304C /* SliceLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SliceLayer.h; sourceTree = "<group>"; };
+		493FC55C1AF81D220043304C /* SliceLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SliceLayer.m; sourceTree = "<group>"; };
+		493FC5661AF820860043304C /* Objective-C-BridgingHeader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Objective-C-BridgingHeader.h"; sourceTree = "<group>"; };
 		496522A11AE31ED1004C126C /* Array+Utils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Array+Utils.swift"; sourceTree = "<group>"; };
 		496522A31AE45C44004C126C /* String+AppVersion.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "String+AppVersion.swift"; sourceTree = "<group>"; };
 		497424091AF55023004A65A8 /* NotificationsHandler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NotificationsHandler.swift; sourceTree = "<group>"; };
@@ -79,6 +93,7 @@
 		49A5C2091AF65E8500B3BBC5 /* InAppPurchaseManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = InAppPurchaseManager.swift; path = ../AppstoreReviews/InAppPurchaseManager.swift; sourceTree = "<group>"; };
 		49A5C20B1AF6627900B3BBC5 /* AboutViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AboutViewController.swift; sourceTree = "<group>"; };
 		49A5C20D1AF686EC00B3BBC5 /* NSApplicationDelegate+Version.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSApplicationDelegate+Version.swift"; sourceTree = "<group>"; };
+		49A5C22B1AF8157E00B3BBC5 /* ReviewPieChart.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReviewPieChart.swift; sourceTree = "<group>"; };
 		49A75E4D1AD9BCDF004A4742 /* ReviewArrayController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReviewArrayController.swift; sourceTree = "<group>"; };
 		49AAB8C01AE8518500B412A8 /* ReviewSplitViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReviewSplitViewController.swift; sourceTree = "<group>"; };
 		49AAB8C21AE854EA00B412A8 /* ReviewMenuViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReviewMenuViewController.swift; sourceTree = "<group>"; };
@@ -130,6 +145,21 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		493FC5531AF81D220043304C /* PieChart */ = {
+			isa = PBXGroup;
+			children = (
+				493FC5551AF81D220043304C /* BackgroundView.h */,
+				493FC5561AF81D220043304C /* BackgroundView.m */,
+				493FC5571AF81D220043304C /* NSColor+CGColor.h */,
+				493FC5581AF81D220043304C /* NSColor+CGColor.m */,
+				493FC5591AF81D220043304C /* PieChart.h */,
+				493FC55A1AF81D220043304C /* PieChart.m */,
+				493FC55B1AF81D220043304C /* SliceLayer.h */,
+				493FC55C1AF81D220043304C /* SliceLayer.m */,
+			);
+			path = PieChart;
+			sourceTree = "<group>";
+		};
 		497E10321AEBDF05006726F0 /* Models */ = {
 			isa = PBXGroup;
 			children = (
@@ -182,6 +212,7 @@
 			isa = PBXGroup;
 			children = (
 				49ACB83F1AD5CAA00050C1B7 /* Info.plist */,
+				493FC5661AF820860043304C /* Objective-C-BridgingHeader.h */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -245,8 +276,10 @@
 		49F800F41ADC83EC004A1BF1 /* Views and Cells */ = {
 			isa = PBXGroup;
 			children = (
+				493FC5531AF81D220043304C /* PieChart */,
 				49F800E71ADAA0DC004A1BF1 /* ReviewCellView.swift */,
 				49F800EF1ADC674B004A1BF1 /* ApplicationCellView.swift */,
+				49A5C22B1AF8157E00B3BBC5 /* ReviewPieChart.swift */,
 			);
 			name = "Views and Cells";
 			sourceTree = "<group>";
@@ -510,6 +543,7 @@
 				49ACB86C1AD5EAF70050C1B7 /* PersistentStack.swift in Sources */,
 				49F800E81ADAA0DC004A1BF1 /* ReviewCellView.swift in Sources */,
 				4974240C1AF61C35004A65A8 /* AutomaticUpdateTransformer.swift in Sources */,
+				493FC55F1AF81D220043304C /* NSColor+CGColor.m in Sources */,
 				49EF51051AE1BC5900E5901C /* Timer.swift in Sources */,
 				4974240A1AF55023004A65A8 /* NotificationsHandler.swift in Sources */,
 				49ACB8411AD5CAA00050C1B7 /* AppDelegate.swift in Sources */,
@@ -522,13 +556,17 @@
 				4930D50A1AE7013600C90FDE /* ApplicationWindowController.swift in Sources */,
 				49AAB8C31AE854EA00B412A8 /* ReviewMenuViewController.swift in Sources */,
 				49A003591AD687A8001E10BE /* DatabaseHandler.swift in Sources */,
+				49A5C22C1AF8157E00B3BBC5 /* ReviewPieChart.swift in Sources */,
 				49A5C20C1AF6627900B3BBC5 /* AboutViewController.swift in Sources */,
 				497E10341AEBE1AC006726F0 /* ApplicationSettings.swift in Sources */,
+				493FC5601AF81D220043304C /* PieChart.m in Sources */,
 				49A75E4E1AD9BCDF004A4742 /* ReviewArrayController.swift in Sources */,
+				493FC55E1AF81D220043304C /* BackgroundView.m in Sources */,
 				49ACB8631AD5CE700050C1B7 /* ReviewManager.swift in Sources */,
 				498111E31AE002E5000CBFBF /* StatusMenuController.swift in Sources */,
 				49A5C20E1AF686EC00B3BBC5 /* NSApplicationDelegate+Version.swift in Sources */,
 				49F800EE1ADC6358004A1BF1 /* SearchViewController.swift in Sources */,
+				493FC5611AF81D220043304C /* SliceLayer.m in Sources */,
 				49ACB8681AD5E1730050C1B7 /* Review.swift in Sources */,
 				49F800F31ADC7944004A1BF1 /* NSImageView+Networking.swift in Sources */,
 				49AAB8C11AE8518500B412A8 /* ReviewSplitViewController.swift in Sources */,
@@ -654,6 +692,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "a2ba7700-279a-4659-a69d-7551135a97ac";
+				SWIFT_OBJC_BRIDGING_HEADER = "AppstoreReviews/Objective-C-BridgingHeader.h";
 			};
 			name = Debug;
 		};
@@ -668,6 +707,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "a2ba7700-279a-4659-a69d-7551135a97ac";
+				SWIFT_OBJC_BRIDGING_HEADER = "AppstoreReviews/Objective-C-BridgingHeader.h";
 			};
 			name = Release;
 		};
