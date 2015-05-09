@@ -788,7 +788,7 @@
                     <window key="window" title="Applications" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" oneShot="NO" releasedWhenClosed="NO" showsToolbarButton="NO" visibleAtLaunch="NO" animationBehavior="default" id="IQv-IB-iLA">
                         <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES" resizable="YES"/>
                         <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
-                        <rect key="contentRect" x="868" y="534" width="250" height="420"/>
+                        <rect key="contentRect" x="714" y="356" width="250" height="420"/>
                         <rect key="screenRect" x="0.0" y="0.0" width="1680" height="1027"/>
                         <value key="minSize" type="size" width="250" height="420"/>
                         <value key="maxSize" type="size" width="250" height="420"/>
@@ -827,7 +827,7 @@
                 <customObject id="Oky-zY-oP4" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
                 <customObject id="86x-iU-Nv1" customClass="AppDelegate" customModule="AppstoreReviews" customModuleProvider="target"/>
             </objects>
-            <point key="canvasLocation" x="-388" y="142"/>
+            <point key="canvasLocation" x="-345" y="98"/>
         </scene>
         <!--Review View Controller-->
         <scene sceneID="hIz-AP-VOD">
@@ -1020,7 +1020,7 @@
                 </arrayController>
                 <userDefaultsController representsSharedInstance="YES" id="k2v-RE-iNo"/>
             </objects>
-            <point key="canvasLocation" x="864" y="1120"/>
+            <point key="canvasLocation" x="1820" y="820"/>
         </scene>
         <!--Window Controller-->
         <scene sceneID="RZB-AF-mML">
@@ -1049,7 +1049,7 @@
                     <window key="window" title="Reviews" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" oneShot="NO" releasedWhenClosed="NO" showsToolbarButton="NO" visibleAtLaunch="NO" animationBehavior="default" id="pOK-I8-SBO">
                         <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES" resizable="YES"/>
                         <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
-                        <rect key="contentRect" x="252" y="432" width="800" height="700"/>
+                        <rect key="contentRect" x="277" y="71" width="800" height="700"/>
                         <rect key="screenRect" x="0.0" y="0.0" width="1280" height="800"/>
                         <toolbar key="toolbar" implicitIdentifier="A3C4AD58-FB17-4D91-8BBE-6860C3D90131" autosavesConfiguration="NO" displayMode="iconOnly" sizeMode="regular" id="Rdn-WK-4WK">
                             <allowedToolbarItems>
@@ -1124,8 +1124,6 @@
                                 <toolbarItem reference="eJg-3d-Guv"/>
                                 <toolbarItem reference="lWF-mc-dTc"/>
                                 <toolbarItem reference="Gg2-U0-AHb"/>
-                                <toolbarItem reference="O4h-6f-5Qw"/>
-                                <toolbarItem reference="eJg-3d-Guv"/>
                                 <toolbarItem reference="4Po-lg-oFA"/>
                                 <toolbarItem reference="eJg-3d-Guv"/>
                             </defaultToolbarItems>
@@ -1149,7 +1147,7 @@
                         <splitViewItem id="Adr-T5-LzQ"/>
                     </splitViewItems>
                     <splitView key="splitView" dividerStyle="thin" vertical="YES" id="LOS-GP-15X">
-                        <rect key="frame" x="0.0" y="0.0" width="800" height="300"/>
+                        <rect key="frame" x="0.0" y="0.0" width="800" height="700"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </splitView>
                     <connections>
@@ -1159,12 +1157,12 @@
                 </splitViewController>
                 <customObject id="zWi-Dh-HQz" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="704" y="495"/>
+            <point key="canvasLocation" x="1676" y="-133"/>
         </scene>
         <!--Review Pie Chart Controller-->
         <scene sceneID="Rpk-qy-vrN">
             <objects>
-                <viewController id="229-bS-8xR" customClass="ReviewPieChartController" customModule="AppstoreReviews" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="ReviewPieChartController" id="229-bS-8xR" customClass="ReviewPieChartController" customModule="AppstoreReviews" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" id="UzB-Q6-41q">
                         <rect key="frame" x="0.0" y="0.0" width="190" height="190"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -1186,7 +1184,7 @@
                 </viewController>
                 <customObject id="Gmu-Ze-inW" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="104" y="1219"/>
+            <point key="canvasLocation" x="1065" y="971"/>
         </scene>
         <!--Review Menu View Controller-->
         <scene sceneID="Jyz-Ag-rPD">
@@ -1397,7 +1395,7 @@
                                             <constraint firstItem="oOD-Iw-tqx" firstAttribute="height" secondItem="HBC-En-0J8" secondAttribute="height" id="wb8-ic-azI"/>
                                         </constraints>
                                     </customView>
-                                    <customView translatesAutoresizingMaskIntoConstraints="NO" id="L33-iD-baz">
+                                    <customView translatesAutoresizingMaskIntoConstraints="NO" id="L33-iD-baz" userLabel="Local Data">
                                         <rect key="frame" x="5" y="120" width="190" height="230"/>
                                         <subviews>
                                             <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="mCh-1N-RSE">
@@ -1524,7 +1522,7 @@
                 </viewController>
                 <customObject id="lLq-8y-t1Z" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="404" y="1088"/>
+            <point key="canvasLocation" x="1320" y="820"/>
         </scene>
         <!--Application View Controller-->
         <scene sceneID="QXW-tm-J9t">
@@ -1865,18 +1863,6 @@ Gw
                 <tabViewItem label="Notifications" identifier="" id="4eM-Fh-F0l"/>
             </objects>
             <point key="canvasLocation" x="24" y="803"/>
-        </scene>
-        <!--View Controller-->
-        <scene sceneID="QNB-X3-dQA">
-            <objects>
-                <viewController id="HBM-Cm-Cf8" sceneMemberID="viewController">
-                    <view key="view" id="x9d-dU-x6z">
-                        <rect key="frame" x="0.0" y="0.0" width="450" height="300"/>
-                        <autoresizingMask key="autoresizingMask"/>
-                    </view>
-                </viewController>
-                <customObject id="Vif-sk-xei" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
-            </objects>
         </scene>
     </scenes>
     <resources>

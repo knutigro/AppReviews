@@ -45,6 +45,9 @@
 		49ACB8681AD5E1730050C1B7 /* Review.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49ACB8671AD5E1730050C1B7 /* Review.swift */; };
 		49ACB86C1AD5EAF70050C1B7 /* PersistentStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49ACB86B1AD5EAF70050C1B7 /* PersistentStack.swift */; };
 		49C9CE651AFE6C41009D852D /* NSColor+AppReviews.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49C9CE641AFE6C41009D852D /* NSColor+AppReviews.swift */; };
+		49C9CE671AFE9A95009D852D /* InAppPurchaseReceipt.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49C9CE661AFE9A95009D852D /* InAppPurchaseReceipt.swift */; };
+		49C9CE691AFEB09B009D852D /* NSUserDefaults+Appreviews.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49C9CE681AFEB09B009D852D /* NSUserDefaults+Appreviews.swift */; };
+		49C9CE6B1AFEBC89009D852D /* Application+Premium.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49C9CE6A1AFEBC89009D852D /* Application+Premium.swift */; };
 		49DAA2FE1AD80DBB002807A7 /* Application.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49DAA2FD1AD80DBB002807A7 /* Application.swift */; };
 		49EF51051AE1BC5900E5901C /* Timer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49EF51041AE1BC5900E5901C /* Timer.swift */; };
 		49EF51081AE1CE8B00E5901C /* ApplicationUpdater.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49EF51071AE1CE8B00E5901C /* ApplicationUpdater.swift */; };
@@ -113,6 +116,9 @@
 		49ACB8671AD5E1730050C1B7 /* Review.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Review.swift; sourceTree = "<group>"; };
 		49ACB86B1AD5EAF70050C1B7 /* PersistentStack.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PersistentStack.swift; sourceTree = "<group>"; };
 		49C9CE641AFE6C41009D852D /* NSColor+AppReviews.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSColor+AppReviews.swift"; sourceTree = "<group>"; };
+		49C9CE661AFE9A95009D852D /* InAppPurchaseReceipt.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InAppPurchaseReceipt.swift; sourceTree = "<group>"; };
+		49C9CE681AFEB09B009D852D /* NSUserDefaults+Appreviews.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSUserDefaults+Appreviews.swift"; sourceTree = "<group>"; };
+		49C9CE6A1AFEBC89009D852D /* Application+Premium.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Application+Premium.swift"; sourceTree = "<group>"; };
 		49DAA2FD1AD80DBB002807A7 /* Application.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Application.swift; sourceTree = "<group>"; };
 		49EF51041AE1BC5900E5901C /* Timer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Timer.swift; sourceTree = "<group>"; };
 		49EF51071AE1CE8B00E5901C /* ApplicationUpdater.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ApplicationUpdater.swift; path = ../AppstoreReviews/ApplicationUpdater.swift; sourceTree = "<group>"; };
@@ -245,7 +251,6 @@
 				49EF51071AE1CE8B00E5901C /* ApplicationUpdater.swift */,
 				49A0035A1AD68840001E10BE /* ItunesService.swift */,
 				49ACB86B1AD5EAF70050C1B7 /* PersistentStack.swift */,
-				496522A31AE45C44004C126C /* String+AppVersion.swift */,
 				497424091AF55023004A65A8 /* NotificationsHandler.swift */,
 			);
 			name = "Review Data Handling";
@@ -256,6 +261,7 @@
 			isa = PBXGroup;
 			children = (
 				49A5C2091AF65E8500B3BBC5 /* InAppPurchaseManager.swift */,
+				49C9CE661AFE9A95009D852D /* InAppPurchaseReceipt.swift */,
 				49EF51041AE1BC5900E5901C /* Timer.swift */,
 			);
 			name = Utilities;
@@ -265,12 +271,15 @@
 		49F800F11ADC791B004A1BF1 /* Categories */ = {
 			isa = PBXGroup;
 			children = (
+				496522A31AE45C44004C126C /* String+AppVersion.swift */,
+				49C9CE6A1AFEBC89009D852D /* Application+Premium.swift */,
 				49F800F21ADC7944004A1BF1 /* NSImageView+Networking.swift */,
 				496522A11AE31ED1004C126C /* Array+Utils.swift */,
 				493218F51AE5A580008996EC /* AutoSizedTextField.swift */,
 				49AAB8D61AE9AC9C00B412A8 /* String+Size.swift */,
 				49A5C20D1AF686EC00B3BBC5 /* NSApplicationDelegate+Version.swift */,
 				49C9CE641AFE6C41009D852D /* NSColor+AppReviews.swift */,
+				49C9CE681AFEB09B009D852D /* NSUserDefaults+Appreviews.swift */,
 			);
 			name = Categories;
 			path = ../COAppstoreReviews;
@@ -537,6 +546,7 @@
 				49F800EA1ADAAD58004A1BF1 /* ApplicationArrayController.swift in Sources */,
 				49997B7C1ADDB3F000B56590 /* TableImageCellTransformer.swift in Sources */,
 				49DAA2FE1AD80DBB002807A7 /* Application.swift in Sources */,
+				49C9CE671AFE9A95009D852D /* InAppPurchaseReceipt.swift in Sources */,
 				49A5C20A1AF65E8500B3BBC5 /* InAppPurchaseManager.swift in Sources */,
 				49F800F01ADC674B004A1BF1 /* ApplicationCellView.swift in Sources */,
 				49ACB8431AD5CAA00050C1B7 /* ReviewViewController.swift in Sources */,
@@ -554,6 +564,8 @@
 				49EF51081AE1CE8B00E5901C /* ApplicationUpdater.swift in Sources */,
 				49ACB8461AD5CAA00050C1B7 /* AppstoreReviews.xcdatamodeld in Sources */,
 				498111E71AE07BC0000CBFBF /* ReviewWindowController.swift in Sources */,
+				49C9CE691AFEB09B009D852D /* NSUserDefaults+Appreviews.swift in Sources */,
+				49C9CE6B1AFEBC89009D852D /* Application+Premium.swift in Sources */,
 				49A0035B1AD68840001E10BE /* ItunesService.swift in Sources */,
 				49F800F81ADC84A7004A1BF1 /* ApplicationViewController.swift in Sources */,
 				496522A41AE45C44004C126C /* String+AppVersion.swift in Sources */,
@@ -694,6 +706,7 @@
 				COMBINE_HIDPI_IMAGES = YES;
 				INFOPLIST_FILE = AppstoreReviews/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
+				OTHER_SWIFT_FLAGS = "$(inherited) \"-D\" \"COCOAPODS\" \"-D\" \"DEBUG\"";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "a2ba7700-279a-4659-a69d-7551135a97ac";
 				SWIFT_OBJC_BRIDGING_HEADER = "AppstoreReviews/Objective-C-BridgingHeader.h";

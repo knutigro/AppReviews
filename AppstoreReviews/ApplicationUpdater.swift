@@ -14,8 +14,12 @@ let kDefaultReviewUpdateInterval = 60.0 * 60  // Update interval in seconds ->  
 
 class ApplicationUpdater {
     
-    var timer: Timer?
-    var applications = [Application]()
+    private var timer: Timer?
+    private var applications = [Application]()
+    
+    var numberOfMonitoredApplications : Int {
+        return applications.count
+    }
 
     // MARK: - Init & teardown
     

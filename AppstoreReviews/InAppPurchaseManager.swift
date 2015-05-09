@@ -8,6 +8,20 @@
 
 import AppKit
 import StoreKit
+import Alamofire
+import SwiftyJSON
+
+let kInAppPurchaseManagerErrorDomain = "kInAppPurchaseManagerErrorDomain"
+
+enum InAppPurchaseManagerErrorCode : Int {
+    case ReceiptDontExist = 0
+}
+
+#if DEBUG
+    let verifyReceiptUrl = "https://sandbox.itunes.apple.com/verifyReceipt"
+#else
+    let verifyReceiptUrl = "https://buy.itunes.apple.com/verifyReceipt"
+#endif
 
 let kInAppPurchaseManagerProductsFetchedNotification      = "kInAppPurchaseManagerProductsFetchedNotification"
 let kInAppPurchaseManagerTransactionFailedNotification    = "kInAppPurchaseManagerTransactionFailedNotification"
@@ -31,20 +45,80 @@ class InAppPurchaseManager : NSObject {
     
     // call this method once on startup
     func loadStore() {
+        
         // restarts any purchases if they were interrupted last time the app was open
         SKPaymentQueue.defaultQueue().addTransactionObserver(self)
+
+        // Load products from itunes
         self.requestPremiumUpgradeProductData()
+        
+        // Check receipts from previous purchases and if receipt dont exist or is not valid remove premiumstatus
+        self.updateUserWithItunesReceipt();
     }
     
-    func hasReceipt() -> Bool {
+    func updateUserWithItunesReceipt() {
+        self.fetchItunesReceipt { (receipt, error) -> Void in
+            
+            if let receipt = receipt {
+                if let status = receipt.status {
+                    switch status {
+                    case .Valid:
+                        for purchase in receipt.inAppPurchaseItems {
+                            if purchase.productId == kInAppPurchaseContentPremium {
+                                self.setPremiumUser(true)
+                            }
+                        }
+                        break;
+                    case .ServerNotAvailable:
+                        break;
+                    default :
+                        self.setPremiumUser(false)
+                        break;
+                    }
+                }
+                
+            } else {
+                if let error = error {
+                    if error.code == InAppPurchaseManagerErrorCode.ReceiptDontExist.rawValue {
+                        self.setPremiumUser(false)
+                    }
+                    
+                }
+            }
+        }
+    }
+ 
+    func fetchItunesReceipt(completion: (receipt: InAppPurchaseReceipt?, error : NSError?) -> Void) {
         var receiptData : NSData?
+        var error : NSError?
+
         if let receiptURLpath = NSBundle.mainBundle().appStoreReceiptURL?.path {
             if NSFileManager.defaultManager().fileExistsAtPath(receiptURLpath) {
-                receiptData = NSData(contentsOfURL: NSBundle.mainBundle().appStoreReceiptURL!)
+                if let receiptDataString = NSData(contentsOfURL: NSBundle.mainBundle().appStoreReceiptURL!)?.base64EncodedStringWithOptions(NSDataBase64EncodingOptions(0)) {
+                    
+                    let requestContents = ["receipt-data" : receiptDataString]
+                    
+                    receiptData = NSJSONSerialization.dataWithJSONObject(requestContents, options: NSJSONWritingOptions(0), error: nil)
+                        
+                    if (receiptData != nil) {
+                        Alamofire.upload(.POST, verifyReceiptUrl, receiptData!).responseJSON { [weak self] (request, response, json, error) in
+                            if error != nil {
+                                completion(receipt: nil, error: error)
+                            } else {
+                                completion(receipt: InAppPurchaseReceipt(json: JSON(json!)), error: error)
+                            }
+                        }
+                    }
+                }
             }
         }
         
-        return receiptData == nil;
+        if receiptData == nil {
+            if error == nil {
+                error = NSError(domain:kInAppPurchaseManagerErrorDomain, code: InAppPurchaseManagerErrorCode.ReceiptDontExist.rawValue, userInfo: [NSLocalizedDescriptionKey : NSLocalizedString("Appstore receipt not found on device.", comment: "error.inapppurchase.receiptdontexist")])
+            }
+            completion(receipt: nil, error: error)
+        }
     }
     
     func canMakePurchases() -> Bool {
@@ -59,8 +133,14 @@ class InAppPurchaseManager : NSObject {
         }
     }
     
-    func isPremium() -> Bool {
-        return NSUserDefaults.standardUserDefaults().boolForKey("kInAppPurchaseContentPremium");
+    func isPremiumUser() -> Bool {
+        return NSUserDefaults.isPremiumUser();
+    }
+    
+    func setPremiumUser(premium : Bool) {
+        if (premium != self.isPremiumUser()) {
+            NSUserDefaults.setPremiumUser(premium)
+        }
     }
 
     private func requestPremiumUpgradeProductData() {
@@ -71,17 +151,9 @@ class InAppPurchaseManager : NSObject {
     }
     
     
-     // saves a record of the transaction by storing the receipt to disk
-    private func recordTransaction(transaction : SKPaymentTransaction) {
-        if transaction.payment.productIdentifier == kInAppPurchaseContentPremium {
-            //???? https://developer.apple.com/library/prerelease/ios/releasenotes/General/ValidateAppStoreReceipt/Chapters/ValidateLocally.html#//apple_ref/doc/uid/TP40010573-CH1-SW2
-        }
-    }
-    
     private func provideContent(productId : String) {
         if productId == kInAppPurchaseContentPremium {
-            NSUserDefaults.standardUserDefaults().setBool(true, forKey: "kInAppPurchaseContentPremium")
-            NSUserDefaults.standardUserDefaults().synchronize()
+            self.setPremiumUser(true)
         }
     }
     
@@ -97,8 +169,7 @@ class InAppPurchaseManager : NSObject {
         }
     }
     
-    private func finishTransaction(transaction : SKPaymentTransaction) {
-        self.recordTransaction(transaction)
+    private func successfullTransaction(transaction : SKPaymentTransaction) {
         self.provideContent(transaction.payment.productIdentifier)
         self.finishTransaction(transaction, wasSuccessful: true)
     }
@@ -112,7 +183,6 @@ class InAppPurchaseManager : NSObject {
     }
 
     private func restoreTransaction(transaction : SKPaymentTransaction) {
-        self.recordTransaction(transaction)
         self.provideContent(transaction.originalTransaction.payment.productIdentifier)
         self.finishTransaction(transaction, wasSuccessful: true)
     }
@@ -157,7 +227,7 @@ extension InAppPurchaseManager : SKPaymentTransactionObserver {
                 switch trans.transactionState {
                 case SKPaymentTransactionStatePurchased:
                     println("SKPaymentTransactionStatePurchased");
-                    self.finishTransaction(transaction as! SKPaymentTransaction)
+                    self.successfullTransaction(transaction as! SKPaymentTransaction)
                     break;
                 case SKPaymentTransactionStateFailed:
                     println("SKPaymentTransactionStateFailed");

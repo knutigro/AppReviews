@@ -61,7 +61,7 @@ class AboutViewController: NSViewController {
     
     func updatePremiumState() {
         dispatch_async(dispatch_get_main_queue(), { () -> Void in
-            self.isPremium = InAppPurchaseManager.sharedInstance.isPremium()
+            self.isPremium = InAppPurchaseManager.sharedInstance.isPremiumUser()
         })
     }
     

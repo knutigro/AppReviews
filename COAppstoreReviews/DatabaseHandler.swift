@@ -97,8 +97,7 @@ class DatabaseHandler {
 
     class func saveDataInContext(saveBlock: (context: NSManagedObjectContext) -> Void, completion: CompletionBlock?)  {
 
-        var context = ReviewManager.defaultManager.persistentStack.setupManagedObjectContextWithConcurrencyType(.PrivateQueueConcurrencyType)
-        context.undoManager = nil
+        var context = ReviewManager.backgroundObjectContext()
         
         context.performBlock { () -> Void in
             saveBlock(context: context)
@@ -109,7 +108,6 @@ class DatabaseHandler {
                 if error != nil { println("error: " + error!.localizedDescription) }
             }
 
-            
             if let completion = completion {
                 dispatch_async(dispatch_get_main_queue(), { () -> Void in
                     completion()

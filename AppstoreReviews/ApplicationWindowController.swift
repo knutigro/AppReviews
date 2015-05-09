@@ -17,12 +17,30 @@ class ApplicationWindowController : NSWindowController {
 // MARK: - SearchField
 
 extension ApplicationWindowController  {
+    
     override func controlTextDidEndEditing(notification : NSNotification) {
-        if let textField = notification.object as? NSTextField {
-            if !textField.stringValue.isEmpty {
-                self.openSearchResultController()
-                self.searchApp(textField.stringValue)
+        
+        let canAddAplication = ReviewManager.appUpdater().canAddApplication
+        if canAddAplication.result {
+            if let textField = notification.object as? NSTextField {
+                if !textField.stringValue.isEmpty {
+                    self.openSearchResultController()
+                    self.searchApp(textField.stringValue)
+                }
             }
+        } else {
+            var alert = NSAlert()
+            alert.messageText = canAddAplication.description
+            alert.addButtonWithTitle(NSLocalizedString("Get Premium", comment: "alert.premium.open"))
+            alert.addButtonWithTitle(NSLocalizedString("Cancel", comment: "alert.premium.cancel"))
+            alert.beginSheetModalForWindow(self.window!, completionHandler: { (response: NSModalResponse) -> Void in
+                if response == 1000 {
+                    let appdelegate = NSApplication.sharedApplication().delegate as! AppDelegate
+                    let windowController = appdelegate.aboutWindowController
+                    windowController.showWindow(self)
+                    NSApp.activateIgnoringOtherApps(true)
+                }
+            })
         }
     }
 }
@@ -87,7 +105,9 @@ extension ApplicationWindowController  {
 extension ApplicationWindowController : SearchViewControllerDelegate {
     func searchViewController(searchViewController : SearchViewController, didSelectApplication application: JSON) {
         self.searchField?.stringValue = ""
+
         DatabaseHandler.saveApplication(application)
+
         if let searchWindow = self.searchWindowController?.window {
             self.window?.endSheet(searchWindow)
         }

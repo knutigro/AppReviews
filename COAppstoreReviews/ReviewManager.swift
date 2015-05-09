@@ -11,9 +11,9 @@ import AppKit
 
 final class ReviewManager {
 
-    var persistentStack : PersistentStack!
-    var applicationUpdater: ApplicationUpdater!
-    var notificationsHandler : NotificationsHandler!
+    private var persistentStack : PersistentStack!
+    private var applicationUpdater: ApplicationUpdater!
+    private var notificationsHandler : NotificationsHandler!
 
     // MARK: - Init & teardown
 
@@ -45,6 +45,13 @@ final class ReviewManager {
 
     class func managedObjectContext() -> NSManagedObjectContext {
         return ReviewManager.defaultManager.persistentStack.managedObjectContext
+    }
+
+    class func backgroundObjectContext() -> NSManagedObjectContext {
+        var context =  ReviewManager.defaultManager.persistentStack.setupManagedObjectContextWithConcurrencyType(.PrivateQueueConcurrencyType)
+        context.undoManager = nil
+
+        return context
     }
 
     class func saveContext() {
