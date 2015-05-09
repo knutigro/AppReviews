@@ -11,56 +11,86 @@ import AppKit
 import SwiftyJSON
 
 class DatabaseHandler {
-    let context : NSManagedObjectContext
     
-    // MARK: - Init & teardown
-
-    init(context: NSManagedObjectContext) {
-        self.context = context
-    }
-    
-    // MARK: - Managing context
-
-    func saveContext() {
-        var error : NSError? = nil
-        self.context.save(&error)
-        if error != nil { println("error: " + error!.localizedDescription) }
-    }
+    typealias CompletionBlock = () -> ()
     
     // MARK: - Applications handling
-    
-    func saveApplication(application : JSON) {
-        if application.isApplicationEntity, let apID = application.trackId {
-            if let managedApplication = Application.getWithAppId(apID, context: self.context) {
-                managedApplication.updatedAt = NSDate()
-                managedApplication.updateWithJSON(application)
-            } else {
-                let managedApplication = Application.getOrCreateNew(apID, context: self.context)
-                managedApplication.updateWithJSON(application)
+
+    class func saveApplication(applicationJSON : JSON) {
+        DatabaseHandler.saveDataInContext({ (context) -> Void in
+            
+            if applicationJSON.isApplicationEntity, let apID = applicationJSON.trackId {
+                if let application = Application.getWithAppId(apID, context: context) {
+                    application.updatedAt = NSDate()
+                    application.updateWithJSON(applicationJSON)
+                } else {
+                    let application = Application.new(apID, context: context)
+                    application.updateWithJSON(applicationJSON)
+                }
             }
-            self.saveContext()
-        }
+        })
     }
     
-    func removeApplication(application : Application) {
-        if let managedApplication = Application.getWithAppId(application.trackId, context: self.context) {
-            self.context.deleteObject(managedApplication)
-            self.saveContext()
-        }
+    class func removeApplication(objectId : NSManagedObjectID) {
+        DatabaseHandler.saveDataInContext({ (context) -> Void in
+            var error : NSError?
+            if let application = context.existingObjectWithID(objectId, error: &error) {
+                context.deleteObject(application)
+            }
+        })
     }
     
-    
-    // Should be called with speccific thread
-    func allApplications() -> [Application]? {
+    class func resetNewReviewsCountForApplication(objectId : NSManagedObjectID) {
+        DatabaseHandler.saveDataInContext({ (context) -> Void in
+            var error : NSError?
+            if let application = context.existingObjectWithID(objectId, error: &error) as? Application {
+                application.settings.resetNewReviews()
+            }
+        })
+    }
+
+    class func allApplications(context: NSManagedObjectContext) -> [Application]? {
+        
         let fetchRequest = NSFetchRequest(entityName: kEntityNameApplication)
         var error : NSError?
-        
         let result = context.executeFetchRequest(fetchRequest, error: &error)
-        
         if error != nil {
             println(error)
         }
         
         return result as? [Application]
     }
+    
+    // MARK: - DB Handling
+
+    class func saveDataInContext(saveBlock: (context: NSManagedObjectContext) -> Void)  {
+        DatabaseHandler.saveDataInContext(saveBlock, completion: nil)
+    }
+
+    class func saveDataInContext(saveBlock: (context: NSManagedObjectContext) -> Void, completion: CompletionBlock?)  {
+
+        var context = ReviewManager.defaultManager.persistentStack.setupManagedObjectContextWithConcurrencyType(.PrivateQueueConcurrencyType)
+        context.undoManager = nil
+        
+        context.performBlock { () -> Void in
+            saveBlock(context: context)
+            
+            if context.hasChanges {
+                var error : NSError? = nil
+                context.save(&error)
+                if error != nil { println("error: " + error!.localizedDescription) }
+            }
+
+            
+            if let completion = completion {
+                dispatch_async(dispatch_get_main_queue(), { () -> Void in
+                    completion()
+                })
+            }
+        }
+    }
+    
+
+
+
 }

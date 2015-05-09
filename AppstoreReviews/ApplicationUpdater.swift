@@ -21,8 +21,6 @@ class ApplicationUpdater {
     
     init() {
         
-        let backgroundManagedObjectContext = ReviewManager.backgroundManagedObjectContext();
-
         let applicationMonitor = NSNotificationCenter.defaultCenter().addObserverForName(kDidUpdateApplicationNotification, object: nil, queue: nil) {  [weak self] notification in
             if let strongSelf = self {
                 strongSelf.updateMonitoredApplications()
@@ -48,27 +46,28 @@ class ApplicationUpdater {
             }
         }
         
-            self.updateMonitoredApplications();
+        self.updateMonitoredApplications();
     }
     
     private func updateReviewsForAllApplications() {
         dispatch_async(dispatch_get_main_queue(), { () -> Void in
             for application in self.applications {
                 if application.settings.shouldUpdateReviews {
-                    self.fetchReviews(application, storeId: nil)
+                    self.fetchReviewsForApplication(application.objectID)
                 }
             }
         })
     }
     
     private func updateMonitoredApplications(){
+        
         dispatch_async(dispatch_get_main_queue(), { () -> Void in
-            if let dBApplications = ReviewManager.dbFetcher().allApplications() {
+            
+            if let dBApplications = DatabaseHandler.allApplications(ReviewManager.managedObjectContext()) {
                 for dBApplication in dBApplications {
-                    
                     if !contains(self.applications, dBApplication) {
                         self.applications.append(dBApplication)
-                        self.fetchReviews(dBApplication, storeId: nil)
+                        self.fetchReviewsForApplication(dBApplication.objectID)
                     }
                 }
                 
@@ -84,68 +83,77 @@ class ApplicationUpdater {
                 }
             }
         })
-
+        
     }
     
     // MARK: - Reviews handling
     
-    func fetchReviews(application: Application, storeId: String?) {
-        println("import reviews for \(application.trackName) store \(storeId)")
-
-        var dbManager = ReviewManager.dbUpdater()
-        var managedApplication = Application.getOrCreateNew(application.trackId, context: dbManager.context)
+    func fetchReviewsForApplication(objectId: NSManagedObjectID) {
         
-        ItunesService(apId: application.trackId, storeId: storeId).fetchReview() {  [weak self]
-            (success: Bool, reviews: [JSON]?, error : NSError?) in
+        var error : NSError?
+        
+        if let fetchApplication = ReviewManager.managedObjectContext().existingObjectWithID(objectId, error: &error) as? Application {
             
-            let blockSuccess = success as Bool
-            let blockError = error
+            if error != nil {
+                println(error)
+            }
             
-            dbManager.context.performBlock({ () -> Void in
+            ItunesService(apId: fetchApplication.trackId, storeId: nil).fetchReview() {  [weak self]
+                (success: Bool, reviews: [JSON]?, error : NSError?) in
                 
-                if let blockReviews = reviews {
+                let blockSuccess = success as Bool
+                let blockError = error
+                
+                DatabaseHandler.saveDataInContext({ (context) -> Void in
                     
-                    var updatedReviews = [Review]()
-                    
-                    for var index = 0; index < blockReviews.count; index++ {
-                        let entry = blockReviews[index]
+                    var error : NSError?
+
+                    if let application = context.existingObjectWithID(objectId, error: &error) as? Application {
                         
-                        if entry.isReviewEntity, let apID = entry.reviewApID {
-                            var review : Review!
+                        if error != nil {
+                            println(error)
+                        }
+
+                        if let blockReviews = reviews {
                             
-                            if let newReview = Review.get(apID, context: dbManager.context) {
-                                // Review allready exist in database
-                                review = newReview
-                            } else {
-                                // create new review
-                                review = Review.new(apID, context: dbManager.context)
-                                managedApplication.settings.increaseNewReviews()
+                            var updatedReviews = [Review]()
+                            
+                            for var index = 0; index < blockReviews.count; index++ {
+                                let entry = blockReviews[index]
+                                
+                                if entry.isReviewEntity, let apID = entry.reviewApID {
+                                    var review : Review!
+                                    
+                                    if let newReview = Review.get(apID, context: context) {
+                                        // Review allready exist in database
+                                        review = newReview
+                                    } else {
+                                        // create new review
+                                        review = Review.new(apID, context: context)
+                                        application.settings.increaseNewReviews()
+                                    }
+                                    
+                                    review.updateWithJSON(entry)
+                                    review.country = ""
+                                    review.updatedAt = NSDate()
+                                    var reviews = application.mutableSetValueForKey("reviews")
+                                    reviews.addObject(review)
+                                    review.application = application
+                                    updatedReviews.append(review)
+                                }
                             }
-                            
-                            review.updateWithJSON(entry)
-                            review.country = storeId ?? ""
-                            review.updatedAt = NSDate()
-                            var reviews = managedApplication.mutableSetValueForKey("reviews")
-                            reviews.addObject(review)
-                            review.application = managedApplication
-                            updatedReviews.append(review)
+                            application.settings.updatedAt = NSDate()
+                            application.settings.reviewsUpdatedAt = NSDate()
+                            application.settings.nextUpdateAt = NSDate().dateByAddingTimeInterval(kDefaultReviewUpdateInterval)
+                            println("import reviews for \(application.trackName)")
                         }
                     }
-                    managedApplication.settings.updatedAt = NSDate()
-                    managedApplication.settings.reviewsUpdatedAt = NSDate()
-                    managedApplication.settings.nextUpdateAt = NSDate().dateByAddingTimeInterval(kDefaultReviewUpdateInterval)
-                    
-                    dbManager.saveContext()
-                }
-            })
+                })
+            }
         }
     }
     
-    func resetNewReviews(application: Application) {
-        var dbManager = ReviewManager.dbUpdater()
-        if let managedApplication = Application.getWithAppId(application.trackId, context: dbManager.context){
-            managedApplication.settings.resetNewReviews()
-            dbManager.saveContext()
-        }
+    func resetNewReviewsCountForApplication(objectId: NSManagedObjectID) {
+        DatabaseHandler.resetNewReviewsCountForApplication(objectId)
     }
 }

@@ -39,8 +39,7 @@ extension ApplicationViewController {
     @IBAction func removeButtonClicked(objects:AnyObject?) {
         if let applications = objects as? [Application], let rowNumber = self.tableView?.selectedRow {
             if applications.count > rowNumber && rowNumber >= 0{
-                let application = applications[rowNumber]
-                ReviewManager.dbUpdater().removeApplication(application)
+                DatabaseHandler.removeApplication(applications[rowNumber].objectID)
             }
         }
     }

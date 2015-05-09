@@ -17,7 +17,6 @@ let kDidUpdateReviewsNotification             = "kDidUpdateReviewsNotification"
 class PersistentStack {
     
     var managedObjectContext : NSManagedObjectContext!
-    var backgroundManagedObjectContext : NSManagedObjectContext!
     var modelURL : NSURL
     var storeURL : NSURL
     
@@ -32,9 +31,6 @@ class PersistentStack {
         self.managedObjectContext = self.setupManagedObjectContextWithConcurrencyType(.MainQueueConcurrencyType)
         self.managedObjectContext.undoManager = NSUndoManager()
 
-        self.backgroundManagedObjectContext = self.setupManagedObjectContextWithConcurrencyType(.PrivateQueueConcurrencyType)
-        self.backgroundManagedObjectContext.undoManager = nil
-        
         let newToken = NSNotificationCenter.defaultCenter().addObserverForName(NSManagedObjectContextDidSaveNotification, object: nil, queue: nil) { [weak self] notification in
             if let strongSelf = self {
                 let moc = strongSelf.managedObjectContext;

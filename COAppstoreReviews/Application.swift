@@ -79,6 +79,7 @@ class Application : NSManagedObject {
     }
 
     class func getWithAppId(identifier : String, context: NSManagedObjectContext) -> Application? {
+
         let fetchRequest = NSFetchRequest(entityName: kEntityNameApplication)
         fetchRequest.predicate = NSPredicate(format: "trackId = %@", identifier)
         var error : NSError?

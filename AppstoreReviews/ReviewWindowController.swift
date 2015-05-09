@@ -61,7 +61,7 @@ extension ReviewWindowController {
     
     @IBAction func refreshApplication(sender: AnyObject) {
         if let application = self.application {
-            ReviewManager.appUpdater().fetchReviews(application, storeId: nil)
+            ReviewManager.appUpdater().fetchReviewsForApplication(application.objectID)
         }
     }
     

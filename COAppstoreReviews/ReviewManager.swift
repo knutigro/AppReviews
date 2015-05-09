@@ -11,17 +11,15 @@ import AppKit
 
 final class ReviewManager {
 
-    private var persistentStack : PersistentStack!
+    var persistentStack : PersistentStack!
     var applicationUpdater: ApplicationUpdater!
     var notificationsHandler : NotificationsHandler!
-    private var mainThreadDBHandler : DatabaseHandler!
 
     // MARK: - Init & teardown
 
     init() {
         self.persistentStack = PersistentStack(storeURL: storeURL(), modelURL: modelURL())
         self.notificationsHandler = NotificationsHandler()
-        self.mainThreadDBHandler = DatabaseHandler(context: ReviewManager.defaultManager.persistentStack.managedObjectContext)
     }
     
     class var defaultManager: ReviewManager {
@@ -41,26 +39,12 @@ final class ReviewManager {
     
     // MARK: - Core Data stack
 
-    // performs on backgroundThread
-    class func dbUpdater() -> DatabaseHandler {
-        return DatabaseHandler(context: ReviewManager.defaultManager.persistentStack.backgroundManagedObjectContext)
-    }
-
-    // Performs on mainthread
-    class func dbFetcher() -> DatabaseHandler {
-        return ReviewManager.defaultManager.mainThreadDBHandler
-    }
-
     class func appUpdater() -> ApplicationUpdater {
         return ReviewManager.defaultManager.applicationUpdater
     }
 
     class func managedObjectContext() -> NSManagedObjectContext {
         return ReviewManager.defaultManager.persistentStack.managedObjectContext
-    }
-
-    class func backgroundManagedObjectContext() -> NSManagedObjectContext {
-        return ReviewManager.defaultManager.persistentStack.backgroundManagedObjectContext
     }
 
     class func saveContext() {
