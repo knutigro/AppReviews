@@ -61,6 +61,34 @@ class DatabaseHandler {
         return result as? [Application]
     }
     
+    class func numberOfReviewsForApplication(objectId : NSManagedObjectID, rating: Int?, context: NSManagedObjectContext) -> (Int, Int, Int, Int, Int) {
+        var error : NSError?
+        var one = 0, two = 0, three = 0, four = 0, five = 0
+
+        if let application = context.existingObjectWithID(objectId, error: &error) as? Application {
+            var fetchRequest = NSFetchRequest(entityName: kEntityNameReview)
+            
+            fetchRequest.predicate = NSPredicate(format: "application = %@ AND rating == 1", application)
+            one = context.countForFetchRequest(fetchRequest, error: &error)
+
+            fetchRequest.predicate = NSPredicate(format: "application = %@ AND rating == 2", application)
+            two = context.countForFetchRequest(fetchRequest, error: &error)
+
+            fetchRequest.predicate = NSPredicate(format: "application = %@ AND rating == 3", application)
+            three = context.countForFetchRequest(fetchRequest, error: &error)
+
+            fetchRequest.predicate = NSPredicate(format: "application = %@ AND rating == 4", application)
+            four = context.countForFetchRequest(fetchRequest, error: &error)
+
+            fetchRequest.predicate = NSPredicate(format: "application = %@ AND rating == 5", application)
+            five = context.countForFetchRequest(fetchRequest, error: &error)
+
+            if error != nil { println(error) }
+        }
+        
+        return (one, two, three, four, five)
+    }
+
     // MARK: - DB Handling
 
     class func saveDataInContext(saveBlock: (context: NSManagedObjectContext) -> Void)  {

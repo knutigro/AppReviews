@@ -837,9 +837,9 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="700"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <subviews>
-                            <scrollView misplaced="YES" autohidesScrollers="YES" horizontalLineScroll="82" horizontalPageScroll="10" verticalLineScroll="82" verticalPageScroll="10" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Azk-8Z-Yg6">
-                                <rect key="frame" x="0.0" y="100" width="600" height="600"/>
-                                <clipView key="contentView" misplaced="YES" id="Hjc-Hf-Qgr">
+                            <scrollView autohidesScrollers="YES" horizontalLineScroll="82" horizontalPageScroll="10" verticalLineScroll="82" verticalPageScroll="10" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Azk-8Z-Yg6">
+                                <rect key="frame" x="0.0" y="0.0" width="600" height="700"/>
+                                <clipView key="contentView" id="Hjc-Hf-Qgr">
                                     <rect key="frame" x="1" y="17" width="238" height="117"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <subviews>
@@ -1020,7 +1020,7 @@
                 </arrayController>
                 <userDefaultsController representsSharedInstance="YES" id="k2v-RE-iNo"/>
             </objects>
-            <point key="canvasLocation" x="820" y="1058"/>
+            <point key="canvasLocation" x="864" y="1120"/>
         </scene>
         <!--Window Controller-->
         <scene sceneID="RZB-AF-mML">
@@ -1160,6 +1160,33 @@
                 <customObject id="zWi-Dh-HQz" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="704" y="495"/>
+        </scene>
+        <!--Review Pie Chart Controller-->
+        <scene sceneID="Rpk-qy-vrN">
+            <objects>
+                <viewController id="229-bS-8xR" customClass="ReviewPieChartController" customModule="AppstoreReviews" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" id="UzB-Q6-41q">
+                        <rect key="frame" x="0.0" y="0.0" width="190" height="190"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <subviews>
+                            <customView translatesAutoresizingMaskIntoConstraints="NO" id="zH2-r4-hnX" customClass="PieChart">
+                                <rect key="frame" x="0.0" y="0.0" width="190" height="190"/>
+                            </customView>
+                        </subviews>
+                        <constraints>
+                            <constraint firstAttribute="bottom" secondItem="zH2-r4-hnX" secondAttribute="bottom" id="FoX-tk-Vpm"/>
+                            <constraint firstAttribute="trailing" secondItem="zH2-r4-hnX" secondAttribute="trailing" id="ZrW-vM-7vK"/>
+                            <constraint firstItem="zH2-r4-hnX" firstAttribute="top" secondItem="UzB-Q6-41q" secondAttribute="top" id="ioi-d9-4PR"/>
+                            <constraint firstItem="zH2-r4-hnX" firstAttribute="leading" secondItem="UzB-Q6-41q" secondAttribute="leading" id="syL-7T-UkL"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="pieChart" destination="zH2-r4-hnX" id="Ql0-LG-RKS"/>
+                    </connections>
+                </viewController>
+                <customObject id="Gmu-Ze-inW" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="104" y="1219"/>
         </scene>
         <!--Review Menu View Controller-->
         <scene sceneID="Jyz-Ag-rPD">
@@ -1370,10 +1397,52 @@
                                             <constraint firstItem="oOD-Iw-tqx" firstAttribute="height" secondItem="HBC-En-0J8" secondAttribute="height" id="wb8-ic-azI"/>
                                         </constraints>
                                     </customView>
-                                    <customView translatesAutoresizingMaskIntoConstraints="NO" id="aoq-bR-DAH" customClass="PieChart">
-                                        <rect key="frame" x="5" y="160" width="190" height="190"/>
+                                    <customView translatesAutoresizingMaskIntoConstraints="NO" id="L33-iD-baz">
+                                        <rect key="frame" x="5" y="120" width="190" height="230"/>
+                                        <subviews>
+                                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="mCh-1N-RSE">
+                                                <rect key="frame" x="-2" y="210" width="194" height="20"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="20" id="U7O-Vh-4pV"/>
+                                                </constraints>
+                                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="left" title="Local Data:" id="8oE-oT-mdt">
+                                                    <font key="font" metaFont="systemBold"/>
+                                                    <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                                    <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                                                </textFieldCell>
+                                            </textField>
+                                            <containerView translatesAutoresizingMaskIntoConstraints="NO" id="zAm-hj-OVs">
+                                                <rect key="frame" x="0.0" y="20" width="190" height="190"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="width" secondItem="zAm-hj-OVs" secondAttribute="height" multiplier="1:1" id="lJA-qJ-MPz"/>
+                                                </constraints>
+                                                <connections>
+                                                    <segue destination="229-bS-8xR" kind="embed" id="jrC-Az-k8X"/>
+                                                </connections>
+                                            </containerView>
+                                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="CQ2-BW-3YZ">
+                                                <rect key="frame" x="-2" y="0.0" width="194" height="20"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="20" id="OYH-75-VNP"/>
+                                                </constraints>
+                                                <textFieldCell key="cell" controlSize="small" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Total ratings" id="DDf-d3-e0F">
+                                                    <font key="font" metaFont="system"/>
+                                                    <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                                    <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                                                </textFieldCell>
+                                            </textField>
+                                        </subviews>
                                         <constraints>
-                                            <constraint firstAttribute="width" secondItem="aoq-bR-DAH" secondAttribute="height" multiplier="1:1" id="Opn-sy-Ugc"/>
+                                            <constraint firstAttribute="trailing" secondItem="mCh-1N-RSE" secondAttribute="trailing" id="8xD-E2-ICl"/>
+                                            <constraint firstAttribute="trailing" secondItem="zAm-hj-OVs" secondAttribute="trailing" id="APl-3U-QlZ"/>
+                                            <constraint firstItem="zAm-hj-OVs" firstAttribute="top" secondItem="mCh-1N-RSE" secondAttribute="bottom" id="IpQ-e3-8j5"/>
+                                            <constraint firstItem="mCh-1N-RSE" firstAttribute="leading" secondItem="L33-iD-baz" secondAttribute="leading" id="KtH-yj-Qfa"/>
+                                            <constraint firstItem="CQ2-BW-3YZ" firstAttribute="top" secondItem="zAm-hj-OVs" secondAttribute="bottom" id="LOi-ph-IN8"/>
+                                            <constraint firstItem="zAm-hj-OVs" firstAttribute="leading" secondItem="L33-iD-baz" secondAttribute="leading" id="M85-H4-7hA"/>
+                                            <constraint firstItem="CQ2-BW-3YZ" firstAttribute="leading" secondItem="L33-iD-baz" secondAttribute="leading" id="OI1-A6-JjP"/>
+                                            <constraint firstAttribute="height" constant="230" id="QIf-da-6zy"/>
+                                            <constraint firstAttribute="trailing" secondItem="CQ2-BW-3YZ" secondAttribute="trailing" id="WeX-hw-OfR"/>
+                                            <constraint firstItem="mCh-1N-RSE" firstAttribute="top" secondItem="L33-iD-baz" secondAttribute="top" id="dmx-Yu-Mio"/>
                                         </constraints>
                                     </customView>
                                     <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="ecL-sY-6RS">
@@ -1413,19 +1482,19 @@
                                     <constraint firstItem="NH0-cD-Izj" firstAttribute="top" secondItem="duH-jh-Fdz" secondAttribute="bottom" constant="5" id="ED1-2W-wbx"/>
                                     <constraint firstItem="U5V-Jf-Pnn" firstAttribute="top" secondItem="fpg-Vy-Gnp" secondAttribute="top" constant="5" id="Fmn-NE-fyH"/>
                                     <constraint firstAttribute="trailing" secondItem="ecL-sY-6RS" secondAttribute="trailing" id="JAs-wj-bQm"/>
+                                    <constraint firstAttribute="trailing" secondItem="L33-iD-baz" secondAttribute="trailing" constant="5" id="MIR-Td-5th"/>
                                     <constraint firstAttribute="trailing" secondItem="Xac-Et-DWE" secondAttribute="trailing" constant="5" id="NkW-IS-t8B"/>
                                     <constraint firstAttribute="bottom" secondItem="Xac-Et-DWE" secondAttribute="bottom" id="Q1x-W8-I51"/>
-                                    <constraint firstItem="aoq-bR-DAH" firstAttribute="top" secondItem="NH0-cD-Izj" secondAttribute="bottom" constant="5" id="Xo3-KQ-Ddl"/>
-                                    <constraint firstAttribute="trailing" secondItem="aoq-bR-DAH" secondAttribute="trailing" constant="5" id="ZJO-PA-2sO"/>
                                     <constraint firstItem="U5V-Jf-Pnn" firstAttribute="leading" secondItem="fpg-Vy-Gnp" secondAttribute="leading" constant="5" id="acT-NJ-ylw"/>
                                     <constraint firstItem="duH-jh-Fdz" firstAttribute="top" secondItem="U5V-Jf-Pnn" secondAttribute="bottom" constant="5" id="bI6-3a-e7E"/>
+                                    <constraint firstItem="L33-iD-baz" firstAttribute="top" secondItem="NH0-cD-Izj" secondAttribute="bottom" constant="5" id="biM-r6-Cjh"/>
                                     <constraint firstItem="NH0-cD-Izj" firstAttribute="leading" secondItem="fpg-Vy-Gnp" secondAttribute="leading" constant="5" id="hFT-9l-5M7"/>
                                     <constraint firstAttribute="bottom" secondItem="ecL-sY-6RS" secondAttribute="bottom" id="hWL-OL-uGC"/>
                                     <constraint firstItem="ecL-sY-6RS" firstAttribute="leading" secondItem="fpg-Vy-Gnp" secondAttribute="leading" id="iRB-vp-DGv"/>
                                     <constraint firstAttribute="width" constant="200" id="j2X-6Q-CIf"/>
+                                    <constraint firstItem="L33-iD-baz" firstAttribute="leading" secondItem="fpg-Vy-Gnp" secondAttribute="leading" constant="5" id="lur-B4-EyH"/>
                                     <constraint firstAttribute="trailing" secondItem="duH-jh-Fdz" secondAttribute="trailing" constant="5" id="nL6-9x-CA5"/>
                                     <constraint firstAttribute="trailing" secondItem="U5V-Jf-Pnn" secondAttribute="trailing" constant="5" id="q58-sz-STV"/>
-                                    <constraint firstItem="aoq-bR-DAH" firstAttribute="leading" secondItem="fpg-Vy-Gnp" secondAttribute="leading" constant="5" id="x2v-U1-OyG"/>
                                 </constraints>
                             </customView>
                         </subviews>
@@ -1442,9 +1511,9 @@
                         <outlet property="averageRatingCurrentLabel" destination="Ord-3f-03p" id="Neb-6E-rV6"/>
                         <outlet property="categoryLabel" destination="CuZ-iK-m4n" id="4wi-jV-JbK"/>
                         <outlet property="currentVersionStarRating" destination="Q7a-CE-04U" id="Q6v-ry-iEg"/>
+                        <outlet property="localTotalRatingsLabel" destination="CQ2-BW-3YZ" id="NSI-FD-oxJ"/>
                         <outlet property="numberOfRatingsAllLabel" destination="HBC-En-0J8" id="zcn-VA-sec"/>
                         <outlet property="numberOfRatingsCurrentLabel" destination="BQ4-gv-NpL" id="qWD-Ce-7hl"/>
-                        <outlet property="pieChart" destination="aoq-bR-DAH" id="EO5-57-HsF"/>
                         <outlet property="reviewsUpdatedAtLabel" destination="Xac-Et-DWE" id="qbc-Ro-zWW"/>
                         <outlet property="sellerNameLabel" destination="ihI-xp-9G0" id="LBo-SU-15I"/>
                         <outlet property="sizeLabel" destination="x4R-ys-63b" id="eCg-1x-Efe"/>
@@ -1796,6 +1865,18 @@ Gw
                 <tabViewItem label="Notifications" identifier="" id="4eM-Fh-F0l"/>
             </objects>
             <point key="canvasLocation" x="24" y="803"/>
+        </scene>
+        <!--View Controller-->
+        <scene sceneID="QNB-X3-dQA">
+            <objects>
+                <viewController id="HBM-Cm-Cf8" sceneMemberID="viewController">
+                    <view key="view" id="x9d-dU-x6z">
+                        <rect key="frame" x="0.0" y="0.0" width="450" height="300"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </view>
+                </viewController>
+                <customObject id="Vif-sk-xei" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
+            </objects>
         </scene>
     </scenes>
     <resources>

@@ -30,7 +30,7 @@
 		49A5C20A1AF65E8500B3BBC5 /* InAppPurchaseManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49A5C2091AF65E8500B3BBC5 /* InAppPurchaseManager.swift */; };
 		49A5C20C1AF6627900B3BBC5 /* AboutViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49A5C20B1AF6627900B3BBC5 /* AboutViewController.swift */; };
 		49A5C20E1AF686EC00B3BBC5 /* NSApplicationDelegate+Version.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49A5C20D1AF686EC00B3BBC5 /* NSApplicationDelegate+Version.swift */; };
-		49A5C22C1AF8157E00B3BBC5 /* ReviewPieChart.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49A5C22B1AF8157E00B3BBC5 /* ReviewPieChart.swift */; };
+		49A5C22C1AF8157E00B3BBC5 /* ReviewPieChartController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49A5C22B1AF8157E00B3BBC5 /* ReviewPieChartController.swift */; };
 		49A75E4E1AD9BCDF004A4742 /* ReviewArrayController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49A75E4D1AD9BCDF004A4742 /* ReviewArrayController.swift */; };
 		49AAB8C11AE8518500B412A8 /* ReviewSplitViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49AAB8C01AE8518500B412A8 /* ReviewSplitViewController.swift */; };
 		49AAB8C31AE854EA00B412A8 /* ReviewMenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49AAB8C21AE854EA00B412A8 /* ReviewMenuViewController.swift */; };
@@ -44,6 +44,7 @@
 		49ACB8631AD5CE700050C1B7 /* ReviewManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49ACB8621AD5CE700050C1B7 /* ReviewManager.swift */; };
 		49ACB8681AD5E1730050C1B7 /* Review.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49ACB8671AD5E1730050C1B7 /* Review.swift */; };
 		49ACB86C1AD5EAF70050C1B7 /* PersistentStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49ACB86B1AD5EAF70050C1B7 /* PersistentStack.swift */; };
+		49C9CE651AFE6C41009D852D /* NSColor+AppReviews.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49C9CE641AFE6C41009D852D /* NSColor+AppReviews.swift */; };
 		49DAA2FE1AD80DBB002807A7 /* Application.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49DAA2FD1AD80DBB002807A7 /* Application.swift */; };
 		49EF51051AE1BC5900E5901C /* Timer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49EF51041AE1BC5900E5901C /* Timer.swift */; };
 		49EF51081AE1CE8B00E5901C /* ApplicationUpdater.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49EF51071AE1CE8B00E5901C /* ApplicationUpdater.swift */; };
@@ -93,7 +94,7 @@
 		49A5C2091AF65E8500B3BBC5 /* InAppPurchaseManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = InAppPurchaseManager.swift; path = ../AppstoreReviews/InAppPurchaseManager.swift; sourceTree = "<group>"; };
 		49A5C20B1AF6627900B3BBC5 /* AboutViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AboutViewController.swift; sourceTree = "<group>"; };
 		49A5C20D1AF686EC00B3BBC5 /* NSApplicationDelegate+Version.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSApplicationDelegate+Version.swift"; sourceTree = "<group>"; };
-		49A5C22B1AF8157E00B3BBC5 /* ReviewPieChart.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReviewPieChart.swift; sourceTree = "<group>"; };
+		49A5C22B1AF8157E00B3BBC5 /* ReviewPieChartController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReviewPieChartController.swift; sourceTree = "<group>"; };
 		49A75E4D1AD9BCDF004A4742 /* ReviewArrayController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReviewArrayController.swift; sourceTree = "<group>"; };
 		49AAB8C01AE8518500B412A8 /* ReviewSplitViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReviewSplitViewController.swift; sourceTree = "<group>"; };
 		49AAB8C21AE854EA00B412A8 /* ReviewMenuViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReviewMenuViewController.swift; sourceTree = "<group>"; };
@@ -111,6 +112,7 @@
 		49ACB8621AD5CE700050C1B7 /* ReviewManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReviewManager.swift; sourceTree = "<group>"; };
 		49ACB8671AD5E1730050C1B7 /* Review.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Review.swift; sourceTree = "<group>"; };
 		49ACB86B1AD5EAF70050C1B7 /* PersistentStack.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PersistentStack.swift; sourceTree = "<group>"; };
+		49C9CE641AFE6C41009D852D /* NSColor+AppReviews.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSColor+AppReviews.swift"; sourceTree = "<group>"; };
 		49DAA2FD1AD80DBB002807A7 /* Application.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Application.swift; sourceTree = "<group>"; };
 		49EF51041AE1BC5900E5901C /* Timer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Timer.swift; sourceTree = "<group>"; };
 		49EF51071AE1CE8B00E5901C /* ApplicationUpdater.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ApplicationUpdater.swift; path = ../AppstoreReviews/ApplicationUpdater.swift; sourceTree = "<group>"; };
@@ -268,6 +270,7 @@
 				493218F51AE5A580008996EC /* AutoSizedTextField.swift */,
 				49AAB8D61AE9AC9C00B412A8 /* String+Size.swift */,
 				49A5C20D1AF686EC00B3BBC5 /* NSApplicationDelegate+Version.swift */,
+				49C9CE641AFE6C41009D852D /* NSColor+AppReviews.swift */,
 			);
 			name = Categories;
 			path = ../COAppstoreReviews;
@@ -279,7 +282,6 @@
 				493FC5531AF81D220043304C /* PieChart */,
 				49F800E71ADAA0DC004A1BF1 /* ReviewCellView.swift */,
 				49F800EF1ADC674B004A1BF1 /* ApplicationCellView.swift */,
-				49A5C22B1AF8157E00B3BBC5 /* ReviewPieChart.swift */,
 			);
 			name = "Views and Cells";
 			sourceTree = "<group>";
@@ -298,6 +300,7 @@
 				49AAB8C21AE854EA00B412A8 /* ReviewMenuViewController.swift */,
 				49ACB8421AD5CAA00050C1B7 /* ReviewViewController.swift */,
 				49A5C20B1AF6627900B3BBC5 /* AboutViewController.swift */,
+				49A5C22B1AF8157E00B3BBC5 /* ReviewPieChartController.swift */,
 			);
 			name = "Window & ViewControllers";
 			sourceTree = "<group>";
@@ -543,6 +546,7 @@
 				49ACB86C1AD5EAF70050C1B7 /* PersistentStack.swift in Sources */,
 				49F800E81ADAA0DC004A1BF1 /* ReviewCellView.swift in Sources */,
 				4974240C1AF61C35004A65A8 /* AutomaticUpdateTransformer.swift in Sources */,
+				49C9CE651AFE6C41009D852D /* NSColor+AppReviews.swift in Sources */,
 				493FC55F1AF81D220043304C /* NSColor+CGColor.m in Sources */,
 				49EF51051AE1BC5900E5901C /* Timer.swift in Sources */,
 				4974240A1AF55023004A65A8 /* NotificationsHandler.swift in Sources */,
@@ -556,7 +560,7 @@
 				4930D50A1AE7013600C90FDE /* ApplicationWindowController.swift in Sources */,
 				49AAB8C31AE854EA00B412A8 /* ReviewMenuViewController.swift in Sources */,
 				49A003591AD687A8001E10BE /* DatabaseHandler.swift in Sources */,
-				49A5C22C1AF8157E00B3BBC5 /* ReviewPieChart.swift in Sources */,
+				49A5C22C1AF8157E00B3BBC5 /* ReviewPieChartController.swift in Sources */,
 				49A5C20C1AF6627900B3BBC5 /* AboutViewController.swift in Sources */,
 				497E10341AEBE1AC006726F0 /* ApplicationSettings.swift in Sources */,
 				493FC5601AF81D220043304C /* PieChart.m in Sources */,

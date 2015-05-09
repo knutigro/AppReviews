@@ -24,7 +24,6 @@ class ReviewViewController: NSViewController {
             self.tableView?.reloadData()
         }
     }
-    
     // MARK: - Init & teardown
     
     required init?(coder: NSCoder) {

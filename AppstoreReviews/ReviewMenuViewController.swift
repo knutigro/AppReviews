@@ -16,9 +16,6 @@ enum UpdateLabelState {
 
 class ReviewMenuViewController: NSViewController {
     
-    var slices = [Float]()
-    var sliceColors : [NSColor]!
-
     var managedObjectContext : NSManagedObjectContext!
     let dateFormatter = NSDateFormatter()
     var updateLabelState = UpdateLabelState.LastUpdate {
@@ -50,7 +47,10 @@ class ReviewMenuViewController: NSViewController {
     @IBOutlet weak var averageRatingAllLabel: NSTextField!
     @IBOutlet weak var numberOfRatingsAllLabel: NSTextField!
     @IBOutlet weak var reviewsUpdatedAtLabel: NSTextField!
-    @IBOutlet weak var pieChart: PieChart!
+
+    @IBOutlet weak var localTotalRatingsLabel: NSTextField!
+
+    var pieChartController: ReviewPieChartController?
 
     var application : Application? {
         didSet {
@@ -105,16 +105,14 @@ class ReviewMenuViewController: NSViewController {
                 })
             }
         }
-        self.pieChart.dataSource = self
-        self.pieChart.delegate = self
-        self.pieChart.pieCenter = CGPointMake(240, 240)
-        self.pieChart.showPercentage = false
-        
-        self.slices = [20, 40, 10, 5, 25]
-        self.sliceColors = [NSColor.redColor(), NSColor.blueColor(), NSColor.orangeColor(), NSColor.greenColor(), NSColor.yellowColor()]
-        self.pieChart.reloadData()
     }
     
+    
+    override func prepareForSegue(segue: NSStoryboardSegue, sender: AnyObject?) {
+        if let controller = segue.destinationController as? ReviewPieChartController {
+            self.pieChartController = controller
+        }
+    }
     // MARK: - UI
     
     func updateApplicationInfo() {
@@ -159,6 +157,16 @@ class ReviewMenuViewController: NSViewController {
         self.numberOfRatingsAllLabel.stringValue =   NSLocalizedString("Number of ratings: ", comment: "review.menu.currentAverageRating") + (NSString(format: "%i", userRatingCount) as String)
         
         self.updateLabelState = .LastUpdate
+        
+        if let application = self.application {
+            let reviews = DatabaseHandler.numberOfReviewsForApplication(application.objectID, rating: nil, context: ReviewManager.managedObjectContext())
+            self.pieChartController?.slices = [Float(reviews.0), Float(reviews.1), Float(reviews.2), Float(reviews.3), Float(reviews.4)]
+            self.pieChartController?.pieChart?.reloadData()
+            let total = reviews.0 + reviews.1 + reviews.2 + reviews.3 + reviews.4
+            self.localTotalRatingsLabel.stringValue = NSLocalizedString("Total: ", comment: "review.menu.localRatingCount") + (NSString(format: "%i", total) as String)
+        }
+
+        
     }
     
     @IBAction func toogleUpdateLabel(objects:AnyObject?) {
@@ -170,17 +178,3 @@ class ReviewMenuViewController: NSViewController {
     }
 }
 
-extension ReviewMenuViewController : PieChartDataSource, PieChartDelegate {
-    
-    func numberOfSlicesInPieChart(pieChart: PieChart!) -> UInt {
-        return UInt(self.slices.count)
-    }
-    
-    func pieChart(pieChart: PieChart!, valueForSliceAtIndex index: UInt) -> CGFloat {
-        return CGFloat(self.slices[Int(index)])
-    }
-    
-    func pieChart(pieChart: PieChart!, colorForSliceAtIndex index: UInt) -> NSColor! {
-        return self.sliceColors[Int(index) % self.sliceColors.count]
-    }
-}
