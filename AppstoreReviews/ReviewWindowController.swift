@@ -27,11 +27,13 @@ class ReviewWindowController : NSWindowController {
         }
     }
     
-    var applicationId : NSString? {
+    var objectId : NSManagedObjectID? {
         didSet {
-            if oldValue != self.applicationId {
-                if self.applicationId as? String != nil {
-                    self.application = Application.getWithAppId(self.applicationId! as String, context: self.managedObjectContext)
+            if oldValue != self.objectId {
+                var context = ReviewManager.managedObjectContext()
+                var error : NSError?
+                if let objectId = objectId {
+                    self.application = context.existingObjectWithID(objectId, error: &error) as? Application
                 }
             }
         }
@@ -39,11 +41,11 @@ class ReviewWindowController : NSWindowController {
 
     // MARK: - Init & teardown
     
-    class func show(applicationId : NSString) {
+    class func show(objectId : NSManagedObjectID) {
         let appdelegate = NSApplication.sharedApplication().delegate as! AppDelegate
         let windowController = appdelegate.reviewsWindowController
         windowController.managedObjectContext = ReviewManager.managedObjectContext()
-        windowController.applicationId = applicationId
+        windowController.objectId = objectId
         windowController.showWindow(self)
         NSApp.activateIgnoringOtherApps(true)
     }

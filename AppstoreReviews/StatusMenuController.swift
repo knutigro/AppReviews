@@ -114,7 +114,7 @@ extension StatusMenuController {
     func openReviewsForApp(sender : AnyObject) {
         if let menuItem = sender as? NSMenuItem {
             if let application = menuItem.representedObject as? Application {
-                ReviewWindowController.show(application.trackId)
+                ReviewWindowController.show(application.objectID)
             }
         }
     }

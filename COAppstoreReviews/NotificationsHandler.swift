@@ -9,6 +9,8 @@
 import Foundation
 import AppKit
 
+let kNotificaObjectIdKey = "kNotificaObjectIdKey"
+
 @objc
 class NotificationsHandler : NSObject {
     
@@ -67,7 +69,11 @@ class NotificationsHandler : NSObject {
         
         var notification:NSUserNotification = NSUserNotification()
         notification.title = title
-        notification.userInfo = ["apId" : application.trackId]
+
+        if let urlString = application.objectID.URIRepresentation().absoluteString {
+            notification.userInfo = [kNotificaObjectIdKey : urlString]
+        }
+
         notification.informativeText = message
         notification.actionButtonTitle = NSLocalizedString("Open Reviews", comment: "review.notification.openReviews")
         notification.hasActionButton = true
@@ -90,10 +96,12 @@ extension NotificationsHandler : NSUserNotificationCenterDelegate {
     }
     
     func userNotificationCenter(center: NSUserNotificationCenter, didActivateNotification notification: NSUserNotification) {
-        println("didActivateNotification \(notification)")  //this does not print
-
-        if let apId = notification.userInfo?["apId"] as? String {
-                ReviewWindowController.show(apId)
+        if let urlString = notification.userInfo?[kNotificaObjectIdKey] as? String {
+            if let url = NSURL(string: urlString) {
+                if let objectID = ReviewManager.managedObjectContext().persistentStoreCoordinator?.managedObjectIDForURIRepresentation(url) {
+                    ReviewWindowController.show(objectID)
+                }
+            }
         }
     }
 }

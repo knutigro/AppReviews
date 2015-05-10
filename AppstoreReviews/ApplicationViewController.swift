@@ -48,7 +48,7 @@ extension ApplicationViewController {
         if let applications = applications, let rowNumber = self.tableView?.selectedRow {
             if applications.count > rowNumber && rowNumber >= 0{
                 let application = applications[rowNumber]
-                ReviewWindowController.show(application.trackId)
+                ReviewWindowController.show(application.objectID)
             }
         }
     }
