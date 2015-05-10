@@ -18,8 +18,8 @@ class AutomaticUpdateTransformer : NSValueTransformer{
     override func transformedValue(value: AnyObject!) -> AnyObject? {
         if let on = value as? Bool {
             println("AutomaticUpdateTransformer %@", on ? "ON" : "Off")
-            return on ? NSOffState : NSOnState
-//            return on ? NSOnState : NSOffState
+//            return on ? NSOffState : NSOnState
+            return on ? NSOnState : NSOffState
 //            return on ? NSNumber(integer: NSOnState) :  NSNumber(integer: NSOffState)
         } else {
             return nil

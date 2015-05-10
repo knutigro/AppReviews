@@ -1085,7 +1085,7 @@
                                     <popUpButton key="view" verticalHuggingPriority="750" id="86s-19-3Op">
                                         <rect key="frame" x="0.0" y="14" width="38" height="28"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                        <popUpButtonCell key="cell" type="roundTextured" bezelStyle="texturedRounded" alignment="center" lineBreakMode="truncatingTail" state="on" borderStyle="border" imageScaling="proportionallyDown" inset="2" pullsDown="YES" arrowPosition="arrowAtCenter" id="QDp-ep-0Ia">
+                                        <popUpButtonCell key="cell" type="roundTextured" bezelStyle="texturedRounded" alignment="center" lineBreakMode="truncatingTail" state="on" borderStyle="border" imageScaling="proportionallyDown" inset="2" pullsDown="YES" arrowPosition="arrowAtCenter" selectedItem="g9R-Ib-VhM" id="QDp-ep-0Ia">
                                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                             <font key="font" metaFont="menu"/>
                                             <menu key="menu" id="hQD-RF-WYJ">
@@ -1098,15 +1098,10 @@
                                                     </menuItem>
                                                     <menuItem title="Export reviews..." id="f1n-ML-MFv"/>
                                                     <menuItem isSeparatorItem="YES" id="tzK-qR-fGi"/>
-                                                    <menuItem title="Refresh Automatically" state="on" id="g9R-Ib-VhM">
+                                                    <menuItem title="Refresh Automatically" state="mixed" id="g9R-Ib-VhM">
                                                         <modifierMask key="keyEquivalentModifierMask"/>
                                                         <connections>
-                                                            <binding destination="E8W-Gv-fjB" name="value" keyPath="application.settings.automaticUpdate" id="XVU-6G-ogI">
-                                                                <dictionary key="options">
-                                                                    <bool key="NSAllowsEditingMultipleValuesSelection" value="NO"/>
-                                                                    <string key="NSValueTransformerName">AutomaticUpdateTransformer</string>
-                                                                </dictionary>
-                                                            </binding>
+                                                            <action selector="automaticUpdateDidChangeState:" target="E8W-Gv-fjB" id="4T1-HM-vPR"/>
                                                         </connections>
                                                     </menuItem>
                                                     <menuItem title="Refresh" id="3if-UU-Y8u">
@@ -1130,11 +1125,13 @@
                         </toolbar>
                     </window>
                     <connections>
+                        <outlet property="automaticUpdate" destination="g9R-Ib-VhM" id="T9n-Xr-i2m"/>
                         <segue destination="2A9-CB-LU5" kind="relationship" relationship="window.shadowedContentViewController" id="IO4-GJ-PYu"/>
                     </connections>
                 </windowController>
                 <customObject id="9pG-Lf-0kW" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
                 <userDefaultsController id="P4z-GB-c1S"/>
+                <userDefaultsController id="8Rb-d3-ksg"/>
             </objects>
             <point key="canvasLocation" x="714" y="-102"/>
         </scene>

@@ -11,6 +11,7 @@ import AppKit
 class ReviewWindowController : NSWindowController {
     
     var managedObjectContext : NSManagedObjectContext!
+    @IBOutlet weak var automaticUpdate: NSMenuItem?
     
     var application : Application? {
         didSet {
@@ -19,6 +20,9 @@ class ReviewWindowController : NSWindowController {
             }
             if let reviewController = self.contentViewController as? ReviewSplitViewController {
                 reviewController.application = self.application
+            }
+            if let automaticUpdate = application?.settings.automaticUpdate {
+                self.automaticUpdate?.state = automaticUpdate ? NSOnState : NSOffState
             }
         }
     }
@@ -64,7 +68,20 @@ extension ReviewWindowController {
             ReviewManager.appUpdater().fetchReviewsForApplication(application.objectID)
         }
     }
-    
+
+    @IBAction func automaticUpdateDidChangeState(sender: AnyObject) {
+        if let menuItem = sender as? NSMenuItem, objectId = self.application?.objectID {
+            let newState = !Bool(menuItem.state)
+            menuItem.state = newState ? NSOnState : NSOffState;
+            DatabaseHandler.saveDataInContext({ (context) -> Void in
+                var error : NSError?
+                if let application = context.existingObjectWithID(objectId, error: &error) as? Application {
+                    application.settings.automaticUpdate = newState
+                }
+            })
+        }
+    }
+
     @IBAction func openInAppstore(objects:AnyObject?) {
         let itunesUrl = "http://itunes.apple.com/app/id" + (self.application?.trackId ?? "")
         if let url = NSURL(string: itunesUrl) {
