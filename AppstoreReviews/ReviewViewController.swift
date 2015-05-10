@@ -73,12 +73,14 @@ extension ReviewViewController {
         if self.tableView?.clickedRow > 0 && self.tableView?.clickedRow < self.reviewArrayController?.arrangedObjects.count {
             if let review = self.reviewArrayController?.arrangedObjects[self.tableView!.clickedRow] as? Review {
                 var savePanel = NSSavePanel()
+                savePanel.title = review.title
+                savePanel.nameFieldStringValue = review.title
                 savePanel.allowedFileTypes = [kUTTypeText]
                 let result = savePanel.runModal()
                 if result != NSFileHandlingPanelCancelButton {
                     if let url = savePanel.URL {
                         var error : NSError?
-                        review.toString().writeToURL(url, atomically: true, encoding: NSASCIIStringEncoding, error: &error)
+                        review.toString().writeToURL(url, atomically: true, encoding: NSUTF8StringEncoding, error: &error)
                     }
                 }
             }

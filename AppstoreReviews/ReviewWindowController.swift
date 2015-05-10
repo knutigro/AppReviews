@@ -89,4 +89,43 @@ extension ReviewWindowController {
             NSWorkspace.sharedWorkspace().openURL(url)
         }
     }
+    
+    @IBAction func exportReviewsClicked(sender: AnyObject) {
+        if let application = self.application {
+            
+            if let reviewController = self.contentViewController as? ReviewSplitViewController {
+                if let reviews = reviewController.reviewViewController?.reviewArrayController?.arrangedObjects as? [Review] {
+                  
+                    var string = ""
+                    
+                    for review in reviews {
+                        string += "\n\n"
+                        string += review.toString()
+                        string += "\n\n"
+                        string += "_________________________________"
+                    }
+                    
+                    var savePanel = NSSavePanel()
+                    savePanel.allowedFileTypes = [kUTTypeText]
+                    let result = savePanel.runModal()
+                    savePanel.title = application.trackName
+                    savePanel.nameFieldStringValue = application.trackName
+
+                    if result != NSFileHandlingPanelCancelButton {
+                        if let url = savePanel.URL {
+                            var error : NSError?
+                            string.writeToURL(url, atomically: true, encoding: NSUTF8StringEncoding, error: &error)
+                            
+                            if error != nil {
+                                var alert = NSAlert()
+                                alert.messageText = error?.localizedDescription
+                                alert.beginSheetModalForWindow(self.window!, completionHandler:nil)
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+
 }

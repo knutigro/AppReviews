@@ -1119,7 +1119,11 @@
                                                             <action selector="openInAppstore:" target="E8W-Gv-fjB" id="UXn-0T-f8W"/>
                                                         </connections>
                                                     </menuItem>
-                                                    <menuItem title="Export reviews..." id="f1n-ML-MFv"/>
+                                                    <menuItem title="Export reviews..." id="f1n-ML-MFv">
+                                                        <connections>
+                                                            <action selector="exportReviewsClicked:" target="E8W-Gv-fjB" id="Jup-9X-7qX"/>
+                                                        </connections>
+                                                    </menuItem>
                                                     <menuItem isSeparatorItem="YES" id="tzK-qR-fGi"/>
                                                     <menuItem title="Refresh Automatically" state="mixed" id="g9R-Ib-VhM">
                                                         <modifierMask key="keyEquivalentModifierMask"/>
