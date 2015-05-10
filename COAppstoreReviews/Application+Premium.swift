@@ -15,7 +15,7 @@ let isPremiumLimitationsActivated = true
 extension ApplicationUpdater {
     
     var canAddApplication : (result: Bool, description: String?) {
-       let  isPremiumUser = !InAppPurchaseManager.sharedInstance.isPremiumUser()
+       let  isPremiumUser = InAppPurchaseManager.sharedInstance.isPremiumUser()
         if isPremiumUser {
             return (true, nil)
         } else if isPremiumLimitationsActivated  && self.numberOfMonitoredApplications > 0 {

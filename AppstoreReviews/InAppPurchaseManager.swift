@@ -29,13 +29,13 @@ let kInAppPurchaseManagerTransactionSucceededNotification = "kInAppPurchaseManag
 
 let kInAppPurchaseManagerTransactionKey = "transaction"
 
-let kInAppPurchaseContentPremium = "premium"
-
 class InAppPurchaseManager : NSObject {
 
     var premiumUpgradeProduct : SKProduct?
-    var productsRequest : SKProductsRequest?
-    
+    var receipt : InAppPurchaseReceipt?
+
+    private var productsRequest : SKProductsRequest?
+
     class var sharedInstance: InAppPurchaseManager {
         struct Singleton {
             static let instance = InAppPurchaseManager()
@@ -58,6 +58,8 @@ class InAppPurchaseManager : NSObject {
     
     func updateUserWithItunesReceipt() {
         self.fetchItunesReceipt { (receipt, error) -> Void in
+
+            self.receipt = receipt
             
             if let receipt = receipt {
                 if let status = receipt.status {
@@ -124,32 +126,6 @@ class InAppPurchaseManager : NSObject {
     func canMakePurchases() -> Bool {
         return SKPaymentQueue.canMakePayments()
     }
-    
-    func purchasePremiumUpgrade() {
-        if let premiumProduct = self.premiumUpgradeProduct {
-            if let payment = SKPayment.paymentWithProduct(premiumProduct) as? SKPayment {
-                SKPaymentQueue.defaultQueue().addPayment(payment)
-            }
-        }
-    }
-    
-    func isPremiumUser() -> Bool {
-        return NSUserDefaults.isPremiumUser();
-    }
-    
-    func setPremiumUser(premium : Bool) {
-        if (premium != self.isPremiumUser()) {
-            NSUserDefaults.setPremiumUser(premium)
-        }
-    }
-
-    private func requestPremiumUpgradeProductData() {
-        var productID : NSSet = NSSet(object:kInAppPurchaseContentPremium);
-        self.productsRequest = SKProductsRequest(productIdentifiers: productID as Set<NSObject>)
-        self.productsRequest?.delegate = self
-        self.productsRequest?.start()
-    }
-    
     
     private func provideContent(productId : String) {
         if productId == kInAppPurchaseContentPremium {
@@ -261,4 +237,48 @@ extension SKProduct {
             return formattedString ?? ""
         }
     }
+}
+
+// MARK: - Premium
+
+let kInAppPurchaseContentPremium = "premium"
+
+extension InAppPurchaseManager {
+    
+    var premiumItem : InAppPurchaseItem? {
+        if let receipt = self.receipt {
+            for item in receipt.inAppPurchaseItems {
+                if item.productId == kInAppPurchaseContentPremium {
+                    return item
+                }
+            }
+        }
+        return nil
+    }
+
+    func purchasePremiumUpgrade() {
+        if let premiumProduct = self.premiumUpgradeProduct {
+            if let payment = SKPayment.paymentWithProduct(premiumProduct) as? SKPayment {
+                SKPaymentQueue.defaultQueue().addPayment(payment)
+            }
+        }
+    }
+    
+    func isPremiumUser() -> Bool {
+        return NSUserDefaults.isPremiumUser();
+    }
+    
+    func setPremiumUser(premium : Bool) {
+        if (premium != self.isPremiumUser()) {
+            NSUserDefaults.setPremiumUser(premium)
+        }
+    }
+    
+    private func requestPremiumUpgradeProductData() {
+        var productID : NSSet = NSSet(object:kInAppPurchaseContentPremium);
+        self.productsRequest = SKProductsRequest(productIdentifiers: productID as Set<NSObject>)
+        self.productsRequest?.delegate = self
+        self.productsRequest?.start()
+    }
+
 }

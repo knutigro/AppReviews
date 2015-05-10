@@ -17,9 +17,16 @@ class AboutViewController: NSViewController {
     var isPremium : Bool = false {
         didSet {
             if self.isPremium {
-                self.premiumButton?.hidden = true
-                let text = NSString(format: NSLocalizedString("Premium", comment: "about.premiumlabel.ispremium"), "") as! String
+                var text = NSString(format: NSLocalizedString("Premium Licence.", comment: "about.premiumlabel.ispremium"), "") as! String
+
+                if let premiumItem = InAppPurchaseManager.sharedInstance.premiumItem, let originalPurchaseDateMs = InAppPurchaseManager.sharedInstance.premiumItem?.originalPurchaseDateMs?.toInt() {
+                    let date = NSDate(timeIntervalSince1970: NSTimeInterval(originalPurchaseDateMs))
+                    var dateFormatter = NSDateFormatter()
+                    dateFormatter.dateStyle = .MediumStyle
+                    text = text.stringByAppendingFormat(NSLocalizedString(" (%@)", comment: "about.premiumlabel.ispremium"), dateFormatter.stringFromDate(date))
+                }
                 self.premiumLabel?.stringValue = text;
+                self.premiumButton?.hidden = true
             } else {
                 self.premiumButton?.hidden = false
                 
