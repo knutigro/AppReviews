@@ -88,6 +88,50 @@ class DatabaseHandler {
         
         return (one, two, three, four, five)
     }
+    
+    class func saveReviews(reviews : [JSON], applactionObjectId objectId : NSManagedObjectID) {
+        DatabaseHandler.saveDataInContext({ (context) -> Void in
+            
+            var error : NSError?
+            
+            if let application = context.existingObjectWithID(objectId, error: &error) as? Application {
+                
+                if error != nil {
+                    println(error)
+                }
+                
+                var updatedReviews = [Review]()
+                
+                for var index = 0; index < reviews.count; index++ {
+                    let entry = reviews[index]
+                    
+                    if entry.isReviewEntity, let apID = entry.reviewApID {
+                        var review : Review!
+                        
+                        if let newReview = Review.get(apID, context: context) {
+                            // Review allready exist in database
+                            review = newReview
+                        } else {
+                            // create new review
+                            review = Review.new(apID, context: context)
+                            application.settings.increaseNewReviews()
+                        }
+                        
+                        review.updateWithJSON(entry)
+                        review.country = ""
+                        review.updatedAt = NSDate()
+                        var reviews = application.mutableSetValueForKey("reviews")
+                        reviews.addObject(review)
+                        review.application = application
+                        updatedReviews.append(review)
+                    }
+                }
+                application.settings.updatedAt = NSDate()
+                application.settings.reviewsUpdatedAt = NSDate()
+                application.settings.nextUpdateAt = NSDate().dateByAddingTimeInterval(kDefaultReviewUpdateInterval)
+            }
+        })
+    }
 
     // MARK: - DB Handling
 

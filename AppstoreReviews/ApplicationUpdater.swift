@@ -101,58 +101,18 @@ class ApplicationUpdater {
             if error != nil {
                 println(error)
             }
+            let itunesService = ItunesService(apId: fetchApplication.trackId, storeId: nil)
             
-            ItunesService(apId: fetchApplication.trackId, storeId: nil).fetchReview() {  [weak self]
+            itunesService.fetchReviews(itunesService.url) {  [weak self]
                 (success: Bool, reviews: [JSON]?, error : NSError?) in
                 
-                let blockSuccess = success as Bool
-                let blockError = error
-                
-                DatabaseHandler.saveDataInContext({ (context) -> Void in
-                    
-                    var error : NSError?
-
-                    if let application = context.existingObjectWithID(objectId, error: &error) as? Application {
-                        
-                        if error != nil {
-                            println(error)
-                        }
-
-                        if let blockReviews = reviews {
-                            
-                            var updatedReviews = [Review]()
-                            
-                            for var index = 0; index < blockReviews.count; index++ {
-                                let entry = blockReviews[index]
-                                
-                                if entry.isReviewEntity, let apID = entry.reviewApID {
-                                    var review : Review!
-                                    
-                                    if let newReview = Review.get(apID, context: context) {
-                                        // Review allready exist in database
-                                        review = newReview
-                                    } else {
-                                        // create new review
-                                        review = Review.new(apID, context: context)
-                                        application.settings.increaseNewReviews()
-                                    }
-                                    
-                                    review.updateWithJSON(entry)
-                                    review.country = ""
-                                    review.updatedAt = NSDate()
-                                    var reviews = application.mutableSetValueForKey("reviews")
-                                    reviews.addObject(review)
-                                    review.application = application
-                                    updatedReviews.append(review)
-                                }
-                            }
-                            application.settings.updatedAt = NSDate()
-                            application.settings.reviewsUpdatedAt = NSDate()
-                            application.settings.nextUpdateAt = NSDate().dateByAddingTimeInterval(kDefaultReviewUpdateInterval)
-                            println("import reviews for \(application.trackName)")
-                        }
+                if let reviews = reviews {
+                    if reviews.count > 0 {
+                        println("Save " + String(reviews.count) +  " reviews for \(fetchApplication.trackName) -> \(reviews[0].reviewTitle)")
+                        DatabaseHandler.saveReviews(reviews, applactionObjectId: fetchApplication.objectID)
                     }
-                })
+                }
+                
             }
         }
     }

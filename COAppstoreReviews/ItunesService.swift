@@ -10,21 +10,25 @@ import Foundation
 import Alamofire
 import SwiftyJSON
 
+
+
 class ItunesService {
-    
+
+    var url : String {
+        return self.urlHandler.nextUrl ?? self.urlHandler.initialUrl
+    }
+
     let apId : String
     let storeId : String?
     var updated : NSDate?
-    var previousPage : String?
-    var nextPage : String?
-    var firstPage : String?
-    var lastPage : String?
+    let urlHandler : ItunesUrlHandler
     
     // MARK: - Init & teardown
 
     init(apId: String, storeId: String?) {
         self.apId = apId
         self.storeId = storeId
+        self.urlHandler = ItunesUrlHandler(apId: apId, storeId: storeId)
     }
     
     // MARK: - Update object
@@ -39,30 +43,15 @@ class ItunesService {
             }
         }
         
-        let linkArray = json["feed"]["link"].arrayValue
-        
-        for jsonLink in linkArray {
-            let attributes = jsonLink["attributes"]
-            if attributes["rel"].stringValue == "last" {
-                self.lastPage = attributes["href"].string
-            } else if attributes["rel"].stringValue == "first" {
-                self.firstPage = attributes["href"].string
-            } else if attributes["rel"].stringValue == "previous" {
-                self.previousPage = attributes["href"].string
-            } else if attributes["rel"].stringValue == "next" {
-                self.nextPage = attributes["href"].string
-            }
-        }
+        self.urlHandler.updateWithJSON(json["feed"]["link"].arrayValue)
     }
     
     // MARK: - Fetching
 
-    func fetchReview(completion: (success: Bool, reviews: [JSON]?, error : NSError?) -> Void) {
-        let storePath = storeId != nil ? ("/" + storeId!) : ""
-        var url = "https://itunes.apple.com" +  storePath + "/rss/customerreviews/id=" + self.apId + "/json"
+    func fetchReviews(url: String, completion: (success: Bool, reviews: [JSON]?, error : NSError?) -> Void) {
         
         Alamofire.request(.GET, url, parameters: nil)
-            .responseJSON { [weak self] (request, response, json, error) in
+            .responseJSON { (request, response, json, error) in
                 
                 if error != nil {
                     NSLog("Error: \(error)")
@@ -74,12 +63,15 @@ class ItunesService {
                     let reviews = json["feed"]["entry"].arrayValue
                     
                     println("found " + String(reviews.count) + " reviews. \(url)" )
-                    
-                    if let strongSelf = self {
-                        strongSelf.updateWithJSON(json)
-                    }
 
                     completion(success: true, reviews: reviews, error : nil)
+                    
+                    if let nextUrl = self.urlHandler.nextUrl {
+                        if reviews.count > 0 {
+                            self.updateWithJSON(json)
+                            self.fetchReviews(nextUrl, completion: completion)
+                        }
+                    }
                 }
         }
     }

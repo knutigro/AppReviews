@@ -50,7 +50,7 @@ final class ReviewManager {
     class func backgroundObjectContext() -> NSManagedObjectContext {
         var context =  ReviewManager.defaultManager.persistentStack.setupManagedObjectContextWithConcurrencyType(.PrivateQueueConcurrencyType)
         context.undoManager = nil
-
+        context.mergePolicy = NSMergePolicy(mergeType: NSMergePolicyType.OverwriteMergePolicyType)
         return context
     }
 
