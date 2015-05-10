@@ -44,4 +44,45 @@ extension ReviewViewController : NSTableViewDelegate {
         return height + 80
     }
 }
+
+// MARK: Actions
+
+extension ReviewViewController {
     
+    @IBAction func copyReviewToClipBoardClicked(menuItem : NSMenuItem) {
+        if self.tableView?.clickedRow > 0 && self.tableView?.clickedRow < self.reviewArrayController?.arrangedObjects.count {
+            if let review = self.reviewArrayController?.arrangedObjects[self.tableView!.clickedRow] as? Review {
+                var pasteBoard = NSPasteboard.generalPasteboard()
+                pasteBoard.clearContents()
+                pasteBoard.writeObjects([review.toString()])
+            }
+        }
+    }
+
+    @IBAction func openReviewClicked(menuItem : NSMenuItem) {
+        if self.tableView?.clickedRow > 0 && self.tableView?.clickedRow < self.reviewArrayController?.arrangedObjects.count {
+            if let review = self.reviewArrayController?.arrangedObjects[self.tableView!.clickedRow] as? Review {
+                if let url = NSURL(string: review.uri) {
+                    NSWorkspace.sharedWorkspace().openURL(url)
+                }
+            }
+        }
+    }
+
+    @IBAction func saveReviewClicked(menuItem : NSMenuItem) {
+        if self.tableView?.clickedRow > 0 && self.tableView?.clickedRow < self.reviewArrayController?.arrangedObjects.count {
+            if let review = self.reviewArrayController?.arrangedObjects[self.tableView!.clickedRow] as? Review {
+                var savePanel = NSSavePanel()
+                savePanel.allowedFileTypes = [kUTTypeText]
+                let result = savePanel.runModal()
+                if result != NSFileHandlingPanelCancelButton {
+                    if let url = savePanel.URL {
+                        var error : NSError?
+                        review.toString().writeToURL(url, atomically: true, encoding: NSASCIIStringEncoding, error: &error)
+                    }
+                }
+            }
+        }
+    }
+}
+

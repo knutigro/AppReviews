@@ -49,6 +49,7 @@
 		49C9CE691AFEB09B009D852D /* NSUserDefaults+Appreviews.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49C9CE681AFEB09B009D852D /* NSUserDefaults+Appreviews.swift */; };
 		49C9CE6B1AFEBC89009D852D /* Application+Premium.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49C9CE6A1AFEBC89009D852D /* Application+Premium.swift */; };
 		49C9CE6D1AFF86D7009D852D /* ItunesUrlHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49C9CE6C1AFF86D7009D852D /* ItunesUrlHandler.swift */; };
+		49C9CE6F1B000241009D852D /* Review+String.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49C9CE6E1B000241009D852D /* Review+String.swift */; };
 		49DAA2FE1AD80DBB002807A7 /* Application.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49DAA2FD1AD80DBB002807A7 /* Application.swift */; };
 		49EF51051AE1BC5900E5901C /* Timer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49EF51041AE1BC5900E5901C /* Timer.swift */; };
 		49EF51081AE1CE8B00E5901C /* ApplicationUpdater.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49EF51071AE1CE8B00E5901C /* ApplicationUpdater.swift */; };
@@ -121,6 +122,7 @@
 		49C9CE681AFEB09B009D852D /* NSUserDefaults+Appreviews.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSUserDefaults+Appreviews.swift"; sourceTree = "<group>"; };
 		49C9CE6A1AFEBC89009D852D /* Application+Premium.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Application+Premium.swift"; sourceTree = "<group>"; };
 		49C9CE6C1AFF86D7009D852D /* ItunesUrlHandler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ItunesUrlHandler.swift; sourceTree = "<group>"; };
+		49C9CE6E1B000241009D852D /* Review+String.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Review+String.swift"; sourceTree = "<group>"; };
 		49DAA2FD1AD80DBB002807A7 /* Application.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Application.swift; sourceTree = "<group>"; };
 		49EF51041AE1BC5900E5901C /* Timer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Timer.swift; sourceTree = "<group>"; };
 		49EF51071AE1CE8B00E5901C /* ApplicationUpdater.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ApplicationUpdater.swift; path = ../AppstoreReviews/ApplicationUpdater.swift; sourceTree = "<group>"; };
@@ -283,6 +285,7 @@
 				49A5C20D1AF686EC00B3BBC5 /* NSApplicationDelegate+Version.swift */,
 				49C9CE641AFE6C41009D852D /* NSColor+AppReviews.swift */,
 				49C9CE681AFEB09B009D852D /* NSUserDefaults+Appreviews.swift */,
+				49C9CE6E1B000241009D852D /* Review+String.swift */,
 			);
 			name = Categories;
 			path = ../COAppstoreReviews;
@@ -588,6 +591,7 @@
 				49F800EE1ADC6358004A1BF1 /* SearchViewController.swift in Sources */,
 				493FC5611AF81D220043304C /* SliceLayer.m in Sources */,
 				49ACB8681AD5E1730050C1B7 /* Review.swift in Sources */,
+				49C9CE6F1B000241009D852D /* Review+String.swift in Sources */,
 				49F800F31ADC7944004A1BF1 /* NSImageView+Networking.swift in Sources */,
 				49AAB8C11AE8518500B412A8 /* ReviewSplitViewController.swift in Sources */,
 			);

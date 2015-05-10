@@ -978,6 +978,7 @@
                                             <connections>
                                                 <binding destination="M7Y-IO-gaN" name="content" keyPath="arrangedObjects" id="31d-qb-TuY"/>
                                                 <outlet property="delegate" destination="XfG-lQ-9wD" id="vRZ-Sv-8Bs"/>
+                                                <outlet property="menu" destination="2Yu-5N-btV" id="m43-bw-HcP"/>
                                             </connections>
                                         </tableView>
                                     </subviews>
@@ -1019,6 +1020,28 @@
                     </connections>
                 </arrayController>
                 <userDefaultsController representsSharedInstance="YES" id="k2v-RE-iNo"/>
+                <menu id="2Yu-5N-btV">
+                    <items>
+                        <menuItem title="Open review in Itunes..." id="RIo-Ld-Lrp" userLabel="Open in Itunes...">
+                            <modifierMask key="keyEquivalentModifierMask"/>
+                            <connections>
+                                <action selector="openReviewClicked:" target="XfG-lQ-9wD" id="nwT-kC-2ji"/>
+                            </connections>
+                        </menuItem>
+                        <menuItem title="Copy to clipboard" id="IF9-s7-pCd">
+                            <modifierMask key="keyEquivalentModifierMask"/>
+                            <connections>
+                                <action selector="copyReviewToClipBoardClicked:" target="XfG-lQ-9wD" id="7Cf-TP-QOl"/>
+                            </connections>
+                        </menuItem>
+                        <menuItem title="Save review as..." id="coS-nj-CgC" userLabel="Save as...">
+                            <modifierMask key="keyEquivalentModifierMask"/>
+                            <connections>
+                                <action selector="saveReviewClicked:" target="XfG-lQ-9wD" id="qVA-bP-cGc"/>
+                            </connections>
+                        </menuItem>
+                    </items>
+                </menu>
             </objects>
             <point key="canvasLocation" x="1820" y="820"/>
         </scene>
