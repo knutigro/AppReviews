@@ -1085,7 +1085,7 @@
                                     <popUpButton key="view" verticalHuggingPriority="750" id="86s-19-3Op">
                                         <rect key="frame" x="0.0" y="14" width="38" height="28"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                        <popUpButtonCell key="cell" type="roundTextured" bezelStyle="texturedRounded" alignment="center" lineBreakMode="truncatingTail" state="on" borderStyle="border" imageScaling="proportionallyDown" inset="2" pullsDown="YES" arrowPosition="arrowAtCenter" selectedItem="g9R-Ib-VhM" id="QDp-ep-0Ia">
+                                        <popUpButtonCell key="cell" type="roundTextured" bezelStyle="texturedRounded" alignment="center" lineBreakMode="truncatingTail" state="on" borderStyle="border" imageScaling="proportionallyDown" inset="2" pullsDown="YES" arrowPosition="arrowAtCenter" id="QDp-ep-0Ia">
                                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                             <font key="font" metaFont="menu"/>
                                             <menu key="menu" id="hQD-RF-WYJ">
@@ -1671,14 +1671,6 @@
                                     <binding destination="tJy-Yh-9gh" name="target" keyPath="self" previousBinding="aEo-MI-pR4" id="l7Z-ZP-PP9">
                                         <dictionary key="options">
                                             <string key="NSSelectorName">removeButtonClicked:</string>
-                                        </dictionary>
-                                    </binding>
-                                    <binding destination="tJy-Yh-9gh" name="enabled" keyPath="self.tableView.selectedRow" id="mvh-Jr-qpc">
-                                        <dictionary key="options">
-                                            <integer key="NSMultipleValuesPlaceholder" value="1"/>
-                                            <integer key="NSNoSelectionPlaceholder" value="0"/>
-                                            <integer key="NSNotApplicablePlaceholder" value="0"/>
-                                            <integer key="NSNullPlaceholder" value="0"/>
                                         </dictionary>
                                     </binding>
                                 </connections>

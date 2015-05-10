@@ -15,15 +15,14 @@ class ReviewWindowController : NSWindowController {
     
     var application : Application? {
         didSet {
-            if let title = application?.trackName {
-                self.window?.title = title
-            }
-            if let reviewController = self.contentViewController as? ReviewSplitViewController {
-                reviewController.application = self.application
-            }
-            if let automaticUpdate = application?.settings.automaticUpdate {
-                self.automaticUpdate?.state = automaticUpdate ? NSOnState : NSOffState
-            }
+            if let application = self.application {
+                self.window?.title = application.trackName
+                self.automaticUpdate?.state = application.settings.automaticUpdate ? NSOnState : NSOffState
+                
+                if let reviewController = self.contentViewController as? ReviewSplitViewController {
+                    reviewController.application = self.application
+                }
+            } 
         }
     }
     
