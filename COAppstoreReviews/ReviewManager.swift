@@ -9,6 +9,8 @@
 import Foundation
 import AppKit
 
+let kSQLiteFileName = "db.sqlite2"
+
 final class ReviewManager {
 
     private var persistentStack : PersistentStack!
@@ -63,9 +65,11 @@ final class ReviewManager {
     }
     
     func storeURL() -> NSURL {
+        let appName = NSBundle.mainBundle().objectForInfoDictionaryKey("CFBundleName") as? String ?? "AppReviews"
         var error: NSError? = nil
-        let documentsDirectory = NSFileManager.defaultManager().URLForDirectory(.DocumentDirectory, inDomain: .UserDomainMask, appropriateForURL: nil, create: true, error: &error)
-        let url = documentsDirectory?.URLByAppendingPathComponent("db.sqlite")
+        let applicationSupportDirectory = NSFileManager.defaultManager().URLForDirectory(.ApplicationSupportDirectory, inDomain: .UserDomainMask, appropriateForURL: nil, create: true, error: &error)
+        let appdirectory = applicationSupportDirectory?.URLByAppendingPathComponent(appName, isDirectory: true)
+        let url = appdirectory?.URLByAppendingPathComponent(kSQLiteFileName)
         if error != nil {
             println("error storeURL: \(error?.localizedDescription)")
         }
