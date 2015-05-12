@@ -25,6 +25,14 @@ class ApplicationUpdater {
     
     init() {
         
+//        let persistenceStoreWillChhange = NSNotificationCenter.defaultCenter().addObserverForName(NSPersistentStoreCoordinatorStoresWillChangeNotification, object: nil, queue: nil) { [weak self] notification in
+//            self?.applications .removeAll(keepCapacity: true)
+//        }
+//        
+//        let persistenceStoreDidChange = NSNotificationCenter.defaultCenter().addObserverForName(NSPersistentStoreCoordinatorStoresDidChangeNotification, object: nil, queue: nil) { [weak self] notification in
+//            self?.updateMonitoredApplications()
+//        }
+        
         let applicationMonitor = NSNotificationCenter.defaultCenter().addObserverForName(kDidUpdateApplicationNotification, object: nil, queue: nil) {  [weak self] notification in
             if let strongSelf = self {
                 strongSelf.updateMonitoredApplications()
