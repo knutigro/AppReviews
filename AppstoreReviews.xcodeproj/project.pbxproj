@@ -363,9 +363,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		49ACB83A1AD5CAA00050C1B7 /* AppstoreReviews */ = {
+		49ACB83A1AD5CAA00050C1B7 /* Appstore Reviews */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 49ACB85A1AD5CAA00050C1B7 /* Build configuration list for PBXNativeTarget "AppstoreReviews" */;
+			buildConfigurationList = 49ACB85A1AD5CAA00050C1B7 /* Build configuration list for PBXNativeTarget "Appstore Reviews" */;
 			buildPhases = (
 				388E5D968C8D506C2180B60B /* Check Pods Manifest.lock */,
 				49ACB8371AD5CAA00050C1B7 /* Sources */,
@@ -378,7 +378,7 @@
 			);
 			dependencies = (
 			);
-			name = AppstoreReviews;
+			name = "Appstore Reviews";
 			productName = AppstoreReviews;
 			productReference = 49ACB83B1AD5CAA00050C1B7 /* AppstoreReviews.app */;
 			productType = "com.apple.product-type.application";
@@ -444,7 +444,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				49ACB83A1AD5CAA00050C1B7 /* AppstoreReviews */,
+				49ACB83A1AD5CAA00050C1B7 /* Appstore Reviews */,
 				49ACB84F1AD5CAA00050C1B7 /* AppstoreReviewsTests */,
 			);
 		};
@@ -633,7 +633,7 @@
 /* Begin PBXTargetDependency section */
 		49ACB8521AD5CAA00050C1B7 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 49ACB83A1AD5CAA00050C1B7 /* AppstoreReviews */;
+			target = 49ACB83A1AD5CAA00050C1B7 /* Appstore Reviews */;
 			targetProxy = 49ACB8511AD5CAA00050C1B7 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
@@ -812,7 +812,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		49ACB85A1AD5CAA00050C1B7 /* Build configuration list for PBXNativeTarget "AppstoreReviews" */ = {
+		49ACB85A1AD5CAA00050C1B7 /* Build configuration list for PBXNativeTarget "Appstore Reviews" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				49ACB85B1AD5CAA00050C1B7 /* Debug */,
