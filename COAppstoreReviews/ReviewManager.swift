@@ -9,7 +9,7 @@
 import Foundation
 import AppKit
 
-let kSQLiteFileName = "db.sqlite2"
+let kSQLiteFileName = "db.sqlite4"
 
 final class ReviewManager {
 

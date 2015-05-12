@@ -16,7 +16,7 @@ let kDidUpdateReviewsNotification             = "kDidUpdateReviewsNotification"
 
 class PersistentStack {
     
-    private var iCloudSync = false
+    private var iCloudSync = true
 
     var managedObjectContext : NSManagedObjectContext!
     var modelURL : NSURL
@@ -45,24 +45,14 @@ class PersistentStack {
     
     func addNotficationsForPersistentStack() {
         let persistenceStoreDidImport = NSNotificationCenter.defaultCenter().addObserverForName(NSPersistentStoreDidImportUbiquitousContentChangesNotification, object: nil, queue: nil) { [weak self] notification in
-            println("NSPersistentStoreDidImportUbiquitousContentChangesNotification")
             self?.managedObjectDidSave(notification)
         }
         
         let persistenceStoreDidChange = NSNotificationCenter.defaultCenter().addObserverForName(NSPersistentStoreCoordinatorStoresDidChangeNotification, object: nil, queue: nil) { [weak self] notification in
-            println("NSPersistentStoreCoordinatorStoresDidChangeNotification")
-            
             self?.persistenceStoreWillChange = false
-            
-            self?.managedObjectContext.performBlock({ () -> Void in
-                self?.managedObjectContext.reset()
-            })
         }
         
         let persistenceStoreWillChangeNot = NSNotificationCenter.defaultCenter().addObserverForName(NSPersistentStoreCoordinatorStoresWillChangeNotification, object: nil, queue: NSOperationQueue.mainQueue()) { [weak self] notification in
-            
-            println("NSPersistentStoreCoordinatorStoresWillChangeNotification")
-            
             self?.managedObjectContext.performBlock({ () -> Void in
                 
                 if (self?.managedObjectContext.hasChanges != nil) {
