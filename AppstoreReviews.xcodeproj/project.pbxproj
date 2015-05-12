@@ -107,7 +107,7 @@
 		49AAB8C01AE8518500B412A8 /* ReviewSplitViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReviewSplitViewController.swift; sourceTree = "<group>"; };
 		49AAB8C21AE854EA00B412A8 /* ReviewMenuViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReviewMenuViewController.swift; sourceTree = "<group>"; };
 		49AAB8D61AE9AC9C00B412A8 /* String+Size.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "String+Size.swift"; sourceTree = "<group>"; };
-		49ACB83B1AD5CAA00050C1B7 /* AppstoreReviews.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AppstoreReviews.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		49ACB83B1AD5CAA00050C1B7 /* Appstore Reviews.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Appstore Reviews.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		49ACB83F1AD5CAA00050C1B7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		49ACB8401AD5CAA00050C1B7 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		49ACB8421AD5CAA00050C1B7 /* ReviewViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewViewController.swift; sourceTree = "<group>"; };
@@ -204,7 +204,7 @@
 		49ACB83C1AD5CAA00050C1B7 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				49ACB83B1AD5CAA00050C1B7 /* AppstoreReviews.app */,
+				49ACB83B1AD5CAA00050C1B7 /* Appstore Reviews.app */,
 				49ACB8501AD5CAA00050C1B7 /* AppstoreReviewsTests.xctest */,
 			);
 			name = Products;
@@ -380,7 +380,7 @@
 			);
 			name = "Appstore Reviews";
 			productName = AppstoreReviews;
-			productReference = 49ACB83B1AD5CAA00050C1B7 /* AppstoreReviews.app */;
+			productReference = 49ACB83B1AD5CAA00050C1B7 /* Appstore Reviews.app */;
 			productType = "com.apple.product-type.application";
 		};
 		49ACB84F1AD5CAA00050C1B7 /* AppstoreReviewsTests */ = {
@@ -418,6 +418,9 @@
 						DevelopmentTeam = 2PRW676NCQ;
 						SystemCapabilities = {
 							com.apple.InAppPurchase = {
+								enabled = 1;
+							};
+							com.apple.Sandbox = {
 								enabled = 1;
 							};
 							com.apple.iCloud = {

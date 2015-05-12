@@ -15,6 +15,9 @@ class AboutViewController: NSViewController {
     @IBOutlet weak var premiumButton: NSButton?
     @IBOutlet weak var restorePurchaseButton: NSButton?
     
+//    - Notifications for an unlimited number of apps.
+//    - Backup your reviews.
+
     var isPremium : Bool = false {
         didSet {
             if self.isPremium {
