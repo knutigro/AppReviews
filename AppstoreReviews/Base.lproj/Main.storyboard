@@ -1532,6 +1532,7 @@
                                     <constraint firstItem="L33-iD-baz" firstAttribute="leading" secondItem="fpg-Vy-Gnp" secondAttribute="leading" constant="5" id="lur-B4-EyH"/>
                                     <constraint firstAttribute="trailing" secondItem="duH-jh-Fdz" secondAttribute="trailing" constant="5" id="nL6-9x-CA5"/>
                                     <constraint firstAttribute="trailing" secondItem="U5V-Jf-Pnn" secondAttribute="trailing" constant="5" id="q58-sz-STV"/>
+                                    <constraint firstItem="ecL-sY-6RS" firstAttribute="top" relation="greaterThanOrEqual" secondItem="L33-iD-baz" secondAttribute="bottom" constant="10" id="rZp-y2-vEB"/>
                                 </constraints>
                             </customView>
                         </subviews>
