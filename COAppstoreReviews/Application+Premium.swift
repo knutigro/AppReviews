@@ -8,14 +8,14 @@
 
 import Foundation
 
-let isPremiumLimitationsActivated = true
+let isPremiumLimitationsActivated = false
 
 // MARK: Extensions for PremiumContent
 
 extension ApplicationUpdater {
     
     var canAddApplication : (result: Bool, description: String?) {
-       let  isPremiumUser = InAppPurchaseManager.sharedInstance.isPremiumUser()
+       let isPremiumUser = InAppPurchaseManager.sharedInstance.isPremiumUser()
         if isPremiumUser {
             return (true, nil)
         } else if isPremiumLimitationsActivated  && self.numberOfMonitoredApplications > 0 {

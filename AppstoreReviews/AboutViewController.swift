@@ -18,13 +18,12 @@ class AboutViewController: NSViewController {
     var isPremium : Bool = false {
         didSet {
             if self.isPremium {
-                var text = NSString(format: NSLocalizedString("Premium Licence.", comment: "about.premiumlabel.ispremium"), "") as! String
+                var text = NSString(format: NSLocalizedString("Thank you for your support! \nPremium Licence.", comment: "about.premiumlabel.ispremium"), "") as! String
 
                 if let premiumItem = InAppPurchaseManager.sharedInstance.premiumItem, let originalPurchaseDateMs = InAppPurchaseManager.sharedInstance.premiumItem?.originalPurchaseDateMs?.toInt() {
                     let date = NSDate(timeIntervalSince1970: NSTimeInterval(originalPurchaseDateMs))
                     var dateFormatter = NSDateFormatter()
                     dateFormatter.dateStyle = .MediumStyle
-//                    text = text.stringByAppendingFormat(NSLocalizedString(" (%@)", comment: "about.premiumlabel.ispremium"), dateFormatter.stringFromDate(date))
                 }
                 self.premiumLabel?.stringValue = text;
                 self.premiumButton?.hidden = true
@@ -34,7 +33,8 @@ class AboutViewController: NSViewController {
                 self.restorePurchaseButton?.hidden = false
                 
                 if let premium = InAppPurchaseManager.sharedInstance.premiumUpgradeProduct {
-                    let text = NSString(format: NSLocalizedString("Buy %@ for %@ and you will get:\n\n%@", comment: "about.premiumlabel.ispremium"), premium.localizedTitle, premium.localizedPrice, premium.localizedDescription) as! String
+                    let text = NSLocalizedString("Appstore Reviews is free to use as long as we are in Beta. \n\nIf you still want to support the development, you can do this by buying the Premium License.", comment: "about.premiumlabel.ispremium")
+//                    let text = NSString(format: NSLocalizedString("Buy %@ for %@ and you will get:\n\n%@", comment: "about.premiumlabel.ispremium"), premium.localizedTitle, premium.localizedPrice, premium.localizedDescription) as! String
                     self.premiumLabel?.stringValue = text;
                 } else {
                     self.premiumLabel?.stringValue = "";
