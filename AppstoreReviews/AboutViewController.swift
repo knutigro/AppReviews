@@ -13,6 +13,7 @@ class AboutViewController: NSViewController {
     @IBOutlet weak var versionLabel: NSTextField?
     @IBOutlet weak var premiumLabel: NSTextField?
     @IBOutlet weak var premiumButton: NSButton?
+    @IBOutlet weak var restorePurchaseButton: NSButton?
     
     var isPremium : Bool = false {
         didSet {
@@ -23,12 +24,14 @@ class AboutViewController: NSViewController {
                     let date = NSDate(timeIntervalSince1970: NSTimeInterval(originalPurchaseDateMs))
                     var dateFormatter = NSDateFormatter()
                     dateFormatter.dateStyle = .MediumStyle
-                    text = text.stringByAppendingFormat(NSLocalizedString(" (%@)", comment: "about.premiumlabel.ispremium"), dateFormatter.stringFromDate(date))
+//                    text = text.stringByAppendingFormat(NSLocalizedString(" (%@)", comment: "about.premiumlabel.ispremium"), dateFormatter.stringFromDate(date))
                 }
                 self.premiumLabel?.stringValue = text;
                 self.premiumButton?.hidden = true
+                self.restorePurchaseButton?.hidden = true
             } else {
                 self.premiumButton?.hidden = false
+                self.restorePurchaseButton?.hidden = false
                 
                 if let premium = InAppPurchaseManager.sharedInstance.premiumUpgradeProduct {
                     let text = NSString(format: NSLocalizedString("Buy %@ for %@ and you will get:\n\n%@", comment: "about.premiumlabel.ispremium"), premium.localizedTitle, premium.localizedPrice, premium.localizedDescription) as! String
@@ -75,5 +78,11 @@ class AboutViewController: NSViewController {
     @IBAction func premiumButtonClicked(objects:AnyObject?) {
         InAppPurchaseManager.sharedInstance.purchasePremiumUpgrade()
     }
+
+    @IBAction func restoreButtonClicked(objects:AnyObject?) {
+        InAppPurchaseManager.sharedInstance.restoreCompletedTransactions()
+    }
+
+    
 }
 

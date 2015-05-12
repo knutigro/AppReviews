@@ -67,6 +67,7 @@ class InAppPurchaseManager : NSObject {
                     case .Valid:
                         for purchase in receipt.inAppPurchaseItems {
                             if purchase.productId == kInAppPurchaseContentPremium {
+                                println("Has Premium Receipt")
                                 self.setPremiumUser(true)
                             }
                         }
@@ -83,6 +84,7 @@ class InAppPurchaseManager : NSObject {
                 if let error = error {
                     if error.code == InAppPurchaseManagerErrorCode.ReceiptDontExist.rawValue {
                         self.setPremiumUser(false)
+                        println("Has No Receipts")
                     }
                     
                 }
@@ -123,6 +125,10 @@ class InAppPurchaseManager : NSObject {
         }
     }
     
+    func restoreCompletedTransactions() {
+        SKPaymentQueue.defaultQueue().restoreCompletedTransactions()
+    }
+
     func canMakePurchases() -> Bool {
         return SKPaymentQueue.canMakePayments()
     }
@@ -263,7 +269,7 @@ extension InAppPurchaseManager {
             }
         }
     }
-    
+
     func isPremiumUser() -> Bool {
         return NSUserDefaults.isPremiumUser();
     }
