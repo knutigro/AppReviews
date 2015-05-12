@@ -47,28 +47,26 @@ class NotificationsHandler : NSObject {
     func newReviewsNotification(application: Application, reviews : [Review]) {
         assert(reviews.count > 0, "Reviews should be greater than 0")
         if reviews.count == 0 {  return }
-        
-        let firstReview = reviews[0]
-        
-        var totalRating = 0
-        for review in reviews {
-            totalRating += review.rating.integerValue
+
+        var stars = ""
+        if reviews.count > 1 {
+            var totalRating = 0
+            for review in reviews {
+                totalRating += review.rating.integerValue
+            }
+            stars = Int(totalRating / reviews.count).toEmojiStars()
+        } else {
+            stars = reviews[0].rating.integerValue.toEmojiStars()
         }
-        let averageRating = Float(totalRating / reviews.count)
 
-        var title = application.trackName
-        var plural =  (reviews.count > 1 ? "s" : "")
-
-        let ratingMessage = reviews.count > 1 ? (NSString(format: NSLocalizedString("%.1f (avg)", comment: "review.notification.reviewstext2"), averageRating)) as String : (NSString(format: "%li", firstReview.rating.integerValue)) as String
-
-        var message = (NSString(format: NSLocalizedString("%@ new review%@. Rating: %@", comment: "review.notification.reviewstext"), String(reviews.count), plural, ratingMessage)) as String
+        var message = (NSString(format: NSLocalizedString("%@ new review%@. %@", comment: "review.notification.reviewstext"), String(reviews.count), (reviews.count > 1 ? "s" : ""), stars)) as String
         
-        if (!firstReview.title.isEmpty) {
-            message = message + "\n" + firstReview.title
+        if (!reviews[0].title.isEmpty) {
+            message = message + "\n" + reviews[0].title
         }
         
         var notification:NSUserNotification = NSUserNotification()
-        notification.title = title
+        notification.title = application.trackName
 
         if let urlString = application.objectID.URIRepresentation().absoluteString {
             notification.userInfo = [kNotificaObjectIdKey : urlString]

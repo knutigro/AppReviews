@@ -51,6 +51,8 @@
 		49C9CE6D1AFF86D7009D852D /* ItunesUrlHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49C9CE6C1AFF86D7009D852D /* ItunesUrlHandler.swift */; };
 		49C9CE6F1B000241009D852D /* Review+String.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49C9CE6E1B000241009D852D /* Review+String.swift */; };
 		49C9CE711B000C65009D852D /* Application+String.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49C9CE701B000C65009D852D /* Application+String.swift */; };
+		49C9CE841B0140F5009D852D /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 49C9CE831B0140F5009D852D /* StoreKit.framework */; };
+		49C9CE861B0161BB009D852D /* String+Emoji.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49C9CE851B0161BB009D852D /* String+Emoji.swift */; };
 		49DAA2FE1AD80DBB002807A7 /* Application.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49DAA2FD1AD80DBB002807A7 /* Application.swift */; };
 		49EF51051AE1BC5900E5901C /* Timer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49EF51041AE1BC5900E5901C /* Timer.swift */; };
 		49EF51081AE1CE8B00E5901C /* ApplicationUpdater.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49EF51071AE1CE8B00E5901C /* ApplicationUpdater.swift */; };
@@ -125,6 +127,9 @@
 		49C9CE6C1AFF86D7009D852D /* ItunesUrlHandler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ItunesUrlHandler.swift; sourceTree = "<group>"; };
 		49C9CE6E1B000241009D852D /* Review+String.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Review+String.swift"; sourceTree = "<group>"; };
 		49C9CE701B000C65009D852D /* Application+String.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Application+String.swift"; sourceTree = "<group>"; };
+		49C9CE821B01104C009D852D /* AppstoreReviews.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = AppstoreReviews.entitlements; sourceTree = "<group>"; };
+		49C9CE831B0140F5009D852D /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
+		49C9CE851B0161BB009D852D /* String+Emoji.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "String+Emoji.swift"; sourceTree = "<group>"; };
 		49DAA2FD1AD80DBB002807A7 /* Application.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Application.swift; sourceTree = "<group>"; };
 		49EF51041AE1BC5900E5901C /* Timer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Timer.swift; sourceTree = "<group>"; };
 		49EF51071AE1CE8B00E5901C /* ApplicationUpdater.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ApplicationUpdater.swift; path = ../AppstoreReviews/ApplicationUpdater.swift; sourceTree = "<group>"; };
@@ -145,6 +150,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				67821E35AE9AB2E4F46170D4 /* Pods.framework in Frameworks */,
+				49C9CE841B0140F5009D852D /* StoreKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -207,6 +213,7 @@
 		49ACB83D1AD5CAA00050C1B7 /* AppstoreReviews */ = {
 			isa = PBXGroup;
 			children = (
+				49C9CE821B01104C009D852D /* AppstoreReviews.entitlements */,
 				49ACB8641AD5E00F0050C1B7 /* Review Data Handling */,
 				49F800F51ADC840C004A1BF1 /* Window & ViewControllers */,
 				49F800F41ADC83EC004A1BF1 /* Views and Cells */,
@@ -279,6 +286,7 @@
 			isa = PBXGroup;
 			children = (
 				496522A31AE45C44004C126C /* String+AppVersion.swift */,
+				49C9CE851B0161BB009D852D /* String+Emoji.swift */,
 				49C9CE6A1AFEBC89009D852D /* Application+Premium.swift */,
 				49F800F21ADC7944004A1BF1 /* NSImageView+Networking.swift */,
 				496522A11AE31ED1004C126C /* Array+Utils.swift */,
@@ -337,6 +345,7 @@
 		7147F03F6DDA32E9CC0315BF /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				49C9CE831B0140F5009D852D /* StoreKit.framework */,
 				5083B9909F1AD9259C461DBD /* Pods.framework */,
 			);
 			name = Frameworks;
@@ -407,6 +416,14 @@
 					49ACB83A1AD5CAA00050C1B7 = {
 						CreatedOnToolsVersion = 6.2;
 						DevelopmentTeam = 2PRW676NCQ;
+						SystemCapabilities = {
+							com.apple.InAppPurchase = {
+								enabled = 1;
+							};
+							com.apple.iCloud = {
+								enabled = 1;
+							};
+						};
 					};
 					49ACB84F1AD5CAA00050C1B7 = {
 						CreatedOnToolsVersion = 6.2;
@@ -556,6 +573,7 @@
 				49C9CE711B000C65009D852D /* Application+String.swift in Sources */,
 				49997B7C1ADDB3F000B56590 /* TableImageCellTransformer.swift in Sources */,
 				49DAA2FE1AD80DBB002807A7 /* Application.swift in Sources */,
+				49C9CE861B0161BB009D852D /* String+Emoji.swift in Sources */,
 				49C9CE671AFE9A95009D852D /* InAppPurchaseReceipt.swift in Sources */,
 				49A5C20A1AF65E8500B3BBC5 /* InAppPurchaseManager.swift in Sources */,
 				49F800F01ADC674B004A1BF1 /* ApplicationCellView.swift in Sources */,
@@ -714,13 +732,15 @@
 			baseConfigurationReference = 8E9E3A98AF3DC476EF9A0809 /* Pods.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = AppstoreReviews/AppstoreReviews.entitlements;
 				CODE_SIGN_IDENTITY = "Mac Developer";
+				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Mac Developer";
 				COMBINE_HIDPI_IMAGES = YES;
 				INFOPLIST_FILE = AppstoreReviews/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
 				OTHER_SWIFT_FLAGS = "$(inherited) \"-D\" \"COCOAPODS\" \"-D\" \"DEBUG\"";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "a2ba7700-279a-4659-a69d-7551135a97ac";
+				PROVISIONING_PROFILE = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "AppstoreReviews/Objective-C-BridgingHeader.h";
 			};
 			name = Debug;
@@ -730,12 +750,14 @@
 			baseConfigurationReference = F9CE0DF35CA051BD774393CD /* Pods.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = AppstoreReviews/AppstoreReviews.entitlements;
 				CODE_SIGN_IDENTITY = "Mac Developer";
+				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Mac Developer";
 				COMBINE_HIDPI_IMAGES = YES;
 				INFOPLIST_FILE = AppstoreReviews/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "a2ba7700-279a-4659-a69d-7551135a97ac";
+				PROVISIONING_PROFILE = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "AppstoreReviews/Objective-C-BridgingHeader.h";
 			};
 			name = Release;
