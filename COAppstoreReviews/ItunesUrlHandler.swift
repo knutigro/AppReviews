@@ -35,7 +35,6 @@ class ItunesPage {
                     self.nextUrl = nextUrl.url
                 }
             }
-            println("Init new page " + url + "  page \(page) NEXtURl \(nextUrl)");
         }
     }
 

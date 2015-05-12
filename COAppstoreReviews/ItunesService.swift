@@ -62,8 +62,6 @@ class ItunesService {
                     var json = JSON(json!)
                     let reviews = json["feed"]["entry"].arrayValue
                     
-                    println("found " + String(reviews.count) + " reviews. \(url)" )
-
                     completion(success: true, reviews: reviews, error : nil)
                     
                     if let nextUrl = self.urlHandler.nextUrl {
@@ -92,7 +90,6 @@ class ItunesService {
                 } else {
                     var json = JSON(json!)
                     completion(success: true, applications: json["results"], error : nil)
-                    println("found " + name + ". \(url)" )
                 }
         }
     }

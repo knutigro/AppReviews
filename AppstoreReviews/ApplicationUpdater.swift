@@ -53,7 +53,6 @@ class ApplicationUpdater {
 
         self.timer = Timer.repeatEvery(kTimerInterval) { [weak self] inTimer in
             if let strongSelf = self {
-                println("timer click \(NSDate())")
                 strongSelf.updateReviewsForAllApplications()
             }
         }
@@ -116,7 +115,6 @@ class ApplicationUpdater {
                 
                 if let reviews = reviews {
                     if reviews.count > 0 {
-                        println("Save " + String(reviews.count) +  " reviews for \(fetchApplication.trackName) -> \(reviews[0].reviewTitle)")
                         DatabaseHandler.saveReviews(reviews, applactionObjectId: fetchApplication.objectID)
                     }
                 }

@@ -67,7 +67,6 @@ class InAppPurchaseManager : NSObject {
                     case .Valid:
                         for purchase in receipt.inAppPurchaseItems {
                             if purchase.productId == kInAppPurchaseContentPremium {
-                                println("Has Premium Receipt")
                                 self.setPremiumUser(true)
                             }
                         }
@@ -84,7 +83,6 @@ class InAppPurchaseManager : NSObject {
                 if let error = error {
                     if error.code == InAppPurchaseManagerErrorCode.ReceiptDontExist.rawValue {
                         self.setPremiumUser(false)
-                        println("Has No Receipts")
                     }
                     
                 }
@@ -182,15 +180,15 @@ extension InAppPurchaseManager : SKProductsRequestDelegate {
             if let skProduct = product as? SKProduct {
                 if skProduct.productIdentifier == kInAppPurchaseContentPremium {
                     self.premiumUpgradeProduct = skProduct
-                    println("In app Phurchase: " + skProduct.localizedTitle)
-                    println(skProduct.localizedDescription)
-                    println("Price \(skProduct.price)")
+//                    println("In app Phurchase: " + skProduct.localizedTitle)
+//                    println(skProduct.localizedDescription)
+//                    println("Price \(skProduct.price)")
                 }
             }
         }
         
         for invalidProductId in invalidproducts {
-            println("Invalid: \(invalidProductId)")
+//            println("Invalid: \(invalidProductId)")
         }
         
         NSNotificationCenter.defaultCenter().postNotificationName(kInAppPurchaseManagerProductsFetchedNotification, object: self)
