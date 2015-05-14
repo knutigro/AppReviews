@@ -1,6 +1,6 @@
 //
 //  PersistentStack.swift
-//  AppstoreReviews
+//  App Reviews
 //
 //  Created by Knut Inge Grosland on 2015-04-09.
 //  Copyright (c) 2015 Cocmoc. All rights reserved.
@@ -169,7 +169,7 @@ class PersistentStack {
 
         // Enable iCloudSync
         if (self.iCloudSync) {
-            storeOptions = [NSPersistentStoreUbiquitousContentNameKey: "AppstoreReviews"]
+            storeOptions = [NSPersistentStoreUbiquitousContentNameKey: "AppReviews"]
         }
         
         if let managedObjectModel = self.managedObjectModel() {

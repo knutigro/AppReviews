@@ -1,6 +1,6 @@
 source 'https://github.com/CocoaPods/Specs.git'
 
-link_with 'AppstoreReviews', 'AppstoreReviewsTests'
+link_with 'App Reviews', 'App ReviewsTests'
 
 platform :osx, '10.10'
 

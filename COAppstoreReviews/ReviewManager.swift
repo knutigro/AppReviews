@@ -1,6 +1,6 @@
 //
 //  COReviewController.swift
-//  AppstoreReviews
+//  App Reviews
 //
 //  Created by Knut Inge Grosland on 2015-04-08.
 //  Copyright (c) 2015 Cocmoc. All rights reserved.
@@ -78,6 +78,6 @@ final class ReviewManager {
     }
     
     func modelURL() -> NSURL {
-        return NSBundle.mainBundle().URLForResource("AppstoreReviews", withExtension: "momd")!
+        return NSBundle.mainBundle().URLForResource("AppReviews", withExtension: "momd")!
     }
 }

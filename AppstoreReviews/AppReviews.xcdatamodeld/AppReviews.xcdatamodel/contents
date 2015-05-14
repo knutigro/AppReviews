@@ -55,7 +55,7 @@
     </entity>
     <elements>
         <element name="Application" positionX="-63" positionY="54" width="128" height="450"/>
-        <element name="Review" positionX="-324" positionY="26" width="128" height="238"/>
         <element name="ApplicationSettings" positionX="-189" positionY="180" width="128" height="150"/>
+        <element name="Review" positionX="-324" positionY="26" width="128" height="238"/>
     </elements>
 </model>

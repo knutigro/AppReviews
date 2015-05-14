@@ -1,6 +1,6 @@
 //
 //  Application+String.swift
-//  AppstoreReviews
+//  App Reviews
 //
 //  Created by Knut Inge Grosland on 2015-05-11.
 //  Copyright (c) 2015 Cocmoc. All rights reserved.

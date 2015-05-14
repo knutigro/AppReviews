@@ -1,6 +1,6 @@
 //
 //  ReviewMenuViewController.swift
-//  AppstoreReviews
+//  App Reviews
 //
 //  Created by Knut Inge Grosland on 2015-04-22.
 //  Copyright (c) 2015 Cocmoc. All rights reserved.
