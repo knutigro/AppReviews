@@ -87,6 +87,7 @@
 		493FC55B1AF81D220043304C /* SliceLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SliceLayer.h; sourceTree = "<group>"; };
 		493FC55C1AF81D220043304C /* SliceLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SliceLayer.m; sourceTree = "<group>"; };
 		493FC5661AF820860043304C /* Objective-C-BridgingHeader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Objective-C-BridgingHeader.h"; sourceTree = "<group>"; };
+		495E80751B055B7700D0AFC0 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		496522A11AE31ED1004C126C /* Array+Utils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Array+Utils.swift"; sourceTree = "<group>"; };
 		496522A31AE45C44004C126C /* String+AppVersion.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "String+AppVersion.swift"; sourceTree = "<group>"; };
 		497424091AF55023004A65A8 /* NotificationsHandler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NotificationsHandler.swift; sourceTree = "<group>"; };
@@ -193,6 +194,7 @@
 		49ACB8321AD5CAA00050C1B7 = {
 			isa = PBXGroup;
 			children = (
+				495E80751B055B7700D0AFC0 /* README.md */,
 				49ACB83D1AD5CAA00050C1B7 /* AppstoreReviews */,
 				49ACB8531AD5CAA00050C1B7 /* AppstoreReviewsTests */,
 				49ACB83C1AD5CAA00050C1B7 /* Products */,
