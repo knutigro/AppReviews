@@ -87,7 +87,6 @@
 		493FC55B1AF81D220043304C /* SliceLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SliceLayer.h; sourceTree = "<group>"; };
 		493FC55C1AF81D220043304C /* SliceLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SliceLayer.m; sourceTree = "<group>"; };
 		493FC5661AF820860043304C /* Objective-C-BridgingHeader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Objective-C-BridgingHeader.h"; sourceTree = "<group>"; };
-		495E80741B051EC100D0AFC0 /* App Reviewsa copy-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = "App Reviewsa copy-Info.plist"; path = "/Users/knutinge/Documents/SourceCode/Cocoa/AppstoreReviews/App Reviewsa copy-Info.plist"; sourceTree = "<absolute>"; };
 		496522A11AE31ED1004C126C /* Array+Utils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Array+Utils.swift"; sourceTree = "<group>"; };
 		496522A31AE45C44004C126C /* String+AppVersion.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "String+AppVersion.swift"; sourceTree = "<group>"; };
 		497424091AF55023004A65A8 /* NotificationsHandler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NotificationsHandler.swift; sourceTree = "<group>"; };
@@ -199,7 +198,6 @@
 				49ACB83C1AD5CAA00050C1B7 /* Products */,
 				73449AF8DC9E47948900E43D /* Pods */,
 				7147F03F6DDA32E9CC0315BF /* Frameworks */,
-				495E80741B051EC100D0AFC0 /* App Reviewsa copy-Info.plist */,
 			);
 			sourceTree = "<group>";
 		};
@@ -672,7 +670,7 @@
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				CODE_SIGN_IDENTITY = "Mac Developer";
+				CODE_SIGN_IDENTITY = "Mac Developer: Knut Inge Grosland (BV7ZH22G55)";
 				COPY_PHASE_STRIP = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
@@ -692,6 +690,7 @@
 				MACOSX_DEPLOYMENT_TARGET = 10.10;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
+				PROVISIONING_PROFILE = "3e6a8535-7db0-444f-948f-7943b45678de";
 				SDKROOT = macosx;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 			};
@@ -714,7 +713,7 @@
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				CODE_SIGN_IDENTITY = "Mac Developer";
+				CODE_SIGN_IDENTITY = "3rd Party Mac Developer Application: Knut Inge Grosland (2PRW676NCQ)";
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_NS_ASSERTIONS = NO;
@@ -728,6 +727,7 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				MACOSX_DEPLOYMENT_TARGET = 10.10;
 				MTL_ENABLE_DEBUG_INFO = NO;
+				PROVISIONING_PROFILE = "e7ec0131-348c-4fbc-be4b-10ebf0eb0230";
 				SDKROOT = macosx;
 			};
 			name = Release;
@@ -746,7 +746,7 @@
 				ONLY_ACTIVE_ARCH = YES;
 				OTHER_SWIFT_FLAGS = "$(inherited) \"-D\" \"COCOAPODS\" \"-D\" \"DEBUG\"";
 				PRODUCT_NAME = "App Reviews";
-				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE = "3e6a8535-7db0-444f-948f-7943b45678de";
 				SWIFT_OBJC_BRIDGING_HEADER = "AppstoreReviews/Objective-C-BridgingHeader.h";
 			};
 			name = Debug;
@@ -757,13 +757,13 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = AppstoreReviews/AppstoreReviews.entitlements;
-				CODE_SIGN_IDENTITY = "Mac Developer";
+				CODE_SIGN_IDENTITY = "3rd Party Mac Developer Application";
 				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "3rd Party Mac Developer Application";
 				COMBINE_HIDPI_IMAGES = YES;
 				INFOPLIST_FILE = AppstoreReviews/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
 				PRODUCT_NAME = "App Reviews";
-				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE = "e7ec0131-348c-4fbc-be4b-10ebf0eb0230";
 				SWIFT_OBJC_BRIDGING_HEADER = "AppstoreReviews/Objective-C-BridgingHeader.h";
 			};
 			name = Release;
