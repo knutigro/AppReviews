@@ -788,7 +788,7 @@
 				INFOPLIST_FILE = AppstoreReviewsTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
 				PRODUCT_NAME = "App ReviewsTests";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/AppstoreReviews.app/Contents/MacOS/AppstoreReviews";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/App Reviews.app/Contents/MacOS/App Reviews";
 			};
 			name = Debug;
 		};
@@ -805,7 +805,7 @@
 				INFOPLIST_FILE = AppstoreReviewsTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
 				PRODUCT_NAME = "App ReviewsTests";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/AppstoreReviews.app/Contents/MacOS/AppstoreReviews";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/App Reviews.app/Contents/MacOS/App Reviews";
 			};
 			name = Release;
 		};
