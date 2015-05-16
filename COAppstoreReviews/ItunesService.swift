@@ -35,7 +35,7 @@ class ItunesService {
     
     func updateWithJSON(json : JSON) {
         
-        if let dateString = json["feed"]["updated"]["label"].string {
+        if let dateString = json.itunesReviewsUpdatedAt {
             let dateFormatter = NSDateFormatter()
             dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss-SS:SS'"
             if let date = dateFormatter.dateFromString(dateString) {
@@ -43,7 +43,7 @@ class ItunesService {
             }
         }
         
-        self.urlHandler.updateWithJSON(json["feed"]["link"].arrayValue)
+        self.urlHandler.updateWithJSON(json.itunesFeedLinks)
     }
     
     // MARK: - Fetching
@@ -60,10 +60,11 @@ class ItunesService {
                     completion(success: false, reviews: nil, error : error)
                 } else {
                     var json = JSON(json!)
-                    let reviews = json["feed"]["entry"].arrayValue
+                    let reviews = json.itunesReviews
                     
                     completion(success: true, reviews: reviews, error : nil)
                     
+                    // TODO : THIS WILL ALLWAYS FAIL SINCE nexturl is nil from the first round
                     if let nextUrl = self.urlHandler.nextUrl {
                         if reviews.count > 0 {
                             self.updateWithJSON(json)
@@ -94,3 +95,14 @@ class ItunesService {
         }
     }
 }
+
+// MARK: Extension for reviewFeed
+
+extension JSON {
+    var itunesReviews : [JSON] { get { return self["feed"]["entry"].arrayValue  } }
+    var itunesReviewsUpdatedAt : String? { get { return self["feed"]["updated"]["label"].string  } }
+    var itunesFeedLinks : [JSON] { get { return self["feed"]["link"].arrayValue  } }
+}
+
+
+

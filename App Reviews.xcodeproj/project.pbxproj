@@ -22,11 +22,15 @@
 		497E10341AEBE1AC006726F0 /* ApplicationSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 497E10331AEBE1AC006726F0 /* ApplicationSettings.swift */; };
 		498111E31AE002E5000CBFBF /* StatusMenuController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 498111E21AE002E5000CBFBF /* StatusMenuController.swift */; };
 		498111E71AE07BC0000CBFBF /* ReviewWindowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 498111E61AE07BC0000CBFBF /* ReviewWindowController.swift */; };
+		499766B21B06892C00D62EF9 /* AppVersionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 499766B11B06892C00D62EF9 /* AppVersionTests.swift */; };
+		499766B41B068AB600D62EF9 /* application.json in Resources */ = {isa = PBXBuildFile; fileRef = 49997B7D1ADDC7A700B56590 /* application.json */; };
+		499766B51B068ABB00D62EF9 /* reviews.json in Resources */ = {isa = PBXBuildFile; fileRef = 49A003601AD73161001E10BE /* reviews.json */; };
+		499766B71B068B1C00D62EF9 /* ItunesUrlHandlerTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 499766B61B068B1C00D62EF9 /* ItunesUrlHandlerTest.swift */; };
+		499766B81B068B5400D62EF9 /* ItunesUrlHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49C9CE6C1AFF86D7009D852D /* ItunesUrlHandler.swift */; };
+		499766B91B06990300D62EF9 /* ItunesService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49A0035A1AD68840001E10BE /* ItunesService.swift */; };
 		49997B7C1ADDB3F000B56590 /* TableImageCellTransformer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49997B7B1ADDB3F000B56590 /* TableImageCellTransformer.swift */; };
-		49997B7E1ADDC7A700B56590 /* application.json in Resources */ = {isa = PBXBuildFile; fileRef = 49997B7D1ADDC7A700B56590 /* application.json */; };
 		49A003591AD687A8001E10BE /* DatabaseHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49A003581AD687A8001E10BE /* DatabaseHandler.swift */; };
 		49A0035B1AD68840001E10BE /* ItunesService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49A0035A1AD68840001E10BE /* ItunesService.swift */; };
-		49A003611AD73161001E10BE /* reviews.json in Resources */ = {isa = PBXBuildFile; fileRef = 49A003601AD73161001E10BE /* reviews.json */; };
 		49A5C20A1AF65E8500B3BBC5 /* InAppPurchaseManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49A5C2091AF65E8500B3BBC5 /* InAppPurchaseManager.swift */; };
 		49A5C20C1AF6627900B3BBC5 /* AboutViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49A5C20B1AF6627900B3BBC5 /* AboutViewController.swift */; };
 		49A5C20E1AF686EC00B3BBC5 /* NSApplicationDelegate+Version.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49A5C20D1AF686EC00B3BBC5 /* NSApplicationDelegate+Version.swift */; };
@@ -95,11 +99,13 @@
 		497E10331AEBE1AC006726F0 /* ApplicationSettings.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ApplicationSettings.swift; sourceTree = "<group>"; };
 		498111E21AE002E5000CBFBF /* StatusMenuController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StatusMenuController.swift; sourceTree = "<group>"; };
 		498111E61AE07BC0000CBFBF /* ReviewWindowController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReviewWindowController.swift; sourceTree = "<group>"; };
+		499766B11B06892C00D62EF9 /* AppVersionTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppVersionTests.swift; sourceTree = "<group>"; };
+		499766B61B068B1C00D62EF9 /* ItunesUrlHandlerTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ItunesUrlHandlerTest.swift; sourceTree = "<group>"; };
 		49997B7B1ADDB3F000B56590 /* TableImageCellTransformer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TableImageCellTransformer.swift; sourceTree = "<group>"; };
-		49997B7D1ADDC7A700B56590 /* application.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = application.json; sourceTree = "<group>"; };
+		49997B7D1ADDC7A700B56590 /* application.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = application.json; path = ../AppstoreReviews/application.json; sourceTree = "<group>"; };
 		49A003581AD687A8001E10BE /* DatabaseHandler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DatabaseHandler.swift; sourceTree = "<group>"; };
 		49A0035A1AD68840001E10BE /* ItunesService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ItunesService.swift; sourceTree = "<group>"; };
-		49A003601AD73161001E10BE /* reviews.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = reviews.json; sourceTree = "<group>"; };
+		49A003601AD73161001E10BE /* reviews.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = reviews.json; path = ../AppstoreReviews/reviews.json; sourceTree = "<group>"; };
 		49A5C2091AF65E8500B3BBC5 /* InAppPurchaseManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = InAppPurchaseManager.swift; path = ../AppstoreReviews/InAppPurchaseManager.swift; sourceTree = "<group>"; };
 		49A5C20B1AF6627900B3BBC5 /* AboutViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AboutViewController.swift; sourceTree = "<group>"; };
 		49A5C20D1AF686EC00B3BBC5 /* NSApplicationDelegate+Version.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSApplicationDelegate+Version.swift"; sourceTree = "<group>"; };
@@ -184,11 +190,33 @@
 		497E10321AEBDF05006726F0 /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				49ACB8441AD5CAA00050C1B7 /* AppReviews.xcdatamodeld */,
 				49DAA2FD1AD80DBB002807A7 /* Application.swift */,
 				497E10331AEBE1AC006726F0 /* ApplicationSettings.swift */,
 				49ACB8671AD5E1730050C1B7 /* Review.swift */,
+				499766B31B068A4300D62EF9 /* Categories */,
 			);
 			name = Models;
+			sourceTree = "<group>";
+		};
+		499766B31B068A4300D62EF9 /* Categories */ = {
+			isa = PBXGroup;
+			children = (
+				49C9CE6E1B000241009D852D /* Review+String.swift */,
+				49C9CE6A1AFEBC89009D852D /* Application+Premium.swift */,
+				49C9CE701B000C65009D852D /* Application+String.swift */,
+				496522A31AE45C44004C126C /* String+AppVersion.swift */,
+			);
+			name = Categories;
+			sourceTree = "<group>";
+		};
+		499766BA1B07F36000D62EF9 /* Categories */ = {
+			isa = PBXGroup;
+			children = (
+				49C9CE851B0161BB009D852D /* String+Emoji.swift */,
+				496522A11AE31ED1004C126C /* Array+Utils.swift */,
+			);
+			name = Categories;
 			sourceTree = "<group>";
 		};
 		49ACB8321AD5CAA00050C1B7 = {
@@ -216,17 +244,13 @@
 			isa = PBXGroup;
 			children = (
 				49C9CE821B01104C009D852D /* AppstoreReviews.entitlements */,
-				49ACB8641AD5E00F0050C1B7 /* Review Data Handling */,
+				49ACB8641AD5E00F0050C1B7 /* App Review Manager */,
+				49EF51061AE1CB4400E5901C /* In App Purhcase Manager */,
 				49F800F51ADC840C004A1BF1 /* Window & ViewControllers */,
-				49F800F41ADC83EC004A1BF1 /* Views and Cells */,
-				49F800F61ADC844A004A1BF1 /* Data Controllers */,
+				49F800F41ADC83EC004A1BF1 /* Views */,
 				49F800F11ADC791B004A1BF1 /* Categories */,
-				49EF51061AE1CB4400E5901C /* Utilities */,
 				49ACB8471AD5CAA00050C1B7 /* Images.xcassets */,
-				49ACB8441AD5CAA00050C1B7 /* AppReviews.xcdatamodeld */,
 				49ACB83E1AD5CAA00050C1B7 /* Supporting Files */,
-				49A003601AD73161001E10BE /* reviews.json */,
-				49997B7D1ADDC7A700B56590 /* application.json */,
 			);
 			path = AppstoreReviews;
 			sourceTree = "<group>";
@@ -244,6 +268,10 @@
 			isa = PBXGroup;
 			children = (
 				49ACB8561AD5CAA00050C1B7 /* AppstoreReviewsTests.swift */,
+				499766B61B068B1C00D62EF9 /* ItunesUrlHandlerTest.swift */,
+				499766B11B06892C00D62EF9 /* AppVersionTests.swift */,
+				49A003601AD73161001E10BE /* reviews.json */,
+				49997B7D1ADDC7A700B56590 /* application.json */,
 				49ACB8541AD5CAA00050C1B7 /* Supporting Files */,
 			);
 			path = AppstoreReviewsTests;
@@ -257,7 +285,7 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
-		49ACB8641AD5E00F0050C1B7 /* Review Data Handling */ = {
+		49ACB8641AD5E00F0050C1B7 /* App Review Manager */ = {
 			isa = PBXGroup;
 			children = (
 				497E10321AEBDF05006726F0 /* Models */,
@@ -268,50 +296,45 @@
 				49C9CE6C1AFF86D7009D852D /* ItunesUrlHandler.swift */,
 				49ACB86B1AD5EAF70050C1B7 /* PersistentStack.swift */,
 				497424091AF55023004A65A8 /* NotificationsHandler.swift */,
+				49EF51041AE1BC5900E5901C /* Timer.swift */,
+				499766BA1B07F36000D62EF9 /* Categories */,
 			);
-			name = "Review Data Handling";
+			name = "App Review Manager";
 			path = ../COAppstoreReviews;
 			sourceTree = "<group>";
 		};
-		49EF51061AE1CB4400E5901C /* Utilities */ = {
+		49EF51061AE1CB4400E5901C /* In App Purhcase Manager */ = {
 			isa = PBXGroup;
 			children = (
 				49A5C2091AF65E8500B3BBC5 /* InAppPurchaseManager.swift */,
 				49C9CE661AFE9A95009D852D /* InAppPurchaseReceipt.swift */,
-				49EF51041AE1BC5900E5901C /* Timer.swift */,
 			);
-			name = Utilities;
+			name = "In App Purhcase Manager";
 			path = ../COAppstoreReviews;
 			sourceTree = "<group>";
 		};
 		49F800F11ADC791B004A1BF1 /* Categories */ = {
 			isa = PBXGroup;
 			children = (
-				496522A31AE45C44004C126C /* String+AppVersion.swift */,
-				49C9CE851B0161BB009D852D /* String+Emoji.swift */,
-				49C9CE6A1AFEBC89009D852D /* Application+Premium.swift */,
 				49F800F21ADC7944004A1BF1 /* NSImageView+Networking.swift */,
-				496522A11AE31ED1004C126C /* Array+Utils.swift */,
 				493218F51AE5A580008996EC /* AutoSizedTextField.swift */,
 				49AAB8D61AE9AC9C00B412A8 /* String+Size.swift */,
 				49A5C20D1AF686EC00B3BBC5 /* NSApplicationDelegate+Version.swift */,
 				49C9CE641AFE6C41009D852D /* NSColor+AppReviews.swift */,
 				49C9CE681AFEB09B009D852D /* NSUserDefaults+Appreviews.swift */,
-				49C9CE6E1B000241009D852D /* Review+String.swift */,
-				49C9CE701B000C65009D852D /* Application+String.swift */,
 			);
 			name = Categories;
 			path = ../COAppstoreReviews;
 			sourceTree = "<group>";
 		};
-		49F800F41ADC83EC004A1BF1 /* Views and Cells */ = {
+		49F800F41ADC83EC004A1BF1 /* Views */ = {
 			isa = PBXGroup;
 			children = (
 				493FC5531AF81D220043304C /* PieChart */,
 				49F800E71ADAA0DC004A1BF1 /* ReviewCellView.swift */,
 				49F800EF1ADC674B004A1BF1 /* ApplicationCellView.swift */,
 			);
-			name = "Views and Cells";
+			name = Views;
 			sourceTree = "<group>";
 		};
 		49F800F51ADC840C004A1BF1 /* Window & ViewControllers */ = {
@@ -329,6 +352,7 @@
 				49ACB8421AD5CAA00050C1B7 /* ReviewViewController.swift */,
 				49A5C20B1AF6627900B3BBC5 /* AboutViewController.swift */,
 				49A5C22B1AF8157E00B3BBC5 /* ReviewPieChartController.swift */,
+				49F800F61ADC844A004A1BF1 /* Data Controllers */,
 			);
 			name = "Window & ViewControllers";
 			sourceTree = "<group>";
@@ -460,8 +484,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				49997B7E1ADDC7A700B56590 /* application.json in Resources */,
-				49A003611AD73161001E10BE /* reviews.json in Resources */,
 				49ACB8481AD5CAA00050C1B7 /* Images.xcassets in Resources */,
 				49ACB84B1AD5CAA00050C1B7 /* Main.storyboard in Resources */,
 			);
@@ -471,6 +493,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				499766B41B068AB600D62EF9 /* application.json in Resources */,
+				499766B51B068ABB00D62EF9 /* reviews.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -629,7 +653,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				49ACB8571AD5CAA00050C1B7 /* AppstoreReviewsTests.swift in Sources */,
+				499766B21B06892C00D62EF9 /* AppVersionTests.swift in Sources */,
+				499766B71B068B1C00D62EF9 /* ItunesUrlHandlerTest.swift in Sources */,
+				499766B91B06990300D62EF9 /* ItunesService.swift in Sources */,
 				494844AE1AE4713200696E4A /* String+AppVersion.swift in Sources */,
+				499766B81B068B5400D62EF9 /* ItunesUrlHandler.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -848,7 +876,8 @@
 				49ACB8451AD5CAA00050C1B7 /* AppReviews.xcdatamodel */,
 			);
 			currentVersion = 49ACB8451AD5CAA00050C1B7 /* AppReviews.xcdatamodel */;
-			path = AppReviews.xcdatamodeld;
+			name = AppReviews.xcdatamodeld;
+			path = ../AppstoreReviews/AppReviews.xcdatamodeld;
 			sourceTree = "<group>";
 			versionGroupType = wrapper.xcdatamodel;
 		};
