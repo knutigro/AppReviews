@@ -8,65 +8,64 @@
 
 /* Begin PBXBuildFile section */
 		33EAB290AB0EE07A95E14FC0 /* Pods.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5083B9909F1AD9259C461DBD /* Pods.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
+		4910B3F91B0E200200FDC0EA /* ApplicationUpdater.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4910B3E61B0E200200FDC0EA /* ApplicationUpdater.swift */; };
+		4910B3FA1B0E200200FDC0EA /* Application+String.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4910B3E81B0E200200FDC0EA /* Application+String.swift */; };
+		4910B3FB1B0E200200FDC0EA /* Array+Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4910B3E91B0E200200FDC0EA /* Array+Utils.swift */; };
+		4910B3FC1B0E200200FDC0EA /* Review+String.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4910B3EA1B0E200200FDC0EA /* Review+String.swift */; };
+		4910B3FD1B0E200200FDC0EA /* String+AppVersion.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4910B3EB1B0E200200FDC0EA /* String+AppVersion.swift */; };
+		4910B3FE1B0E200200FDC0EA /* String+Emoji.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4910B3EC1B0E200200FDC0EA /* String+Emoji.swift */; };
+		4910B3FF1B0E200200FDC0EA /* DatabaseHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4910B3ED1B0E200200FDC0EA /* DatabaseHandler.swift */; };
+		4910B4001B0E200200FDC0EA /* ItunesService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4910B3EE1B0E200200FDC0EA /* ItunesService.swift */; };
+		4910B4011B0E200200FDC0EA /* ItunesUrlHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4910B3EF1B0E200200FDC0EA /* ItunesUrlHandler.swift */; };
+		4910B4021B0E200200FDC0EA /* Application.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4910B3F11B0E200200FDC0EA /* Application.swift */; };
+		4910B4031B0E200200FDC0EA /* ApplicationSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4910B3F21B0E200200FDC0EA /* ApplicationSettings.swift */; };
+		4910B4041B0E200200FDC0EA /* AppReviews.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 4910B3F31B0E200200FDC0EA /* AppReviews.xcdatamodeld */; };
+		4910B4051B0E200200FDC0EA /* Review.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4910B3F51B0E200200FDC0EA /* Review.swift */; };
+		4910B4061B0E200200FDC0EA /* PersistentStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4910B3F61B0E200200FDC0EA /* PersistentStack.swift */; };
+		4910B4071B0E200200FDC0EA /* ReviewManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4910B3F71B0E200200FDC0EA /* ReviewManager.swift */; };
+		4910B4081B0E200200FDC0EA /* Timer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4910B3F81B0E200200FDC0EA /* Timer.swift */; };
+		4910B40A1B0E20C400FDC0EA /* NSImageView+Networking.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4910B4091B0E20C400FDC0EA /* NSImageView+Networking.swift */; };
+		4910B40C1B0E20E300FDC0EA /* AutoSizedTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4910B40B1B0E20E300FDC0EA /* AutoSizedTextField.swift */; };
+		4910B40E1B0E210100FDC0EA /* String+Size.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4910B40D1B0E210100FDC0EA /* String+Size.swift */; };
+		4910B4101B0E211300FDC0EA /* NSApplicationDelegate+Version.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4910B40F1B0E211300FDC0EA /* NSApplicationDelegate+Version.swift */; };
+		4910B4121B0E212800FDC0EA /* NSColor+AppReviews.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4910B4111B0E212800FDC0EA /* NSColor+AppReviews.swift */; };
+		4910B4141B0E214000FDC0EA /* NSUserDefaults+Appreviews.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4910B4131B0E214000FDC0EA /* NSUserDefaults+Appreviews.swift */; };
+		4910B4161B0E216000FDC0EA /* InAppPurchaseReceipt.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4910B4151B0E216000FDC0EA /* InAppPurchaseReceipt.swift */; };
+		4910B4181B0E219900FDC0EA /* NotificationsHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4910B4171B0E219900FDC0EA /* NotificationsHandler.swift */; };
+		4910B41A1B0E21B800FDC0EA /* Application+Premium.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4910B4191B0E21B800FDC0EA /* Application+Premium.swift */; };
+		4910B41B1B0E26A400FDC0EA /* ItunesUrlHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4910B3EF1B0E200200FDC0EA /* ItunesUrlHandler.swift */; };
+		4910B41C1B0E26FE00FDC0EA /* ItunesService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4910B3EE1B0E200200FDC0EA /* ItunesService.swift */; };
 		4930D50A1AE7013600C90FDE /* ApplicationWindowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4930D5091AE7013600C90FDE /* ApplicationWindowController.swift */; };
-		493218F61AE5A580008996EC /* AutoSizedTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 493218F51AE5A580008996EC /* AutoSizedTextField.swift */; };
 		493FC55E1AF81D220043304C /* BackgroundView.m in Sources */ = {isa = PBXBuildFile; fileRef = 493FC5561AF81D220043304C /* BackgroundView.m */; };
 		493FC55F1AF81D220043304C /* NSColor+CGColor.m in Sources */ = {isa = PBXBuildFile; fileRef = 493FC5581AF81D220043304C /* NSColor+CGColor.m */; };
 		493FC5601AF81D220043304C /* PieChart.m in Sources */ = {isa = PBXBuildFile; fileRef = 493FC55A1AF81D220043304C /* PieChart.m */; };
 		493FC5611AF81D220043304C /* SliceLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 493FC55C1AF81D220043304C /* SliceLayer.m */; };
-		494844AE1AE4713200696E4A /* String+AppVersion.swift in Sources */ = {isa = PBXBuildFile; fileRef = 496522A31AE45C44004C126C /* String+AppVersion.swift */; };
-		496522A21AE31ED1004C126C /* Array+Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 496522A11AE31ED1004C126C /* Array+Utils.swift */; };
-		496522A41AE45C44004C126C /* String+AppVersion.swift in Sources */ = {isa = PBXBuildFile; fileRef = 496522A31AE45C44004C126C /* String+AppVersion.swift */; };
-		4974240A1AF55023004A65A8 /* NotificationsHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 497424091AF55023004A65A8 /* NotificationsHandler.swift */; };
 		4974240C1AF61C35004A65A8 /* AutomaticUpdateTransformer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4974240B1AF61C35004A65A8 /* AutomaticUpdateTransformer.swift */; };
 		497E0C5A1B0D434D00553348 /* DonateButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 497E0C591B0D434D00553348 /* DonateButton.swift */; };
 		497E0C5C1B0D48BC00553348 /* DonateHTML in Resources */ = {isa = PBXBuildFile; fileRef = 497E0C5B1B0D48BC00553348 /* DonateHTML */; };
-		497E10341AEBE1AC006726F0 /* ApplicationSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 497E10331AEBE1AC006726F0 /* ApplicationSettings.swift */; };
 		498111E31AE002E5000CBFBF /* StatusMenuController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 498111E21AE002E5000CBFBF /* StatusMenuController.swift */; };
 		498111E71AE07BC0000CBFBF /* ReviewWindowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 498111E61AE07BC0000CBFBF /* ReviewWindowController.swift */; };
 		499766B21B06892C00D62EF9 /* AppVersionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 499766B11B06892C00D62EF9 /* AppVersionTests.swift */; };
 		499766B41B068AB600D62EF9 /* application.json in Resources */ = {isa = PBXBuildFile; fileRef = 49997B7D1ADDC7A700B56590 /* application.json */; };
 		499766B51B068ABB00D62EF9 /* reviews.json in Resources */ = {isa = PBXBuildFile; fileRef = 49A003601AD73161001E10BE /* reviews.json */; };
 		499766B71B068B1C00D62EF9 /* ItunesUrlHandlerTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 499766B61B068B1C00D62EF9 /* ItunesUrlHandlerTest.swift */; };
-		499766B81B068B5400D62EF9 /* ItunesUrlHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49C9CE6C1AFF86D7009D852D /* ItunesUrlHandler.swift */; };
-		499766B91B06990300D62EF9 /* ItunesService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49A0035A1AD68840001E10BE /* ItunesService.swift */; };
 		49997B7C1ADDB3F000B56590 /* TableImageCellTransformer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49997B7B1ADDB3F000B56590 /* TableImageCellTransformer.swift */; };
-		49A003591AD687A8001E10BE /* DatabaseHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49A003581AD687A8001E10BE /* DatabaseHandler.swift */; };
-		49A0035B1AD68840001E10BE /* ItunesService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49A0035A1AD68840001E10BE /* ItunesService.swift */; };
 		49A5C20A1AF65E8500B3BBC5 /* InAppPurchaseManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49A5C2091AF65E8500B3BBC5 /* InAppPurchaseManager.swift */; };
 		49A5C20C1AF6627900B3BBC5 /* AboutViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49A5C20B1AF6627900B3BBC5 /* AboutViewController.swift */; };
-		49A5C20E1AF686EC00B3BBC5 /* NSApplicationDelegate+Version.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49A5C20D1AF686EC00B3BBC5 /* NSApplicationDelegate+Version.swift */; };
 		49A5C22C1AF8157E00B3BBC5 /* ReviewPieChartController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49A5C22B1AF8157E00B3BBC5 /* ReviewPieChartController.swift */; };
 		49A75E4E1AD9BCDF004A4742 /* ReviewArrayController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49A75E4D1AD9BCDF004A4742 /* ReviewArrayController.swift */; };
 		49AAB8C11AE8518500B412A8 /* ReviewSplitViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49AAB8C01AE8518500B412A8 /* ReviewSplitViewController.swift */; };
 		49AAB8C31AE854EA00B412A8 /* ReviewMenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49AAB8C21AE854EA00B412A8 /* ReviewMenuViewController.swift */; };
-		49AAB8D71AE9AC9C00B412A8 /* String+Size.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49AAB8D61AE9AC9C00B412A8 /* String+Size.swift */; };
 		49ACB8411AD5CAA00050C1B7 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49ACB8401AD5CAA00050C1B7 /* AppDelegate.swift */; };
 		49ACB8431AD5CAA00050C1B7 /* ReviewViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49ACB8421AD5CAA00050C1B7 /* ReviewViewController.swift */; };
-		49ACB8461AD5CAA00050C1B7 /* AppReviews.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 49ACB8441AD5CAA00050C1B7 /* AppReviews.xcdatamodeld */; };
 		49ACB8481AD5CAA00050C1B7 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 49ACB8471AD5CAA00050C1B7 /* Images.xcassets */; };
 		49ACB84B1AD5CAA00050C1B7 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 49ACB8491AD5CAA00050C1B7 /* Main.storyboard */; };
 		49ACB8571AD5CAA00050C1B7 /* AppstoreReviewsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49ACB8561AD5CAA00050C1B7 /* AppstoreReviewsTests.swift */; };
-		49ACB8631AD5CE700050C1B7 /* ReviewManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49ACB8621AD5CE700050C1B7 /* ReviewManager.swift */; };
-		49ACB8681AD5E1730050C1B7 /* Review.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49ACB8671AD5E1730050C1B7 /* Review.swift */; };
-		49ACB86C1AD5EAF70050C1B7 /* PersistentStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49ACB86B1AD5EAF70050C1B7 /* PersistentStack.swift */; };
-		49C9CE651AFE6C41009D852D /* NSColor+AppReviews.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49C9CE641AFE6C41009D852D /* NSColor+AppReviews.swift */; };
-		49C9CE671AFE9A95009D852D /* InAppPurchaseReceipt.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49C9CE661AFE9A95009D852D /* InAppPurchaseReceipt.swift */; };
-		49C9CE691AFEB09B009D852D /* NSUserDefaults+Appreviews.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49C9CE681AFEB09B009D852D /* NSUserDefaults+Appreviews.swift */; };
-		49C9CE6B1AFEBC89009D852D /* Application+Premium.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49C9CE6A1AFEBC89009D852D /* Application+Premium.swift */; };
-		49C9CE6D1AFF86D7009D852D /* ItunesUrlHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49C9CE6C1AFF86D7009D852D /* ItunesUrlHandler.swift */; };
-		49C9CE6F1B000241009D852D /* Review+String.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49C9CE6E1B000241009D852D /* Review+String.swift */; };
-		49C9CE711B000C65009D852D /* Application+String.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49C9CE701B000C65009D852D /* Application+String.swift */; };
 		49C9CE841B0140F5009D852D /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 49C9CE831B0140F5009D852D /* StoreKit.framework */; };
-		49C9CE861B0161BB009D852D /* String+Emoji.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49C9CE851B0161BB009D852D /* String+Emoji.swift */; };
-		49DAA2FE1AD80DBB002807A7 /* Application.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49DAA2FD1AD80DBB002807A7 /* Application.swift */; };
-		49EF51051AE1BC5900E5901C /* Timer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49EF51041AE1BC5900E5901C /* Timer.swift */; };
-		49EF51081AE1CE8B00E5901C /* ApplicationUpdater.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49EF51071AE1CE8B00E5901C /* ApplicationUpdater.swift */; };
 		49F800E81ADAA0DC004A1BF1 /* ReviewCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49F800E71ADAA0DC004A1BF1 /* ReviewCellView.swift */; };
 		49F800EA1ADAAD58004A1BF1 /* ApplicationArrayController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49F800E91ADAAD58004A1BF1 /* ApplicationArrayController.swift */; };
 		49F800EE1ADC6358004A1BF1 /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49F800ED1ADC6358004A1BF1 /* SearchViewController.swift */; };
 		49F800F01ADC674B004A1BF1 /* ApplicationCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49F800EF1ADC674B004A1BF1 /* ApplicationCellView.swift */; };
-		49F800F31ADC7944004A1BF1 /* NSImageView+Networking.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49F800F21ADC7944004A1BF1 /* NSImageView+Networking.swift */; };
 		49F800F81ADC84A7004A1BF1 /* ApplicationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49F800F71ADC84A7004A1BF1 /* ApplicationViewController.swift */; };
 		67821E35AE9AB2E4F46170D4 /* Pods.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5083B9909F1AD9259C461DBD /* Pods.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 /* End PBXBuildFile section */
@@ -82,8 +81,32 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		4910B3E61B0E200200FDC0EA /* ApplicationUpdater.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ApplicationUpdater.swift; sourceTree = "<group>"; };
+		4910B3E81B0E200200FDC0EA /* Application+String.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Application+String.swift"; sourceTree = "<group>"; };
+		4910B3E91B0E200200FDC0EA /* Array+Utils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Array+Utils.swift"; sourceTree = "<group>"; };
+		4910B3EA1B0E200200FDC0EA /* Review+String.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Review+String.swift"; sourceTree = "<group>"; };
+		4910B3EB1B0E200200FDC0EA /* String+AppVersion.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "String+AppVersion.swift"; sourceTree = "<group>"; };
+		4910B3EC1B0E200200FDC0EA /* String+Emoji.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "String+Emoji.swift"; sourceTree = "<group>"; };
+		4910B3ED1B0E200200FDC0EA /* DatabaseHandler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DatabaseHandler.swift; sourceTree = "<group>"; };
+		4910B3EE1B0E200200FDC0EA /* ItunesService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ItunesService.swift; sourceTree = "<group>"; };
+		4910B3EF1B0E200200FDC0EA /* ItunesUrlHandler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ItunesUrlHandler.swift; sourceTree = "<group>"; };
+		4910B3F11B0E200200FDC0EA /* Application.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Application.swift; sourceTree = "<group>"; };
+		4910B3F21B0E200200FDC0EA /* ApplicationSettings.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ApplicationSettings.swift; sourceTree = "<group>"; };
+		4910B3F41B0E200200FDC0EA /* AppReviews.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = AppReviews.xcdatamodel; sourceTree = "<group>"; };
+		4910B3F51B0E200200FDC0EA /* Review.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Review.swift; sourceTree = "<group>"; };
+		4910B3F61B0E200200FDC0EA /* PersistentStack.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PersistentStack.swift; sourceTree = "<group>"; };
+		4910B3F71B0E200200FDC0EA /* ReviewManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReviewManager.swift; sourceTree = "<group>"; };
+		4910B3F81B0E200200FDC0EA /* Timer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Timer.swift; sourceTree = "<group>"; };
+		4910B4091B0E20C400FDC0EA /* NSImageView+Networking.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "NSImageView+Networking.swift"; path = "AppstoreReviews/NSImageView+Networking.swift"; sourceTree = SOURCE_ROOT; };
+		4910B40B1B0E20E300FDC0EA /* AutoSizedTextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AutoSizedTextField.swift; path = AppstoreReviews/AutoSizedTextField.swift; sourceTree = SOURCE_ROOT; };
+		4910B40D1B0E210100FDC0EA /* String+Size.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "String+Size.swift"; path = "AppstoreReviews/String+Size.swift"; sourceTree = SOURCE_ROOT; };
+		4910B40F1B0E211300FDC0EA /* NSApplicationDelegate+Version.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "NSApplicationDelegate+Version.swift"; path = "AppstoreReviews/NSApplicationDelegate+Version.swift"; sourceTree = SOURCE_ROOT; };
+		4910B4111B0E212800FDC0EA /* NSColor+AppReviews.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "NSColor+AppReviews.swift"; path = "AppstoreReviews/NSColor+AppReviews.swift"; sourceTree = SOURCE_ROOT; };
+		4910B4131B0E214000FDC0EA /* NSUserDefaults+Appreviews.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "NSUserDefaults+Appreviews.swift"; path = "AppstoreReviews/NSUserDefaults+Appreviews.swift"; sourceTree = SOURCE_ROOT; };
+		4910B4151B0E216000FDC0EA /* InAppPurchaseReceipt.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = InAppPurchaseReceipt.swift; path = AppstoreReviews/InAppPurchaseReceipt.swift; sourceTree = SOURCE_ROOT; };
+		4910B4171B0E219900FDC0EA /* NotificationsHandler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NotificationsHandler.swift; sourceTree = "<group>"; };
+		4910B4191B0E21B800FDC0EA /* Application+Premium.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "Application+Premium.swift"; path = "AppstoreReviews/Application+Premium.swift"; sourceTree = SOURCE_ROOT; };
 		4930D5091AE7013600C90FDE /* ApplicationWindowController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ApplicationWindowController.swift; sourceTree = "<group>"; };
-		493218F51AE5A580008996EC /* AutoSizedTextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AutoSizedTextField.swift; sourceTree = "<group>"; };
 		493FC5551AF81D220043304C /* BackgroundView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BackgroundView.h; sourceTree = "<group>"; };
 		493FC5561AF81D220043304C /* BackgroundView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BackgroundView.m; sourceTree = "<group>"; };
 		493FC5571AF81D220043304C /* NSColor+CGColor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSColor+CGColor.h"; sourceTree = "<group>"; };
@@ -94,61 +117,37 @@
 		493FC55C1AF81D220043304C /* SliceLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SliceLayer.m; sourceTree = "<group>"; };
 		493FC5661AF820860043304C /* Objective-C-BridgingHeader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Objective-C-BridgingHeader.h"; sourceTree = "<group>"; };
 		495E80751B055B7700D0AFC0 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
-		496522A11AE31ED1004C126C /* Array+Utils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Array+Utils.swift"; sourceTree = "<group>"; };
-		496522A31AE45C44004C126C /* String+AppVersion.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "String+AppVersion.swift"; sourceTree = "<group>"; };
-		497424091AF55023004A65A8 /* NotificationsHandler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NotificationsHandler.swift; sourceTree = "<group>"; };
 		4974240B1AF61C35004A65A8 /* AutomaticUpdateTransformer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AutomaticUpdateTransformer.swift; sourceTree = "<group>"; };
 		497E0C591B0D434D00553348 /* DonateButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DonateButton.swift; sourceTree = "<group>"; };
 		497E0C5B1B0D48BC00553348 /* DonateHTML */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = DonateHTML; sourceTree = "<group>"; };
-		497E10331AEBE1AC006726F0 /* ApplicationSettings.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ApplicationSettings.swift; sourceTree = "<group>"; };
 		498111E21AE002E5000CBFBF /* StatusMenuController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StatusMenuController.swift; sourceTree = "<group>"; };
 		498111E61AE07BC0000CBFBF /* ReviewWindowController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReviewWindowController.swift; sourceTree = "<group>"; };
 		499766B11B06892C00D62EF9 /* AppVersionTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppVersionTests.swift; sourceTree = "<group>"; };
 		499766B61B068B1C00D62EF9 /* ItunesUrlHandlerTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ItunesUrlHandlerTest.swift; sourceTree = "<group>"; };
 		49997B7B1ADDB3F000B56590 /* TableImageCellTransformer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TableImageCellTransformer.swift; sourceTree = "<group>"; };
 		49997B7D1ADDC7A700B56590 /* application.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = application.json; path = ../AppstoreReviews/application.json; sourceTree = "<group>"; };
-		49A003581AD687A8001E10BE /* DatabaseHandler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DatabaseHandler.swift; sourceTree = "<group>"; };
-		49A0035A1AD68840001E10BE /* ItunesService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ItunesService.swift; sourceTree = "<group>"; };
 		49A003601AD73161001E10BE /* reviews.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = reviews.json; path = ../AppstoreReviews/reviews.json; sourceTree = "<group>"; };
 		49A5C2091AF65E8500B3BBC5 /* InAppPurchaseManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = InAppPurchaseManager.swift; path = ../AppstoreReviews/InAppPurchaseManager.swift; sourceTree = "<group>"; };
 		49A5C20B1AF6627900B3BBC5 /* AboutViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AboutViewController.swift; sourceTree = "<group>"; };
-		49A5C20D1AF686EC00B3BBC5 /* NSApplicationDelegate+Version.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSApplicationDelegate+Version.swift"; sourceTree = "<group>"; };
 		49A5C22B1AF8157E00B3BBC5 /* ReviewPieChartController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReviewPieChartController.swift; sourceTree = "<group>"; };
 		49A75E4D1AD9BCDF004A4742 /* ReviewArrayController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReviewArrayController.swift; sourceTree = "<group>"; };
 		49AAB8C01AE8518500B412A8 /* ReviewSplitViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReviewSplitViewController.swift; sourceTree = "<group>"; };
 		49AAB8C21AE854EA00B412A8 /* ReviewMenuViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReviewMenuViewController.swift; sourceTree = "<group>"; };
-		49AAB8D61AE9AC9C00B412A8 /* String+Size.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "String+Size.swift"; sourceTree = "<group>"; };
 		49ACB83B1AD5CAA00050C1B7 /* App Reviews.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "App Reviews.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		49ACB83F1AD5CAA00050C1B7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		49ACB8401AD5CAA00050C1B7 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		49ACB8421AD5CAA00050C1B7 /* ReviewViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewViewController.swift; sourceTree = "<group>"; };
-		49ACB8451AD5CAA00050C1B7 /* AppReviews.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = AppReviews.xcdatamodel; sourceTree = "<group>"; };
 		49ACB8471AD5CAA00050C1B7 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		49ACB84A1AD5CAA00050C1B7 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		49ACB8501AD5CAA00050C1B7 /* App ReviewsTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "App ReviewsTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		49ACB8551AD5CAA00050C1B7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		49ACB8561AD5CAA00050C1B7 /* AppstoreReviewsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppstoreReviewsTests.swift; sourceTree = "<group>"; };
-		49ACB8621AD5CE700050C1B7 /* ReviewManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReviewManager.swift; sourceTree = "<group>"; };
-		49ACB8671AD5E1730050C1B7 /* Review.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Review.swift; sourceTree = "<group>"; };
-		49ACB86B1AD5EAF70050C1B7 /* PersistentStack.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PersistentStack.swift; sourceTree = "<group>"; };
-		49C9CE641AFE6C41009D852D /* NSColor+AppReviews.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSColor+AppReviews.swift"; sourceTree = "<group>"; };
-		49C9CE661AFE9A95009D852D /* InAppPurchaseReceipt.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InAppPurchaseReceipt.swift; sourceTree = "<group>"; };
-		49C9CE681AFEB09B009D852D /* NSUserDefaults+Appreviews.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSUserDefaults+Appreviews.swift"; sourceTree = "<group>"; };
-		49C9CE6A1AFEBC89009D852D /* Application+Premium.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Application+Premium.swift"; sourceTree = "<group>"; };
-		49C9CE6C1AFF86D7009D852D /* ItunesUrlHandler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ItunesUrlHandler.swift; sourceTree = "<group>"; };
-		49C9CE6E1B000241009D852D /* Review+String.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Review+String.swift"; sourceTree = "<group>"; };
-		49C9CE701B000C65009D852D /* Application+String.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Application+String.swift"; sourceTree = "<group>"; };
 		49C9CE821B01104C009D852D /* AppstoreReviews.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = AppstoreReviews.entitlements; sourceTree = "<group>"; };
 		49C9CE831B0140F5009D852D /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
-		49C9CE851B0161BB009D852D /* String+Emoji.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "String+Emoji.swift"; sourceTree = "<group>"; };
-		49DAA2FD1AD80DBB002807A7 /* Application.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Application.swift; sourceTree = "<group>"; };
-		49EF51041AE1BC5900E5901C /* Timer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Timer.swift; sourceTree = "<group>"; };
-		49EF51071AE1CE8B00E5901C /* ApplicationUpdater.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ApplicationUpdater.swift; path = ../AppstoreReviews/ApplicationUpdater.swift; sourceTree = "<group>"; };
 		49F800E71ADAA0DC004A1BF1 /* ReviewCellView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReviewCellView.swift; sourceTree = "<group>"; };
 		49F800E91ADAAD58004A1BF1 /* ApplicationArrayController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ApplicationArrayController.swift; sourceTree = "<group>"; };
 		49F800ED1ADC6358004A1BF1 /* SearchViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
 		49F800EF1ADC674B004A1BF1 /* ApplicationCellView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ApplicationCellView.swift; sourceTree = "<group>"; };
-		49F800F21ADC7944004A1BF1 /* NSImageView+Networking.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSImageView+Networking.swift"; sourceTree = "<group>"; };
 		49F800F71ADC84A7004A1BF1 /* ApplicationViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ApplicationViewController.swift; sourceTree = "<group>"; };
 		5083B9909F1AD9259C461DBD /* Pods.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		8E9E3A98AF3DC476EF9A0809 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
@@ -176,6 +175,45 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		4910B3E51B0E200200FDC0EA /* ReviewManager */ = {
+			isa = PBXGroup;
+			children = (
+				4910B3F01B0E200200FDC0EA /* Models */,
+				4910B3E71B0E200200FDC0EA /* Categories */,
+				4910B3E61B0E200200FDC0EA /* ApplicationUpdater.swift */,
+				4910B3ED1B0E200200FDC0EA /* DatabaseHandler.swift */,
+				4910B3EE1B0E200200FDC0EA /* ItunesService.swift */,
+				4910B3EF1B0E200200FDC0EA /* ItunesUrlHandler.swift */,
+				4910B3F61B0E200200FDC0EA /* PersistentStack.swift */,
+				4910B3F71B0E200200FDC0EA /* ReviewManager.swift */,
+				4910B3F81B0E200200FDC0EA /* Timer.swift */,
+			);
+			path = ReviewManager;
+			sourceTree = SOURCE_ROOT;
+		};
+		4910B3E71B0E200200FDC0EA /* Categories */ = {
+			isa = PBXGroup;
+			children = (
+				4910B3E81B0E200200FDC0EA /* Application+String.swift */,
+				4910B3E91B0E200200FDC0EA /* Array+Utils.swift */,
+				4910B3EA1B0E200200FDC0EA /* Review+String.swift */,
+				4910B3EB1B0E200200FDC0EA /* String+AppVersion.swift */,
+				4910B3EC1B0E200200FDC0EA /* String+Emoji.swift */,
+			);
+			path = Categories;
+			sourceTree = "<group>";
+		};
+		4910B3F01B0E200200FDC0EA /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				4910B3F11B0E200200FDC0EA /* Application.swift */,
+				4910B3F21B0E200200FDC0EA /* ApplicationSettings.swift */,
+				4910B3F31B0E200200FDC0EA /* AppReviews.xcdatamodeld */,
+				4910B3F51B0E200200FDC0EA /* Review.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
 		493FC5531AF81D220043304C /* PieChart */ = {
 			isa = PBXGroup;
 			children = (
@@ -189,38 +227,6 @@
 				493FC55C1AF81D220043304C /* SliceLayer.m */,
 			);
 			path = PieChart;
-			sourceTree = "<group>";
-		};
-		497E10321AEBDF05006726F0 /* Models */ = {
-			isa = PBXGroup;
-			children = (
-				49ACB8441AD5CAA00050C1B7 /* AppReviews.xcdatamodeld */,
-				49DAA2FD1AD80DBB002807A7 /* Application.swift */,
-				497E10331AEBE1AC006726F0 /* ApplicationSettings.swift */,
-				49ACB8671AD5E1730050C1B7 /* Review.swift */,
-				499766B31B068A4300D62EF9 /* Categories */,
-			);
-			name = Models;
-			sourceTree = "<group>";
-		};
-		499766B31B068A4300D62EF9 /* Categories */ = {
-			isa = PBXGroup;
-			children = (
-				49C9CE6E1B000241009D852D /* Review+String.swift */,
-				49C9CE6A1AFEBC89009D852D /* Application+Premium.swift */,
-				49C9CE701B000C65009D852D /* Application+String.swift */,
-				496522A31AE45C44004C126C /* String+AppVersion.swift */,
-			);
-			name = Categories;
-			sourceTree = "<group>";
-		};
-		499766BA1B07F36000D62EF9 /* Categories */ = {
-			isa = PBXGroup;
-			children = (
-				49C9CE851B0161BB009D852D /* String+Emoji.swift */,
-				496522A11AE31ED1004C126C /* Array+Utils.swift */,
-			);
-			name = Categories;
 			sourceTree = "<group>";
 		};
 		49ACB8321AD5CAA00050C1B7 = {
@@ -247,8 +253,8 @@
 		49ACB83D1AD5CAA00050C1B7 /* App Reviews */ = {
 			isa = PBXGroup;
 			children = (
+				4910B3E51B0E200200FDC0EA /* ReviewManager */,
 				49C9CE821B01104C009D852D /* AppstoreReviews.entitlements */,
-				49ACB8641AD5E00F0050C1B7 /* App Review Manager */,
 				49EF51061AE1CB4400E5901C /* In App Purhcase Manager */,
 				49F800F51ADC840C004A1BF1 /* Window & ViewControllers */,
 				49F800F41ADC83EC004A1BF1 /* Views */,
@@ -290,29 +296,11 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
-		49ACB8641AD5E00F0050C1B7 /* App Review Manager */ = {
-			isa = PBXGroup;
-			children = (
-				497E10321AEBDF05006726F0 /* Models */,
-				49ACB8621AD5CE700050C1B7 /* ReviewManager.swift */,
-				49A003581AD687A8001E10BE /* DatabaseHandler.swift */,
-				49EF51071AE1CE8B00E5901C /* ApplicationUpdater.swift */,
-				49A0035A1AD68840001E10BE /* ItunesService.swift */,
-				49C9CE6C1AFF86D7009D852D /* ItunesUrlHandler.swift */,
-				49ACB86B1AD5EAF70050C1B7 /* PersistentStack.swift */,
-				497424091AF55023004A65A8 /* NotificationsHandler.swift */,
-				49EF51041AE1BC5900E5901C /* Timer.swift */,
-				499766BA1B07F36000D62EF9 /* Categories */,
-			);
-			name = "App Review Manager";
-			path = ../COAppstoreReviews;
-			sourceTree = "<group>";
-		};
 		49EF51061AE1CB4400E5901C /* In App Purhcase Manager */ = {
 			isa = PBXGroup;
 			children = (
 				49A5C2091AF65E8500B3BBC5 /* InAppPurchaseManager.swift */,
-				49C9CE661AFE9A95009D852D /* InAppPurchaseReceipt.swift */,
+				4910B4151B0E216000FDC0EA /* InAppPurchaseReceipt.swift */,
 			);
 			name = "In App Purhcase Manager";
 			path = ../COAppstoreReviews;
@@ -321,12 +309,13 @@
 		49F800F11ADC791B004A1BF1 /* Categories */ = {
 			isa = PBXGroup;
 			children = (
-				49F800F21ADC7944004A1BF1 /* NSImageView+Networking.swift */,
-				493218F51AE5A580008996EC /* AutoSizedTextField.swift */,
-				49AAB8D61AE9AC9C00B412A8 /* String+Size.swift */,
-				49A5C20D1AF686EC00B3BBC5 /* NSApplicationDelegate+Version.swift */,
-				49C9CE641AFE6C41009D852D /* NSColor+AppReviews.swift */,
-				49C9CE681AFEB09B009D852D /* NSUserDefaults+Appreviews.swift */,
+				4910B4131B0E214000FDC0EA /* NSUserDefaults+Appreviews.swift */,
+				4910B4091B0E20C400FDC0EA /* NSImageView+Networking.swift */,
+				4910B4191B0E21B800FDC0EA /* Application+Premium.swift */,
+				4910B40B1B0E20E300FDC0EA /* AutoSizedTextField.swift */,
+				4910B40D1B0E210100FDC0EA /* String+Size.swift */,
+				4910B40F1B0E211300FDC0EA /* NSApplicationDelegate+Version.swift */,
+				4910B4111B0E212800FDC0EA /* NSColor+AppReviews.swift */,
 			);
 			name = Categories;
 			path = ../COAppstoreReviews;
@@ -371,6 +360,7 @@
 				49A75E4D1AD9BCDF004A4742 /* ReviewArrayController.swift */,
 				49997B7B1ADDB3F000B56590 /* TableImageCellTransformer.swift */,
 				4974240B1AF61C35004A65A8 /* AutomaticUpdateTransformer.swift */,
+				4910B4171B0E219900FDC0EA /* NotificationsHandler.swift */,
 			);
 			name = "Data Controllers";
 			sourceTree = "<group>";
@@ -606,53 +596,53 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4910B4021B0E200200FDC0EA /* Application.swift in Sources */,
 				49F800EA1ADAAD58004A1BF1 /* ApplicationArrayController.swift in Sources */,
-				49C9CE711B000C65009D852D /* Application+String.swift in Sources */,
+				4910B41A1B0E21B800FDC0EA /* Application+Premium.swift in Sources */,
 				49997B7C1ADDB3F000B56590 /* TableImageCellTransformer.swift in Sources */,
-				49DAA2FE1AD80DBB002807A7 /* Application.swift in Sources */,
-				49C9CE861B0161BB009D852D /* String+Emoji.swift in Sources */,
-				49C9CE671AFE9A95009D852D /* InAppPurchaseReceipt.swift in Sources */,
 				49A5C20A1AF65E8500B3BBC5 /* InAppPurchaseManager.swift in Sources */,
+				4910B4161B0E216000FDC0EA /* InAppPurchaseReceipt.swift in Sources */,
+				4910B4141B0E214000FDC0EA /* NSUserDefaults+Appreviews.swift in Sources */,
+				4910B4001B0E200200FDC0EA /* ItunesService.swift in Sources */,
+				4910B4181B0E219900FDC0EA /* NotificationsHandler.swift in Sources */,
+				4910B4121B0E212800FDC0EA /* NSColor+AppReviews.swift in Sources */,
+				4910B40C1B0E20E300FDC0EA /* AutoSizedTextField.swift in Sources */,
+				4910B3FB1B0E200200FDC0EA /* Array+Utils.swift in Sources */,
+				4910B3FA1B0E200200FDC0EA /* Application+String.swift in Sources */,
+				4910B4011B0E200200FDC0EA /* ItunesUrlHandler.swift in Sources */,
 				49F800F01ADC674B004A1BF1 /* ApplicationCellView.swift in Sources */,
+				4910B4061B0E200200FDC0EA /* PersistentStack.swift in Sources */,
 				49ACB8431AD5CAA00050C1B7 /* ReviewViewController.swift in Sources */,
-				49AAB8D71AE9AC9C00B412A8 /* String+Size.swift in Sources */,
-				493218F61AE5A580008996EC /* AutoSizedTextField.swift in Sources */,
-				496522A21AE31ED1004C126C /* Array+Utils.swift in Sources */,
-				49ACB86C1AD5EAF70050C1B7 /* PersistentStack.swift in Sources */,
+				4910B3FC1B0E200200FDC0EA /* Review+String.swift in Sources */,
+				4910B4051B0E200200FDC0EA /* Review.swift in Sources */,
+				4910B3FF1B0E200200FDC0EA /* DatabaseHandler.swift in Sources */,
+				4910B4031B0E200200FDC0EA /* ApplicationSettings.swift in Sources */,
 				49F800E81ADAA0DC004A1BF1 /* ReviewCellView.swift in Sources */,
+				4910B4071B0E200200FDC0EA /* ReviewManager.swift in Sources */,
 				4974240C1AF61C35004A65A8 /* AutomaticUpdateTransformer.swift in Sources */,
-				49C9CE651AFE6C41009D852D /* NSColor+AppReviews.swift in Sources */,
+				4910B3F91B0E200200FDC0EA /* ApplicationUpdater.swift in Sources */,
 				493FC55F1AF81D220043304C /* NSColor+CGColor.m in Sources */,
-				49EF51051AE1BC5900E5901C /* Timer.swift in Sources */,
-				4974240A1AF55023004A65A8 /* NotificationsHandler.swift in Sources */,
+				4910B3FE1B0E200200FDC0EA /* String+Emoji.swift in Sources */,
 				49ACB8411AD5CAA00050C1B7 /* AppDelegate.swift in Sources */,
 				497E0C5A1B0D434D00553348 /* DonateButton.swift in Sources */,
-				49EF51081AE1CE8B00E5901C /* ApplicationUpdater.swift in Sources */,
-				49ACB8461AD5CAA00050C1B7 /* AppReviews.xcdatamodeld in Sources */,
+				4910B40A1B0E20C400FDC0EA /* NSImageView+Networking.swift in Sources */,
 				498111E71AE07BC0000CBFBF /* ReviewWindowController.swift in Sources */,
-				49C9CE691AFEB09B009D852D /* NSUserDefaults+Appreviews.swift in Sources */,
-				49C9CE6B1AFEBC89009D852D /* Application+Premium.swift in Sources */,
-				49A0035B1AD68840001E10BE /* ItunesService.swift in Sources */,
+				4910B4081B0E200200FDC0EA /* Timer.swift in Sources */,
 				49F800F81ADC84A7004A1BF1 /* ApplicationViewController.swift in Sources */,
-				496522A41AE45C44004C126C /* String+AppVersion.swift in Sources */,
+				4910B40E1B0E210100FDC0EA /* String+Size.swift in Sources */,
 				4930D50A1AE7013600C90FDE /* ApplicationWindowController.swift in Sources */,
 				49AAB8C31AE854EA00B412A8 /* ReviewMenuViewController.swift in Sources */,
-				49A003591AD687A8001E10BE /* DatabaseHandler.swift in Sources */,
 				49A5C22C1AF8157E00B3BBC5 /* ReviewPieChartController.swift in Sources */,
+				4910B3FD1B0E200200FDC0EA /* String+AppVersion.swift in Sources */,
 				49A5C20C1AF6627900B3BBC5 /* AboutViewController.swift in Sources */,
-				497E10341AEBE1AC006726F0 /* ApplicationSettings.swift in Sources */,
+				4910B4101B0E211300FDC0EA /* NSApplicationDelegate+Version.swift in Sources */,
 				493FC5601AF81D220043304C /* PieChart.m in Sources */,
 				49A75E4E1AD9BCDF004A4742 /* ReviewArrayController.swift in Sources */,
-				49C9CE6D1AFF86D7009D852D /* ItunesUrlHandler.swift in Sources */,
 				493FC55E1AF81D220043304C /* BackgroundView.m in Sources */,
-				49ACB8631AD5CE700050C1B7 /* ReviewManager.swift in Sources */,
 				498111E31AE002E5000CBFBF /* StatusMenuController.swift in Sources */,
-				49A5C20E1AF686EC00B3BBC5 /* NSApplicationDelegate+Version.swift in Sources */,
+				4910B4041B0E200200FDC0EA /* AppReviews.xcdatamodeld in Sources */,
 				49F800EE1ADC6358004A1BF1 /* SearchViewController.swift in Sources */,
 				493FC5611AF81D220043304C /* SliceLayer.m in Sources */,
-				49ACB8681AD5E1730050C1B7 /* Review.swift in Sources */,
-				49C9CE6F1B000241009D852D /* Review+String.swift in Sources */,
-				49F800F31ADC7944004A1BF1 /* NSImageView+Networking.swift in Sources */,
 				49AAB8C11AE8518500B412A8 /* ReviewSplitViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -663,10 +653,9 @@
 			files = (
 				49ACB8571AD5CAA00050C1B7 /* AppstoreReviewsTests.swift in Sources */,
 				499766B21B06892C00D62EF9 /* AppVersionTests.swift in Sources */,
+				4910B41C1B0E26FE00FDC0EA /* ItunesService.swift in Sources */,
+				4910B41B1B0E26A400FDC0EA /* ItunesUrlHandler.swift in Sources */,
 				499766B71B068B1C00D62EF9 /* ItunesUrlHandlerTest.swift in Sources */,
-				499766B91B06990300D62EF9 /* ItunesService.swift in Sources */,
-				494844AE1AE4713200696E4A /* String+AppVersion.swift in Sources */,
-				499766B81B068B5400D62EF9 /* ItunesUrlHandler.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -879,14 +868,13 @@
 /* End XCConfigurationList section */
 
 /* Begin XCVersionGroup section */
-		49ACB8441AD5CAA00050C1B7 /* AppReviews.xcdatamodeld */ = {
+		4910B3F31B0E200200FDC0EA /* AppReviews.xcdatamodeld */ = {
 			isa = XCVersionGroup;
 			children = (
-				49ACB8451AD5CAA00050C1B7 /* AppReviews.xcdatamodel */,
+				4910B3F41B0E200200FDC0EA /* AppReviews.xcdatamodel */,
 			);
-			currentVersion = 49ACB8451AD5CAA00050C1B7 /* AppReviews.xcdatamodel */;
-			name = AppReviews.xcdatamodeld;
-			path = ../AppstoreReviews/AppReviews.xcdatamodeld;
+			currentVersion = 4910B3F41B0E200200FDC0EA /* AppReviews.xcdatamodel */;
+			path = AppReviews.xcdatamodeld;
 			sourceTree = "<group>";
 			versionGroupType = wrapper.xcdatamodel;
 		};
