@@ -57,9 +57,6 @@
 		4910B47C1B0E8F7800FDC0EA /* NSColor+CGColor.m in Sources */ = {isa = PBXBuildFile; fileRef = 4910B4761B0E8F7800FDC0EA /* NSColor+CGColor.m */; };
 		4910B47D1B0E8F7800FDC0EA /* PieChart.m in Sources */ = {isa = PBXBuildFile; fileRef = 4910B4781B0E8F7800FDC0EA /* PieChart.m */; };
 		4910B47E1B0E8F7800FDC0EA /* SliceLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 4910B47A1B0E8F7800FDC0EA /* SliceLayer.m */; };
-		4910B4811B0E8F8D00FDC0EA /* InAppPurchaseManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4910B47F1B0E8F8D00FDC0EA /* InAppPurchaseManager.swift */; };
-		4910B4821B0E8F8D00FDC0EA /* InAppPurchaseReceipt.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4910B4801B0E8F8D00FDC0EA /* InAppPurchaseReceipt.swift */; };
-		4910B48A1B0E8FBF00FDC0EA /* Application+Premium.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4910B4831B0E8FBF00FDC0EA /* Application+Premium.swift */; };
 		4910B48B1B0E8FBF00FDC0EA /* AutoSizedTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4910B4841B0E8FBF00FDC0EA /* AutoSizedTextField.swift */; };
 		4910B48C1B0E8FBF00FDC0EA /* NSApplicationDelegate+Version.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4910B4851B0E8FBF00FDC0EA /* NSApplicationDelegate+Version.swift */; };
 		4910B48D1B0E8FBF00FDC0EA /* NSColor+AppReviews.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4910B4861B0E8FBF00FDC0EA /* NSColor+AppReviews.swift */; };
@@ -69,7 +66,6 @@
 		4910B4941B0E900500FDC0EA /* AppReviews.entitlements in Resources */ = {isa = PBXBuildFile; fileRef = 4910B4931B0E900500FDC0EA /* AppReviews.entitlements */; };
 		4910B4961B0E901C00FDC0EA /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4910B4951B0E901C00FDC0EA /* Images.xcassets */; };
 		4910B49D1B0E908000FDC0EA /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4910B49A1B0E906800FDC0EA /* Main.storyboard */; };
-		49C9CE841B0140F5009D852D /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 49C9CE831B0140F5009D852D /* StoreKit.framework */; };
 		67821E35AE9AB2E4F46170D4 /* Pods.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5083B9909F1AD9259C461DBD /* Pods.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 /* End PBXBuildFile section */
 
@@ -136,9 +132,6 @@
 		4910B4781B0E8F7800FDC0EA /* PieChart.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PieChart.m; sourceTree = "<group>"; };
 		4910B4791B0E8F7800FDC0EA /* SliceLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SliceLayer.h; sourceTree = "<group>"; };
 		4910B47A1B0E8F7800FDC0EA /* SliceLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SliceLayer.m; sourceTree = "<group>"; };
-		4910B47F1B0E8F8D00FDC0EA /* InAppPurchaseManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = InAppPurchaseManager.swift; path = AppReviews/InAppPurchaseManager.swift; sourceTree = SOURCE_ROOT; };
-		4910B4801B0E8F8D00FDC0EA /* InAppPurchaseReceipt.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = InAppPurchaseReceipt.swift; path = AppReviews/InAppPurchaseReceipt.swift; sourceTree = SOURCE_ROOT; };
-		4910B4831B0E8FBF00FDC0EA /* Application+Premium.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "Application+Premium.swift"; path = "AppReviews/Application+Premium.swift"; sourceTree = SOURCE_ROOT; };
 		4910B4841B0E8FBF00FDC0EA /* AutoSizedTextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AutoSizedTextField.swift; path = AppReviews/AutoSizedTextField.swift; sourceTree = SOURCE_ROOT; };
 		4910B4851B0E8FBF00FDC0EA /* NSApplicationDelegate+Version.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "NSApplicationDelegate+Version.swift"; path = "AppReviews/NSApplicationDelegate+Version.swift"; sourceTree = SOURCE_ROOT; };
 		4910B4861B0E8FBF00FDC0EA /* NSColor+AppReviews.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "NSColor+AppReviews.swift"; path = "AppReviews/NSColor+AppReviews.swift"; sourceTree = SOURCE_ROOT; };
@@ -151,7 +144,6 @@
 		495E80751B055B7700D0AFC0 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		49ACB83B1AD5CAA00050C1B7 /* App Reviews.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "App Reviews.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		49ACB8501AD5CAA00050C1B7 /* App ReviewsTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "App ReviewsTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
-		49C9CE831B0140F5009D852D /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
 		5083B9909F1AD9259C461DBD /* Pods.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		8E9E3A98AF3DC476EF9A0809 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 		F9CE0DF35CA051BD774393CD /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
@@ -163,7 +155,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				67821E35AE9AB2E4F46170D4 /* Pods.framework in Frameworks */,
-				49C9CE841B0140F5009D852D /* StoreKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -258,7 +249,6 @@
 			isa = PBXGroup;
 			children = (
 				4910B3E51B0E200200FDC0EA /* ReviewManager */,
-				49EF51061AE1CB4400E5901C /* In App Purhcase Manager */,
 				49F800F51ADC840C004A1BF1 /* Window & ViewControllers */,
 				49F800F41ADC83EC004A1BF1 /* Views */,
 				49F800F11ADC791B004A1BF1 /* Categories */,
@@ -301,20 +291,9 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
-		49EF51061AE1CB4400E5901C /* In App Purhcase Manager */ = {
-			isa = PBXGroup;
-			children = (
-				4910B47F1B0E8F8D00FDC0EA /* InAppPurchaseManager.swift */,
-				4910B4801B0E8F8D00FDC0EA /* InAppPurchaseReceipt.swift */,
-			);
-			name = "In App Purhcase Manager";
-			path = ../COAppstoreReviews;
-			sourceTree = "<group>";
-		};
 		49F800F11ADC791B004A1BF1 /* Categories */ = {
 			isa = PBXGroup;
 			children = (
-				4910B4831B0E8FBF00FDC0EA /* Application+Premium.swift */,
 				4910B4841B0E8FBF00FDC0EA /* AutoSizedTextField.swift */,
 				4910B4851B0E8FBF00FDC0EA /* NSApplicationDelegate+Version.swift */,
 				4910B4861B0E8FBF00FDC0EA /* NSColor+AppReviews.swift */,
@@ -373,7 +352,6 @@
 		7147F03F6DDA32E9CC0315BF /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				49C9CE831B0140F5009D852D /* StoreKit.framework */,
 				5083B9909F1AD9259C461DBD /* Pods.framework */,
 			);
 			name = Frameworks;
@@ -446,7 +424,7 @@
 						DevelopmentTeam = 2PRW676NCQ;
 						SystemCapabilities = {
 							com.apple.InAppPurchase = {
-								enabled = 1;
+								enabled = 0;
 							};
 							com.apple.Sandbox = {
 								enabled = 1;
@@ -607,7 +585,6 @@
 				4910B4021B0E200200FDC0EA /* Application.swift in Sources */,
 				4910B4441B0E8EC100FDC0EA /* ReviewMenuViewController.swift in Sources */,
 				4910B4531B0E8F0F00FDC0EA /* ReviewArrayController.swift in Sources */,
-				4910B4821B0E8F8D00FDC0EA /* InAppPurchaseReceipt.swift in Sources */,
 				4910B47E1B0E8F7800FDC0EA /* SliceLayer.m in Sources */,
 				4910B47B1B0E8F7800FDC0EA /* BackgroundView.m in Sources */,
 				4910B4511B0E8F0F00FDC0EA /* AutomaticUpdateTransformer.swift in Sources */,
@@ -624,13 +601,11 @@
 				4910B48F1B0E8FBF00FDC0EA /* NSUserDefaults+Appreviews.swift in Sources */,
 				4910B47C1B0E8F7800FDC0EA /* NSColor+CGColor.m in Sources */,
 				4910B4381B0E8E8500FDC0EA /* StatusMenuController.swift in Sources */,
-				4910B4811B0E8F8D00FDC0EA /* InAppPurchaseManager.swift in Sources */,
 				4910B46E1B0E8F6700FDC0EA /* ApplicationCellView.swift in Sources */,
 				4910B3FC1B0E200200FDC0EA /* Review+String.swift in Sources */,
 				4910B43C1B0E8E9600FDC0EA /* ApplicationWindowController.swift in Sources */,
 				4910B4051B0E200200FDC0EA /* Review.swift in Sources */,
 				4910B3FF1B0E200200FDC0EA /* DatabaseHandler.swift in Sources */,
-				4910B48A1B0E8FBF00FDC0EA /* Application+Premium.swift in Sources */,
 				4910B48C1B0E8FBF00FDC0EA /* NSApplicationDelegate+Version.swift in Sources */,
 				4910B4031B0E200200FDC0EA /* ApplicationSettings.swift in Sources */,
 				4910B4071B0E200200FDC0EA /* ReviewManager.swift in Sources */,

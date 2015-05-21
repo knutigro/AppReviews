@@ -24,8 +24,6 @@ class AppDelegate: NSObject, NSApplicationDelegate {
 
     func applicationDidFinishLaunching(aNotification: NSNotification) {
 
-        InAppPurchaseManager.sharedInstance.loadStore()
-        
         // Create ReviewManager shared object
         var manager = ReviewManager.start()
         
