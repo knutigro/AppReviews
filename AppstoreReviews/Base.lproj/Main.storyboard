@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="7702" systemVersion="14D136" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
+<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="7706" systemVersion="14D136" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="7702"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="7706"/>
+        <plugIn identifier="com.apple.WebKitIBPlugin" version="7706"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
     </dependencies>
     <scenes>
@@ -112,6 +113,10 @@
                                     <action selector="premiumButtonClicked:" target="uib-Qp-duf" id="dZF-hw-ai8"/>
                                 </connections>
                             </button>
+                            <webView fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="E8R-Uw-rd3" customClass="DonateButton" customModule="App_Reviews" customModuleProvider="target">
+                                <rect key="frame" x="150" y="58" width="150" height="50"/>
+                                <webPreferences key="preferences" defaultFontSize="12" defaultFixedFontSize="12"/>
+                            </webView>
                             <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="5b4-Tf-YJm">
                                 <rect key="frame" x="8" y="25" width="284" height="20"/>
                                 <constraints>
@@ -134,26 +139,14 @@
                                     <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                 </textFieldCell>
                             </textField>
-                            <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="RDV-R7-IgN">
-                                <rect key="frame" x="149" y="58" width="138" height="32"/>
-                                <buttonCell key="cell" type="push" title="Restore Purchase" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="D76-P4-yrv">
-                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
-                                    <font key="font" metaFont="system"/>
-                                </buttonCell>
-                                <connections>
-                                    <action selector="restoreButtonClicked:" target="uib-Qp-duf" id="noM-Mc-PeX"/>
-                                </connections>
-                            </button>
                         </subviews>
                         <constraints>
                             <constraint firstAttribute="trailing" secondItem="5CB-ef-M70" secondAttribute="trailing" constant="10" id="0OT-Qb-PXn"/>
                             <constraint firstItem="ABH-g7-fai" firstAttribute="top" secondItem="0NS-o1-xLG" secondAttribute="bottom" id="3gK-Q5-gS9"/>
                             <constraint firstItem="JtC-cY-n52" firstAttribute="leading" secondItem="5rj-bW-yOJ" secondAttribute="leading" constant="10" id="47X-Zp-wbU"/>
-                            <constraint firstItem="RDV-R7-IgN" firstAttribute="centerY" secondItem="bb4-Bm-TLf" secondAttribute="centerY" id="5fh-Fx-KMp"/>
                             <constraint firstItem="0NS-o1-xLG" firstAttribute="leading" secondItem="JtC-cY-n52" secondAttribute="trailing" constant="10" id="5jm-eu-aJ1"/>
                             <constraint firstAttribute="trailing" secondItem="5b4-Tf-YJm" secondAttribute="trailing" constant="10" id="A2d-MN-Ho5"/>
                             <constraint firstItem="5CB-ef-M70" firstAttribute="leading" secondItem="5rj-bW-yOJ" secondAttribute="leading" constant="10" id="Be9-pC-3ia"/>
-                            <constraint firstItem="RDV-R7-IgN" firstAttribute="width" secondItem="bb4-Bm-TLf" secondAttribute="width" id="DEj-3e-HHt"/>
                             <constraint firstItem="JtC-cY-n52" firstAttribute="centerY" secondItem="0NS-o1-xLG" secondAttribute="centerY" constant="9" id="DKo-a1-jZi"/>
                             <constraint firstItem="JtC-cY-n52" firstAttribute="top" secondItem="5rj-bW-yOJ" secondAttribute="top" constant="10" id="G9s-vS-4AV"/>
                             <constraint firstAttribute="bottom" secondItem="jHM-PS-oit" secondAttribute="bottom" constant="5" id="GBh-XE-8XP"/>
@@ -161,11 +154,9 @@
                             <constraint firstItem="jHM-PS-oit" firstAttribute="leading" secondItem="5rj-bW-yOJ" secondAttribute="leading" constant="10" id="RlR-23-ig9"/>
                             <constraint firstItem="ABH-g7-fai" firstAttribute="centerX" secondItem="0NS-o1-xLG" secondAttribute="centerX" id="Rof-g0-RAB"/>
                             <constraint firstItem="5CB-ef-M70" firstAttribute="top" secondItem="JtC-cY-n52" secondAttribute="bottom" constant="20" id="Wlo-Sj-TwW"/>
-                            <constraint firstItem="RDV-R7-IgN" firstAttribute="leading" secondItem="bb4-Bm-TLf" secondAttribute="trailing" constant="10" id="WpM-gb-XzI"/>
                             <constraint firstAttribute="trailing" secondItem="0NS-o1-xLG" secondAttribute="trailing" constant="11" id="ZIB-iQ-vad"/>
                             <constraint firstAttribute="centerX" secondItem="bb4-Bm-TLf" secondAttribute="centerX" constant="68" id="a8R-Pd-Fjf"/>
                             <constraint firstItem="jHM-PS-oit" firstAttribute="height" secondItem="5b4-Tf-YJm" secondAttribute="height" id="kvd-3k-MFi"/>
-                            <constraint firstItem="RDV-R7-IgN" firstAttribute="height" secondItem="bb4-Bm-TLf" secondAttribute="height" id="lqx-Yp-9zP"/>
                             <constraint firstItem="5b4-Tf-YJm" firstAttribute="leading" secondItem="5rj-bW-yOJ" secondAttribute="leading" constant="10" id="oHe-b1-6Wg"/>
                             <constraint firstItem="bb4-Bm-TLf" firstAttribute="top" secondItem="5CB-ef-M70" secondAttribute="bottom" id="uCw-Ze-d3d"/>
                             <constraint firstItem="jHM-PS-oit" firstAttribute="top" secondItem="5b4-Tf-YJm" secondAttribute="bottom" id="xqG-td-67Z"/>
@@ -175,7 +166,6 @@
                     <connections>
                         <outlet property="premiumButton" destination="bb4-Bm-TLf" id="lfs-jb-Ula"/>
                         <outlet property="premiumLabel" destination="5CB-ef-M70" id="5YA-mq-nFP"/>
-                        <outlet property="restorePurchaseButton" destination="RDV-R7-IgN" id="S64-8H-vSr"/>
                         <outlet property="versionLabel" destination="ABH-g7-fai" id="A3b-Q1-sep"/>
                     </connections>
                 </viewController>
