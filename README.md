@@ -9,3 +9,12 @@ Please have a look at the [Project site](http://knutigro.github.io/App-Reviews-O
 ## Screenshots
 
 ![Review-Screen](/Screenshots/review-screen.png?raw=true)
+
+## Author
+
+Knut Inge Grosland, ”hei@knutinge.com”
+
+## License
+
+App Reviews is available under the GNU General Public License v3.0 license. See the LICENSE file for more info.
+

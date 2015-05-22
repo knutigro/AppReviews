@@ -66,6 +66,7 @@
 		4910B4941B0E900500FDC0EA /* AppReviews.entitlements in Resources */ = {isa = PBXBuildFile; fileRef = 4910B4931B0E900500FDC0EA /* AppReviews.entitlements */; };
 		4910B4961B0E901C00FDC0EA /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4910B4951B0E901C00FDC0EA /* Images.xcassets */; };
 		4910B49D1B0E908000FDC0EA /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4910B49A1B0E906800FDC0EA /* Main.storyboard */; };
+		4910B49F1B0F2FAF00FDC0EA /* LICENSE in Resources */ = {isa = PBXBuildFile; fileRef = 4910B49E1B0F2FAF00FDC0EA /* LICENSE */; };
 		67821E35AE9AB2E4F46170D4 /* Pods.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5083B9909F1AD9259C461DBD /* Pods.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 /* End PBXBuildFile section */
 
@@ -141,6 +142,7 @@
 		4910B4931B0E900500FDC0EA /* AppReviews.entitlements */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; name = AppReviews.entitlements; path = AppReviews/AppReviews.entitlements; sourceTree = SOURCE_ROOT; };
 		4910B4951B0E901C00FDC0EA /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Images.xcassets; path = AppReviews/Images.xcassets; sourceTree = SOURCE_ROOT; };
 		4910B49B1B0E906800FDC0EA /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = AppReviews/Base.lproj/Main.storyboard; sourceTree = SOURCE_ROOT; };
+		4910B49E1B0F2FAF00FDC0EA /* LICENSE */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = LICENSE; sourceTree = "<group>"; };
 		495E80751B055B7700D0AFC0 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		49ACB83B1AD5CAA00050C1B7 /* App Reviews.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "App Reviews.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		49ACB8501AD5CAA00050C1B7 /* App ReviewsTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "App ReviewsTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -228,6 +230,7 @@
 			isa = PBXGroup;
 			children = (
 				495E80751B055B7700D0AFC0 /* README.md */,
+				4910B49E1B0F2FAF00FDC0EA /* LICENSE */,
 				49ACB83D1AD5CAA00050C1B7 /* App Reviews */,
 				49ACB8531AD5CAA00050C1B7 /* App Reviews Tests */,
 				49ACB83C1AD5CAA00050C1B7 /* Products */,
@@ -464,6 +467,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4910B49F1B0F2FAF00FDC0EA /* LICENSE in Resources */,
 				4910B4331B0E8E3600FDC0EA /* Info.plist in Resources */,
 				4910B49D1B0E908000FDC0EA /* Main.storyboard in Resources */,
 				4910B4961B0E901C00FDC0EA /* Images.xcassets in Resources */,
