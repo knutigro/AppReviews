@@ -2,7 +2,6 @@
 <document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="7706" systemVersion="14D136" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="7706"/>
-        <plugIn identifier="com.apple.WebKitIBPlugin" version="7706"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
     </dependencies>
     <scenes>
@@ -61,7 +60,7 @@
             <objects>
                 <viewController id="uib-Qp-duf" customClass="AboutViewController" customModule="App_Reviews" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" id="5rj-bW-yOJ">
-                        <rect key="frame" x="0.0" y="0.0" width="300" height="300"/>
+                        <rect key="frame" x="0.0" y="0.0" width="298" height="300"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <subviews>
                             <imageView horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="JtC-cY-n52">
@@ -73,7 +72,7 @@
                                 <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyDown" image="AppIcon" id="hzR-DQ-zYZ"/>
                             </imageView>
                             <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="0NS-o1-xLG">
-                                <rect key="frame" x="90" y="255" width="201" height="25"/>
+                                <rect key="frame" x="90" y="255" width="199" height="25"/>
                                 <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="center" title="App Reviews" id="USR-Ul-gwb">
                                     <font key="font" metaFont="systemBold" size="21"/>
                                     <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
@@ -81,7 +80,7 @@
                                 </textFieldCell>
                             </textField>
                             <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="ABH-g7-fai">
-                                <rect key="frame" x="90" y="241" width="201" height="14"/>
+                                <rect key="frame" x="90" y="241" width="199" height="14"/>
                                 <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="center" title="Version 0.1.0" id="WsI-1Q-tGT">
                                     <font key="font" metaFont="smallSystemBold"/>
                                     <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
@@ -89,36 +88,19 @@
                                 </textFieldCell>
                             </textField>
                             <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" setsMaxLayoutWidthAtFirstLayout="YES" translatesAutoresizingMaskIntoConstraints="NO" id="5CB-ef-M70">
-                                <rect key="frame" x="8" y="86" width="284" height="120"/>
+                                <rect key="frame" x="8" y="136" width="282" height="70"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="120" id="Ifa-lL-i70"/>
+                                    <constraint firstAttribute="height" constant="70" id="Ifa-lL-i70"/>
                                 </constraints>
-                                <textFieldCell key="cell" sendsActionOnEndEditing="YES" alignment="center" title="Premium will give you access to..." id="utY-YA-V2A">
+                                <textFieldCell key="cell" sendsActionOnEndEditing="YES" alignment="center" id="utY-YA-V2A">
                                     <font key="font" metaFont="system"/>
+                                    <string key="title">If you like App Reviews, please consider making a donation. I am also happy to receive feature requests, issues, or pull requests on the Open Source GitHub pages.</string>
                                     <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                                     <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                 </textFieldCell>
                             </textField>
-                            <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="bb4-Bm-TLf">
-                                <rect key="frame" x="13" y="58" width="138" height="32"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="21" id="gVe-3t-Qfe"/>
-                                    <constraint firstAttribute="width" constant="126" id="yko-ES-qr0"/>
-                                </constraints>
-                                <buttonCell key="cell" type="push" title="Buy Premium" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="oj4-cT-JmZ">
-                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
-                                    <font key="font" metaFont="system"/>
-                                </buttonCell>
-                                <connections>
-                                    <action selector="premiumButtonClicked:" target="uib-Qp-duf" id="dZF-hw-ai8"/>
-                                </connections>
-                            </button>
-                            <webView fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="E8R-Uw-rd3" customClass="DonateButton" customModule="App_Reviews" customModuleProvider="target">
-                                <rect key="frame" x="150" y="58" width="150" height="50"/>
-                                <webPreferences key="preferences" defaultFontSize="12" defaultFixedFontSize="12"/>
-                            </webView>
                             <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="5b4-Tf-YJm">
-                                <rect key="frame" x="8" y="25" width="284" height="20"/>
+                                <rect key="frame" x="8" y="25" width="282" height="20"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="20" id="aD3-ga-rgm"/>
                                 </constraints>
@@ -129,7 +111,7 @@
                                 </textFieldCell>
                             </textField>
                             <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="jHM-PS-oit">
-                                <rect key="frame" x="8" y="5" width="284" height="20"/>
+                                <rect key="frame" x="8" y="5" width="282" height="20"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="20" id="Thl-fB-mDb"/>
                                 </constraints>
@@ -139,6 +121,44 @@
                                     <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                 </textFieldCell>
                             </textField>
+                            <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="bb4-Bm-TLf">
+                                <rect key="frame" x="76" y="71" width="147" height="32"/>
+                                <buttonCell key="cell" type="push" title="GitHub" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="oj4-cT-JmZ">
+                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                    <font key="font" metaFont="system"/>
+                                </buttonCell>
+                                <connections>
+                                    <action selector="openGitHubClicked:" target="uib-Qp-duf" id="Bag-Vx-k3V"/>
+                                </connections>
+                            </button>
+                            <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="qVO-Oo-CQI">
+                                <rect key="frame" x="76" y="97" width="147" height="32"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="135" id="Ngd-0n-4XR"/>
+                                    <constraint firstAttribute="height" constant="21" id="g6n-sk-AcZ"/>
+                                </constraints>
+                                <buttonCell key="cell" type="push" title="Project Pages" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="pTs-VW-UdE">
+                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                    <font key="font" metaFont="system"/>
+                                </buttonCell>
+                                <connections>
+                                    <action selector="openProjectPagesClicked:" target="uib-Qp-duf" id="3LE-X7-1vt"/>
+                                </connections>
+                            </button>
+                            <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="d7H-h5-lp2">
+                                <rect key="frame" x="76" y="46" width="147" height="32"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="21" id="GMF-Wg-uJt"/>
+                                    <constraint firstAttribute="width" constant="135" id="Kob-CH-b6q"/>
+                                </constraints>
+                                <buttonCell key="cell" type="push" title="Check for updates" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="BVJ-mb-0pS">
+                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                    <font key="font" metaFont="system"/>
+                                </buttonCell>
+                                <connections>
+                                    <action selector="checkForUpdatesClicked:" target="uib-Qp-duf" id="y4O-eL-unC"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <constraints>
                             <constraint firstAttribute="trailing" secondItem="5CB-ef-M70" secondAttribute="trailing" constant="10" id="0OT-Qb-PXn"/>
@@ -147,25 +167,31 @@
                             <constraint firstItem="0NS-o1-xLG" firstAttribute="leading" secondItem="JtC-cY-n52" secondAttribute="trailing" constant="10" id="5jm-eu-aJ1"/>
                             <constraint firstAttribute="trailing" secondItem="5b4-Tf-YJm" secondAttribute="trailing" constant="10" id="A2d-MN-Ho5"/>
                             <constraint firstItem="5CB-ef-M70" firstAttribute="leading" secondItem="5rj-bW-yOJ" secondAttribute="leading" constant="10" id="Be9-pC-3ia"/>
+                            <constraint firstItem="d7H-h5-lp2" firstAttribute="top" secondItem="bb4-Bm-TLf" secondAttribute="bottom" constant="4" id="CTO-NB-RmP"/>
                             <constraint firstItem="JtC-cY-n52" firstAttribute="centerY" secondItem="0NS-o1-xLG" secondAttribute="centerY" constant="9" id="DKo-a1-jZi"/>
+                            <constraint firstAttribute="centerX" secondItem="qVO-Oo-CQI" secondAttribute="centerX" id="EhV-l8-zLV"/>
                             <constraint firstItem="JtC-cY-n52" firstAttribute="top" secondItem="5rj-bW-yOJ" secondAttribute="top" constant="10" id="G9s-vS-4AV"/>
                             <constraint firstAttribute="bottom" secondItem="jHM-PS-oit" secondAttribute="bottom" constant="5" id="GBh-XE-8XP"/>
                             <constraint firstAttribute="trailing" secondItem="jHM-PS-oit" secondAttribute="trailing" constant="10" id="IYk-Rt-DYc"/>
+                            <constraint firstItem="qVO-Oo-CQI" firstAttribute="height" secondItem="bb4-Bm-TLf" secondAttribute="height" id="Qnj-Ch-0xS"/>
                             <constraint firstItem="jHM-PS-oit" firstAttribute="leading" secondItem="5rj-bW-yOJ" secondAttribute="leading" constant="10" id="RlR-23-ig9"/>
                             <constraint firstItem="ABH-g7-fai" firstAttribute="centerX" secondItem="0NS-o1-xLG" secondAttribute="centerX" id="Rof-g0-RAB"/>
+                            <constraint firstItem="d7H-h5-lp2" firstAttribute="width" secondItem="bb4-Bm-TLf" secondAttribute="width" id="Tao-bq-rEW"/>
                             <constraint firstItem="5CB-ef-M70" firstAttribute="top" secondItem="JtC-cY-n52" secondAttribute="bottom" constant="20" id="Wlo-Sj-TwW"/>
                             <constraint firstAttribute="trailing" secondItem="0NS-o1-xLG" secondAttribute="trailing" constant="11" id="ZIB-iQ-vad"/>
-                            <constraint firstAttribute="centerX" secondItem="bb4-Bm-TLf" secondAttribute="centerX" constant="68" id="a8R-Pd-Fjf"/>
+                            <constraint firstItem="d7H-h5-lp2" firstAttribute="leading" secondItem="5b4-Tf-YJm" secondAttribute="trailing" constant="-206" id="e5F-e5-9Bg"/>
+                            <constraint firstItem="bb4-Bm-TLf" firstAttribute="top" secondItem="qVO-Oo-CQI" secondAttribute="bottom" constant="5" id="fLV-U7-6Ts"/>
+                            <constraint firstItem="qVO-Oo-CQI" firstAttribute="width" secondItem="bb4-Bm-TLf" secondAttribute="width" id="fck-uQ-DEZ"/>
                             <constraint firstItem="jHM-PS-oit" firstAttribute="height" secondItem="5b4-Tf-YJm" secondAttribute="height" id="kvd-3k-MFi"/>
+                            <constraint firstItem="d7H-h5-lp2" firstAttribute="centerX" secondItem="bb4-Bm-TLf" secondAttribute="centerX" id="mJg-5G-mgF"/>
                             <constraint firstItem="5b4-Tf-YJm" firstAttribute="leading" secondItem="5rj-bW-yOJ" secondAttribute="leading" constant="10" id="oHe-b1-6Wg"/>
-                            <constraint firstItem="bb4-Bm-TLf" firstAttribute="top" secondItem="5CB-ef-M70" secondAttribute="bottom" id="uCw-Ze-d3d"/>
+                            <constraint firstItem="d7H-h5-lp2" firstAttribute="height" secondItem="bb4-Bm-TLf" secondAttribute="height" id="vwp-Z7-hBW"/>
                             <constraint firstItem="jHM-PS-oit" firstAttribute="top" secondItem="5b4-Tf-YJm" secondAttribute="bottom" id="xqG-td-67Z"/>
+                            <constraint firstItem="qVO-Oo-CQI" firstAttribute="top" secondItem="5CB-ef-M70" secondAttribute="bottom" constant="11" id="xyu-hu-C95"/>
                             <constraint firstItem="ABH-g7-fai" firstAttribute="width" secondItem="0NS-o1-xLG" secondAttribute="width" id="ymZ-fr-AFP"/>
                         </constraints>
                     </view>
                     <connections>
-                        <outlet property="premiumButton" destination="bb4-Bm-TLf" id="lfs-jb-Ula"/>
-                        <outlet property="premiumLabel" destination="5CB-ef-M70" id="5YA-mq-nFP"/>
                         <outlet property="versionLabel" destination="ABH-g7-fai" id="A3b-Q1-sep"/>
                     </connections>
                 </viewController>

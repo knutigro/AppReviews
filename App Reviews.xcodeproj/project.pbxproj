@@ -50,8 +50,6 @@
 		4910B4531B0E8F0F00FDC0EA /* ReviewArrayController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4910B44E1B0E8F0F00FDC0EA /* ReviewArrayController.swift */; };
 		4910B4541B0E8F0F00FDC0EA /* TableImageCellTransformer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4910B44F1B0E8F0F00FDC0EA /* TableImageCellTransformer.swift */; };
 		4910B46E1B0E8F6700FDC0EA /* ApplicationCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4910B46A1B0E8F6700FDC0EA /* ApplicationCellView.swift */; };
-		4910B46F1B0E8F6700FDC0EA /* DonateButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4910B46B1B0E8F6700FDC0EA /* DonateButton.swift */; };
-		4910B4701B0E8F6700FDC0EA /* DonateHTML in Resources */ = {isa = PBXBuildFile; fileRef = 4910B46C1B0E8F6700FDC0EA /* DonateHTML */; };
 		4910B4711B0E8F6700FDC0EA /* ReviewCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4910B46D1B0E8F6700FDC0EA /* ReviewCellView.swift */; };
 		4910B47B1B0E8F7800FDC0EA /* BackgroundView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4910B4741B0E8F7800FDC0EA /* BackgroundView.m */; };
 		4910B47C1B0E8F7800FDC0EA /* NSColor+CGColor.m in Sources */ = {isa = PBXBuildFile; fileRef = 4910B4761B0E8F7800FDC0EA /* NSColor+CGColor.m */; };
@@ -122,8 +120,6 @@
 		4910B44E1B0E8F0F00FDC0EA /* ReviewArrayController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ReviewArrayController.swift; path = AppReviews/ReviewArrayController.swift; sourceTree = SOURCE_ROOT; };
 		4910B44F1B0E8F0F00FDC0EA /* TableImageCellTransformer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TableImageCellTransformer.swift; path = AppReviews/TableImageCellTransformer.swift; sourceTree = SOURCE_ROOT; };
 		4910B46A1B0E8F6700FDC0EA /* ApplicationCellView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ApplicationCellView.swift; path = AppReviews/ApplicationCellView.swift; sourceTree = SOURCE_ROOT; };
-		4910B46B1B0E8F6700FDC0EA /* DonateButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = DonateButton.swift; path = AppReviews/DonateButton.swift; sourceTree = SOURCE_ROOT; };
-		4910B46C1B0E8F6700FDC0EA /* DonateHTML */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = DonateHTML; path = AppReviews/DonateHTML; sourceTree = SOURCE_ROOT; };
 		4910B46D1B0E8F6700FDC0EA /* ReviewCellView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ReviewCellView.swift; path = AppReviews/ReviewCellView.swift; sourceTree = SOURCE_ROOT; };
 		4910B4731B0E8F7800FDC0EA /* BackgroundView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BackgroundView.h; sourceTree = "<group>"; };
 		4910B4741B0E8F7800FDC0EA /* BackgroundView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BackgroundView.m; sourceTree = "<group>"; };
@@ -313,8 +309,6 @@
 			children = (
 				4910B4721B0E8F7800FDC0EA /* PieChart */,
 				4910B46A1B0E8F6700FDC0EA /* ApplicationCellView.swift */,
-				4910B46B1B0E8F6700FDC0EA /* DonateButton.swift */,
-				4910B46C1B0E8F6700FDC0EA /* DonateHTML */,
 				4910B46D1B0E8F6700FDC0EA /* ReviewCellView.swift */,
 			);
 			name = Views;
@@ -382,6 +376,7 @@
 				49ACB8391AD5CAA00050C1B7 /* Resources */,
 				9AFDC626376EE7DF95EFFC02 /* Embed Pods Frameworks */,
 				4190A1B1813032D096277609 /* Copy Pods Resources */,
+				49D09E541B0FF4C8006B39C9 /* Sign Sparkle */,
 			);
 			buildRules = (
 			);
@@ -472,7 +467,6 @@
 				4910B49D1B0E908000FDC0EA /* Main.storyboard in Resources */,
 				4910B4961B0E901C00FDC0EA /* Images.xcassets in Resources */,
 				4910B4941B0E900500FDC0EA /* AppReviews.entitlements in Resources */,
-				4910B4701B0E8F6700FDC0EA /* DonateHTML in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -518,6 +512,20 @@
 			shellPath = /bin/sh;
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods/Pods-resources.sh\"\n";
 			showEnvVarsInLog = 0;
+		};
+		49D09E541B0FF4C8006B39C9 /* Sign Sparkle */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Sign Sparkle";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "LOCATION=\"${BUILT_PRODUCTS_DIR}\"/\"${FRAMEWORKS_FOLDER_PATH}\"\n\n# Usually set by Xcode\nCODE_SIGN_IDENTITY=\"Developer ID Application: Knut Inge Grosland\"\n\ncodesign --verbose --force --sign \"$CODE_SIGN_IDENTITY\" \"$LOCATION/Sparkle.framework/Versions/A\"";
 		};
 		72B401262D76AFCCD7B98C00 /* Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -599,7 +607,6 @@
 				4910B3FA1B0E200200FDC0EA /* Application+String.swift in Sources */,
 				4910B48D1B0E8FBF00FDC0EA /* NSColor+AppReviews.swift in Sources */,
 				4910B4011B0E200200FDC0EA /* ItunesUrlHandler.swift in Sources */,
-				4910B46F1B0E8F6700FDC0EA /* DonateButton.swift in Sources */,
 				4910B4711B0E8F6700FDC0EA /* ReviewCellView.swift in Sources */,
 				4910B4061B0E200200FDC0EA /* PersistentStack.swift in Sources */,
 				4910B48F1B0E8FBF00FDC0EA /* NSUserDefaults+Appreviews.swift in Sources */,

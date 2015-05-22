@@ -1,16 +1,19 @@
 PODS:
   - Alamofire (1.2.1)
   - EDStarRating (1.1)
+  - Sparkle (1.9.0)
   - SwiftyJSON (2.2.0)
 
 DEPENDENCIES:
   - Alamofire (~> 1.2)
   - EDStarRating (~> 1.1)
+  - Sparkle (~> 1.9)
   - SwiftyJSON (~> 2.2)
 
 SPEC CHECKSUMS:
   Alamofire: 1acfdf179aff68b41a48dff70c1ac7fa263e2bcb
   EDStarRating: a41a6440a945020745d0e9ff8ada7d1afa952114
+  Sparkle: 75bbbc5ab2d666f7f77c241afe7fd28364a8f9f7
   SwiftyJSON: 0b3e6c07af17ff745e77e8e9984097b55c956e5c
 
 COCOAPODS: 0.37.1

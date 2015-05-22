@@ -7,6 +7,7 @@
 //
 
 import AppKit
+import Sparkle
 
 class StatusMenuController : NSObject {
     
@@ -52,6 +53,9 @@ class StatusMenuController : NSObject {
         }
 
         self.updateMenu()
+        
+        // Initialize Sparkle
+        SUUpdater.sharedUpdater()
     }
     
     // MARK: - Handling menu items

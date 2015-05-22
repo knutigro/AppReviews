@@ -9,3 +9,4 @@ use_frameworks!
 pod 'SwiftyJSON', '~> 2.2'
 pod 'Alamofire', '~> 1.2'
 pod 'EDStarRating', '~> 1.1'
+pod 'Sparkle', '~> 1.9'
