@@ -4,7 +4,7 @@ App Reviews make it super simple for developers and other interested to keep tra
 
 App Reviews run in your statusbar and notifies you when there are new reviews.
 
-Please have a look at the [Project site](http://knutigro.github.io/App-Reviews-OSX/) for binaries and more info. 
+Please have a look at the [Project site](http://knutigro.github.io/App-Reviews-OSX/) for signed binaries and more info. 
 
 ## Screenshots
 
