@@ -6,6 +6,8 @@ App Reviews run in your statusbar and notifies you when there are new reviews.
 
 Please have a look at the [Project site](http://knutigro.github.io/apps/app-reviews/) for signed binaries and more info. 
 
+[![Flattr this git repo](http://api.flattr.com/button/flattr-badge-large.png)](https://flattr.com/submit/auto?user_id=knutigro&url=https://github.com/knutigro/app-reviews-osx&title=AppReviews&language=Swift&tags=github&category=software)
+
 ## Screenshots
 
 ![Review-Screen](/Screenshots/review-screen.png?raw=true)
