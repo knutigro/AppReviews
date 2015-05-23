@@ -11,24 +11,22 @@ import AppKit
 class AutoSizedTextField: NSTextField {
     
     override var intrinsicContentSize: NSSize {
-        get {
-            if cell()?.wraps == nil{
-                return super.intrinsicContentSize
-            }
-            
-            var frame = self.frame
-            let width = frame.size.width
-            
-            // Make the frame very high, while keeping the width
-            frame.size.height = CGFloat.max
-            
-            // Calculate new height within the frame
-            // with practically infinite height.
-            
-            let height = cell()?.cellSizeForBounds(frame).height
-            
-            return NSMakeSize(width, height!)
+        if cell()?.wraps == nil{
+            return super.intrinsicContentSize
         }
+        
+        var frame = self.frame
+        let width = frame.size.width
+        
+        // Make the frame very high, while keeping the width
+        frame.size.height = CGFloat.max
+        
+        // Calculate new height within the frame
+        // with practically infinite height.
+        
+        let height = cell()?.cellSizeForBounds(frame).height
+        
+        return NSMakeSize(width, height!)
     }
     
     required init?(coder aDecoder: NSCoder) {

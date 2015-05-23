@@ -99,9 +99,9 @@ class ItunesService {
 // MARK: Extension for reviewFeed
 
 extension JSON {
-    var itunesReviews: [JSON] { get { return self["feed"]["entry"].arrayValue  } }
-    var itunesReviewsUpdatedAt: String? { get { return self["feed"]["updated"]["label"].string  } }
-    var itunesFeedLinks: [JSON] { get { return self["feed"]["link"].arrayValue  } }
+    var itunesReviews: [JSON] { return self["feed"]["entry"].arrayValue }
+    var itunesReviewsUpdatedAt: String? { return self["feed"]["updated"]["label"].string }
+    var itunesFeedLinks: [JSON] { return self["feed"]["link"].arrayValue }
 }
 
 

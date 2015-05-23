@@ -66,10 +66,8 @@ class ItunesUrlHandler {
     }
     
     var initialUrl: String {
-        get {
-            let storePath = storeId != nil ? ("/" + self.storeId!): ""
-            return "https://itunes.apple.com" +  storePath + "/rss/customerreviews/id=" + self.apId + "/json"
-        }
+        let storePath = storeId != nil ? ("/" + self.storeId!): ""
+        return "https://itunes.apple.com" +  storePath + "/rss/customerreviews/id=" + self.apId + "/json"
     }
     
     var pages = [ItunesPage]()

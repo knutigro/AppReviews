@@ -109,19 +109,15 @@ extension Review {
 // MARK: - JSON extension of Review
 
 extension JSON {
-    var reviewApID: String? { get { return self["id"]["label"].string  } }
-    var reviewContent: String? { get { return self["content"]["label"].string  } }
-    var reviewAuthor: String? { get { return self["author"]["name"]["label"].string  } }
-    var reviewUri: String? { get { return self["author"]["uri"]["label"].string  } }
-    var reviewTitle: String? { get { return self["title"]["label"].string  } }
-    var reviewVersion: String? { get { return self["im:version"]["label"].string  } }
-    var reviewRating: NSNumber { get { return NSNumber(integer: self["im:rating"]["label"].stringValue.toInt() ?? 0) } }
-    var reviewVoteCount: NSNumber { get { return NSNumber(integer: self["im:voteCount"]["label"].stringValue.toInt() ?? 0) } }
-    var reviewVoteSum: NSNumber { get { return NSNumber(float:(self["im:voteSum"]["label"].stringValue as NSString).floatValue) } }
+    var reviewApID: String? { return self["id"]["label"].string }
+    var reviewContent: String? { return self["content"]["label"].string }
+    var reviewAuthor: String? { return self["author"]["name"]["label"].string }
+    var reviewUri: String? { return self["author"]["uri"]["label"].string }
+    var reviewTitle: String? { return self["title"]["label"].string }
+    var reviewVersion: String? { return self["im:version"]["label"].string }
+    var reviewRating: NSNumber { return NSNumber(integer: self["im:rating"]["label"].stringValue.toInt() ?? 0) }
+    var reviewVoteCount: NSNumber { return NSNumber(integer: self["im:voteCount"]["label"].stringValue.toInt() ?? 0)  }
+    var reviewVoteSum: NSNumber { return NSNumber(float:(self["im:voteSum"]["label"].stringValue as NSString).floatValue) }
     
-    var isReviewEntity: Bool {
-        get {
-            return (self.reviewContent != nil || self.reviewRating > 0)
-        }
-    }
+    var isReviewEntity: Bool { return (self.reviewContent != nil || self.reviewRating > 0)    }
 }
