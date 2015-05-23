@@ -13,8 +13,8 @@ import Foundation
 extension Application {
     
     func toShortString() -> String {
-        var string = self.trackName
-        string += "\n" + self.sellerName
+        var string = trackName
+        string += "\n" + sellerName
         
         return string
     }

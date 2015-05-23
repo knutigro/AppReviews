@@ -20,15 +20,15 @@ class ReviewMenuViewController: NSViewController {
     let dateFormatter = NSDateFormatter()
     var updateLabelState = UpdateLabelState.LastUpdate {
         didSet {
-            self.dateFormatter.dateStyle = .LongStyle
-            self.dateFormatter.timeStyle = .MediumStyle
-            switch self.updateLabelState {
+            dateFormatter.dateStyle = .LongStyle
+            dateFormatter.timeStyle = .MediumStyle
+            switch updateLabelState {
             case .LastUpdate:
-                let updatedAt = self.application?.settings.reviewsUpdatedAt != nil ? dateFormatter.stringFromDate(self.application!.settings.reviewsUpdatedAt!): ""
-                self.reviewsUpdatedAtLabel.stringValue = NSLocalizedString("Updated: ", comment: "review.menu.reviewUpdated") + updatedAt
+                let updatedAt = application?.settings.reviewsUpdatedAt != nil ? dateFormatter.stringFromDate(application!.settings.reviewsUpdatedAt!): ""
+                reviewsUpdatedAtLabel.stringValue = NSLocalizedString("Updated: ", comment: "review.menu.reviewUpdated") + updatedAt
             case .NextUpdate:
-                let nextUpdate = self.application?.settings.nextUpdateAt != nil ? dateFormatter.stringFromDate(self.application!.settings.nextUpdateAt!): ""
-                self.reviewsUpdatedAtLabel.stringValue = NSLocalizedString("Next: ", comment: "review.menu.reviewNextUpdate") + nextUpdate
+                let nextUpdate = application?.settings.nextUpdateAt != nil ? dateFormatter.stringFromDate(application!.settings.nextUpdateAt!): ""
+                reviewsUpdatedAtLabel.stringValue = NSLocalizedString("Next: ", comment: "review.menu.reviewNextUpdate") + nextUpdate
             }
         }
     }
@@ -54,7 +54,7 @@ class ReviewMenuViewController: NSViewController {
 
     var application: Application? {
         didSet {
-            self.updateApplicationInfo()
+            updateApplicationInfo()
         }
     }
 
@@ -62,17 +62,17 @@ class ReviewMenuViewController: NSViewController {
     
     required init?(coder: NSCoder) {
         super.init(coder: coder)
-        self.managedObjectContext = ReviewManager.managedObjectContext()
+        managedObjectContext = ReviewManager.managedObjectContext()
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        if self.application != nil {
-            self.updateApplicationInfo()
+        if application != nil {
+            updateApplicationInfo()
         }
         
-        if let starRating = self.currentVersionStarRating {
+        if let starRating = currentVersionStarRating {
             starRating.starImage = NSImage(named: "star")
             starRating.starHighlightedImage = NSImage(named: "star-highlighted")
             starRating.maxRating = 5
@@ -81,7 +81,7 @@ class ReviewMenuViewController: NSViewController {
             starRating.rating = 3.5
         }
 
-        if let starRating = self.allVersionsStarRating {
+        if let starRating = allVersionsStarRating {
             starRating.starImage = NSImage(named: "star")
             starRating.starHighlightedImage = NSImage(named: "star-highlighted")
             starRating.maxRating = 5
@@ -91,89 +91,85 @@ class ReviewMenuViewController: NSViewController {
         }
         
         let applicationMonitor = NSNotificationCenter.defaultCenter().addObserverForName(kDidUpdateApplicationNotification, object: nil, queue: nil) {  [weak self] notification in
-            if let strongSelf = self {
-                dispatch_async(dispatch_get_main_queue(), { () -> Void in
-                    strongSelf.updateApplicationInfo()
-                })
-            }
+            dispatch_async(dispatch_get_main_queue(), { () -> Void in
+                self?.updateApplicationInfo()
+            })
         }
         
         let applicationSettingsMonitor = NSNotificationCenter.defaultCenter().addObserverForName(kDidUpdateApplicationSettingsNotification, object: nil, queue: nil) {  [weak self] notification in
-            if let strongSelf = self {
-                dispatch_async(dispatch_get_main_queue(), { () -> Void in
-                    strongSelf.updateApplicationInfo()
-                })
-            }
+            dispatch_async(dispatch_get_main_queue(), { () -> Void in
+                self?.updateApplicationInfo()
+            })
         }
     }
     
     
     override func prepareForSegue(segue: NSStoryboardSegue, sender: AnyObject?) {
         if let controller = segue.destinationController as? ReviewPieChartController {
-            self.pieChartController = controller
+            pieChartController = controller
         }
     }
     // MARK: - UI
     
     func updateApplicationInfo() {
 
-        let number = (self.application?.averageUserRatingForCurrentVersion ?? "")
-        var fileSize = NSString(format: "%.01f", self.application?.fileSizeMb ?? 0) as String
-        let averageUserRatingForCurrentVersion = self.application?.averageUserRatingForCurrentVersion.floatValue ?? 0
+        let number = (application?.averageUserRatingForCurrentVersion ?? "")
+        var fileSize = NSString(format: "%.01f", application?.fileSizeMb ?? 0) as String
+        let averageUserRatingForCurrentVersion = application?.averageUserRatingForCurrentVersion.floatValue ?? 0
         var averageUserRatingForCurrentVersionString = ""
         if averageUserRatingForCurrentVersion > 0 {
             averageUserRatingForCurrentVersionString = (NSString(format: "%.1f", averageUserRatingForCurrentVersion) as String)
         }
-        self.currentVersionStarRating?.rating = averageUserRatingForCurrentVersion
+        currentVersionStarRating?.rating = averageUserRatingForCurrentVersion
         
-        let numberUserRatingForCurrentVersion = self.application?.userRatingCountForCurrentVersion.integerValue ?? 0
+        let numberUserRatingForCurrentVersion = application?.userRatingCountForCurrentVersion.integerValue ?? 0
 
-        let averageUserRating = self.application?.averageUserRating.floatValue ?? 0
+        let averageUserRating = application?.averageUserRating.floatValue ?? 0
         var averageUserRatingString = ""
         if averageUserRating > 0 {
             averageUserRatingString = (NSString(format: "%.1f", averageUserRating) as String)
         }
-        self.allVersionsStarRating?.rating = averageUserRating
+        allVersionsStarRating?.rating = averageUserRating
 
-        let userRatingCount = self.application?.userRatingCount.integerValue ?? 0
+        let userRatingCount = application?.userRatingCount.integerValue ?? 0
 
-        self.titleLabel.stringValue = self.application?.trackName ?? ""
-        self.sellerNameLabel.stringValue =  NSLocalizedString("By: ", comment: "review.menu.by") + (self.application?.sellerName ?? "")
-        self.categoryLabel.stringValue =   NSLocalizedString("Category: ", comment: "review.menu.category") + (self.application?.primaryGenreName ?? "")
+        titleLabel.stringValue = application?.trackName ?? ""
+        sellerNameLabel.stringValue =  NSLocalizedString("By: ", comment: "review.menu.by") + (application?.sellerName ?? "")
+        categoryLabel.stringValue =   NSLocalizedString("Category: ", comment: "review.menu.category") + (application?.primaryGenreName ?? "")
 
-        self.dateFormatter.dateStyle = .LongStyle
-        self.dateFormatter.timeStyle = .NoStyle
-        let releasedAt = self.application?.releaseDate != nil ? dateFormatter.stringFromDate(self.application!.releaseDate!): ""
-        self.updatedAtLabel.stringValue =  NSLocalizedString("Updated: ", comment: "review.menu.updated") + releasedAt
-        self.versionLabel.stringValue =   NSLocalizedString("Version: ", comment: "review.menu.version") + (self.application?.version ?? "")
-        self.sizeLabel.stringValue =   NSLocalizedString("Size: ", comment: "review.menu.size") + fileSize + " Mb"
+        dateFormatter.dateStyle = .LongStyle
+        dateFormatter.timeStyle = .NoStyle
+        let releasedAt = application?.releaseDate != nil ? dateFormatter.stringFromDate(application!.releaseDate!): ""
+        updatedAtLabel.stringValue =  NSLocalizedString("Updated: ", comment: "review.menu.updated") + releasedAt
+        versionLabel.stringValue =   NSLocalizedString("Version: ", comment: "review.menu.version") + (application?.version ?? "")
+        sizeLabel.stringValue =   NSLocalizedString("Size: ", comment: "review.menu.size") + fileSize + " Mb"
         
-        self.averageRatingCurrentLabel.stringValue =   NSLocalizedString("Average rating: ", comment: "review.menu.currentAverageRating") + averageUserRatingForCurrentVersionString
+        averageRatingCurrentLabel.stringValue =   NSLocalizedString("Average rating: ", comment: "review.menu.currentAverageRating") + averageUserRatingForCurrentVersionString
 
-        self.numberOfRatingsCurrentLabel.stringValue =   NSLocalizedString("Number of ratings: ", comment: "review.menu.currentAverageRating") + (NSString(format: "%i", numberUserRatingForCurrentVersion) as String)
+        numberOfRatingsCurrentLabel.stringValue =   NSLocalizedString("Number of ratings: ", comment: "review.menu.currentAverageRating") + (NSString(format: "%i", numberUserRatingForCurrentVersion) as String)
 
-        self.averageRatingAllLabel.stringValue =   NSLocalizedString("Average rating: ", comment: "review.menu.currentAverageRating") + averageUserRatingString
+        averageRatingAllLabel.stringValue =   NSLocalizedString("Average rating: ", comment: "review.menu.currentAverageRating") + averageUserRatingString
         
-        self.numberOfRatingsAllLabel.stringValue =   NSLocalizedString("Number of ratings: ", comment: "review.menu.currentAverageRating") + (NSString(format: "%i", userRatingCount) as String)
+        numberOfRatingsAllLabel.stringValue =   NSLocalizedString("Number of ratings: ", comment: "review.menu.currentAverageRating") + (NSString(format: "%i", userRatingCount) as String)
         
-        self.updateLabelState = .LastUpdate
+        updateLabelState = .LastUpdate
         
-        if let application = self.application {
+        if let application = application {
             let reviews = DatabaseHandler.numberOfReviewsForApplication(application.objectID, rating: nil, context: ReviewManager.managedObjectContext())
-            self.pieChartController?.slices = [Float(reviews.0), Float(reviews.1), Float(reviews.2), Float(reviews.3), Float(reviews.4)]
-            self.pieChartController?.pieChart?.reloadData()
+            pieChartController?.slices = [Float(reviews.0), Float(reviews.1), Float(reviews.2), Float(reviews.3), Float(reviews.4)]
+            pieChartController?.pieChart?.reloadData()
             let total = reviews.0 + reviews.1 + reviews.2 + reviews.3 + reviews.4
-            self.localTotalRatingsLabel.stringValue = NSLocalizedString("Total: ", comment: "review.menu.localRatingCount") + (NSString(format: "%i", total) as String)
+            localTotalRatingsLabel.stringValue = NSLocalizedString("Total: ", comment: "review.menu.localRatingCount") + (NSString(format: "%i", total) as String)
         }
 
         
     }
     
     @IBAction func toogleUpdateLabel(objects:AnyObject?) {
-        if (self.updateLabelState == .LastUpdate) {
-            self.updateLabelState = .NextUpdate
+        if (updateLabelState == .LastUpdate) {
+            updateLabelState = .NextUpdate
         } else {
-            self.updateLabelState = .LastUpdate
+            updateLabelState = .LastUpdate
         }
     }
 }

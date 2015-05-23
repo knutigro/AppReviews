@@ -20,8 +20,8 @@ final class ReviewManager {
     // MARK: - Init & teardown
 
     init() {
-        self.persistentStack = PersistentStack(storeURL: storeURL(), modelURL: modelURL())
-        self.notificationsHandler = NotificationsHandler()
+        persistentStack = PersistentStack(storeURL: storeURL(), modelURL: modelURL())
+        notificationsHandler = NotificationsHandler()
     }
     
     class var defaultManager: ReviewManager {

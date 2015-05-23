@@ -76,10 +76,10 @@ class ApplicationSettings: NSManagedObject {
 extension ApplicationSettings {
     
     var shouldUpdateReviews: Bool {
-        if !self.automaticUpdate  {
+        if !automaticUpdate  {
             return false
         }
-        if let reviewsUpdatedAt = self.reviewsUpdatedAt, nextUpdateAt = self.nextUpdateAt {
+        if let reviewsUpdatedAt = reviewsUpdatedAt, nextUpdateAt = nextUpdateAt {
             return nextUpdateAt.compare(NSDate()) == .OrderedAscending
         } else {
             return true
@@ -87,11 +87,11 @@ extension ApplicationSettings {
     }
     
     func increaseNewReviews() {
-        var int = self.newReviews.integerValue
-        self.newReviews = NSNumber(integer: int + 1)
+        var int = newReviews.integerValue
+        newReviews = NSNumber(integer: int + 1)
     }
     
     func resetNewReviews() {
-        self.newReviews = NSNumber(integer: 0)
+        newReviews = NSNumber(integer: 0)
     }
 }

@@ -15,12 +15,12 @@ class ReviewWindowController: NSWindowController {
     
     var application: Application? {
         didSet {
-            if let application = self.application {
-                self.window?.title = application.trackName
-                self.automaticUpdate?.state = application.settings.automaticUpdate ? NSOnState: NSOffState
+            if let application = application {
+                window?.title = application.trackName
+                automaticUpdate?.state = application.settings.automaticUpdate ? NSOnState: NSOffState
                 
-                if let reviewController = self.contentViewController as? ReviewSplitViewController {
-                    reviewController.application = self.application
+                if let reviewController = contentViewController as? ReviewSplitViewController {
+                    reviewController.application = application
                 }
             } 
         }
@@ -28,11 +28,11 @@ class ReviewWindowController: NSWindowController {
     
     var objectId: NSManagedObjectID? {
         didSet {
-            if oldValue != self.objectId {
+            if oldValue != objectId {
                 var context = ReviewManager.managedObjectContext()
                 var error: NSError?
                 if let objectId = objectId {
-                    self.application = context.existingObjectWithID(objectId, error: &error) as? Application
+                    application = context.existingObjectWithID(objectId, error: &error) as? Application
                 }
             }
         }
@@ -54,8 +54,8 @@ class ReviewWindowController: NSWindowController {
     override func awakeFromNib() {
         super.awakeFromNib()
         
-        if let reviewController = self.contentViewController as? ReviewSplitViewController {
-            reviewController.application = self.application
+        if let reviewController = contentViewController as? ReviewSplitViewController {
+            reviewController.application = application
         }
     }
 }
@@ -65,13 +65,13 @@ class ReviewWindowController: NSWindowController {
 extension ReviewWindowController {
     
     @IBAction func refreshApplication(sender: AnyObject) {
-        if let application = self.application {
+        if let application = application {
             ReviewManager.appUpdater().fetchReviewsForApplication(application.objectID)
         }
     }
 
     @IBAction func automaticUpdateDidChangeState(sender: AnyObject) {
-        if let menuItem = sender as? NSMenuItem, objectId = self.application?.objectID {
+        if let menuItem = sender as? NSMenuItem, objectId = application?.objectID {
             let newState = !Bool(menuItem.state)
             menuItem.state = newState ? NSOnState: NSOffState;
             DatabaseHandler.saveDataInContext({ (context) -> Void in
@@ -84,16 +84,16 @@ extension ReviewWindowController {
     }
 
     @IBAction func openInAppstore(objects:AnyObject?) {
-        let itunesUrl = "http://itunes.apple.com/app/id" + (self.application?.trackId ?? "")
+        let itunesUrl = "http://itunes.apple.com/app/id" + (application?.trackId ?? "")
         if let url = NSURL(string: itunesUrl) {
             NSWorkspace.sharedWorkspace().openURL(url)
         }
     }
     
     @IBAction func exportReviewsClicked(sender: AnyObject) {
-        if let application = self.application {
+        if let application = application {
             
-            if let reviewController = self.contentViewController as? ReviewSplitViewController {
+            if let reviewController = contentViewController as? ReviewSplitViewController {
                 if let reviews = reviewController.reviewViewController?.reviewArrayController?.arrangedObjects as? [Review] {
                   
                     var string = ""
@@ -119,7 +119,7 @@ extension ReviewWindowController {
                             if error != nil {
                                 var alert = NSAlert()
                                 alert.messageText = error?.localizedDescription
-                                alert.beginSheetModalForWindow(self.window!, completionHandler:nil)
+                                alert.beginSheetModalForWindow(window!, completionHandler:nil)
                             }
                         }
                     }

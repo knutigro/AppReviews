@@ -20,24 +20,22 @@ class NotificationsHandler: NSObject {
         super.init()
         
         let applicationSettingsMonitor = NSNotificationCenter.defaultCenter().addObserverForName(kDidAddReviewsNotification, object: nil, queue: nil) {  [weak self] notification in
-            if let strongSelf = self {
-                if let newReviewsIds = notification.object as? Set<NSManagedObjectID> {
-                    
-                    var newReviews = [Application: [Review]]()
-                    for objectID in newReviewsIds {
-                        if let newReview = Review.getWithId(objectID, context: ReviewManager.managedObjectContext()) {
-                            if newReviews[newReview.application]?.append(newReview) == nil {
-                                var reviewArray = [Review]()
-                                reviewArray.append(newReview)
-                                newReviews[newReview.application] = reviewArray
-                            }
+            if let newReviewsIds = notification.object as? Set<NSManagedObjectID> {
+                
+                var newReviews = [Application: [Review]]()
+                for objectID in newReviewsIds {
+                    if let newReview = Review.getWithId(objectID, context: ReviewManager.managedObjectContext()) {
+                        if newReviews[newReview.application]?.append(newReview) == nil {
+                            var reviewArray = [Review]()
+                            reviewArray.append(newReview)
+                            newReviews[newReview.application] = reviewArray
                         }
                     }
-                    
-                    for application in newReviews.keys {
-                        if let reviews = newReviews[application] {
-                            strongSelf.newReviewsNotification(application, reviews: reviews)
-                        }
+                }
+                
+                for application in newReviews.keys {
+                    if let reviews = newReviews[application] {
+                        self?.newReviewsNotification(application, reviews: reviews)
                     }
                 }
             }

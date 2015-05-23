@@ -18,9 +18,9 @@ class ReviewPieChartController: NSViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        self.sliceColors = [NSColor.reviewRed(), NSColor.reviewOrange(), NSColor.reviewYellow(), NSColor.reviewGreen(), NSColor.reviewBlue()]
+        sliceColors = [NSColor.reviewRed(), NSColor.reviewOrange(), NSColor.reviewYellow(), NSColor.reviewGreen(), NSColor.reviewBlue()]
         
-        if let pieChart = self.pieChart {
+        if let pieChart = pieChart {
             pieChart.dataSource = self
             pieChart.delegate = self
             pieChart.pieCenter = CGPointMake(240, 240)
@@ -32,15 +32,15 @@ class ReviewPieChartController: NSViewController {
 extension ReviewPieChartController: PieChartDataSource {
     
     func numberOfSlicesInPieChart(pieChart: PieChart!) -> UInt {
-        return UInt(self.slices.count)
+        return UInt(slices.count)
     }
     
     func pieChart(pieChart: PieChart!, valueForSliceAtIndex index: UInt) -> CGFloat {
-        return CGFloat(self.slices[Int(index)])
+        return CGFloat(slices[Int(index)])
     }
     
     func pieChart(pieChart: PieChart!, colorForSliceAtIndex index: UInt) -> NSColor! {
-        return self.sliceColors[Int(index) % self.sliceColors.count]
+        return sliceColors[Int(index) % sliceColors.count]
     }
     
     func pieChart(pieChart: PieChart!, textForSliceAtIndex index: UInt) -> String! {
@@ -50,7 +50,7 @@ extension ReviewPieChartController: PieChartDataSource {
 
 extension ReviewPieChartController: PieChartDelegate {
     func pieChart(pieChart: PieChart!, toopTipStringAtIndex index: UInt) -> String! {
-        let number = self.slices[Int(index)]
+        let number = slices[Int(index)]
         return (NSString(format: NSLocalizedString("Number of ratings: ", comment: "review.slice.tooltip"), number) as String)
     }
 }

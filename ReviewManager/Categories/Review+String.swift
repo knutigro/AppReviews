@@ -13,12 +13,12 @@ import Foundation
 extension Review {
     
     func toString() -> String {
-        var string = self.title
-        string += "\n" + self.content
-        string += "\nRating: " + String(self.rating.integerValue)
-        string += "\n" + self.author
-        string += "\n" + self.uri
-        string += "\n" + self.application.trackName + " (Version " + self.version + ")"
+        var string = title
+        string += "\n" + content
+        string += "\nRating: " + String(rating.integerValue)
+        string += "\n" + author
+        string += "\n" + uri
+        string += "\n" + application.trackName + " (Version " + version + ")"
         
         return string
     }

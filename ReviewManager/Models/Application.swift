@@ -45,7 +45,7 @@ class Application: NSManagedObject {
 
     var fileSizeMb: Float {
         get {
-            var fileSize = self.fileSizeBytes.toInt() ?? 0
+            var fileSize = fileSizeBytes.toInt() ?? 0
             var mb = Float(fileSize) / 1000000
             return max(mb, 0.0)
         }
@@ -121,30 +121,30 @@ extension Application {
     
     func updateWithJSON(json: JSON) {
         
-        self.artworkUrl60 = json.artworkUrl60 ?? ""
-        self.artworkUrl512 = json.artworkUrl512 ?? ""
-        self.artistViewUrl = json.artistViewUrl ?? ""
-        self.fileSizeBytes = json.fileSizeBytes ?? ""
-        self.sellerUrl = json.sellerUrl ?? ""
-        self.version = json.version ?? ""
-        self.averageUserRatingForCurrentVersion = json.averageUserRatingForCurrentVersion
-        self.userRatingCountForCurrentVersion = json.userRatingCountForCurrentVersion
-        self.trackViewUrl = json.trackViewUrl ?? ""
-        self.version = json.version ?? ""
-        self.releaseDate = json.releaseDate
-        self.sellerName = json.sellerName ?? ""
-        self.artistId = json.artistId ?? ""
-        self.artistName = json.artistName ?? ""
-        self.itunesDescription = json.itunesDescription ?? ""
-        self.bundleId = json.bundleId ?? ""
-        self.trackId = json.trackId ?? ""
-        self.trackName = json.trackName ?? ""
-        self.primaryGenreName = json.primaryGenreName ?? ""
-        self.primaryGenreId = json.primaryGenreId ?? ""
-        self.releaseNotes = json.releaseNotes ?? ""
-        self.minimumOsVersion = json.minimumOsVersion ?? ""
-        self.averageUserRating = json.averageUserRating
-        self.userRatingCount = json.userRatingCount
+        artworkUrl60 = json.artworkUrl60 ?? ""
+        artworkUrl512 = json.artworkUrl512 ?? ""
+        artistViewUrl = json.artistViewUrl ?? ""
+        fileSizeBytes = json.fileSizeBytes ?? ""
+        sellerUrl = json.sellerUrl ?? ""
+        version = json.version ?? ""
+        averageUserRatingForCurrentVersion = json.averageUserRatingForCurrentVersion
+        userRatingCountForCurrentVersion = json.userRatingCountForCurrentVersion
+        trackViewUrl = json.trackViewUrl ?? ""
+        version = json.version ?? ""
+        releaseDate = json.releaseDate
+        sellerName = json.sellerName ?? ""
+        artistId = json.artistId ?? ""
+        artistName = json.artistName ?? ""
+        itunesDescription = json.itunesDescription ?? ""
+        bundleId = json.bundleId ?? ""
+        trackId = json.trackId ?? ""
+        trackName = json.trackName ?? ""
+        primaryGenreName = json.primaryGenreName ?? ""
+        primaryGenreId = json.primaryGenreId ?? ""
+        releaseNotes = json.releaseNotes ?? ""
+        minimumOsVersion = json.minimumOsVersion ?? ""
+        averageUserRating = json.averageUserRating
+        userRatingCount = json.userRatingCount
 
     }
 }

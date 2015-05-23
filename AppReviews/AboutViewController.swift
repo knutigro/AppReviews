@@ -15,7 +15,7 @@ class AboutViewController: NSViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.versionLabel?.stringValue = NSApplication.v_versionBuild()
+        versionLabel?.stringValue = NSApplication.v_versionBuild()
     }
 
     @IBAction func checkForUpdatesClicked(objects:AnyObject?) {

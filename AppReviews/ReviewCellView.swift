@@ -15,19 +15,19 @@ class ReviewCellView: NSTableCellView {
     private var kvoContext = 0
     
     deinit {
-        self.removeObserver(self, forKeyPath: "objectValue", context: &kvoContext)
+        removeObserver(self, forKeyPath: "objectValue", context: &kvoContext)
     }
     
     required init?(coder: NSCoder) {
         super.init(coder: coder)
         
-        self.addObserver(self, forKeyPath: "objectValue", options: .New, context: &kvoContext)
+        addObserver(self, forKeyPath: "objectValue", options: .New, context: &kvoContext)
     }
     
     override func awakeFromNib() {
         super.awakeFromNib()
         
-        if let starRating = self.starRating {
+        if let starRating = starRating {
             starRating.starImage = NSImage(named: "star")
             starRating.starHighlightedImage = NSImage(named: "star-highlighted")
             starRating.maxRating = 5
@@ -40,7 +40,7 @@ class ReviewCellView: NSTableCellView {
     
     override func observeValueForKeyPath(keyPath: String, ofObject object: AnyObject, change: [NSObject: AnyObject], context: UnsafeMutablePointer<Void>) {
         if context == &kvoContext {
-            if let starRating = self.starRating, objectValue = self.objectValue as? NSManagedObject {
+            if let starRating = starRating, objectValue = objectValue as? NSManagedObject {
                 starRating.bind("rating", toObject: objectValue, withKeyPath: "rating", options: nil)
             }
         }

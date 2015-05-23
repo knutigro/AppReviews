@@ -12,8 +12,8 @@ class ReviewSplitViewController: NSSplitViewController {
     
     var application: Application? {
         didSet {
-            self.reviewMenuViewController?.application = self.application
-            self.reviewViewController?.application = self.application
+            reviewMenuViewController?.application = application
+            reviewViewController?.application = application
         }
     }
     
@@ -23,11 +23,11 @@ class ReviewSplitViewController: NSSplitViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        if let reviewMenuViewController = self.splitViewItems[0].viewController as? ReviewMenuViewController {
+        if let reviewMenuViewController = splitViewItems[0].viewController as? ReviewMenuViewController {
             self.reviewMenuViewController = reviewMenuViewController
             self.reviewMenuViewController?.application = application
         }
-        if let reviewViewController = self.splitViewItems[1].viewController as? ReviewViewController {
+        if let reviewViewController = splitViewItems[1].viewController as? ReviewViewController {
             self.reviewViewController = reviewViewController
             self.reviewViewController?.application = application
         }

@@ -26,11 +26,11 @@ class ItunesPage {
             let attributes = jsonLink["attributes"]
             
             if attributes["rel"].stringValue == "next" {
-                self.nextUrl = attributes["href"].string?.stringByRemovingItunesFormatting()
+                nextUrl = attributes["href"].string?.stringByRemovingItunesFormatting()
             }
             
             // We dont get a valid next url , try to create one from the previous
-            if self.nextUrl == nil && url.containPage() {
+            if nextUrl == nil && url.containPage() {
                 if let nextUrl = ItunesPage.urlByIncreasingPage(url, page: page) {
                     self.nextUrl = nextUrl.url
                 }
@@ -77,20 +77,20 @@ class ItunesUrlHandler {
     init(apId: String, storeId: String?) {
         self.apId = apId
         self.storeId = storeId
-        self.pages.append(ItunesPage(url: self.initialUrl, page: 0))
+        pages.append(ItunesPage(url: initialUrl, page: 0))
     }
     
     func updateWithJSON(json: [JSON]) {
-        if let previousPage = self.pages.last {
+        if let previousPage = pages.last {
             let newPage = ItunesPage(url: previousPage.url, page: previousPage.page + 1, json: json)
-            if self.isNewPage(newPage) {
-                self.pages.append(newPage)
+            if isNewPage(newPage) {
+                pages.append(newPage)
             }
         }
     }
     
     func isNewPage(newPage: ItunesPage) -> Bool {
-        for page in self.pages {
+        for page in pages {
             if page.isEqualPage(newPage) {
                 return false;
             }
@@ -103,11 +103,11 @@ class ItunesUrlHandler {
 
 extension String {
     func stringByRemovingDoubleSlashes() -> String {
-        return self.stringByReplacingOccurrencesOfString("\\/", withString: "/")
+        return stringByReplacingOccurrencesOfString("\\/", withString: "/")
     }
     
     func stringByRemovingItunesFormatting() -> String {
-        var temp =  self.stringByRemovingDoubleSlashes()
+        var temp =  stringByRemovingDoubleSlashes()
         if let url = NSURL(string: temp) {
             if let pathcomponents = url.pathComponents as? [String] {
                 var newUrlString = ""
@@ -134,7 +134,7 @@ extension String {
     }
 
     func containPage() -> Bool {
-        return self.page() != nil;
+        return page() != nil;
     }
     
     func page() -> Int? {

@@ -21,7 +21,7 @@ class ReviewArrayController: NSArrayController {
     override func awakeFromNib() {
         super.awakeFromNib()
 
-        self.sortDescriptors = [
+        sortDescriptors = [
             NSSortDescriptor(key: "version", ascending: false, selector: Selector("compareVersion:")),
             NSSortDescriptor(key: "createdAt", ascending: false)
         ]

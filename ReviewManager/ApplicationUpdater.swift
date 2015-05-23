@@ -34,30 +34,22 @@ class ApplicationUpdater {
 //        }
         
         let applicationMonitor = NSNotificationCenter.defaultCenter().addObserverForName(kDidUpdateApplicationNotification, object: nil, queue: nil) {  [weak self] notification in
-            if let strongSelf = self {
-                strongSelf.updateMonitoredApplications()
-            }
+            self?.updateMonitoredApplications()
         }
 
         let applicationSettingsMonitor = NSNotificationCenter.defaultCenter().addObserverForName(kDidUpdateApplicationSettingsNotification, object: nil, queue: nil) {  [weak self] notification in
-            if let strongSelf = self {
-                strongSelf.updateMonitoredApplications()
-            }
+            self?.updateMonitoredApplications()
         }
 
         let reviewMonitor = NSNotificationCenter.defaultCenter().addObserverForName(kDidUpdateReviewsNotification, object: nil, queue: nil) {  [weak self] notification in
-            if let strongSelf = self {
-                strongSelf.updateMonitoredApplications()
-            }
+            self?.updateMonitoredApplications()
         }
 
-        self.timer = Timer.repeatEvery(kTimerInterval) { [weak self] inTimer in
-            if let strongSelf = self {
-                strongSelf.updateReviewsForAllApplications()
-            }
+        timer = Timer.repeatEvery(kTimerInterval) { [weak self] inTimer in
+            self?.updateMonitoredApplications()
         }
         
-        self.updateMonitoredApplications();
+        updateMonitoredApplications();
     }
     
     private func updateReviewsForAllApplications() {

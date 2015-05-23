@@ -18,7 +18,7 @@ extension Array {
         }
         
         if(index != nil) {
-            self.removeAtIndex(index!)
+            removeAtIndex(index!)
         }
     }
 }

@@ -63,31 +63,31 @@ extension NSImageView {
     func setImageWithUrl(url:NSURL, placeHolderImage:NSImage? = nil) {
         let request:NSMutableURLRequest = NSMutableURLRequest(URL: url)
         request.addValue("image/*", forHTTPHeaderField: "Accept")
-        self.setImageWithUrlRequest(request, placeHolderImage: placeHolderImage, success: nil, failure: nil)
+        setImageWithUrlRequest(request, placeHolderImage: placeHolderImage, success: nil, failure: nil)
     }
     
     func setImageWithUrlRequest(request:NSURLRequest, placeHolderImage:NSImage? = nil,
         success:((request:NSURLRequest?, response:NSURLResponse?, image:NSImage) -> Void)?,
         failure:((request:NSURLRequest?, response:NSURLResponse?, error:NSError) -> Void)?)
     {
-        self.cancelImageRequestOperation()
+        cancelImageRequestOperation()
         
         if let cachedImage = NSImageView.sharedImageCache().cachedImageForRequest(request) {
             if success != nil {
                 success!(request: nil, response:nil, image: cachedImage)
             }
             else {
-                self.image = cachedImage
+                image = cachedImage
             }
             
             return
         }
         
         if placeHolderImage != nil {
-            self.image = placeHolderImage
+            image = placeHolderImage
         }
         
-        self.af_requestImageOperation = (NSBlockOperation(block: { () -> Void in
+        af_requestImageOperation = (NSBlockOperation(block: { () -> Void in
             var response:NSURLResponse?
             var error:NSError?
             let data = NSURLConnection.sendSynchronousRequest(request, returningResponse: &response, error: &error)
@@ -113,12 +113,12 @@ extension NSImageView {
             })
         }), request)
         
-        NSImageView.af_sharedImageRequestOperationQueue().addOperation(self.af_requestImageOperation.operation!)
+        NSImageView.af_sharedImageRequestOperationQueue().addOperation(af_requestImageOperation.operation!)
     }
     
     private func cancelImageRequestOperation() {
-        self.af_requestImageOperation.operation?.cancel()
-        self.af_requestImageOperation = (nil, nil)
+        af_requestImageOperation.operation?.cancel()
+        af_requestImageOperation = (nil, nil)
     }
 }
 
@@ -136,10 +136,10 @@ class AFImageCache: NSCache, AFImageCacheProtocol {
             break
         }
         
-        return self.objectForKey(AFImageCacheKeyFromURLRequest(request)) as? NSImage
+        return objectForKey(AFImageCacheKeyFromURLRequest(request)) as? NSImage
     }
     
     func cacheImage(image: NSImage, forRequest request: NSURLRequest) {
-        self.setObject(image, forKey: AFImageCacheKeyFromURLRequest(request))
+        setObject(image, forKey: AFImageCacheKeyFromURLRequest(request))
     }
 }

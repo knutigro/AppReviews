@@ -22,50 +22,50 @@ class ItunesUrlHandlerTest: XCTestCase {
         super.setUp()
         // Put setup code here. This method is called before the invocation of each test method in the class.
         
-        self.urlHandler = ItunesUrlHandler(apId: "123", storeId: nil)
+        urlHandler = ItunesUrlHandler(apId: "123", storeId: nil)
         
         var error: NSError?
         if let path = NSBundle.mainBundle().pathForResource("reviews", ofType: "json") {
             if let string = NSString(contentsOfFile: path, encoding: NSUTF8StringEncoding, error: &error) as? String {
-                self.reviewJSON = JSON(string)
+                reviewJSON = JSON(string)
             }
         }
-        if self.reviewJSON == nil {
+        if reviewJSON == nil {
             XCTFail("reviewJSON Should not be nil")
         }
     }
     
     func testIfLinkExist() {
-        let feed = self.reviewJSON[0]
+        let feed = reviewJSON[0]
 
-        println("reviewJSON \(self.reviewJSON)")
+        println("reviewJSON \(reviewJSON)")
 
-//        println("reviewJSON \(self.reviewJSON)")
-        let reviews1 = self.reviewJSON.itunesReviews
+//        println("reviewJSON \(reviewJSON)")
+        let reviews1 = reviewJSON.itunesReviews
 
-        let reviews = self.reviewJSON.itunesFeedLinks
+        let reviews = reviewJSON.itunesFeedLinks
         println("reviews count = \(reviews)")
 
-//        let count = self.reviewJSON?["feed"]["link"].array?.count
+//        let count = reviewJSON?["feed"]["link"].array?.count
 //
-//        let count = self.reviewJSON?["feed"]["link"].array?.count
+//        let count = reviewJSON?["feed"]["link"].array?.count
 //        println("count \(count)")
-//        XCTAssertNotNil(self.reviewJSON?["feed"]["link"].arrayObject, "JSON should have an Array with links")
+//        XCTAssertNotNil(reviewJSON?["feed"]["link"].arrayObject, "JSON should have an Array with links")
     }
     
     func testInitialUrl() {
-//        self.pages.append(ItunesPage(url: self.initialUrl, page: 0))
+//        pages.append(ItunesPage(url: initialUrl, page: 0))
 
-        XCTAssertEqual(self.urlHandler.initialUrl, kInitialUrl, "There should be inital url")
+        XCTAssertEqual(urlHandler.initialUrl, kInitialUrl, "There should be inital url")
     }
 
     func testPrecedingUrlUrl() {
 //        if let json = json {
-//            self.urlHandler.updateWithJSON(json["feed"]["link"].arrayValue)
+//            urlHandler.updateWithJSON(json["feed"]["link"].arrayValue)
 //        } else {
 //        }
 
-        println("nextUrl \(self.urlHandler.nextUrl)")
+        println("nextUrl \(urlHandler.nextUrl)")
     }
     
     

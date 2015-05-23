@@ -28,7 +28,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         var manager = ReviewManager.start()
         
         // Create StatusMenu
-        self.statusMenuController = StatusMenuController()
+        statusMenuController = StatusMenuController()
     }
     
     func applicationWillTerminate(aNotification: NSNotification) {

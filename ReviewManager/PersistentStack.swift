@@ -26,16 +26,16 @@ class PersistentStack {
     init(storeURL: NSURL, modelURL: NSURL) {
         self.modelURL = modelURL
         self.storeURL = storeURL
-        self.setupManagedObjectContexts()
+        setupManagedObjectContexts()
     }
 
     func setupManagedObjectContexts() {
         
-        self.managedObjectContext = self.setupManagedObjectContextWithConcurrencyType(.MainQueueConcurrencyType)
-        self.managedObjectContext.undoManager = NSUndoManager()
+        managedObjectContext = setupManagedObjectContextWithConcurrencyType(.MainQueueConcurrencyType)
+        managedObjectContext.undoManager = NSUndoManager()
 
-        if self.iCloudSync {
-            self.addNotficationsForPersistentStack()
+        if iCloudSync {
+            addNotficationsForPersistentStack()
         }
         
         let managedObjectDidSave = NSNotificationCenter.defaultCenter().addObserverForName(NSManagedObjectContextDidSaveNotification, object: nil, queue: nil) { [weak self] notification in
@@ -71,7 +71,7 @@ class PersistentStack {
     }
     
     func managedObjectDidSave(notification: NSNotification) {
-        let moc = self.managedObjectContext;
+        let moc = managedObjectContext;
         if notification.object as? NSManagedObjectContext != moc {
             moc.performBlock({ () -> Void in
                 
@@ -168,17 +168,17 @@ class PersistentStack {
         var storeOptions: [NSObject: AnyObject]?
 
         // Enable iCloudSync
-        if (self.iCloudSync) {
+        if (iCloudSync) {
             storeOptions = [NSPersistentStoreUbiquitousContentNameKey: "AppReviews"]
         }
         
-        if let managedObjectModel = self.managedObjectModel() {
+        if let managedObjectModel = managedObjectModel() {
             managedObjectContext.persistentStoreCoordinator = NSPersistentStoreCoordinator(managedObjectModel: managedObjectModel)
             var error: NSError?
-            managedObjectContext.persistentStoreCoordinator?.addPersistentStoreWithType(NSSQLiteStoreType, configuration: nil, URL: self.storeURL, options: storeOptions, error: &error)
+            managedObjectContext.persistentStoreCoordinator?.addPersistentStoreWithType(NSSQLiteStoreType, configuration: nil, URL: storeURL, options: storeOptions, error: &error)
             if error != nil {
                 println(error)
-                println(self.storeURL.path)
+                println(storeURL.path)
             }
         }
         
@@ -186,7 +186,7 @@ class PersistentStack {
     }
     
     func managedObjectModel() -> NSManagedObjectModel? {
-        return NSManagedObjectModel(contentsOfURL: self.modelURL)
+        return NSManagedObjectModel(contentsOfURL: modelURL)
     }
     
 }

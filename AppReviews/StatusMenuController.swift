@@ -20,39 +20,34 @@ class StatusMenuController: NSObject {
     // MARK: - Init & teardown
 
     deinit {
-        self.removeObserver(self, forKeyPath: "applications", context: &kvoContext)
+        removeObserver(self, forKeyPath: "applications", context: &kvoContext)
     }
 
     override init() {
         super.init()
-        self.statusItem = NSStatusBar.systemStatusBar().statusItemWithLength(-1) // NSVariableStatusItemLength
-        self.statusItem.image = NSImage(named: "stausBarIcon")
-        self.statusItem.alternateImage = NSImage(named: "stausBarIcon")
-        self.statusItem.highlightMode = true
+        statusItem = NSStatusBar.systemStatusBar().statusItemWithLength(-1) // NSVariableStatusItemLength
+        statusItem.image = NSImage(named: "stausBarIcon")
+        statusItem.alternateImage = NSImage(named: "stausBarIcon")
+        statusItem.highlightMode = true
         
-        self.applicationArrayController = ApplicationArrayController(content: nil)
-        self.applicationArrayController.managedObjectContext = ReviewManager.managedObjectContext()
-        self.applicationArrayController.entityName = kEntityNameApplication
+        applicationArrayController = ApplicationArrayController(content: nil)
+        applicationArrayController.managedObjectContext = ReviewManager.managedObjectContext()
+        applicationArrayController.entityName = kEntityNameApplication
         var error: NSError? = nil
-        var result = self.applicationArrayController.fetchWithRequest(nil, merge: true, error: &error)
+        var result = applicationArrayController.fetchWithRequest(nil, merge: true, error: &error)
         
-        self.bind("applications", toObject: self.applicationArrayController, withKeyPath: "arrangedObjects", options: nil)
+        bind("applications", toObject: applicationArrayController, withKeyPath: "arrangedObjects", options: nil)
         
-        self.addObserver(self, forKeyPath: "applications", options: .New, context: &kvoContext)
+        addObserver(self, forKeyPath: "applications", options: .New, context: &kvoContext)
         
         let applicationMonitor = NSNotificationCenter.defaultCenter().addObserverForName(kDidUpdateApplicationNotification, object: nil, queue: nil) {  [weak self] notification in
-            if let strongSelf = self {
-                strongSelf.updateMenu()
-            }
         }
         
         let applicationSettingsMonitor = NSNotificationCenter.defaultCenter().addObserverForName(kDidUpdateApplicationSettingsNotification, object: nil, queue: nil) {  [weak self] notification in
-            if let strongSelf = self {
-                strongSelf.updateMenu()
-            }
+            self?.updateMenu()
         }
 
-        self.updateMenu()
+        updateMenu()
         
         // Initialize Sparkle
         SUUpdater.sharedUpdater()
@@ -65,7 +60,7 @@ class StatusMenuController: NSObject {
 
         var newReviews = false
 
-        for application in self.applications {
+        for application in applications {
             
 //            application.addObserver(self, forKeyPath: "settings.newReviews", options: .New, context: &kvoContext)
             var title = application.trackName
@@ -99,14 +94,14 @@ class StatusMenuController: NSObject {
         menu.addItem(NSMenuItem.separatorItem())
         menu.addItem(menuItemQuit)
         
-        self.statusItem.menu = menu;
+        statusItem.menu = menu;
         
         if newReviews {
-            self.statusItem.image = NSImage(named: "stausBarIconHappy")
-            self.statusItem.alternateImage = NSImage(named: "stausBarIconHappy")
+            statusItem.image = NSImage(named: "stausBarIconHappy")
+            statusItem.alternateImage = NSImage(named: "stausBarIconHappy")
         } else {
-            self.statusItem.image = NSImage(named: "stausBarIcon")
-            self.statusItem.alternateImage = NSImage(named: "stausBarIcon")
+            statusItem.image = NSImage(named: "stausBarIcon")
+            statusItem.alternateImage = NSImage(named: "stausBarIcon")
         }
     }
 }
@@ -149,7 +144,7 @@ extension StatusMenuController {
     override func observeValueForKeyPath(keyPath: String, ofObject object: AnyObject, change: [NSObject: AnyObject], context: UnsafeMutablePointer<Void>) {
         if context == &kvoContext {
 //            println("observeValueForKeyPath: " + keyPath +  "change: \(change)" )
-//            self.updateMenu()
+//            updateMenu()
         }
         else {
             super.observeValueForKeyPath(keyPath, ofObject: object, change: change, context: context)

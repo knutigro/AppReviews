@@ -13,7 +13,7 @@ import Foundation
 extension NSString {
     
     private func versionAsIntegerArray() -> [Int] {
-        let versionComponents = (self.componentsSeparatedByString("."))
+        let versionComponents = (componentsSeparatedByString("."))
         var versionComponentsAsIntegers = [Int]()
         
         for component in versionComponents {
@@ -29,7 +29,7 @@ extension NSString {
     
     func compareVersion(version: NSString) -> NSComparisonResult {
         
-        let myIntegerArray = self.versionAsIntegerArray()
+        let myIntegerArray = versionAsIntegerArray()
         let applicationArray = version.versionAsIntegerArray()
         
         for (var i = 0; i < myIntegerArray.count; i++) {

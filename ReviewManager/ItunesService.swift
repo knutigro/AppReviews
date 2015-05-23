@@ -15,7 +15,7 @@ import SwiftyJSON
 class ItunesService {
 
     var url: String {
-        return self.urlHandler.nextUrl ?? self.urlHandler.initialUrl
+        return urlHandler.nextUrl ?? urlHandler.initialUrl
     }
 
     let apId: String
@@ -28,7 +28,7 @@ class ItunesService {
     init(apId: String, storeId: String?) {
         self.apId = apId
         self.storeId = storeId
-        self.urlHandler = ItunesUrlHandler(apId: apId, storeId: storeId)
+        urlHandler = ItunesUrlHandler(apId: apId, storeId: storeId)
     }
     
     // MARK: - Update object
@@ -39,11 +39,11 @@ class ItunesService {
             let dateFormatter = NSDateFormatter()
             dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss-SS:SS'"
             if let date = dateFormatter.dateFromString(dateString) {
-                self.updated = date
+                updated = date
             }
         }
         
-        self.urlHandler.updateWithJSON(json.itunesFeedLinks)
+        urlHandler.updateWithJSON(json.itunesFeedLinks)
     }
     
     // MARK: - Fetching

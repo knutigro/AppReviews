@@ -22,7 +22,7 @@ class ApplicationViewController: NSViewController {
 
     required init?(coder: NSCoder) {
         super.init(coder: coder)
-        self.managedObjectContext = ReviewManager.managedObjectContext()
+        managedObjectContext = ReviewManager.managedObjectContext()
     }
     
     // MARK: - View & Navigation
@@ -37,7 +37,7 @@ class ApplicationViewController: NSViewController {
 extension ApplicationViewController {
     
     @IBAction func removeButtonClicked(objects:AnyObject?) {
-        if let applications = objects as? [Application], let rowNumber = self.tableView?.selectedRow {
+        if let applications = objects as? [Application], let rowNumber = tableView?.selectedRow {
             if applications.count > rowNumber && rowNumber >= 0{
                 DatabaseHandler.removeApplication(applications[rowNumber].objectID)
             }
@@ -45,7 +45,7 @@ extension ApplicationViewController {
     }
     
     func cellDoubleClicked(applications: [Application]?) {
-        if let applications = applications, let rowNumber = self.tableView?.selectedRow {
+        if let applications = applications, let rowNumber = tableView?.selectedRow {
             if applications.count > rowNumber && rowNumber >= 0{
                 let application = applications[rowNumber]
                 ReviewWindowController.show(application.objectID)

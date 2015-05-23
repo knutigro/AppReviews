@@ -21,8 +21,8 @@ extension ApplicationWindowController  {
     override func controlTextDidEndEditing(notification: NSNotification) {        
         if let textField = notification.object as? NSTextField {
             if !textField.stringValue.isEmpty {
-                self.openSearchResultController()
-                self.searchApp(textField.stringValue)
+                openSearchResultController()
+                searchApp(textField.stringValue)
             }
         }
     }
@@ -46,19 +46,17 @@ extension ApplicationWindowController  {
             }
             
             if let applications = applications?.arrayValue {
-                if let strongSelf = self {
-                    strongSelf.openSearchResult(applications)
-                }
+                self?.openSearchResult(applications)
             }
         }
     }
     
     func openSearchResult(items: [JSON]) {
         
-        if self.searchWindowController == nil {
-            self.openSearchResultController()
+        if searchWindowController == nil {
+            openSearchResultController()
         }
-        if let searchViewController = self.searchWindowController?.window?.contentViewController as? SearchViewController {
+        if let searchViewController = searchWindowController?.window?.contentViewController as? SearchViewController {
             searchViewController.items = items
             searchViewController.tableView?.reloadData()
             searchViewController.state = .Idle
@@ -67,15 +65,15 @@ extension ApplicationWindowController  {
     
     func openSearchResultController() {
         let storyboard = NSStoryboard(name: "Main", bundle: nil)!
-        self.searchWindowController = storyboard.instantiateControllerWithIdentifier("SearchResultWindowController") as? NSWindowController
-        var window = self.searchWindowController?.window
+        searchWindowController = storyboard.instantiateControllerWithIdentifier("SearchResultWindowController") as? NSWindowController
+        var window = searchWindowController?.window
         
         if let searchViewController = window?.contentViewController as? SearchViewController {
             searchViewController.delegate = self
             searchViewController.state = .Loading
         }
         
-        self.window?.beginSheet(window!) {
+        window?.beginSheet(window!) {
             (returnCode: NSModalResponse)
             in
             self.searchWindowController = nil
@@ -87,19 +85,19 @@ extension ApplicationWindowController  {
 
 extension ApplicationWindowController: SearchViewControllerDelegate {
     func searchViewController(searchViewController: SearchViewController, didSelectApplication application: JSON) {
-        self.searchField?.stringValue = ""
+        searchField?.stringValue = ""
 
         DatabaseHandler.saveApplication(application)
 
-        if let searchWindow = self.searchWindowController?.window {
-            self.window?.endSheet(searchWindow)
+        if let searchWindow = searchWindowController?.window {
+            window?.endSheet(searchWindow)
         }
     }
     
     func searchViewControllerDidCancel(searchViewController: SearchViewController) {
-        self.searchField?.stringValue = ""
-        if let searchWindow = self.searchWindowController?.window {
-            self.window?.endSheet(searchWindow)
+        searchField?.stringValue = ""
+        if let searchWindow = searchWindowController?.window {
+            window?.endSheet(searchWindow)
         }
     }
 }

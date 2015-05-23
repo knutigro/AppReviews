@@ -94,15 +94,15 @@ extension Review {
     
     func updateWithJSON(json: JSON) {
         
-        self.apId = json.reviewApID ?? ""
-        self.author = json.reviewAuthor ?? ""
-        self.uri = json.reviewUri ?? ""
-        self.title = json.reviewTitle ?? ""
-        self.content = json.reviewContent ?? ""
-        self.version = json.reviewVersion ?? ""
-        self.rating = json.reviewRating
-        self.voteCount = json.reviewVoteCount
-        self.voteSum = json.reviewVoteSum
+        apId = json.reviewApID ?? ""
+        author = json.reviewAuthor ?? ""
+        uri = json.reviewUri ?? ""
+        title = json.reviewTitle ?? ""
+        content = json.reviewContent ?? ""
+        version = json.reviewVersion ?? ""
+        rating = json.reviewRating
+        voteCount = json.reviewVoteCount
+        voteSum = json.reviewVoteSum
     }
 }
 

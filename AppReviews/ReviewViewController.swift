@@ -17,18 +17,18 @@ class ReviewViewController: NSViewController {
 
     var application: Application? {
         didSet {
-            self.reviewArrayController?.application = self.application
-            if let application = self.application {
+            reviewArrayController?.application = application
+            if let application = application {
                 ReviewManager.appUpdater().resetNewReviewsCountForApplication(application.objectID)
             }
-            self.tableView?.reloadData()
+            tableView?.reloadData()
         }
     }
     // MARK: - Init & teardown
     
     required init?(coder: NSCoder) {
         super.init(coder: coder)
-        self.managedObjectContext = ReviewManager.managedObjectContext()
+        managedObjectContext = ReviewManager.managedObjectContext()
     }
 }
 
@@ -38,7 +38,7 @@ extension ReviewViewController: NSTableViewDelegate {
 
     func tableView(tableView: NSTableView, heightOfRow row: Int) -> CGFloat {
 
-        let review = self.reviewArrayController?.arrangedObjects[row] as? Review
+        let review = reviewArrayController?.arrangedObjects[row] as? Review
         var height = review?.content.size(tableView.frame.size.width - 85, font: NSFont.systemFontOfSize(13)).height ?? 0
         
         return height + 80
@@ -50,8 +50,8 @@ extension ReviewViewController: NSTableViewDelegate {
 extension ReviewViewController {
     
     @IBAction func copyReviewToClipBoardClicked(menuItem: NSMenuItem) {
-        if self.tableView?.clickedRow > 0 && self.tableView?.clickedRow < self.reviewArrayController?.arrangedObjects.count {
-            if let review = self.reviewArrayController?.arrangedObjects[self.tableView!.clickedRow] as? Review {
+        if tableView?.clickedRow > 0 && tableView?.clickedRow < reviewArrayController?.arrangedObjects.count {
+            if let review = reviewArrayController?.arrangedObjects[tableView!.clickedRow] as? Review {
                 var pasteBoard = NSPasteboard.generalPasteboard()
                 pasteBoard.clearContents()
                 pasteBoard.writeObjects([review.toString()])
@@ -60,8 +60,8 @@ extension ReviewViewController {
     }
 
     @IBAction func openReviewClicked(menuItem: NSMenuItem) {
-        if self.tableView?.clickedRow > 0 && self.tableView?.clickedRow < self.reviewArrayController?.arrangedObjects.count {
-            if let review = self.reviewArrayController?.arrangedObjects[self.tableView!.clickedRow] as? Review {
+        if tableView?.clickedRow > 0 && tableView?.clickedRow < reviewArrayController?.arrangedObjects.count {
+            if let review = reviewArrayController?.arrangedObjects[tableView!.clickedRow] as? Review {
                 if let url = NSURL(string: review.uri) {
                     NSWorkspace.sharedWorkspace().openURL(url)
                 }
@@ -70,8 +70,8 @@ extension ReviewViewController {
     }
 
     @IBAction func saveReviewClicked(menuItem: NSMenuItem) {
-        if self.tableView?.clickedRow > 0 && self.tableView?.clickedRow < self.reviewArrayController?.arrangedObjects.count {
-            if let review = self.reviewArrayController?.arrangedObjects[self.tableView!.clickedRow] as? Review {
+        if tableView?.clickedRow > 0 && tableView?.clickedRow < reviewArrayController?.arrangedObjects.count {
+            if let review = reviewArrayController?.arrangedObjects[tableView!.clickedRow] as? Review {
                 var savePanel = NSSavePanel()
                 savePanel.title = review.title
                 savePanel.nameFieldStringValue = review.title

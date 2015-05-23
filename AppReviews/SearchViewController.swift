@@ -28,19 +28,19 @@ class SearchViewController: NSViewController {
     var delegate: SearchViewControllerDelegate?
     var state: SearchViewControllerState = .Idle {
         didSet {
-            switch self.state {
+            switch state {
             case .Idle:
-                self.progressIndicator.stopAnimation(nil)
+                progressIndicator.stopAnimation(nil)
             case .Loading:
-                self.progressIndicator.startAnimation(nil)
+                progressIndicator.startAnimation(nil)
             }
         }
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.tableView.target = self
-        self.tableView.doubleAction = Selector("doubleClickedCell:")
+        tableView.target = self
+        tableView.doubleAction = Selector("doubleClickedCell:")
     }
 }
 
@@ -49,9 +49,9 @@ class SearchViewController: NSViewController {
 extension SearchViewController {
     
     func doubleClickedCell(object: AnyObject) {
-        if let rowNumber = self.tableView?.selectedRow {
-            if rowNumber < self.items.count {
-                let application = self.items[rowNumber]
+        if let rowNumber = tableView?.selectedRow {
+            if rowNumber < items.count {
+                let application = items[rowNumber]
                 delegate?.searchViewController(self, didSelectApplication: application)
             }
         }
@@ -67,12 +67,12 @@ extension SearchViewController {
 extension SearchViewController: NSTableViewDataSource {
     
     func numberOfRowsInTableView(aTableView: NSTableView) -> Int {
-        return self.items.count
+        return items.count
     }
     
     func tableView(tableView: NSTableView, viewForTableColumn: NSTableColumn, row: Int) -> NSView {
         var cell = tableView.makeViewWithIdentifier(kApplicationCellIdentifier, owner: self) as! ApplicationCellView
-        let application = self.items[row]
+        let application = items[row]
         cell.textField?.stringValue = application.trackName ?? ""
         cell.authorTextField?.stringValue = application.sellerName ?? ""
         
