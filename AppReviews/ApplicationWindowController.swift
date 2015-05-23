@@ -9,16 +9,16 @@
 import AppKit
 import SwiftyJSON
 
-class ApplicationWindowController : NSWindowController {
+class ApplicationWindowController: NSWindowController {
     @IBOutlet weak var searchField: NSSearchField?
-    var searchWindowController : NSWindowController?
+    var searchWindowController: NSWindowController?
 }
 
 // MARK: - SearchField
 
 extension ApplicationWindowController  {
     
-    override func controlTextDidEndEditing(notification : NSNotification) {        
+    override func controlTextDidEndEditing(notification: NSNotification) {        
         if let textField = notification.object as? NSTextField {
             if !textField.stringValue.isEmpty {
                 self.openSearchResultController()
@@ -35,7 +35,7 @@ extension ApplicationWindowController  {
     func searchApp(name: String) {
         
         ItunesService.fetchApplications(name) { [weak self]
-            (success: Bool, applications: JSON?, error : NSError?)
+            (success: Bool, applications: JSON?, error: NSError?)
             in
             
             let blockSuccess = success as Bool
@@ -76,7 +76,7 @@ extension ApplicationWindowController  {
         }
         
         self.window?.beginSheet(window!) {
-            (returnCode : NSModalResponse)
+            (returnCode: NSModalResponse)
             in
             self.searchWindowController = nil
         }
@@ -85,8 +85,8 @@ extension ApplicationWindowController  {
 
 // Mark: - SearchViewControllerDelegate
 
-extension ApplicationWindowController : SearchViewControllerDelegate {
-    func searchViewController(searchViewController : SearchViewController, didSelectApplication application: JSON) {
+extension ApplicationWindowController: SearchViewControllerDelegate {
+    func searchViewController(searchViewController: SearchViewController, didSelectApplication application: JSON) {
         self.searchField?.stringValue = ""
 
         DatabaseHandler.saveApplication(application)
@@ -96,7 +96,7 @@ extension ApplicationWindowController : SearchViewControllerDelegate {
         }
     }
     
-    func searchViewControllerDidCancel(searchViewController : SearchViewController) {
+    func searchViewControllerDidCancel(searchViewController: SearchViewController) {
         self.searchField?.stringValue = ""
         if let searchWindow = self.searchWindowController?.window {
             self.window?.endSheet(searchWindow)

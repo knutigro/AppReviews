@@ -11,7 +11,7 @@ import AppKit
 
 extension String {
     
-    func size(width : CGFloat, font : NSFont) -> NSSize {
+    func size(width: CGFloat, font: NSFont) -> NSSize {
         let range =  NSMakeRange(0, (self as NSString).length)
         var size = NSMakeSize(width, CGFloat(MAXFLOAT))
         var textStorage = NSTextStorage(string: self)

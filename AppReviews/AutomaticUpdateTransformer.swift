@@ -9,7 +9,7 @@
 import AppKit
 
 @objc(AutomaticUpdateTransformer)
-class AutomaticUpdateTransformer : NSValueTransformer{
+class AutomaticUpdateTransformer: NSValueTransformer{
     
 //    override class func transformedValueClass() -> AnyClass {
 //        return NSNumber.self
@@ -17,9 +17,9 @@ class AutomaticUpdateTransformer : NSValueTransformer{
     
     override func transformedValue(value: AnyObject!) -> AnyObject? {
         if let on = value as? Bool {
-//            return on ? NSOffState : NSOnState
-            return on ? NSOnState : NSOffState
-//            return on ? NSNumber(integer: NSOnState) :  NSNumber(integer: NSOffState)
+//            return on ? NSOffState: NSOnState
+            return on ? NSOnState: NSOffState
+//            return on ? NSNumber(integer: NSOnState):  NSNumber(integer: NSOffState)
         } else {
             return nil
         }

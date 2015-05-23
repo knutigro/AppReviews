@@ -13,9 +13,9 @@ let kSQLiteFileName = "db.sqlite"
 
 final class ReviewManager {
 
-    private var persistentStack : PersistentStack!
+    private var persistentStack: PersistentStack!
     private var applicationUpdater: ApplicationUpdater!
-    private var notificationsHandler : NotificationsHandler!
+    private var notificationsHandler: NotificationsHandler!
 
     // MARK: - Init & teardown
 
@@ -57,7 +57,7 @@ final class ReviewManager {
     }
 
     class func saveContext() {
-        var error : NSError? = nil
+        var error: NSError? = nil
         ReviewManager.defaultManager.persistentStack.managedObjectContext.save(&error)
         if error != nil {
             println("error saving: \(error?.localizedDescription)")

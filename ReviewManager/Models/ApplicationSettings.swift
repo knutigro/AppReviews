@@ -12,15 +12,15 @@ let kEntityNameApplicationSettings = "ApplicationSettings"
 
 @objc(ApplicationSettings)
 
-class ApplicationSettings : NSManagedObject {
+class ApplicationSettings: NSManagedObject {
     
-    @NSManaged var automaticUpdate : Bool
-    @NSManaged var newReviews : NSNumber
-    @NSManaged var reviewsUpdatedAt : NSDate?
-    @NSManaged var nextUpdateAt : NSDate?
-    @NSManaged var createdAt : NSDate
-    @NSManaged var updatedAt : NSDate
-    @NSManaged var application : Application
+    @NSManaged var automaticUpdate: Bool
+    @NSManaged var newReviews: NSNumber
+    @NSManaged var reviewsUpdatedAt: NSDate?
+    @NSManaged var nextUpdateAt: NSDate?
+    @NSManaged var createdAt: NSDate
+    @NSManaged var updatedAt: NSDate
+    @NSManaged var application: Application
     
     // MARK: - Init & teardown
     
@@ -35,10 +35,10 @@ class ApplicationSettings : NSManagedObject {
     
     // MARK: - Class functions for create and insert and search
     
-    class func get(application : Application, context: NSManagedObjectContext) -> ApplicationSettings? {
+    class func get(application: Application, context: NSManagedObjectContext) -> ApplicationSettings? {
         let fetchRequest = NSFetchRequest(entityName: kEntityNameApplicationSettings)
         fetchRequest.predicate = NSPredicate(format: "application = %@", application)
-        var error : NSError?
+        var error: NSError?
         
         let result = context.executeFetchRequest(fetchRequest, error: &error)
         
@@ -48,7 +48,7 @@ class ApplicationSettings : NSManagedObject {
         return result?.last as? ApplicationSettings
     }
     
-    class func new(application : Application, context: NSManagedObjectContext) -> ApplicationSettings {
+    class func new(application: Application, context: NSManagedObjectContext) -> ApplicationSettings {
         let settings = ApplicationSettings(insertIntoManagedObjectContext: context)
         settings.application = application;
         settings.automaticUpdate = true
@@ -58,7 +58,7 @@ class ApplicationSettings : NSManagedObject {
         return settings
     }
     
-    class func getOrCreateNew(application : Application, context: NSManagedObjectContext) -> ApplicationSettings {
+    class func getOrCreateNew(application: Application, context: NSManagedObjectContext) -> ApplicationSettings {
         if let settings = ApplicationSettings.get(application, context: context) {
             return settings
         } else {
@@ -75,7 +75,7 @@ class ApplicationSettings : NSManagedObject {
 
 extension ApplicationSettings {
     
-    var shouldUpdateReviews : Bool {
+    var shouldUpdateReviews: Bool {
         if !self.automaticUpdate  {
             return false
         }

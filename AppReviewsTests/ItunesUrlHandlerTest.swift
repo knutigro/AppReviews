@@ -14,9 +14,9 @@ import SwiftyJSON
 
 class ItunesUrlHandlerTest: XCTestCase {
     
-    var urlHandler : ItunesUrlHandler!
+    var urlHandler: ItunesUrlHandler!
     let kInitialUrl = "https://itunes.apple.com/rss/customerreviews/id=123/json"
-    var reviewJSON : JSON!
+    var reviewJSON: JSON!
 
     override func setUp() {
         super.setUp()
@@ -24,7 +24,7 @@ class ItunesUrlHandlerTest: XCTestCase {
         
         self.urlHandler = ItunesUrlHandler(apId: "123", storeId: nil)
         
-        var error : NSError?
+        var error: NSError?
         if let path = NSBundle.mainBundle().pathForResource("reviews", ofType: "json") {
             if let string = NSString(contentsOfFile: path, encoding: NSUTF8StringEncoding, error: &error) as? String {
                 self.reviewJSON = JSON(string)

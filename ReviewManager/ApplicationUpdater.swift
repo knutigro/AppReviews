@@ -17,7 +17,7 @@ class ApplicationUpdater {
     private var timer: Timer?
     private var applications = [Application]()
     
-    var numberOfMonitoredApplications : Int {
+    var numberOfMonitoredApplications: Int {
         return applications.count
     }
 
@@ -101,7 +101,7 @@ class ApplicationUpdater {
     
     func fetchReviewsForApplication(objectId: NSManagedObjectID) {
         
-        var error : NSError?
+        var error: NSError?
         
         if let fetchApplication = ReviewManager.managedObjectContext().existingObjectWithID(objectId, error: &error) as? Application {
             
@@ -111,7 +111,7 @@ class ApplicationUpdater {
             let itunesService = ItunesService(apId: fetchApplication.trackId, storeId: nil)
             
             itunesService.fetchReviews(itunesService.url) {  [weak self]
-                (success: Bool, reviews: [JSON]?, error : NSError?) in
+                (success: Bool, reviews: [JSON]?, error: NSError?) in
                 
                 if let reviews = reviews {
                     if reviews.count > 0 {

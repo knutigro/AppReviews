@@ -12,7 +12,7 @@ import AppKit
 let kNotificaObjectIdKey = "kNotificaObjectIdKey"
 
 @objc
-class NotificationsHandler : NSObject {
+class NotificationsHandler: NSObject {
     
     // MARK: - Init & teardown
     
@@ -23,7 +23,7 @@ class NotificationsHandler : NSObject {
             if let strongSelf = self {
                 if let newReviewsIds = notification.object as? Set<NSManagedObjectID> {
                     
-                    var newReviews = [Application : [Review]]()
+                    var newReviews = [Application: [Review]]()
                     for objectID in newReviewsIds {
                         if let newReview = Review.getWithId(objectID, context: ReviewManager.managedObjectContext()) {
                             if newReviews[newReview.application]?.append(newReview) == nil {
@@ -44,7 +44,7 @@ class NotificationsHandler : NSObject {
         }
     }
     
-    func newReviewsNotification(application: Application, reviews : [Review]) {
+    func newReviewsNotification(application: Application, reviews: [Review]) {
         assert(reviews.count > 0, "Reviews should be greater than 0")
         if reviews.count == 0 {  return }
 
@@ -59,7 +59,7 @@ class NotificationsHandler : NSObject {
             stars = reviews[0].rating.integerValue.toEmojiStars()
         }
 
-        var message = (NSString(format: NSLocalizedString("%@ new review%@. %@", comment: "review.notification.reviewstext"), String(reviews.count), (reviews.count > 1 ? "s" : ""), stars)) as String
+        var message = (NSString(format: NSLocalizedString("%@ new review%@. %@", comment: "review.notification.reviewstext"), String(reviews.count), (reviews.count > 1 ? "s": ""), stars)) as String
         
         if (!reviews[0].title.isEmpty) {
             message = message + "\n" + reviews[0].title
@@ -69,13 +69,13 @@ class NotificationsHandler : NSObject {
         notification.title = application.trackName
 
         if let urlString = application.objectID.URIRepresentation().absoluteString {
-            notification.userInfo = [kNotificaObjectIdKey : urlString]
+            notification.userInfo = [kNotificaObjectIdKey: urlString]
         }
 
         notification.informativeText = message
         notification.actionButtonTitle = NSLocalizedString("Open Reviews", comment: "review.notification.openReviews")
         notification.hasActionButton = true
-        var center : NSUserNotificationCenter = NSUserNotificationCenter.defaultUserNotificationCenter()
+        var center: NSUserNotificationCenter = NSUserNotificationCenter.defaultUserNotificationCenter()
         center.delegate = self
         
         dispatch_async(dispatch_get_main_queue(), { () -> Void in
@@ -84,7 +84,7 @@ class NotificationsHandler : NSObject {
     }
 }
 
-extension NotificationsHandler : NSUserNotificationCenterDelegate {
+extension NotificationsHandler: NSUserNotificationCenterDelegate {
     
     func userNotificationCenter(center: NSUserNotificationCenter, didDeliverNotification notification: NSUserNotification) {
     }

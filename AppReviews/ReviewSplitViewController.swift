@@ -8,17 +8,17 @@
 
 import AppKit
 
-class ReviewSplitViewController : NSSplitViewController {
+class ReviewSplitViewController: NSSplitViewController {
     
-    var application : Application? {
+    var application: Application? {
         didSet {
             self.reviewMenuViewController?.application = self.application
             self.reviewViewController?.application = self.application
         }
     }
     
-    var reviewMenuViewController : ReviewMenuViewController?
-    var reviewViewController : ReviewViewController?
+    var reviewMenuViewController: ReviewMenuViewController?
+    var reviewViewController: ReviewViewController?
     
     override func viewDidLoad() {
         super.viewDidLoad()

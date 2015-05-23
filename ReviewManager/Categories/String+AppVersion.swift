@@ -27,14 +27,14 @@ extension NSString {
         return versionComponentsAsIntegers
     }
     
-    func compareVersion(version : NSString) -> NSComparisonResult {
+    func compareVersion(version: NSString) -> NSComparisonResult {
         
         let myIntegerArray = self.versionAsIntegerArray()
         let applicationArray = version.versionAsIntegerArray()
         
         for (var i = 0; i < myIntegerArray.count; i++) {
             let myVersion = myIntegerArray[i]
-            let applicationVersion = i < applicationArray.count ? applicationArray[i] : 0
+            let applicationVersion = i < applicationArray.count ? applicationArray[i]: 0
             if myVersion > applicationVersion {
                 return .OrderedDescending
             } else if myVersion < applicationVersion {

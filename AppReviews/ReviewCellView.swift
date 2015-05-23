@@ -9,7 +9,7 @@
 import AppKit
 import EDStarRating
 
-class ReviewCellView : NSTableCellView {
+class ReviewCellView: NSTableCellView {
     
     @IBOutlet weak var starRating: EDStarRating?
     private var kvoContext = 0
@@ -38,7 +38,7 @@ class ReviewCellView : NSTableCellView {
         }
     }
     
-    override func observeValueForKeyPath(keyPath: String, ofObject object: AnyObject, change: [NSObject : AnyObject], context: UnsafeMutablePointer<Void>) {
+    override func observeValueForKeyPath(keyPath: String, ofObject object: AnyObject, change: [NSObject: AnyObject], context: UnsafeMutablePointer<Void>) {
         if context == &kvoContext {
             if let starRating = self.starRating, objectValue = self.objectValue as? NSManagedObject {
                 starRating.bind("rating", toObject: objectValue, withKeyPath: "rating", options: nil)
@@ -51,8 +51,8 @@ class ReviewCellView : NSTableCellView {
     
 }
 
-// MARK : EDStarRatingProtocol
+// MARK: EDStarRatingProtocol
 
-extension ReviewCellView : EDStarRatingProtocol {
+extension ReviewCellView: EDStarRatingProtocol {
     
 }

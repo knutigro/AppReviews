@@ -16,7 +16,7 @@ class ApplicationViewController: NSViewController {
     @IBOutlet var applicationArrayController: ApplicationArrayController?
     var applications = [Application]()
     
-    var managedObjectContext : NSManagedObjectContext!
+    var managedObjectContext: NSManagedObjectContext!
     
     // MARK: - Init & Teardown
 

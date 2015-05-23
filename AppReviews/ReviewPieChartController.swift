@@ -8,12 +8,12 @@
 
 import AppKit
 
-class ReviewPieChartController : NSViewController {
+class ReviewPieChartController: NSViewController {
     
     @IBOutlet weak var pieChart: PieChart?
     
     var slices = [Float]()
-    var sliceColors : [NSColor]!
+    var sliceColors: [NSColor]!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -29,7 +29,7 @@ class ReviewPieChartController : NSViewController {
     }
 }
 
-extension ReviewPieChartController : PieChartDataSource {
+extension ReviewPieChartController: PieChartDataSource {
     
     func numberOfSlicesInPieChart(pieChart: PieChart!) -> UInt {
         return UInt(self.slices.count)
@@ -48,7 +48,7 @@ extension ReviewPieChartController : PieChartDataSource {
     }
 }
 
-extension ReviewPieChartController : PieChartDelegate {
+extension ReviewPieChartController: PieChartDelegate {
     func pieChart(pieChart: PieChart!, toopTipStringAtIndex index: UInt) -> String! {
         let number = self.slices[Int(index)]
         return (NSString(format: NSLocalizedString("Number of ratings: ", comment: "review.slice.tooltip"), number) as String)

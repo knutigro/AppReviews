@@ -16,7 +16,7 @@ enum UpdateLabelState {
 
 class ReviewMenuViewController: NSViewController {
     
-    var managedObjectContext : NSManagedObjectContext!
+    var managedObjectContext: NSManagedObjectContext!
     let dateFormatter = NSDateFormatter()
     var updateLabelState = UpdateLabelState.LastUpdate {
         didSet {
@@ -24,10 +24,10 @@ class ReviewMenuViewController: NSViewController {
             self.dateFormatter.timeStyle = .MediumStyle
             switch self.updateLabelState {
             case .LastUpdate:
-                let updatedAt = self.application?.settings.reviewsUpdatedAt != nil ? dateFormatter.stringFromDate(self.application!.settings.reviewsUpdatedAt!) : ""
+                let updatedAt = self.application?.settings.reviewsUpdatedAt != nil ? dateFormatter.stringFromDate(self.application!.settings.reviewsUpdatedAt!): ""
                 self.reviewsUpdatedAtLabel.stringValue = NSLocalizedString("Updated: ", comment: "review.menu.reviewUpdated") + updatedAt
             case .NextUpdate:
-                let nextUpdate = self.application?.settings.nextUpdateAt != nil ? dateFormatter.stringFromDate(self.application!.settings.nextUpdateAt!) : ""
+                let nextUpdate = self.application?.settings.nextUpdateAt != nil ? dateFormatter.stringFromDate(self.application!.settings.nextUpdateAt!): ""
                 self.reviewsUpdatedAtLabel.stringValue = NSLocalizedString("Next: ", comment: "review.menu.reviewNextUpdate") + nextUpdate
             }
         }
@@ -52,7 +52,7 @@ class ReviewMenuViewController: NSViewController {
 
     var pieChartController: ReviewPieChartController?
 
-    var application : Application? {
+    var application: Application? {
         didSet {
             self.updateApplicationInfo()
         }
@@ -143,7 +143,7 @@ class ReviewMenuViewController: NSViewController {
 
         self.dateFormatter.dateStyle = .LongStyle
         self.dateFormatter.timeStyle = .NoStyle
-        let releasedAt = self.application?.releaseDate != nil ? dateFormatter.stringFromDate(self.application!.releaseDate!) : ""
+        let releasedAt = self.application?.releaseDate != nil ? dateFormatter.stringFromDate(self.application!.releaseDate!): ""
         self.updatedAtLabel.stringValue =  NSLocalizedString("Updated: ", comment: "review.menu.updated") + releasedAt
         self.versionLabel.stringValue =   NSLocalizedString("Version: ", comment: "review.menu.version") + (self.application?.version ?? "")
         self.sizeLabel.stringValue =   NSLocalizedString("Size: ", comment: "review.menu.size") + fileSize + " Mb"

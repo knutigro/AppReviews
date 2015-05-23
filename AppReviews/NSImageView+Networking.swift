@@ -26,7 +26,7 @@ extension NSImageView {
     
     class func sharedImageCache() -> AFImageCacheProtocol {
         struct Static {
-            static var token : dispatch_once_t = 0
+            static var token: dispatch_once_t = 0
             static var defaultImageCache:AFImageCache?
         }
         dispatch_once(&Static.token, { () -> Void in
@@ -93,7 +93,7 @@ extension NSImageView {
             let data = NSURLConnection.sendSynchronousRequest(request, returningResponse: &response, error: &error)
             dispatch_async(dispatch_get_main_queue(), { () -> Void in
                 if request.URL!.isEqual(self.af_requestImageOperation.request?.URL) {
-                    var image:NSImage? = (data != nil ? NSImage(data: data!) : nil)
+                    var image:NSImage? = (data != nil ? NSImage(data: data!): nil)
                     if image != nil {
                         if success != nil {
                             success!(request: request, response: response, image: image!)

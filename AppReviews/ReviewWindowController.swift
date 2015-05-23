@@ -8,16 +8,16 @@
 
 import AppKit
 
-class ReviewWindowController : NSWindowController {
+class ReviewWindowController: NSWindowController {
     
-    var managedObjectContext : NSManagedObjectContext!
+    var managedObjectContext: NSManagedObjectContext!
     @IBOutlet weak var automaticUpdate: NSMenuItem?
     
-    var application : Application? {
+    var application: Application? {
         didSet {
             if let application = self.application {
                 self.window?.title = application.trackName
-                self.automaticUpdate?.state = application.settings.automaticUpdate ? NSOnState : NSOffState
+                self.automaticUpdate?.state = application.settings.automaticUpdate ? NSOnState: NSOffState
                 
                 if let reviewController = self.contentViewController as? ReviewSplitViewController {
                     reviewController.application = self.application
@@ -26,11 +26,11 @@ class ReviewWindowController : NSWindowController {
         }
     }
     
-    var objectId : NSManagedObjectID? {
+    var objectId: NSManagedObjectID? {
         didSet {
             if oldValue != self.objectId {
                 var context = ReviewManager.managedObjectContext()
-                var error : NSError?
+                var error: NSError?
                 if let objectId = objectId {
                     self.application = context.existingObjectWithID(objectId, error: &error) as? Application
                 }
@@ -40,7 +40,7 @@ class ReviewWindowController : NSWindowController {
 
     // MARK: - Init & teardown
     
-    class func show(objectId : NSManagedObjectID) {
+    class func show(objectId: NSManagedObjectID) {
         let appdelegate = NSApplication.sharedApplication().delegate as! AppDelegate
         let windowController = appdelegate.reviewsWindowController
         windowController.managedObjectContext = ReviewManager.managedObjectContext()
@@ -73,9 +73,9 @@ extension ReviewWindowController {
     @IBAction func automaticUpdateDidChangeState(sender: AnyObject) {
         if let menuItem = sender as? NSMenuItem, objectId = self.application?.objectID {
             let newState = !Bool(menuItem.state)
-            menuItem.state = newState ? NSOnState : NSOffState;
+            menuItem.state = newState ? NSOnState: NSOffState;
             DatabaseHandler.saveDataInContext({ (context) -> Void in
-                var error : NSError?
+                var error: NSError?
                 if let application = context.existingObjectWithID(objectId, error: &error) as? Application {
                     application.settings.automaticUpdate = newState
                 }
@@ -113,7 +113,7 @@ extension ReviewWindowController {
 
                     if result != NSFileHandlingPanelCancelButton {
                         if let url = savePanel.URL {
-                            var error : NSError?
+                            var error: NSError?
                             string.writeToURL(url, atomically: true, encoding: NSUTF8StringEncoding, error: &error)
                             
                             if error != nil {

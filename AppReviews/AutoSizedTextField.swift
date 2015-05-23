@@ -8,7 +8,7 @@
 
 import AppKit
 
-class AutoSizedTextField : NSTextField {
+class AutoSizedTextField: NSTextField {
     
     override var intrinsicContentSize: NSSize {
         get {
@@ -53,9 +53,9 @@ extension NSTextFieldCell {
         return min(width, height)
     }
 
-    func scaleToAspectFit(size :CGSize, text : String, font : NSFont) {
+    func scaleToAspectFit(size:CGSize, text: String, font: NSFont) {
         var sampleFont = NSFont(descriptor: font.fontDescriptor, size: 12)!
-        var sampleSize = (text as NSString).sizeWithAttributes([NSFontAttributeName : sampleFont])
+        var sampleSize = (text as NSString).sizeWithAttributes([NSFontAttributeName: sampleFont])
         var scale = self.scaleToAspectFit(sampleSize, into: size, padding: 10)
         
     }

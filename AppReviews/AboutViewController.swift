@@ -10,23 +10,23 @@ import StoreKit
 import Sparkle
 
 class AboutViewController: NSViewController {
-    
+
     @IBOutlet weak var versionLabel: NSTextField?
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
         self.versionLabel?.stringValue = NSApplication.v_versionBuild()
     }
-    
+
     @IBAction func checkForUpdatesClicked(objects:AnyObject?) {
         SUUpdater.sharedUpdater().checkForUpdates(objects)
     }
-    
-    @IBAction func openGitHubClicked(objects:AnyObject?) {
+
+    @IBAction func openGitHubClicked(objects: AnyObject?) {
         NSWorkspace.sharedWorkspace().openURL(NSURL(string: "https://github.com/knutigro/AppReviews")!)
     }
 
-    @IBAction func openProjectPagesClicked(objects:AnyObject?) {
+    @IBAction func openProjectPagesClicked(objects: AnyObject?) {
         NSWorkspace.sharedWorkspace().openURL(NSURL(string: "http://knutigro.github.io/apps/app-reviews/")!)
     }
 

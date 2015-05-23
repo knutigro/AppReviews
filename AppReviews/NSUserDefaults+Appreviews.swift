@@ -8,7 +8,7 @@
 
 extension NSUserDefaults {
     
-    class func setPremiumUser(premium : Bool) {
+    class func setPremiumUser(premium: Bool) {
         NSUserDefaults.standardUserDefaults().setBool(premium, forKey: "kInAppPurchaseContentPremium")
         NSUserDefaults.standardUserDefaults().synchronize()
     }

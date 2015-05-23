@@ -20,7 +20,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
 
     var statusMenuController: StatusMenuController!
     
-    // MARK : Application Process
+    // MARK: Application Process
 
     func applicationDidFinishLaunching(aNotification: NSNotification) {
 
@@ -43,7 +43,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     }
 }
 
-// MARK : WindowControllers
+// MARK: WindowControllers
 
 extension AppDelegate {
     

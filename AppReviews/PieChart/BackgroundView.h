@@ -8,7 +8,7 @@
 
 #import <Cocoa/Cocoa.h>
 
-@interface BackgroundView : NSView {
+@interface BackgroundView: NSView {
     NSColor *_backgroundColor;
     CGPoint _center;
 }

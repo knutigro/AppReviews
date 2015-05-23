@@ -9,12 +9,12 @@
 import AppKit
 import Sparkle
 
-class StatusMenuController : NSObject {
+class StatusMenuController: NSObject {
     
     var statusItem: NSStatusItem!
     var applications = [Application]()
     var newReviews = [Int]()
-    var applicationArrayController : ApplicationArrayController!
+    var applicationArrayController: ApplicationArrayController!
     private var kvoContext = 0
     
     // MARK: - Init & teardown
@@ -33,7 +33,7 @@ class StatusMenuController : NSObject {
         self.applicationArrayController = ApplicationArrayController(content: nil)
         self.applicationArrayController.managedObjectContext = ReviewManager.managedObjectContext()
         self.applicationArrayController.entityName = kEntityNameApplication
-        var error : NSError? = nil
+        var error: NSError? = nil
         var result = self.applicationArrayController.fetchWithRequest(nil, merge: true, error: &error)
         
         self.bind("applications", toObject: self.applicationArrayController, withKeyPath: "arrangedObjects", options: nil)
@@ -115,7 +115,7 @@ class StatusMenuController : NSObject {
 
 extension StatusMenuController {
     
-    func openReviewsForApp(sender : AnyObject) {
+    func openReviewsForApp(sender: AnyObject) {
         if let menuItem = sender as? NSMenuItem {
             if let application = menuItem.representedObject as? Application {
                 ReviewWindowController.show(application.objectID)
@@ -123,21 +123,21 @@ extension StatusMenuController {
         }
     }
     
-    func openAbout(sender : AnyObject) {
+    func openAbout(sender: AnyObject) {
         let appdelegate = NSApplication.sharedApplication().delegate as! AppDelegate
         let windowController = appdelegate.aboutWindowController
         windowController.showWindow(self)
         NSApp.activateIgnoringOtherApps(true)
     }
     
-    func openApplications(sender : AnyObject) {
+    func openApplications(sender: AnyObject) {
         let appdelegate = NSApplication.sharedApplication().delegate as! AppDelegate
         let windowController = appdelegate.applicationWindowController
         windowController.showWindow(self)
         NSApp.activateIgnoringOtherApps(true)
     }
     
-    func quit(sender : AnyObject) {
+    func quit(sender: AnyObject) {
         NSApplication.sharedApplication().terminate(sender)
     }
 }
@@ -146,7 +146,7 @@ extension StatusMenuController {
 
 extension StatusMenuController {
     
-    override func observeValueForKeyPath(keyPath: String, ofObject object: AnyObject, change: [NSObject : AnyObject], context: UnsafeMutablePointer<Void>) {
+    override func observeValueForKeyPath(keyPath: String, ofObject object: AnyObject, change: [NSObject: AnyObject], context: UnsafeMutablePointer<Void>) {
         if context == &kvoContext {
 //            println("observeValueForKeyPath: " + keyPath +  "change: \(change)" )
 //            self.updateMenu()

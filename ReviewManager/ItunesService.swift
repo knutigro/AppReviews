@@ -14,14 +14,14 @@ import SwiftyJSON
 
 class ItunesService {
 
-    var url : String {
+    var url: String {
         return self.urlHandler.nextUrl ?? self.urlHandler.initialUrl
     }
 
-    let apId : String
-    let storeId : String?
-    var updated : NSDate?
-    let urlHandler : ItunesUrlHandler
+    let apId: String
+    let storeId: String?
+    var updated: NSDate?
+    let urlHandler: ItunesUrlHandler
     
     // MARK: - Init & teardown
 
@@ -33,7 +33,7 @@ class ItunesService {
     
     // MARK: - Update object
     
-    func updateWithJSON(json : JSON) {
+    func updateWithJSON(json: JSON) {
         
         if let dateString = json.itunesReviewsUpdatedAt {
             let dateFormatter = NSDateFormatter()
@@ -48,7 +48,7 @@ class ItunesService {
     
     // MARK: - Fetching
 
-    func fetchReviews(url: String, completion: (success: Bool, reviews: [JSON]?, error : NSError?) -> Void) {
+    func fetchReviews(url: String, completion: (success: Bool, reviews: [JSON]?, error: NSError?) -> Void) {
         
         Alamofire.request(.GET, url, parameters: nil)
             .responseJSON { (request, response, json, error) in
@@ -57,14 +57,14 @@ class ItunesService {
                     NSLog("Error: \(error)")
                     println(request)
                     println(response)
-                    completion(success: false, reviews: nil, error : error)
+                    completion(success: false, reviews: nil, error: error)
                 } else {
                     var json = JSON(json!)
                     let reviews = json.itunesReviews
                     
-                    completion(success: true, reviews: reviews, error : nil)
+                    completion(success: true, reviews: reviews, error: nil)
                     
-                    // TODO : THIS WILL ALLWAYS FAIL SINCE nexturl is nil from the first round
+                    // TODO: THIS WILL ALLWAYS FAIL SINCE nexturl is nil from the first round
                     if let nextUrl = self.urlHandler.nextUrl {
                         if reviews.count > 0 {
                             self.updateWithJSON(json)
@@ -75,10 +75,10 @@ class ItunesService {
         }
     }
     
-    class func fetchApplications(name: String, completion: (success: Bool, applications: JSON?, error : NSError?) -> Void) {
+    class func fetchApplications(name: String, completion: (success: Bool, applications: JSON?, error: NSError?) -> Void) {
         
         var url = "https://itunes.apple.com/search"
-        let params = ["term": name, "entity" : "software"]
+        let params = ["term": name, "entity": "software"]
         
         Alamofire.request(.GET, url, parameters: params)
             .responseJSON { (request, response, json, error) in
@@ -87,10 +87,10 @@ class ItunesService {
                     NSLog("Error: \(error)")
                     println(request)
                     println(response)
-                    completion(success: false, applications: nil, error : error)
+                    completion(success: false, applications: nil, error: error)
                 } else {
                     var json = JSON(json!)
-                    completion(success: true, applications: json["results"], error : nil)
+                    completion(success: true, applications: json["results"], error: nil)
                 }
         }
     }
@@ -99,9 +99,9 @@ class ItunesService {
 // MARK: Extension for reviewFeed
 
 extension JSON {
-    var itunesReviews : [JSON] { get { return self["feed"]["entry"].arrayValue  } }
-    var itunesReviewsUpdatedAt : String? { get { return self["feed"]["updated"]["label"].string  } }
-    var itunesFeedLinks : [JSON] { get { return self["feed"]["link"].arrayValue  } }
+    var itunesReviews: [JSON] { get { return self["feed"]["entry"].arrayValue  } }
+    var itunesReviewsUpdatedAt: String? { get { return self["feed"]["updated"]["label"].string  } }
+    var itunesFeedLinks: [JSON] { get { return self["feed"]["link"].arrayValue  } }
 }
 
 

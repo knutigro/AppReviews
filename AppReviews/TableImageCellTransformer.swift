@@ -9,7 +9,7 @@
 import AppKit
 
 @objc(TableImageCellTransformer)
-class TableImageCellTransformer : NSValueTransformer{
+class TableImageCellTransformer: NSValueTransformer{
     
     override class func transformedValueClass() -> AnyClass {
         return NSImage.self

@@ -12,21 +12,21 @@ import SwiftyJSON
 let kEntityNameReview = "Review"
 
 @objc(Review)
-class Review : NSManagedObject {
+class Review: NSManagedObject {
     
-    @NSManaged var apId : String
-    @NSManaged var author : String
-    @NSManaged var uri : String
-    @NSManaged var title : String
-    @NSManaged var content : String
-    @NSManaged var version : String
-    @NSManaged var rating : NSNumber
-    @NSManaged var voteCount : NSNumber
-    @NSManaged var voteSum : NSNumber
-    @NSManaged var country : String
-    @NSManaged var application : Application
-    @NSManaged var createdAt : NSDate
-    @NSManaged var updatedAt : NSDate
+    @NSManaged var apId: String
+    @NSManaged var author: String
+    @NSManaged var uri: String
+    @NSManaged var title: String
+    @NSManaged var content: String
+    @NSManaged var version: String
+    @NSManaged var rating: NSNumber
+    @NSManaged var voteCount: NSNumber
+    @NSManaged var voteSum: NSNumber
+    @NSManaged var country: String
+    @NSManaged var application: Application
+    @NSManaged var createdAt: NSDate
+    @NSManaged var updatedAt: NSDate
 
     // MARK: - init & teardown
 
@@ -41,11 +41,11 @@ class Review : NSManagedObject {
     
     // MARK: - Class functions for create and insert
     
-    class func getWithId(id : NSManagedObjectID, context: NSManagedObjectContext) -> Review? {
+    class func getWithId(id: NSManagedObjectID, context: NSManagedObjectContext) -> Review? {
         
         let fetchRequest = NSFetchRequest(entityName: kEntityNameReview)
         
-        var error : NSError?
+        var error: NSError?
         let result = context.existingObjectWithID(id, error: &error)
         
         if error != nil {
@@ -55,10 +55,10 @@ class Review : NSManagedObject {
         return result as? Review
     }
 
-    class func get(apId : String, context: NSManagedObjectContext) -> Review? {
+    class func get(apId: String, context: NSManagedObjectContext) -> Review? {
         let fetchRequest = NSFetchRequest(entityName: kEntityNameReview)
         fetchRequest.predicate = NSPredicate(format: "apId = %@", apId)
-        var error : NSError?
+        var error: NSError?
         let result = context.executeFetchRequest(fetchRequest, error: &error)
         if error != nil {
             println(error)
@@ -67,7 +67,7 @@ class Review : NSManagedObject {
         return result?.last as? Review
     }
 
-    class func new(apId : String, context: NSManagedObjectContext) -> Review {
+    class func new(apId: String, context: NSManagedObjectContext) -> Review {
         let review = Review(insertIntoManagedObjectContext: context)
         review.apId = apId;
         review.createdAt = NSDate()
@@ -75,7 +75,7 @@ class Review : NSManagedObject {
         return review
     }
     
-    class func getOrCreateNew(apId : String, context: NSManagedObjectContext) -> Review {
+    class func getOrCreateNew(apId: String, context: NSManagedObjectContext) -> Review {
         if let review = Review.get(apId, context: context) {
             return review
         } else {
@@ -92,7 +92,7 @@ class Review : NSManagedObject {
 
 extension Review {
     
-    func updateWithJSON(json : JSON) {
+    func updateWithJSON(json: JSON) {
         
         self.apId = json.reviewApID ?? ""
         self.author = json.reviewAuthor ?? ""
@@ -109,17 +109,17 @@ extension Review {
 // MARK: - JSON extension of Review
 
 extension JSON {
-    var reviewApID : String? { get { return self["id"]["label"].string  } }
-    var reviewContent : String? { get { return self["content"]["label"].string  } }
-    var reviewAuthor : String? { get { return self["author"]["name"]["label"].string  } }
-    var reviewUri : String? { get { return self["author"]["uri"]["label"].string  } }
-    var reviewTitle : String? { get { return self["title"]["label"].string  } }
-    var reviewVersion : String? { get { return self["im:version"]["label"].string  } }
-    var reviewRating : NSNumber { get { return NSNumber(integer: self["im:rating"]["label"].stringValue.toInt() ?? 0) } }
-    var reviewVoteCount : NSNumber { get { return NSNumber(integer: self["im:voteCount"]["label"].stringValue.toInt() ?? 0) } }
-    var reviewVoteSum : NSNumber { get { return NSNumber(float:(self["im:voteSum"]["label"].stringValue as NSString).floatValue) } }
+    var reviewApID: String? { get { return self["id"]["label"].string  } }
+    var reviewContent: String? { get { return self["content"]["label"].string  } }
+    var reviewAuthor: String? { get { return self["author"]["name"]["label"].string  } }
+    var reviewUri: String? { get { return self["author"]["uri"]["label"].string  } }
+    var reviewTitle: String? { get { return self["title"]["label"].string  } }
+    var reviewVersion: String? { get { return self["im:version"]["label"].string  } }
+    var reviewRating: NSNumber { get { return NSNumber(integer: self["im:rating"]["label"].stringValue.toInt() ?? 0) } }
+    var reviewVoteCount: NSNumber { get { return NSNumber(integer: self["im:voteCount"]["label"].stringValue.toInt() ?? 0) } }
+    var reviewVoteSum: NSNumber { get { return NSNumber(float:(self["im:voteSum"]["label"].stringValue as NSString).floatValue) } }
     
-    var isReviewEntity : Bool {
+    var isReviewEntity: Bool {
         get {
             return (self.reviewContent != nil || self.reviewRating > 0)
         }

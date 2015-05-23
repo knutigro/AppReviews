@@ -18,12 +18,12 @@ class PersistentStack {
     
     private var iCloudSync = true
 
-    var managedObjectContext : NSManagedObjectContext!
-    var modelURL : NSURL
-    var storeURL : NSURL
+    var managedObjectContext: NSManagedObjectContext!
+    var modelURL: NSURL
+    var storeURL: NSURL
     var persistenceStoreWillChange = false
     
-    init(storeURL: NSURL, modelURL : NSURL) {
+    init(storeURL: NSURL, modelURL: NSURL) {
         self.modelURL = modelURL
         self.storeURL = storeURL
         self.setupManagedObjectContexts()
@@ -56,7 +56,7 @@ class PersistentStack {
             self?.managedObjectContext.performBlock({ () -> Void in
                 
                 if (self?.managedObjectContext.hasChanges != nil) {
-                    var error : NSError?
+                    var error: NSError?
                     self?.managedObjectContext.save(&error)
                     
                 } else {
@@ -70,7 +70,7 @@ class PersistentStack {
 
     }
     
-    func managedObjectDidSave(notification : NSNotification) {
+    func managedObjectDidSave(notification: NSNotification) {
         let moc = self.managedObjectContext;
         if notification.object as? NSManagedObjectContext != moc {
             moc.performBlock({ () -> Void in
@@ -145,7 +145,7 @@ class PersistentStack {
         }
     }
     
-    func mergeChangesFromSaveNotification(notification : NSNotification, intoContext context: NSManagedObjectContext) {
+    func mergeChangesFromSaveNotification(notification: NSNotification, intoContext context: NSManagedObjectContext) {
         //    // NSManagedObjectContext's merge routine ignores updated objects which aren't
         //    // currently faulted in. To force it to notify interested clients that such
         //    // objects have been refreshed (e.g. NSFetchedResultsController) we need to
@@ -165,7 +165,7 @@ class PersistentStack {
         
         let managedObjectContext = NSManagedObjectContext(concurrencyType: concurrencyType)
         
-        var storeOptions : [NSObject : AnyObject]?
+        var storeOptions: [NSObject: AnyObject]?
 
         // Enable iCloudSync
         if (self.iCloudSync) {
@@ -174,7 +174,7 @@ class PersistentStack {
         
         if let managedObjectModel = self.managedObjectModel() {
             managedObjectContext.persistentStoreCoordinator = NSPersistentStoreCoordinator(managedObjectModel: managedObjectModel)
-            var error : NSError?
+            var error: NSError?
             managedObjectContext.persistentStoreCoordinator?.addPersistentStoreWithType(NSSQLiteStoreType, configuration: nil, URL: self.storeURL, options: storeOptions, error: &error)
             if error != nil {
                 println(error)

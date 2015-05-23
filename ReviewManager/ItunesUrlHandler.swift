@@ -11,16 +11,16 @@ import SwiftyJSON
 
 class ItunesPage {
     
-    var page : Int
-    var url : String
-    var nextUrl : String?
+    var page: Int
+    var url: String
+    var nextUrl: String?
     
     init(url: String, page: Int) {
         self.url = url;
         self.page = page;
     }
     
-    convenience init(url: String, page: Int, json : [JSON]) {
+    convenience init(url: String, page: Int, json: [JSON]) {
         self.init(url: url, page: page)
         for jsonLink in json {
             let attributes = jsonLink["attributes"]
@@ -38,13 +38,13 @@ class ItunesPage {
         }
     }
 
-    func isEqualPage(page : ItunesPage) -> Bool {
+    func isEqualPage(page: ItunesPage) -> Bool {
         return self.page == page.page
     }
     
-    class func urlByIncreasingPage(urlString : String?, page: Int?) -> (url : String, page: Int)?  {
+    class func urlByIncreasingPage(urlString: String?, page: Int?) -> (url: String, page: Int)?  {
         if let urlstring = urlString, let page = page {
-            var nextUrl : String?
+            var nextUrl: String?
             if let url = NSURL(string: urlstring) {
                 let old = String(format: "page=%i", page)
                 let next = String(format: "page=%i", page + 1)
@@ -58,16 +58,16 @@ class ItunesPage {
 
 class ItunesUrlHandler {
 
-    private var storeId : String?
-    private var apId : String
+    private var storeId: String?
+    private var apId: String
 
-    var nextUrl : String? {
+    var nextUrl: String? {
         return pages.last?.nextUrl
     }
     
-    var initialUrl : String {
+    var initialUrl: String {
         get {
-            let storePath = storeId != nil ? ("/" + self.storeId!) : ""
+            let storePath = storeId != nil ? ("/" + self.storeId!): ""
             return "https://itunes.apple.com" +  storePath + "/rss/customerreviews/id=" + self.apId + "/json"
         }
     }
@@ -80,7 +80,7 @@ class ItunesUrlHandler {
         self.pages.append(ItunesPage(url: self.initialUrl, page: 0))
     }
     
-    func updateWithJSON(json : [JSON]) {
+    func updateWithJSON(json: [JSON]) {
         if let previousPage = self.pages.last {
             let newPage = ItunesPage(url: previousPage.url, page: previousPage.page + 1, json: json)
             if self.isNewPage(newPage) {

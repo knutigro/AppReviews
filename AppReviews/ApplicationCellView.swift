@@ -10,7 +10,7 @@ import AppKit
 
 let kApplicationCellIdentifier = "applicationCell"
 
-class ApplicationCellView : NSTableCellView {
+class ApplicationCellView: NSTableCellView {
     
     @IBOutlet weak var authorTextField: NSTextField?
     

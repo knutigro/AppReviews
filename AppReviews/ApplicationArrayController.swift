@@ -8,6 +8,6 @@
 
 import AppKit
 
-class ApplicationArrayController : NSArrayController {
+class ApplicationArrayController: NSArrayController {
     
 }

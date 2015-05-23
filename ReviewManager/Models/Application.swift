@@ -13,37 +13,37 @@ let kEntityNameApplication = "Application"
 
 @objc(Application)
 
-class Application : NSManagedObject {
+class Application: NSManagedObject {
     
-    @NSManaged var artworkUrl60 : String
-    @NSManaged var artworkUrl512 : String
-    @NSManaged var artistViewUrl : String
-    @NSManaged var fileSizeBytes : String
-    @NSManaged var sellerUrl : String
-    @NSManaged var averageUserRatingForCurrentVersion : NSNumber
-    @NSManaged var userRatingCountForCurrentVersion : NSNumber
-    @NSManaged var trackViewUrl : String
-    @NSManaged var version : String
-    @NSManaged var releaseDate : NSDate?
-    @NSManaged var sellerName : String
-    @NSManaged var artistId : String
-    @NSManaged var artistName : String
-    @NSManaged var itunesDescription : String
-    @NSManaged var bundleId : String
-    @NSManaged var trackId : String
-    @NSManaged var trackName : String
-    @NSManaged var primaryGenreName : String
-    @NSManaged var primaryGenreId : String
-    @NSManaged var releaseNotes : String
-    @NSManaged var minimumOsVersion : String
-    @NSManaged var averageUserRating : NSNumber
-    @NSManaged var userRatingCount : NSNumber
-    @NSManaged var createdAt : NSDate
-    @NSManaged var updatedAt : NSDate
-    @NSManaged var reviews : NSSet
-    @NSManaged var settings : ApplicationSettings
+    @NSManaged var artworkUrl60: String
+    @NSManaged var artworkUrl512: String
+    @NSManaged var artistViewUrl: String
+    @NSManaged var fileSizeBytes: String
+    @NSManaged var sellerUrl: String
+    @NSManaged var averageUserRatingForCurrentVersion: NSNumber
+    @NSManaged var userRatingCountForCurrentVersion: NSNumber
+    @NSManaged var trackViewUrl: String
+    @NSManaged var version: String
+    @NSManaged var releaseDate: NSDate?
+    @NSManaged var sellerName: String
+    @NSManaged var artistId: String
+    @NSManaged var artistName: String
+    @NSManaged var itunesDescription: String
+    @NSManaged var bundleId: String
+    @NSManaged var trackId: String
+    @NSManaged var trackName: String
+    @NSManaged var primaryGenreName: String
+    @NSManaged var primaryGenreId: String
+    @NSManaged var releaseNotes: String
+    @NSManaged var minimumOsVersion: String
+    @NSManaged var averageUserRating: NSNumber
+    @NSManaged var userRatingCount: NSNumber
+    @NSManaged var createdAt: NSDate
+    @NSManaged var updatedAt: NSDate
+    @NSManaged var reviews: NSSet
+    @NSManaged var settings: ApplicationSettings
 
-    var fileSizeMb : Float {
+    var fileSizeMb: Float {
         get {
             var fileSize = self.fileSizeBytes.toInt() ?? 0
             var mb = Float(fileSize) / 1000000
@@ -64,11 +64,11 @@ class Application : NSManagedObject {
     
     // MARK: - Class functions for create and insert and search
     
-    class func getWithIds(ids : Set<NSManagedObjectID>, context: NSManagedObjectContext) -> [Application]? {
+    class func getWithIds(ids: Set<NSManagedObjectID>, context: NSManagedObjectContext) -> [Application]? {
         let fetchRequest = NSFetchRequest(entityName: kEntityNameApplication)
         
         fetchRequest.predicate = NSPredicate(format: "self in %@", Array(ids))
-        var error : NSError?
+        var error: NSError?
         
         let result = context.executeFetchRequest(fetchRequest, error: &error)
         
@@ -78,11 +78,11 @@ class Application : NSManagedObject {
         return result as? [Application]
     }
 
-    class func getWithAppId(identifier : String, context: NSManagedObjectContext) -> Application? {
+    class func getWithAppId(identifier: String, context: NSManagedObjectContext) -> Application? {
 
         let fetchRequest = NSFetchRequest(entityName: kEntityNameApplication)
         fetchRequest.predicate = NSPredicate(format: "trackId = %@", identifier)
-        var error : NSError?
+        var error: NSError?
         
         let result = context.executeFetchRequest(fetchRequest, error: &error)
         
@@ -92,7 +92,7 @@ class Application : NSManagedObject {
         return result?.last as? Application
     }
     
-    class func new(identifier : String, context: NSManagedObjectContext) -> Application {
+    class func new(identifier: String, context: NSManagedObjectContext) -> Application {
         let application = Application(insertIntoManagedObjectContext: context)
         application.trackId = identifier;
         application.settings = ApplicationSettings.new(application, context: context)
@@ -102,7 +102,7 @@ class Application : NSManagedObject {
         return application
     }
 
-    class func getOrCreateNew(identifier : String, context: NSManagedObjectContext) -> Application {
+    class func getOrCreateNew(identifier: String, context: NSManagedObjectContext) -> Application {
         if let application = Application.getWithAppId(identifier, context: context) {
             return application
         } else {
@@ -119,7 +119,7 @@ class Application : NSManagedObject {
 
 extension Application {
     
-    func updateWithJSON(json : JSON) {
+    func updateWithJSON(json: JSON) {
         
         self.artworkUrl60 = json.artworkUrl60 ?? ""
         self.artworkUrl512 = json.artworkUrl512 ?? ""
@@ -153,18 +153,18 @@ extension Application {
 
 extension JSON {
     
-    var artworkUrl60 : String? { get { return self["artworkUrl60"].string  } }
-    var artworkUrl512 : String? { get { return self["artworkUrl512"].string  } }
-    var artistViewUrl : String? { get { return self["artistViewUrl"].string  } }
-    var fileSizeBytes : String? { get { return self["fileSizeBytes"].string  } }
-    var sellerUrl : String? { get { return self["sellerUrl"].string  } }
-    var averageUserRatingForCurrentVersion : NSNumber { get { return NSNumber(float:(self["averageUserRatingForCurrentVersion"].stringValue as NSString).floatValue) } }
-    var userRatingCountForCurrentVersion : NSNumber { get { return NSNumber(integer: self["userRatingCountForCurrentVersion"].stringValue.toInt() ?? 0) } }
-    var trackViewUrl : String? { get { return self["trackViewUrl"].string  } }
-    var version : String? { get { return self["version"].string  } }
-    var releaseDate : NSDate? {
+    var artworkUrl60: String? { get { return self["artworkUrl60"].string  } }
+    var artworkUrl512: String? { get { return self["artworkUrl512"].string  } }
+    var artistViewUrl: String? { get { return self["artistViewUrl"].string  } }
+    var fileSizeBytes: String? { get { return self["fileSizeBytes"].string  } }
+    var sellerUrl: String? { get { return self["sellerUrl"].string  } }
+    var averageUserRatingForCurrentVersion: NSNumber { get { return NSNumber(float:(self["averageUserRatingForCurrentVersion"].stringValue as NSString).floatValue) } }
+    var userRatingCountForCurrentVersion: NSNumber { get { return NSNumber(integer: self["userRatingCountForCurrentVersion"].stringValue.toInt() ?? 0) } }
+    var trackViewUrl: String? { get { return self["trackViewUrl"].string  } }
+    var version: String? { get { return self["version"].string  } }
+    var releaseDate: NSDate? {
         get {
-            var date : NSDate? = nil
+            var date: NSDate? = nil
             if let dateString = self["releaseDate"].string {
                 let dateFormatter = NSDateFormatter()
                 dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss-SS:SS'"
@@ -173,21 +173,21 @@ extension JSON {
             return date
         }
     }
-    var sellerName : String? { get { return self["sellerName"].string  } }
-    var artistId : String? { get { return self["artistId"].string  } }
-    var artistName : String? { get { return self["artistName"].string  } }
-    var itunesDescription : String? { get { return self["itunesDescription"].string  } }
-    var bundleId : String? { get { return self["bundleId"].string  } }
-    var trackId : String? { get { return self["trackId"].int != nil ? String(self["trackId"].int!) : nil } }
-    var trackName : String? { get { return self["trackName"].string  } }
-    var primaryGenreName : String? { get { return self["primaryGenreName"].string  } }
-    var primaryGenreId : String? { get { return self["primaryGenreId"].string  } }
-    var releaseNotes : String? { get { return self["releaseNotes"].string  } }
-    var minimumOsVersion : String? { get { return self["minimumOsVersion"].string  } }
-    var averageUserRating : NSNumber { get { return NSNumber(float:(self["averageUserRating"].stringValue as NSString).floatValue) } }
-    var userRatingCount : NSNumber { get { return NSNumber(integer: self["userRatingCount"].stringValue.toInt() ?? 0) } }
+    var sellerName: String? { get { return self["sellerName"].string  } }
+    var artistId: String? { get { return self["artistId"].string  } }
+    var artistName: String? { get { return self["artistName"].string  } }
+    var itunesDescription: String? { get { return self["itunesDescription"].string  } }
+    var bundleId: String? { get { return self["bundleId"].string  } }
+    var trackId: String? { get { return self["trackId"].int != nil ? String(self["trackId"].int!): nil } }
+    var trackName: String? { get { return self["trackName"].string  } }
+    var primaryGenreName: String? { get { return self["primaryGenreName"].string  } }
+    var primaryGenreId: String? { get { return self["primaryGenreId"].string  } }
+    var releaseNotes: String? { get { return self["releaseNotes"].string  } }
+    var minimumOsVersion: String? { get { return self["minimumOsVersion"].string  } }
+    var averageUserRating: NSNumber { get { return NSNumber(float:(self["averageUserRating"].stringValue as NSString).floatValue) } }
+    var userRatingCount: NSNumber { get { return NSNumber(integer: self["userRatingCount"].stringValue.toInt() ?? 0) } }
     
-    var isApplicationEntity : Bool{
+    var isApplicationEntity: Bool{
         get {
             return self.trackId != nil
         }

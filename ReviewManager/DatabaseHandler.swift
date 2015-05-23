@@ -16,7 +16,7 @@ class DatabaseHandler {
     
     // MARK: - Applications handling
 
-    class func saveApplication(applicationJSON : JSON) {
+    class func saveApplication(applicationJSON: JSON) {
         DatabaseHandler.saveDataInContext({ (context) -> Void in
             
             if applicationJSON.isApplicationEntity, let apID = applicationJSON.trackId {
@@ -31,18 +31,18 @@ class DatabaseHandler {
         })
     }
     
-    class func removeApplication(objectId : NSManagedObjectID) {
+    class func removeApplication(objectId: NSManagedObjectID) {
         DatabaseHandler.saveDataInContext({ (context) -> Void in
-            var error : NSError?
+            var error: NSError?
             if let application = context.existingObjectWithID(objectId, error: &error) {
                 context.deleteObject(application)
             }
         })
     }
     
-    class func resetNewReviewsCountForApplication(objectId : NSManagedObjectID) {
+    class func resetNewReviewsCountForApplication(objectId: NSManagedObjectID) {
         DatabaseHandler.saveDataInContext({ (context) -> Void in
-            var error : NSError?
+            var error: NSError?
             if let application = context.existingObjectWithID(objectId, error: &error) as? Application {
                 application.settings.resetNewReviews()
             }
@@ -52,7 +52,7 @@ class DatabaseHandler {
     class func allApplications(context: NSManagedObjectContext) -> [Application]? {
         
         let fetchRequest = NSFetchRequest(entityName: kEntityNameApplication)
-        var error : NSError?
+        var error: NSError?
         let result = context.executeFetchRequest(fetchRequest, error: &error)
         if error != nil {
             println(error)
@@ -61,8 +61,8 @@ class DatabaseHandler {
         return result as? [Application]
     }
     
-    class func numberOfReviewsForApplication(objectId : NSManagedObjectID, rating: Int?, context: NSManagedObjectContext) -> (Int, Int, Int, Int, Int) {
-        var error : NSError?
+    class func numberOfReviewsForApplication(objectId: NSManagedObjectID, rating: Int?, context: NSManagedObjectContext) -> (Int, Int, Int, Int, Int) {
+        var error: NSError?
         var one = 0, two = 0, three = 0, four = 0, five = 0
 
         if let application = context.existingObjectWithID(objectId, error: &error) as? Application {
@@ -89,10 +89,10 @@ class DatabaseHandler {
         return (one, two, three, four, five)
     }
     
-    class func saveReviews(reviews : [JSON], applactionObjectId objectId : NSManagedObjectID) {
+    class func saveReviews(reviews: [JSON], applactionObjectId objectId: NSManagedObjectID) {
         DatabaseHandler.saveDataInContext({ (context) -> Void in
             
-            var error : NSError?
+            var error: NSError?
             
             if let application = context.existingObjectWithID(objectId, error: &error) as? Application {
                 
@@ -106,7 +106,7 @@ class DatabaseHandler {
                     let entry = reviews[index]
                     
                     if entry.isReviewEntity, let apID = entry.reviewApID {
-                        var review : Review!
+                        var review: Review!
                         
                         if let newReview = Review.get(apID, context: context) {
                             // Review allready exist in database
@@ -147,7 +147,7 @@ class DatabaseHandler {
             saveBlock(context: context)
             
             if context.hasChanges {
-                var error : NSError? = nil
+                var error: NSError? = nil
                 context.save(&error)
                 if error != nil { println("error: " + error!.localizedDescription) }
             }

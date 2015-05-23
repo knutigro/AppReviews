@@ -13,9 +13,9 @@ class ReviewViewController: NSViewController {
     @IBOutlet weak var tableView: NSTableView?
     @IBOutlet var reviewArrayController: ReviewArrayController?
     
-    var managedObjectContext : NSManagedObjectContext!
+    var managedObjectContext: NSManagedObjectContext!
 
-    var application : Application? {
+    var application: Application? {
         didSet {
             self.reviewArrayController?.application = self.application
             if let application = self.application {
@@ -34,7 +34,7 @@ class ReviewViewController: NSViewController {
 
 // MARK: NSTableViewDelegate
 
-extension ReviewViewController : NSTableViewDelegate {
+extension ReviewViewController: NSTableViewDelegate {
 
     func tableView(tableView: NSTableView, heightOfRow row: Int) -> CGFloat {
 
@@ -49,7 +49,7 @@ extension ReviewViewController : NSTableViewDelegate {
 
 extension ReviewViewController {
     
-    @IBAction func copyReviewToClipBoardClicked(menuItem : NSMenuItem) {
+    @IBAction func copyReviewToClipBoardClicked(menuItem: NSMenuItem) {
         if self.tableView?.clickedRow > 0 && self.tableView?.clickedRow < self.reviewArrayController?.arrangedObjects.count {
             if let review = self.reviewArrayController?.arrangedObjects[self.tableView!.clickedRow] as? Review {
                 var pasteBoard = NSPasteboard.generalPasteboard()
@@ -59,7 +59,7 @@ extension ReviewViewController {
         }
     }
 
-    @IBAction func openReviewClicked(menuItem : NSMenuItem) {
+    @IBAction func openReviewClicked(menuItem: NSMenuItem) {
         if self.tableView?.clickedRow > 0 && self.tableView?.clickedRow < self.reviewArrayController?.arrangedObjects.count {
             if let review = self.reviewArrayController?.arrangedObjects[self.tableView!.clickedRow] as? Review {
                 if let url = NSURL(string: review.uri) {
@@ -69,7 +69,7 @@ extension ReviewViewController {
         }
     }
 
-    @IBAction func saveReviewClicked(menuItem : NSMenuItem) {
+    @IBAction func saveReviewClicked(menuItem: NSMenuItem) {
         if self.tableView?.clickedRow > 0 && self.tableView?.clickedRow < self.reviewArrayController?.arrangedObjects.count {
             if let review = self.reviewArrayController?.arrangedObjects[self.tableView!.clickedRow] as? Review {
                 var savePanel = NSSavePanel()
@@ -79,7 +79,7 @@ extension ReviewViewController {
                 let result = savePanel.runModal()
                 if result != NSFileHandlingPanelCancelButton {
                     if let url = savePanel.URL {
-                        var error : NSError?
+                        var error: NSError?
                         review.toString().writeToURL(url, atomically: true, encoding: NSUTF8StringEncoding, error: &error)
                     }
                 }

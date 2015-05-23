@@ -10,8 +10,8 @@ import Cocoa
 import SwiftyJSON
 
 protocol SearchViewControllerDelegate {
-    func searchViewController(searchViewController : SearchViewController, didSelectApplication application: JSON)
-    func searchViewControllerDidCancel(searchViewController : SearchViewController)
+    func searchViewController(searchViewController: SearchViewController, didSelectApplication application: JSON)
+    func searchViewControllerDidCancel(searchViewController: SearchViewController)
 }
 
 enum SearchViewControllerState {
@@ -26,7 +26,7 @@ class SearchViewController: NSViewController {
 
     var items = [JSON]()
     var delegate: SearchViewControllerDelegate?
-    var state : SearchViewControllerState = .Idle {
+    var state: SearchViewControllerState = .Idle {
         didSet {
             switch self.state {
             case .Idle:
@@ -48,7 +48,7 @@ class SearchViewController: NSViewController {
 
 extension SearchViewController {
     
-    func doubleClickedCell(object : AnyObject) {
+    func doubleClickedCell(object: AnyObject) {
         if let rowNumber = self.tableView?.selectedRow {
             if rowNumber < self.items.count {
                 let application = self.items[rowNumber]
@@ -64,7 +64,7 @@ extension SearchViewController {
 
 // MARK: - NSTableViewDataSource
 
-extension SearchViewController : NSTableViewDataSource {
+extension SearchViewController: NSTableViewDataSource {
     
     func numberOfRowsInTableView(aTableView: NSTableView) -> Int {
         return self.items.count
