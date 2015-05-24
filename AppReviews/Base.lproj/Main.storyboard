@@ -458,6 +458,12 @@
                                 <action selector="saveReviewClicked:" target="XfG-lQ-9wD" id="qVA-bP-cGc"/>
                             </connections>
                         </menuItem>
+                        <menuItem title="Share..." id="h6h-fH-hv6" userLabel="Save as...">
+                            <modifierMask key="keyEquivalentModifierMask"/>
+                            <connections>
+                                <action selector="shareSelectedReview:" target="XfG-lQ-9wD" id="cc8-rd-Cbs"/>
+                            </connections>
+                        </menuItem>
                     </items>
                 </menu>
             </objects>

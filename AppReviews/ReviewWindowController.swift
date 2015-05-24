@@ -86,25 +86,16 @@ extension ReviewWindowController {
         }
     }
 
-    @IBAction func openInAppstore(objects:AnyObject?) {
+    @IBAction func openInAppstore(objects: AnyObject?) {
         let itunesUrl = "http://itunes.apple.com/app/id" + (application?.trackId ?? "")
         if let url = NSURL(string: itunesUrl) {
             NSWorkspace.sharedWorkspace().openURL(url)
         }
     }
     
-    @IBAction func shareButtonClicked(sender:AnyObject?) {
-        
-        if let reviewController = contentViewController as? ReviewSplitViewController {
-            if let review = reviewController.reviewViewController?.selectedReview, let textField = reviewController.reviewViewController?.selectedCell?.textField {
-                var sharingServicePicker = NSSharingServicePicker(items: [review.toString()])
-                sharingServicePicker.delegate = self
-                sharingServicePicker.showRelativeToRect(textField.bounds, ofView: textField, preferredEdge: NSMinYEdge)
-            } else {
-                var alert = NSAlert()
-                alert.messageText = NSLocalizedString("Select a review to share.", comment: "review.share.nothingSelected")
-                alert.beginSheetModalForWindow(window!, completionHandler:nil)
-            }
+    @IBAction func shareButtonClicked(sender: AnyObject?) {
+        if let reviewSplitController = contentViewController as? ReviewSplitViewController {
+            reviewSplitController.reviewViewController?.shareSelectedReview(sender)
         }
     }
     
@@ -145,10 +136,4 @@ extension ReviewWindowController {
             }
         }
     }
-}
-
-// MARK: - NSSharingServicePickerDelegate
-
-extension ReviewWindowController: NSSharingServicePickerDelegate {
-    
 }

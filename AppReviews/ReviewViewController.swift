@@ -65,6 +65,18 @@ extension ReviewViewController: NSTableViewDelegate {
 
 extension ReviewViewController {
     
+    @IBAction func shareSelectedReview(sender: AnyObject?) {
+        if let review = self.selectedReview, let textField = self.selectedCell?.textField {
+            var sharingServicePicker = NSSharingServicePicker(items: [review.toString()])
+            sharingServicePicker.delegate = self
+            sharingServicePicker.showRelativeToRect(textField.bounds, ofView: textField, preferredEdge: NSMinYEdge)
+        } else {
+            var alert = NSAlert()
+            alert.messageText = NSLocalizedString("Select a review to share.", comment: "review.share.nothingSelected")
+            alert.beginSheetModalForWindow(self.view.window!, completionHandler:nil)
+        }
+    }
+    
     @IBAction func copyReviewToClipBoardClicked(menuItem: NSMenuItem) {
         if let review = self.selectedReview {
             var pasteBoard = NSPasteboard.generalPasteboard()
@@ -96,5 +108,11 @@ extension ReviewViewController {
             }
         }
     }
+}
+
+// MARK: - NSSharingServicePickerDelegate
+
+extension ReviewViewController: NSSharingServicePickerDelegate {
+    
 }
 
