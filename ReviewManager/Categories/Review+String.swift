@@ -13,12 +13,12 @@ import Foundation
 extension Review {
     
     func toString() -> String {
-        var string = title
+        var string = self.rating.integerValue.toEmojiStars()
+        string += "\n" + title
         string += "\n" + content
-        string += "\nRating: " + String(rating.integerValue)
         string += "\n" + author
         string += "\n" + uri
-        string += "\n" + application.trackName + " (Version " + version + ")"
+        string += "\n" + application.trackName + " (" + version + ")"
         
         return string
     }

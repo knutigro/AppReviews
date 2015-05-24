@@ -14,6 +14,16 @@ class ReviewViewController: NSViewController {
     @IBOutlet var reviewArrayController: ReviewArrayController?
     
     var managedObjectContext: NSManagedObjectContext!
+    
+    var selectedCell: NSTableCellView?
+    
+    var selectedReview: Review? {
+        if tableView?.selectedRow >= 0 && tableView?.selectedRow < reviewArrayController?.arrangedObjects.count {
+            return reviewArrayController?.arrangedObjects[tableView!.selectedRow] as? Review
+        } else {
+            return nil
+        }
+    }
 
     var application: Application? {
         didSet {
@@ -43,6 +53,12 @@ extension ReviewViewController: NSTableViewDelegate {
         
         return height + 80
     }
+    
+    func tableViewSelectionDidChange(notification: NSNotification) {
+        if let row = notification.object?.selectedRow {
+            selectedCell = notification.object?.viewAtColumn(0, row: row, makeIfNecessary: false) as? NSTableCellView
+        }
+    }
 }
 
 // MARK: Actions
@@ -50,38 +66,32 @@ extension ReviewViewController: NSTableViewDelegate {
 extension ReviewViewController {
     
     @IBAction func copyReviewToClipBoardClicked(menuItem: NSMenuItem) {
-        if tableView?.clickedRow > 0 && tableView?.clickedRow < reviewArrayController?.arrangedObjects.count {
-            if let review = reviewArrayController?.arrangedObjects[tableView!.clickedRow] as? Review {
-                var pasteBoard = NSPasteboard.generalPasteboard()
-                pasteBoard.clearContents()
-                pasteBoard.writeObjects([review.toString()])
-            }
+        if let review = self.selectedReview {
+            var pasteBoard = NSPasteboard.generalPasteboard()
+            pasteBoard.clearContents()
+            pasteBoard.writeObjects([review.toString()])
         }
     }
 
     @IBAction func openReviewClicked(menuItem: NSMenuItem) {
-        if tableView?.clickedRow > 0 && tableView?.clickedRow < reviewArrayController?.arrangedObjects.count {
-            if let review = reviewArrayController?.arrangedObjects[tableView!.clickedRow] as? Review {
-                if let url = NSURL(string: review.uri) {
-                    NSWorkspace.sharedWorkspace().openURL(url)
-                }
+        if let review = self.selectedReview {
+            if let url = NSURL(string: review.uri) {
+                NSWorkspace.sharedWorkspace().openURL(url)
             }
         }
     }
 
     @IBAction func saveReviewClicked(menuItem: NSMenuItem) {
-        if tableView?.clickedRow > 0 && tableView?.clickedRow < reviewArrayController?.arrangedObjects.count {
-            if let review = reviewArrayController?.arrangedObjects[tableView!.clickedRow] as? Review {
-                var savePanel = NSSavePanel()
-                savePanel.title = review.title
-                savePanel.nameFieldStringValue = review.title
-                savePanel.allowedFileTypes = [kUTTypeText]
-                let result = savePanel.runModal()
-                if result != NSFileHandlingPanelCancelButton {
-                    if let url = savePanel.URL {
-                        var error: NSError?
-                        review.toString().writeToURL(url, atomically: true, encoding: NSUTF8StringEncoding, error: &error)
-                    }
+        if let review = self.selectedReview {
+            var savePanel = NSSavePanel()
+            savePanel.title = review.title
+            savePanel.nameFieldStringValue = review.title
+            savePanel.allowedFileTypes = [kUTTypeText]
+            let result = savePanel.runModal()
+            if result != NSFileHandlingPanelCancelButton {
+                if let url = savePanel.URL {
+                    var error: NSError?
+                    review.toString().writeToURL(url, atomically: true, encoding: NSUTF8StringEncoding, error: &error)
                 }
             }
         }

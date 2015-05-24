@@ -522,7 +522,7 @@
                                 <toolbarItem implicitItemIdentifier="B46D65A0-A902-4512-89F4-1020066CABED" label="" paletteLabel="" image="NSActionTemplate" id="lWF-mc-dTc">
                                     <nil key="toolTip"/>
                                     <size key="minSize" width="30" height="28"/>
-                                    <size key="maxSize" width="40" height="28"/>
+                                    <size key="maxSize" width="40" height="40"/>
                                     <popUpButton key="view" verticalHuggingPriority="750" id="86s-19-3Op">
                                         <rect key="frame" x="0.0" y="14" width="38" height="28"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
@@ -559,10 +559,28 @@
                                         </popUpButtonCell>
                                     </popUpButton>
                                 </toolbarItem>
+                                <toolbarItem implicitItemIdentifier="B76A0A66-E55B-4BD4-97A6-D3EC77F5B11E" label="Share" paletteLabel="Share" image="NSShareTemplate" id="bWn-8i-V4e">
+                                    <nil key="toolTip"/>
+                                    <size key="minSize" width="30" height="30"/>
+                                    <size key="maxSize" width="48" height="48"/>
+                                    <button key="view" id="U90-rD-3bJ">
+                                        <rect key="frame" x="0.0" y="14" width="30" height="30"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                        <buttonCell key="cell" type="square" bezelStyle="shadowlessSquare" image="NSShareTemplate" imagePosition="only" alignment="center" controlSize="mini" imageScaling="proportionallyDown" inset="2" id="PD8-QE-f60">
+                                            <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                            <font key="font" metaFont="miniSystem"/>
+                                        </buttonCell>
+                                        <connections>
+                                            <action selector="shareButtonClicked:" target="E8W-Gv-fjB" id="NI3-XH-wOB"/>
+                                        </connections>
+                                    </button>
+                                </toolbarItem>
                             </allowedToolbarItems>
                             <defaultToolbarItems>
                                 <toolbarItem reference="eJg-3d-Guv"/>
                                 <toolbarItem reference="lWF-mc-dTc"/>
+                                <toolbarItem reference="eJg-3d-Guv"/>
+                                <toolbarItem reference="bWn-8i-V4e"/>
                                 <toolbarItem reference="Gg2-U0-AHb"/>
                                 <toolbarItem reference="4Po-lg-oFA"/>
                                 <toolbarItem reference="eJg-3d-Guv"/>
@@ -571,6 +589,7 @@
                     </window>
                     <connections>
                         <outlet property="automaticUpdate" destination="g9R-Ib-VhM" id="T9n-Xr-i2m"/>
+                        <outlet property="shareButton" destination="U90-rD-3bJ" id="Zzf-n8-myS"/>
                         <segue destination="2A9-CB-LU5" kind="relationship" relationship="window.shadowedContentViewController" id="IO4-GJ-PYu"/>
                     </connections>
                 </windowController>
@@ -1304,5 +1323,6 @@ Gw
         <image name="AppIcon" width="128" height="128"/>
         <image name="NSActionTemplate" width="14" height="14"/>
         <image name="NSRefreshFreestandingTemplate" width="14" height="14"/>
+        <image name="NSShareTemplate" width="11" height="16"/>
     </resources>
 </document>

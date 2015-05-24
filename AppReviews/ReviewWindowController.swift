@@ -12,6 +12,7 @@ class ReviewWindowController: NSWindowController {
     
     var managedObjectContext: NSManagedObjectContext!
     @IBOutlet weak var automaticUpdate: NSMenuItem?
+    @IBOutlet weak var shareButton: NSButton?
     
     var application: Application? {
         didSet {
@@ -57,6 +58,8 @@ class ReviewWindowController: NSWindowController {
         if let reviewController = contentViewController as? ReviewSplitViewController {
             reviewController.application = application
         }
+        
+        self.shareButton!.sendActionOn(Int(NSEventMask.LeftMouseDownMask.rawValue))
     }
 }
 
@@ -87,6 +90,21 @@ extension ReviewWindowController {
         let itunesUrl = "http://itunes.apple.com/app/id" + (application?.trackId ?? "")
         if let url = NSURL(string: itunesUrl) {
             NSWorkspace.sharedWorkspace().openURL(url)
+        }
+    }
+    
+    @IBAction func shareButtonClicked(sender:AnyObject?) {
+        
+        if let reviewController = contentViewController as? ReviewSplitViewController {
+            if let review = reviewController.reviewViewController?.selectedReview, let textField = reviewController.reviewViewController?.selectedCell?.textField {
+                var sharingServicePicker = NSSharingServicePicker(items: [review.toString()])
+                sharingServicePicker.delegate = self
+                sharingServicePicker.showRelativeToRect(textField.bounds, ofView: textField, preferredEdge: NSMinYEdge)
+            } else {
+                var alert = NSAlert()
+                alert.messageText = NSLocalizedString("Select a review to share.", comment: "review.share.nothingSelected")
+                alert.beginSheetModalForWindow(window!, completionHandler:nil)
+            }
         }
     }
     
@@ -127,5 +145,10 @@ extension ReviewWindowController {
             }
         }
     }
+}
 
+// MARK: - NSSharingServicePickerDelegate
+
+extension ReviewWindowController: NSSharingServicePickerDelegate {
+    
 }
