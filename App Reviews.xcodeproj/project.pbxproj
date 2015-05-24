@@ -29,10 +29,8 @@
 		4910B4201B0E8AEF00FDC0EA /* AppReviewsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4910B41D1B0E8AEF00FDC0EA /* AppReviewsTests.swift */; };
 		4910B4211B0E8AEF00FDC0EA /* AppVersionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4910B41E1B0E8AEF00FDC0EA /* AppVersionTests.swift */; };
 		4910B4221B0E8AEF00FDC0EA /* ItunesUrlHandlerTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4910B41F1B0E8AEF00FDC0EA /* ItunesUrlHandlerTest.swift */; };
-		4910B4241B0E8AFA00FDC0EA /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 4910B4231B0E8AFA00FDC0EA /* Info.plist */; };
 		4910B4271B0E8C1900FDC0EA /* application.json in Resources */ = {isa = PBXBuildFile; fileRef = 4910B4251B0E8C1900FDC0EA /* application.json */; };
 		4910B4281B0E8C1900FDC0EA /* reviews.json in Resources */ = {isa = PBXBuildFile; fileRef = 4910B4261B0E8C1900FDC0EA /* reviews.json */; };
-		4910B4331B0E8E3600FDC0EA /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 4910B4321B0E8E3600FDC0EA /* Info.plist */; };
 		4910B4361B0E8E7300FDC0EA /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4910B4351B0E8E7300FDC0EA /* AppDelegate.swift */; };
 		4910B4381B0E8E8500FDC0EA /* StatusMenuController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4910B4371B0E8E8400FDC0EA /* StatusMenuController.swift */; };
 		4910B43B1B0E8E9600FDC0EA /* ApplicationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4910B4391B0E8E9600FDC0EA /* ApplicationViewController.swift */; };
@@ -463,7 +461,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				4910B49F1B0F2FAF00FDC0EA /* LICENSE in Resources */,
-				4910B4331B0E8E3600FDC0EA /* Info.plist in Resources */,
 				4910B49D1B0E908000FDC0EA /* Main.storyboard in Resources */,
 				4910B4961B0E901C00FDC0EA /* Images.xcassets in Resources */,
 				4910B4941B0E900500FDC0EA /* AppReviews.entitlements in Resources */,
@@ -476,7 +473,6 @@
 			files = (
 				4910B4281B0E8C1900FDC0EA /* reviews.json in Resources */,
 				4910B4271B0E8C1900FDC0EA /* application.json in Resources */,
-				4910B4241B0E8AFA00FDC0EA /* Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -763,7 +759,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = AppReviews/AppReviews.entitlements;
-				CODE_SIGN_IDENTITY = "Mac Developer: Knut Inge Grosland (BV7ZH22G55)";
+				CODE_SIGN_IDENTITY = "Developer ID Application";
 				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Mac Developer: Knut Inge Grosland (BV7ZH22G55)";
 				COMBINE_HIDPI_IMAGES = YES;
 				INFOPLIST_FILE = AppReviews/Info.plist;
