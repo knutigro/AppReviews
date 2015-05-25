@@ -16,12 +16,9 @@ let kDidUpdateReviewsNotification             = "kDidUpdateReviewsNotification"
 
 class PersistentStack {
     
-    private var iCloudSync = true
-
     var managedObjectContext: NSManagedObjectContext!
     var modelURL: NSURL
     var storeURL: NSURL
-    var persistenceStoreWillChange = false
     
     init(storeURL: NSURL, modelURL: NSURL) {
         self.modelURL = modelURL
@@ -34,50 +31,15 @@ class PersistentStack {
         managedObjectContext = setupManagedObjectContextWithConcurrencyType(.MainQueueConcurrencyType)
         managedObjectContext.undoManager = NSUndoManager()
 
-        if iCloudSync {
-            addNotficationsForPersistentStack()
-        }
-        
         let managedObjectDidSave = NSNotificationCenter.defaultCenter().addObserverForName(NSManagedObjectContextDidSaveNotification, object: nil, queue: nil) { [weak self] notification in
                 self?.managedObjectDidSave(notification)
         }
-    }
-    
-    func addNotficationsForPersistentStack() {
-        let persistenceStoreDidImport = NSNotificationCenter.defaultCenter().addObserverForName(NSPersistentStoreDidImportUbiquitousContentChangesNotification, object: nil, queue: nil) { [weak self] notification in
-            self?.managedObjectDidSave(notification)
-        }
-        
-        let persistenceStoreDidChange = NSNotificationCenter.defaultCenter().addObserverForName(NSPersistentStoreCoordinatorStoresDidChangeNotification, object: nil, queue: nil) { [weak self] notification in
-            self?.persistenceStoreWillChange = false
-        }
-        
-        let persistenceStoreWillChangeNot = NSNotificationCenter.defaultCenter().addObserverForName(NSPersistentStoreCoordinatorStoresWillChangeNotification, object: nil, queue: NSOperationQueue.mainQueue()) { [weak self] notification in
-            self?.managedObjectContext.performBlock({ () -> Void in
-                
-                if (self?.managedObjectContext.hasChanges != nil) {
-                    var error: NSError?
-                    self?.managedObjectContext.save(&error)
-                    
-                } else {
-                    // drop any managed object references
-                    self?.persistenceStoreWillChange = true
-                    self?.managedObjectContext.reset()
-                }
-            })
-        }
-        
-
     }
     
     func managedObjectDidSave(notification: NSNotification) {
         let moc = managedObjectContext;
         if notification.object as? NSManagedObjectContext != moc {
             moc.performBlock({ () -> Void in
-                
-                if (self.persistenceStoreWillChange) {
-                    return
-                }
                 
                 self.mergeChangesFromSaveNotification(notification, intoContext: moc)
                 
@@ -165,17 +127,10 @@ class PersistentStack {
         
         let managedObjectContext = NSManagedObjectContext(concurrencyType: concurrencyType)
         
-        var storeOptions: [NSObject: AnyObject]?
-
-        // Enable iCloudSync
-        if (iCloudSync) {
-            storeOptions = [NSPersistentStoreUbiquitousContentNameKey: "AppReviews"]
-        }
-        
         if let managedObjectModel = managedObjectModel() {
             managedObjectContext.persistentStoreCoordinator = NSPersistentStoreCoordinator(managedObjectModel: managedObjectModel)
             var error: NSError?
-            managedObjectContext.persistentStoreCoordinator?.addPersistentStoreWithType(NSSQLiteStoreType, configuration: nil, URL: storeURL, options: storeOptions, error: &error)
+            managedObjectContext.persistentStoreCoordinator?.addPersistentStoreWithType(NSSQLiteStoreType, configuration: nil, URL: storeURL, options: nil, error: &error)
             if error != nil {
                 println(error)
                 println(storeURL.path)

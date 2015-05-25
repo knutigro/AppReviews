@@ -23,6 +23,8 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     // MARK: Application Process
 
     func applicationDidFinishLaunching(aNotification: NSNotification) {
+        
+        // UA-62792522-4
 
         // Create ReviewManager shared object
         var manager = ReviewManager.start()

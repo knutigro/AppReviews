@@ -185,5 +185,5 @@ extension JSON {
     var averageUserRating: NSNumber { return NSNumber(float:(self["averageUserRating"].stringValue as NSString).floatValue) }
     var userRatingCount: NSNumber { return NSNumber(integer: self["userRatingCount"].stringValue.toInt() ?? 0) }
 
-    var isApplicationEntity: Bool{ return self.trackId != nil   }
+    var isApplicationEntity: Bool{ return trackId != nil   }
 }

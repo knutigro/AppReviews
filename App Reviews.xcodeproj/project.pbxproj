@@ -395,6 +395,7 @@
 				49ACB84E1AD5CAA00050C1B7 /* Resources */,
 				C74A12F1B404CD9A47F25C18 /* Embed Pods Frameworks */,
 				72B401262D76AFCCD7B98C00 /* Copy Pods Resources */,
+				49D09E561B134BDF006B39C9 /* Sign Sparkle */,
 			);
 			buildRules = (
 			);
@@ -423,10 +424,10 @@
 								enabled = 0;
 							};
 							com.apple.Sandbox = {
-								enabled = 1;
+								enabled = 0;
 							};
 							com.apple.iCloud = {
-								enabled = 1;
+								enabled = 0;
 							};
 						};
 					};
@@ -510,6 +511,20 @@
 			showEnvVarsInLog = 0;
 		};
 		49D09E541B0FF4C8006B39C9 /* Sign Sparkle */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Sign Sparkle";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "LOCATION=\"${BUILT_PRODUCTS_DIR}\"/\"${FRAMEWORKS_FOLDER_PATH}\"\n\n# Usually set by Xcode\nCODE_SIGN_IDENTITY=\"Developer ID Application: Knut Inge Grosland\"\n\ncodesign --verbose --force --sign \"$CODE_SIGN_IDENTITY\" \"$LOCATION/Sparkle.framework/Versions/A\"";
+		};
+		49D09E561B134BDF006B39C9 /* Sign Sparkle */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -758,8 +773,7 @@
 			baseConfigurationReference = 8E9E3A98AF3DC476EF9A0809 /* Pods.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_ENTITLEMENTS = AppReviews/AppReviews.entitlements;
-				CODE_SIGN_IDENTITY = "Developer ID Application";
+				CODE_SIGN_IDENTITY = "Mac Developer: Knut Inge Grosland (BV7ZH22G55)";
 				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Mac Developer: Knut Inge Grosland (BV7ZH22G55)";
 				COMBINE_HIDPI_IMAGES = YES;
 				INFOPLIST_FILE = AppReviews/Info.plist;
@@ -777,7 +791,6 @@
 			baseConfigurationReference = F9CE0DF35CA051BD774393CD /* Pods.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_ENTITLEMENTS = AppReviews/AppReviews.entitlements;
 				CODE_SIGN_IDENTITY = "3rd Party Mac Developer Application: Knut Inge Grosland (2PRW676NCQ)";
 				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "3rd Party Mac Developer Application: Knut Inge Grosland (2PRW676NCQ)";
 				COMBINE_HIDPI_IMAGES = YES;
@@ -808,6 +821,7 @@
 				INFOPLIST_FILE = AppReviewsTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
 				PRODUCT_NAME = "App ReviewsTests";
+				PROVISIONING_PROFILE = "";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/App Reviews.app/Contents/MacOS/App Reviews";
 			};
 			name = Debug;
@@ -827,6 +841,7 @@
 				INFOPLIST_FILE = AppReviewsTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
 				PRODUCT_NAME = "App ReviewsTests";
+				PROVISIONING_PROFILE = "";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/App Reviews.app/Contents/MacOS/App Reviews";
 			};
 			name = Release;

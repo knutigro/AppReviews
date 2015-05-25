@@ -65,15 +65,25 @@ final class ReviewManager {
     }
     
     func storeURL() -> NSURL {
-        let appName = NSBundle.mainBundle().objectForInfoDictionaryKey("CFBundleName") as? String ?? "AppReviews"
+        let appName = NSBundle.mainBundle().objectForInfoDictionaryKey("CFBundleName") as? String ?? "App Reviews"
         var error: NSError? = nil
-        let applicationSupportDirectory = NSFileManager.defaultManager().URLForDirectory(.ApplicationSupportDirectory, inDomain: .UserDomainMask, appropriateForURL: nil, create: true, error: &error)
-        let appdirectory = applicationSupportDirectory?.URLByAppendingPathComponent(appName, isDirectory: true)
-        let url = appdirectory?.URLByAppendingPathComponent(kSQLiteFileName)
+        // ApplicationSupportDirectory
+        
+        let applicationSupportDirectory = NSFileManager.defaultManager().URLForDirectory(.DesktopDirectory, inDomain: .UserDomainMask, appropriateForURL: nil, create: true, error: &error)
+        let appDirectory = applicationSupportDirectory?.URLByAppendingPathComponent(appName, isDirectory: true)
+        
+        let success = NSFileManager.defaultManager().createDirectoryAtPath(appDirectory!.URLString, withIntermediateDirectories: true, attributes: nil, error: &error)
+        
+        if error != nil {
+            println("createDirectoryAtPath: \(error?.localizedDescription)")
+        }
+
+        let url = appDirectory?.URLByAppendingPathComponent(kSQLiteFileName)
+        
         if error != nil {
             println("error storeURL: \(error?.localizedDescription)")
         }
-
+        
         return url!
     }
     
