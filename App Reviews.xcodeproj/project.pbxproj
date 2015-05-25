@@ -795,6 +795,7 @@
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_ENTITLEMENTS = AppReviews/AppReviews.entitlements;
+				CODE_SIGN_IDENTITY = "Mac Developer: Knut Inge Grosland (BV7ZH22G55)";
 				COMBINE_HIDPI_IMAGES = YES;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(DEVELOPER_FRAMEWORKS_DIR)",
@@ -817,6 +818,7 @@
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_ENTITLEMENTS = AppReviews/AppReviews.entitlements;
+				CODE_SIGN_IDENTITY = "3rd Party Mac Developer Application: Knut Inge Grosland (2PRW676NCQ)";
 				COMBINE_HIDPI_IMAGES = YES;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(DEVELOPER_FRAMEWORKS_DIR)",
