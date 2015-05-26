@@ -65,28 +65,31 @@ final class ReviewManager {
     }
     
     func storeURL() -> NSURL {
-        let appName = NSBundle.mainBundle().objectForInfoDictionaryKey("CFBundleName") as? String ?? "App Reviews"
         var error: NSError? = nil
-        // ApplicationSupportDirectory
+        var failureReason = "There was an error creating or loading the application's saved data."
         
-        let applicationSupportDirectory = NSFileManager.defaultManager().URLForDirectory(.DesktopDirectory, inDomain: .UserDomainMask, appropriateForURL: nil, create: true, error: &error)
-        let appDirectory = applicationSupportDirectory?.URLByAppendingPathComponent(appName, isDirectory: true)
-        
-        let success = NSFileManager.defaultManager().createDirectoryAtPath(appDirectory!.URLString, withIntermediateDirectories: true, attributes: nil, error: &error)
-        
-        if error != nil {
-            println("createDirectoryAtPath: \(error?.localizedDescription)")
-        }
-
-        let url = appDirectory?.URLByAppendingPathComponent(kSQLiteFileName)
-        
-        if error != nil {
-            println("error storeURL: \(error?.localizedDescription)")
+        // Make sure the application files directory is there
+        let propertiesOpt = self.applicationDocumentsDirectory.resourceValuesForKeys([NSURLIsDirectoryKey], error: &error)
+        if let properties = propertiesOpt {
+            if !properties[NSURLIsDirectoryKey]!.boolValue {
+                failureReason = "Expected a folder to store application data, found a file \(self.applicationDocumentsDirectory.path)."
+            }
+        } else if error!.code == NSFileReadNoSuchFileError {
+            error = nil
+            NSFileManager.defaultManager().createDirectoryAtPath(self.applicationDocumentsDirectory.path!, withIntermediateDirectories: true, attributes: nil, error: &error)
         }
         
-        return url!
+        return self.applicationDocumentsDirectory.URLByAppendingPathComponent(kSQLiteFileName)
     }
     
+    lazy var applicationDocumentsDirectory: NSURL = {
+        let urls = NSFileManager.defaultManager().URLsForDirectory(.ApplicationSupportDirectory, inDomains: .UserDomainMask)
+        let appSupportURL = urls[urls.count - 1] as! NSURL
+        
+        let appName = NSBundle.mainBundle().objectForInfoDictionaryKey("CFBundleName") as? String ?? "App Reviews"
+        return appSupportURL.URLByAppendingPathComponent(appName)
+        }()
+
     func modelURL() -> NSURL {
         return NSBundle.mainBundle().URLForResource("AppReviews", withExtension: "momd")!
     }

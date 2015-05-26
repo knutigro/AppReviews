@@ -28,7 +28,7 @@ class SearchViewController: NSViewController {
     var delegate: SearchViewControllerDelegate?
     var state: SearchViewControllerState = .Idle {
         didSet {
-            switch state {
+            switch self.state {
             case .Idle:
                 progressIndicator.stopAnimation(nil)
             case .Loading:

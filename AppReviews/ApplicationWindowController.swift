@@ -72,8 +72,8 @@ extension ApplicationWindowController  {
             searchViewController.delegate = self
             searchViewController.state = .Loading
         }
-        
-        window?.beginSheet(window!) {
+
+        self.window?.beginSheet(window!) {
             (returnCode: NSModalResponse)
             in
             self.searchWindowController = nil
