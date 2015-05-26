@@ -8,8 +8,7 @@
 
 import Cocoa
 import AppKit
-
-// #define Color(value) (value) / 255.0
+import SimpleCocoaAnalytics
 
 @NSApplicationMain
 class AppDelegate: NSObject, NSApplicationDelegate {
@@ -24,8 +23,10 @@ class AppDelegate: NSObject, NSApplicationDelegate {
 
     func applicationDidFinishLaunching(aNotification: NSNotification) {
         
-        // UA-62792522-4
-
+        var analyticsHelper = AnalyticsHelper.sharedInstance()
+        analyticsHelper.recordScreenWithName("Launch")
+        analyticsHelper.beginPeriodicReportingWithAccount("UA-62792522-3", name: "App Reviews OSX", version: NSApplication.v_versionBuild())
+        
         // Create ReviewManager shared object
         var manager = ReviewManager.start()
         
@@ -35,6 +36,8 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     
     func applicationWillTerminate(aNotification: NSNotification) {
         // Insert code here to tear down your application
+        AnalyticsHelper.sharedInstance().handleApplicationWillClose()
+        NSUserDefaults.standardUserDefaults().synchronize()
     }
     
     func applicationShouldTerminate(sender: NSApplication) -> NSApplicationTerminateReply {

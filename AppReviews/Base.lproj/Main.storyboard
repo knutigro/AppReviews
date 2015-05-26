@@ -137,7 +137,7 @@
                                     <constraint firstAttribute="width" constant="135" id="Ngd-0n-4XR"/>
                                     <constraint firstAttribute="height" constant="21" id="g6n-sk-AcZ"/>
                                 </constraints>
-                                <buttonCell key="cell" type="push" title="Project Pages" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="pTs-VW-UdE">
+                                <buttonCell key="cell" type="push" title="Visit Website" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="pTs-VW-UdE">
                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                     <font key="font" metaFont="system"/>
                                 </buttonCell>
@@ -151,7 +151,7 @@
                                     <constraint firstAttribute="height" constant="21" id="GMF-Wg-uJt"/>
                                     <constraint firstAttribute="width" constant="135" id="Kob-CH-b6q"/>
                                 </constraints>
-                                <buttonCell key="cell" type="push" title="Check for updates" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="BVJ-mb-0pS">
+                                <buttonCell key="cell" type="push" title="Check for Updates" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="BVJ-mb-0pS">
                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                     <font key="font" metaFont="system"/>
                                 </buttonCell>

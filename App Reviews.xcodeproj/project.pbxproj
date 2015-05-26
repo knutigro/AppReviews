@@ -245,6 +245,7 @@
 		49ACB83D1AD5CAA00050C1B7 /* App Reviews */ = {
 			isa = PBXGroup;
 			children = (
+				4910B4351B0E8E7300FDC0EA /* AppDelegate.swift */,
 				4910B3E51B0E200200FDC0EA /* ReviewManager */,
 				49F800F51ADC840C004A1BF1 /* Window & ViewControllers */,
 				49F800F41ADC83EC004A1BF1 /* Views */,
@@ -316,7 +317,6 @@
 			isa = PBXGroup;
 			children = (
 				4910B49A1B0E906800FDC0EA /* Main.storyboard */,
-				4910B4351B0E8E7300FDC0EA /* AppDelegate.swift */,
 				4910B4371B0E8E8400FDC0EA /* StatusMenuController.swift */,
 				4910B4391B0E8E9600FDC0EA /* ApplicationViewController.swift */,
 				4910B43A1B0E8E9600FDC0EA /* ApplicationWindowController.swift */,
