@@ -1,0 +1,51 @@
+digraph G {
+	node [shape=box];
+	"SliceLayer" -> {};
+	"SUAppcastItem" -> "SUExport";
+	"Sparkle" -> {};
+	"Pods-SimpleCocoaAnalytics-umbrella" -> "AnalyticsEvent";
+	"Pods-SimpleCocoaAnalytics-umbrella" -> "AnalyticsHelper";
+	"EDStarRating" -> {};
+	"SUExport" -> {};
+	"Pods-SwiftyJSON-dummy" -> {};
+	"SUVersionComparisonProtocol" -> "SUExport";
+	"Objective-C-BridgingHeader" -> "PieChart";
+	"Pods-SimpleCocoaAnalytics-dummy" -> {};
+	"Pods-dummy" -> {};
+	"SUVersionDisplayProtocol" -> "SUExport";
+	"AnalyticsEvent" -> {};
+	"SUErrors" -> "SUExport";
+	"Pods-Alamofire-umbrella" -> {};
+	"Pods-umbrella" -> {};
+	"SUAppcast" -> "SUExport";
+	"Pods-environment" -> {};
+	"Pods-SwiftyJSON-umbrella" -> {};
+	"Pods-Alamofire-dummy" -> {};
+	"BackgroundView" -> {};
+	"SUUpdater" -> "SUVersionComparisonProtocol";
+	"SUUpdater" -> "SUVersionDisplayProtocol";
+	"SUUpdater" -> "SUExport";
+	"SUStandardVersionComparator" -> "SUVersionComparisonProtocol";
+	"SUStandardVersionComparator" -> "SUExport";
+	"Pods-EDStarRating-dummy" -> {};
+	"PieChart" -> "BackgroundView";
+	"PieChart" -> "SliceLayer";
+	"AnalyticsHelper" -> "AnalyticsEvent";
+	"Pods-EDStarRating-umbrella" -> "EDStarRating";
+	
+	"Pods-SwiftyJSON-prefix" [color=red];
+	"Pods-SwiftyJSON-prefix" -> "Pods-environment" [color=red];
+	"Pods-Alamofire-prefix" [color=red];
+	"Pods-Alamofire-prefix" -> "Pods-environment" [color=red];
+	"Pods-EDStarRating-prefix" [color=red];
+	"Pods-EDStarRating-prefix" -> "Pods-environment" [color=red];
+	"Pods-SimpleCocoaAnalytics-prefix" [color=red];
+	"Pods-SimpleCocoaAnalytics-prefix" -> "Pods-environment" [color=red];
+	
+	edge [color=blue, dir=both];
+	
+	edge [color=black];
+	node [shape=plaintext];
+	"Categories" [label="NSColor+CGColor"];
+}
+

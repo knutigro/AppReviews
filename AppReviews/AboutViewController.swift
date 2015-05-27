@@ -6,7 +6,6 @@
 //  Copyright (c) 2015 Cocmoc. All rights reserved.
 //
 import Cocoa
-import StoreKit
 import Sparkle
 
 class AboutViewController: NSViewController {
