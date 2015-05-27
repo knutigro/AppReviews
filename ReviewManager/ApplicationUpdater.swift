@@ -38,7 +38,7 @@ class ApplicationUpdater {
         }
 
         timer = Timer.repeatEvery(kTimerInterval) { [weak self] inTimer in
-            self?.updateMonitoredApplications()
+            self?.updateReviewsForAllApplications()
         }
         
         updateMonitoredApplications();
