@@ -94,7 +94,7 @@
                                 </constraints>
                                 <textFieldCell key="cell" sendsActionOnEndEditing="YES" alignment="center" id="utY-YA-V2A">
                                     <font key="font" metaFont="system"/>
-                                    <string key="title">If you like App Reviews, please consider making a donation. I am also happy to receive feature requests, issues, or pull requests on the Open Source GitHub pages.</string>
+                                    <string key="title">If you like App Reviews, please consider making a donation. Feature requests, issues, or pull requests on the Open Source GitHub pages are also welcome.</string>
                                     <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                                     <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                 </textFieldCell>
@@ -244,7 +244,7 @@
                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                             <subviews>
                                 <textView editable="NO" selectable="NO" importsGraphics="NO" findStyle="panel" continuousSpellChecking="YES" allowsUndo="YES" usesRuler="YES" usesFontPanel="YES" verticallyResizable="YES" allowsNonContiguousLayout="YES" quoteSubstitution="YES" dashSubstitution="YES" spellingCorrection="YES" smartInsertDelete="YES" id="pjo-wB-QPl">
-                                    <rect key="frame" x="0.0" y="0.0" width="248" height="133"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="248" height="298"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                     <size key="minSize" width="448" height="298"/>
