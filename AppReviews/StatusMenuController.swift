@@ -83,15 +83,15 @@ class StatusMenuController: NSObject {
         
         var menuItemApplications = NSMenuItem(title: NSLocalizedString("Add / Remove Applications", comment: "statusbar.menu.applications"), action: Selector("openApplications:"), keyEquivalent: "")
         var menuItemAbout = NSMenuItem(title: NSLocalizedString("About Appstore Reviews", comment: "statusbar.menu.about"), action: Selector("openAbout:"), keyEquivalent: "")
-        var menuItemQuit = NSMenuItem(title: NSLocalizedString("Quit Appstore Reviews", comment: "statusbar.menu.quit"), action: Selector("quit:"), keyEquivalent: "")
+        var menuItemQuit = NSMenuItem(title: NSLocalizedString("Quit", comment: "statusbar.menu.quit"), action: Selector("quit:"), keyEquivalent: "")
 
         menuItemApplications.target = self
         menuItemAbout.target = self
         menuItemQuit.target = self
 
         menu.addItem(menuItemApplications)
-        menu.addItem(menuItemAbout)
         menu.addItem(NSMenuItem.separatorItem())
+        menu.addItem(menuItemAbout)
         menu.addItem(menuItemQuit)
         
         statusItem.menu = menu;
