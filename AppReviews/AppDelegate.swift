@@ -16,6 +16,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     lazy var applicationWindowController: NSWindowController = self.initialApplicationWindowController()
     lazy var aboutWindowController: NSWindowController = self.initialAboutWindowController()
     lazy var reviewsWindowController: ReviewWindowController = self.initialReviewWindowController()
+    lazy var launchWindowController: NSWindowController = self.initialLaunchWindowController()
 
     var statusMenuController: StatusMenuController!
     
@@ -32,6 +33,12 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         
         // Create StatusMenu
         statusMenuController = StatusMenuController()
+
+        // Show Launchscreen
+        if NSUserDefaults.review_shouldShowLaunchScreen() {
+            self.launchWindowController.showWindow(self)
+            NSApp.activateIgnoringOtherApps(true)
+        }
     }
     
     func applicationWillTerminate(aNotification: NSNotification) {
@@ -51,6 +58,13 @@ class AppDelegate: NSObject, NSApplicationDelegate {
 // MARK: WindowControllers
 
 extension AppDelegate {
+    
+    func initialLaunchWindowController() -> NSWindowController {
+        let storyboard = NSStoryboard(name: "Main", bundle: nil)!
+        var windowController = storyboard.instantiateControllerWithIdentifier("LaunchWindowController") as! NSWindowController
+        
+        return windowController
+    }
     
     func initialApplicationWindowController() -> NSWindowController {
         let storyboard = NSStoryboard(name: "Main", bundle: nil)!

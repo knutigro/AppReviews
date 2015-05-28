@@ -63,6 +63,8 @@
 		4910B49F1B0F2FAF00FDC0EA /* LICENSE in Resources */ = {isa = PBXBuildFile; fileRef = 4910B49E1B0F2FAF00FDC0EA /* LICENSE */; };
 		49FD79D71B166A3E00E99F4B /* LegalViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49FD79D61B166A3E00E99F4B /* LegalViewController.swift */; };
 		49FD79D91B166B4D00E99F4B /* 3dPartyLicenses.rtf in Resources */ = {isa = PBXBuildFile; fileRef = 49FD79D81B166B4D00E99F4B /* 3dPartyLicenses.rtf */; };
+		49FD79DB1B17248A00E99F4B /* LaunchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49FD79DA1B17248A00E99F4B /* LaunchViewController.swift */; };
+		49FD79DD1B17327500E99F4B /* NSUserDefaults+AppReviews.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49FD79DC1B17327500E99F4B /* NSUserDefaults+AppReviews.swift */; };
 		67821E35AE9AB2E4F46170D4 /* Pods.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5083B9909F1AD9259C461DBD /* Pods.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 /* End PBXBuildFile section */
 
@@ -140,6 +142,8 @@
 		49ACB8501AD5CAA00050C1B7 /* App ReviewsTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "App ReviewsTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		49FD79D61B166A3E00E99F4B /* LegalViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = LegalViewController.swift; path = AppReviews/LegalViewController.swift; sourceTree = SOURCE_ROOT; };
 		49FD79D81B166B4D00E99F4B /* 3dPartyLicenses.rtf */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.rtf; path = 3dPartyLicenses.rtf; sourceTree = "<group>"; };
+		49FD79DA1B17248A00E99F4B /* LaunchViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = LaunchViewController.swift; path = AppReviews/LaunchViewController.swift; sourceTree = SOURCE_ROOT; };
+		49FD79DC1B17327500E99F4B /* NSUserDefaults+AppReviews.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "NSUserDefaults+AppReviews.swift"; path = "AppReviews/NSUserDefaults+AppReviews.swift"; sourceTree = SOURCE_ROOT; };
 		5083B9909F1AD9259C461DBD /* Pods.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		8E9E3A98AF3DC476EF9A0809 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 		F9CE0DF35CA051BD774393CD /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
@@ -298,6 +302,7 @@
 				4910B4861B0E8FBF00FDC0EA /* NSColor+AppReviews.swift */,
 				4910B4871B0E8FBF00FDC0EA /* NSImageView+Networking.swift */,
 				4910B4891B0E8FBF00FDC0EA /* String+Size.swift */,
+				49FD79DC1B17327500E99F4B /* NSUserDefaults+AppReviews.swift */,
 			);
 			name = Categories;
 			path = ../COAppstoreReviews;
@@ -328,6 +333,7 @@
 				4910B4431B0E8EC100FDC0EA /* ReviewWindowController.swift */,
 				4910B4491B0E8ED400FDC0EA /* AboutViewController.swift */,
 				49FD79D61B166A3E00E99F4B /* LegalViewController.swift */,
+				49FD79DA1B17248A00E99F4B /* LaunchViewController.swift */,
 				49F800F61ADC844A004A1BF1 /* Data Controllers */,
 			);
 			name = "Window & ViewControllers";
@@ -645,9 +651,11 @@
 				4910B43B1B0E8E9600FDC0EA /* ApplicationViewController.swift in Sources */,
 				4910B4471B0E8EC100FDC0EA /* ReviewViewController.swift in Sources */,
 				4910B4501B0E8F0F00FDC0EA /* ApplicationArrayController.swift in Sources */,
+				49FD79DD1B17327500E99F4B /* NSUserDefaults+AppReviews.swift in Sources */,
 				4910B43E1B0E8EA200FDC0EA /* SearchViewController.swift in Sources */,
 				4910B4041B0E200200FDC0EA /* AppReviews.xcdatamodeld in Sources */,
 				4910B4451B0E8EC100FDC0EA /* ReviewPieChartController.swift in Sources */,
+				49FD79DB1B17248A00E99F4B /* LaunchViewController.swift in Sources */,
 				4910B48E1B0E8FBF00FDC0EA /* NSImageView+Networking.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
