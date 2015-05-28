@@ -28,6 +28,9 @@ class AboutViewController: NSViewController {
     @IBAction func openProjectPagesClicked(objects: AnyObject?) {
         NSWorkspace.sharedWorkspace().openURL(NSURL(string: "http://knutigro.github.io/apps/app-reviews/")!)
     }
-
+    
+    @IBAction func openFeedbackClicked(sender: AnyObject) {
+        NSWorkspace.sharedWorkspace().openURL(NSURL(string: "http://knutigro.github.io/apps/app-reviews/#Feedback")!)
+    }
 }
 

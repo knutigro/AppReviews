@@ -83,13 +83,18 @@ class StatusMenuController: NSObject {
         
         var menuItemApplications = NSMenuItem(title: NSLocalizedString("Add / Remove Applications", comment: "statusbar.menu.applications"), action: Selector("openApplications:"), keyEquivalent: "")
         var menuItemAbout = NSMenuItem(title: NSLocalizedString("About Appstore Reviews", comment: "statusbar.menu.about"), action: Selector("openAbout:"), keyEquivalent: "")
+        var menuItemProvidFeedback = NSMenuItem(title: NSLocalizedString("Provide Feedback...", comment: "statusbar.menu.feedback"), action: Selector("openFeedback:"), keyEquivalent: "")
+
         var menuItemQuit = NSMenuItem(title: NSLocalizedString("Quit", comment: "statusbar.menu.quit"), action: Selector("quit:"), keyEquivalent: "")
 
         menuItemApplications.target = self
         menuItemAbout.target = self
         menuItemQuit.target = self
+        menuItemProvidFeedback.target = self
 
         menu.addItem(menuItemApplications)
+        menu.addItem(NSMenuItem.separatorItem())
+        menu.addItem(menuItemProvidFeedback)
         menu.addItem(NSMenuItem.separatorItem())
         menu.addItem(menuItemAbout)
         menu.addItem(menuItemQuit)
@@ -130,6 +135,10 @@ extension StatusMenuController {
         let windowController = appdelegate.applicationWindowController
         windowController.showWindow(self)
         NSApp.activateIgnoringOtherApps(true)
+    }
+    
+    func openFeedback(sender: AnyObject) {
+        NSWorkspace.sharedWorkspace().openURL(NSURL(string: "http://knutigro.github.io/apps/app-reviews/#Feedback")!)
     }
     
     func quit(sender: AnyObject) {
