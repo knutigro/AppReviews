@@ -65,6 +65,8 @@
 		49FD79D91B166B4D00E99F4B /* 3dPartyLicenses.rtf in Resources */ = {isa = PBXBuildFile; fileRef = 49FD79D81B166B4D00E99F4B /* 3dPartyLicenses.rtf */; };
 		49FD79DB1B17248A00E99F4B /* LaunchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49FD79DA1B17248A00E99F4B /* LaunchViewController.swift */; };
 		49FD79DD1B17327500E99F4B /* NSUserDefaults+AppReviews.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49FD79DC1B17327500E99F4B /* NSUserDefaults+AppReviews.swift */; };
+		49FD79E11B17CBF700E99F4B /* Fabric.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 49FD79DF1B17CBF700E99F4B /* Fabric.framework */; };
+		49FD79E21B17CBF700E99F4B /* Crashlytics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 49FD79E01B17CBF700E99F4B /* Crashlytics.framework */; };
 		67821E35AE9AB2E4F46170D4 /* Pods.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5083B9909F1AD9259C461DBD /* Pods.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 /* End PBXBuildFile section */
 
@@ -144,6 +146,8 @@
 		49FD79D81B166B4D00E99F4B /* 3dPartyLicenses.rtf */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.rtf; path = 3dPartyLicenses.rtf; sourceTree = "<group>"; };
 		49FD79DA1B17248A00E99F4B /* LaunchViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = LaunchViewController.swift; path = AppReviews/LaunchViewController.swift; sourceTree = SOURCE_ROOT; };
 		49FD79DC1B17327500E99F4B /* NSUserDefaults+AppReviews.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "NSUserDefaults+AppReviews.swift"; path = "AppReviews/NSUserDefaults+AppReviews.swift"; sourceTree = SOURCE_ROOT; };
+		49FD79DF1B17CBF700E99F4B /* Fabric.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Fabric.framework; sourceTree = "<group>"; };
+		49FD79E01B17CBF700E99F4B /* Crashlytics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Crashlytics.framework; sourceTree = "<group>"; };
 		5083B9909F1AD9259C461DBD /* Pods.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		8E9E3A98AF3DC476EF9A0809 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 		F9CE0DF35CA051BD774393CD /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
@@ -155,6 +159,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				67821E35AE9AB2E4F46170D4 /* Pods.framework in Frameworks */,
+				49FD79E21B17CBF700E99F4B /* Crashlytics.framework in Frameworks */,
+				49FD79E11B17CBF700E99F4B /* Fabric.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -353,6 +359,8 @@
 		7147F03F6DDA32E9CC0315BF /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				49FD79DF1B17CBF700E99F4B /* Fabric.framework */,
+				49FD79E01B17CBF700E99F4B /* Crashlytics.framework */,
 				5083B9909F1AD9259C461DBD /* Pods.framework */,
 			);
 			name = Frameworks;
@@ -381,6 +389,7 @@
 				9AFDC626376EE7DF95EFFC02 /* Embed Pods Frameworks */,
 				4190A1B1813032D096277609 /* Copy Pods Resources */,
 				49D09E541B0FF4C8006B39C9 /* Sign Sparkle */,
+				49FD79DE1B17CA4C00E99F4B /* Crashalytics */,
 			);
 			buildRules = (
 			);
@@ -544,6 +553,20 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "LOCATION=\"${BUILT_PRODUCTS_DIR}\"/\"${FRAMEWORKS_FOLDER_PATH}\"\n\n# Usually set by Xcode\nCODE_SIGN_IDENTITY=\"Developer ID Application: Knut Inge Grosland\"\n\ncodesign --verbose --force --sign \"$CODE_SIGN_IDENTITY\" \"$LOCATION/Sparkle.framework/Versions/A\"";
+		};
+		49FD79DE1B17CA4C00E99F4B /* Crashalytics */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = Crashalytics;
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "./Fabric.framework/run 975b8be9fe2f4dfd2f635a7b54ac52b4c49e023b cdb27eb87742e8cc0001dee929df20f6c8c18c09130ea5df80c17cfd68ae8a80";
 		};
 		72B401262D76AFCCD7B98C00 /* Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -784,6 +807,11 @@
 				CODE_SIGN_IDENTITY = "Developer ID Application";
 				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Mac Developer: Knut Inge Grosland (BV7ZH22G55)";
 				COMBINE_HIDPI_IMAGES = YES;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+				);
 				INFOPLIST_FILE = AppReviews/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
 				ONLY_ACTIVE_ARCH = YES;
@@ -802,6 +830,10 @@
 				CODE_SIGN_IDENTITY = "Developer ID Application";
 				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "3rd Party Mac Developer Application: Knut Inge Grosland (2PRW676NCQ)";
 				COMBINE_HIDPI_IMAGES = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+				);
 				INFOPLIST_FILE = AppReviews/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
 				PRODUCT_NAME = "App Reviews";

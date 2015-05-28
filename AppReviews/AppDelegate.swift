@@ -9,6 +9,8 @@
 import Cocoa
 import AppKit
 import SimpleCocoaAnalytics
+import Fabric
+import Crashlytics
 
 @NSApplicationMain
 class AppDelegate: NSObject, NSApplicationDelegate {
@@ -23,7 +25,11 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     // MARK: Application Process
 
     func applicationDidFinishLaunching(aNotification: NSNotification) {
-        
+
+        // Fabric CrashAlytics
+        Fabric.with([Crashlytics()])
+
+        // Google Analytics
         var analyticsHelper = AnalyticsHelper.sharedInstance()
         analyticsHelper.recordScreenWithName("Launch")
         analyticsHelper.beginPeriodicReportingWithAccount("UA-62792522-3", name: "App Reviews OSX", version: NSApplication.v_versionBuild())
