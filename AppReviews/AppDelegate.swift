@@ -11,6 +11,7 @@ import AppKit
 import SimpleCocoaAnalytics
 import Fabric
 import Crashlytics
+import Sparkle
 
 @NSApplicationMain
 class AppDelegate: NSObject, NSApplicationDelegate {
@@ -45,6 +46,11 @@ class AppDelegate: NSObject, NSApplicationDelegate {
             self.launchWindowController.showWindow(self)
             NSApp.activateIgnoringOtherApps(true)
         }
+        
+        // Initialize Sparkle and do a first check 
+        // Since App Reviews is meant to run in background I want 
+        // to force the updater to start allready at first App Launch
+        SUUpdater.sharedUpdater().checkForUpdatesInBackground()
     }
     
     func applicationWillTerminate(aNotification: NSNotification) {
