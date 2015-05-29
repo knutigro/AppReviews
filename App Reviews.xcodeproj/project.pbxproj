@@ -67,6 +67,7 @@
 		49FD79DD1B17327500E99F4B /* NSUserDefaults+AppReviews.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49FD79DC1B17327500E99F4B /* NSUserDefaults+AppReviews.swift */; };
 		49FD79E11B17CBF700E99F4B /* Fabric.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 49FD79DF1B17CBF700E99F4B /* Fabric.framework */; };
 		49FD79E21B17CBF700E99F4B /* Crashlytics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 49FD79E01B17CBF700E99F4B /* Crashlytics.framework */; };
+		49FD79EE1B191F3D00E99F4B /* NSApplication+Startup.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49FD79ED1B191F3D00E99F4B /* NSApplication+Startup.swift */; };
 		67821E35AE9AB2E4F46170D4 /* Pods.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5083B9909F1AD9259C461DBD /* Pods.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 /* End PBXBuildFile section */
 
@@ -148,6 +149,7 @@
 		49FD79DC1B17327500E99F4B /* NSUserDefaults+AppReviews.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "NSUserDefaults+AppReviews.swift"; path = "AppReviews/NSUserDefaults+AppReviews.swift"; sourceTree = SOURCE_ROOT; };
 		49FD79DF1B17CBF700E99F4B /* Fabric.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Fabric.framework; sourceTree = "<group>"; };
 		49FD79E01B17CBF700E99F4B /* Crashlytics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Crashlytics.framework; sourceTree = "<group>"; };
+		49FD79ED1B191F3D00E99F4B /* NSApplication+Startup.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "NSApplication+Startup.swift"; path = "AppReviews/NSApplication+Startup.swift"; sourceTree = SOURCE_ROOT; };
 		5083B9909F1AD9259C461DBD /* Pods.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		8E9E3A98AF3DC476EF9A0809 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 		F9CE0DF35CA051BD774393CD /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
@@ -309,6 +311,7 @@
 				4910B4871B0E8FBF00FDC0EA /* NSImageView+Networking.swift */,
 				4910B4891B0E8FBF00FDC0EA /* String+Size.swift */,
 				49FD79DC1B17327500E99F4B /* NSUserDefaults+AppReviews.swift */,
+				49FD79ED1B191F3D00E99F4B /* NSApplication+Startup.swift */,
 			);
 			name = Categories;
 			path = ../COAppstoreReviews;
@@ -636,6 +639,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				4910B4021B0E200200FDC0EA /* Application.swift in Sources */,
+				49FD79EE1B191F3D00E99F4B /* NSApplication+Startup.swift in Sources */,
 				4910B4441B0E8EC100FDC0EA /* ReviewMenuViewController.swift in Sources */,
 				4910B4531B0E8F0F00FDC0EA /* ReviewArrayController.swift in Sources */,
 				4910B47E1B0E8F7800FDC0EA /* SliceLayer.m in Sources */,

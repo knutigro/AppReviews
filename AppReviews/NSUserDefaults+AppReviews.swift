@@ -20,4 +20,14 @@ extension NSUserDefaults {
         NSUserDefaults.standardUserDefaults().setBool(!show, forKey: "ShouldNotShowLaunchScreen")
         NSUserDefaults.standardUserDefaults().synchronize()
     }
+    
+    class func review_isFirstLaunch() -> Bool {
+        return !NSUserDefaults.standardUserDefaults().boolForKey("DidRun")
+    }
+    
+    class func review_setDidLaunch() {
+        NSUserDefaults.standardUserDefaults().setBool(true, forKey: "DidRun")
+        NSUserDefaults.standardUserDefaults().synchronize()
+    }
+
 }

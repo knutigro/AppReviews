@@ -82,14 +82,19 @@ class StatusMenuController: NSObject {
         var menuItemProvidFeedback = NSMenuItem(title: NSLocalizedString("Provide Feedback...", comment: "statusbar.menu.feedback"), action: Selector("openFeedback:"), keyEquivalent: "")
 
         var menuItemQuit = NSMenuItem(title: NSLocalizedString("Quit", comment: "statusbar.menu.quit"), action: Selector("quit:"), keyEquivalent: "")
+        
+        var menuItemLaunchAtStartup = NSMenuItem(title: NSLocalizedString("Launch at startup", comment: "statusbar.menu.startup"), action: Selector("launchAtStartUpToggle:"), keyEquivalent: "")
+        menuItemLaunchAtStartup.state = NSApplication.shouldLaunchAtStartup() ? NSOnState : NSOffState
 
         menuItemApplications.target = self
         menuItemAbout.target = self
         menuItemQuit.target = self
         menuItemProvidFeedback.target = self
+        menuItemLaunchAtStartup.target = self
 
         menu.addItem(menuItemApplications)
         menu.addItem(NSMenuItem.separatorItem())
+        menu.addItem(menuItemLaunchAtStartup)
         menu.addItem(menuItemProvidFeedback)
         menu.addItem(NSMenuItem.separatorItem())
         menu.addItem(menuItemAbout)
@@ -135,6 +140,13 @@ extension StatusMenuController {
     
     func openFeedback(sender: AnyObject) {
         NSWorkspace.sharedWorkspace().openURL(NSURL(string: "http://knutigro.github.io/apps/app-reviews/#Feedback")!)
+    }
+    
+    func launchAtStartUpToggle(sender : AnyObject) {
+        if let menu =  sender as? NSMenuItem {
+            NSApplication.toggleShouldLaunchAtStartup()
+            menu.state = NSApplication.shouldLaunchAtStartup() ? NSOnState : NSOffState
+        }
     }
     
     func quit(sender: AnyObject) {

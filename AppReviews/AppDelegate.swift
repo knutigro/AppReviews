@@ -38,6 +38,13 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         // Create ReviewManager shared object
         var manager = ReviewManager.start()
         
+        if NSUserDefaults.review_isFirstLaunch() {
+            NSUserDefaults.review_setDidLaunch()
+            
+            // As default set launch at startup
+            NSApplication.setShouldLaunchAtStartup(true)
+        }
+        
         // Create StatusMenu
         statusMenuController = StatusMenuController()
 
