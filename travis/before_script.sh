@@ -4,3 +4,5 @@ set -e
 brew unlink xctool
 brew update
 brew install xctool
+
+- gem install cocoapods
