@@ -8,20 +8,28 @@
 
 import Foundation
 import AppKit
+import Ensembles
 
 let kSQLiteFileName = "db.sqlite"
 
-final class ReviewManager {
+final class ReviewManager: NSObject {
 
     private var persistentStack: PersistentStack!
     private var applicationUpdater: ApplicationUpdater!
     private var notificationsHandler: NotificationsHandler!
+    private var persistentStoreEnsemble: CDEPersistentStoreEnsemble!
+    private var cloudFileSystem: CDEICloudFileSystem!
 
     // MARK: - Init & teardown
 
-    init() {
+    override init() {
+        super.init()
         persistentStack = PersistentStack(storeURL: storeURL(), modelURL: modelURL())
         notificationsHandler = NotificationsHandler()
+        
+        cloudFileSystem = CDEICloudFileSystem(ubiquityContainerIdentifier: "iCloud.com.cocmoc.appreviews")
+        persistentStoreEnsemble = CDEPersistentStoreEnsemble(ensembleIdentifier: "MainStore", persistentStoreURL: self.storeURL(), managedObjectModelURL: modelURL(), cloudFileSystem: cloudFileSystem)
+        persistentStoreEnsemble.delegate = self
     }
     
     class var defaultManager: ReviewManager {
@@ -93,4 +101,27 @@ final class ReviewManager {
     func modelURL() -> NSURL {
         return NSBundle.mainBundle().URLForResource("AppReviews", withExtension: "momd")!
     }
+}
+
+// MARK: CDEPersistentStoreEnsembleDelegate
+
+extension ReviewManager: CDEPersistentStoreEnsembleDelegate {
+    
+    func persistentStoreEnsembleWillImportStore(ensemble: CDEPersistentStoreEnsemble!) {
+        println("persistentStoreEnsembleWillImportStore")
+    }
+    
+    func persistentStoreEnsemble(ensemble: CDEPersistentStoreEnsemble!, didSaveMergeChangesWithNotification notification: NSNotification!) {
+        println("persistentStoreEnsemble didSaveMergeChangesWithNotification")
+        ReviewManager.managedObjectContext().mergeChangesFromContextDidSaveNotification(notification)
+    }
+    
+//    func persistentStoreEnsemble(ensemble: CDEPersistentStoreEnsemble!, globalIdentifiersForManagedObjects objects: [AnyObject]!) -> [AnyObject]! {
+//        if let applications = objects as? [Application] {
+//            return [applications]
+//        } else {
+//            
+//        }
+//        //    return [objects valueForKeyPath:@"uniqueIdentifier"];
+//    }
 }
