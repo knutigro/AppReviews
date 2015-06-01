@@ -5,4 +5,4 @@ brew unlink xctool
 brew update
 brew install xctool
 
-gem install cocoapods
+- gem install cocoapods -v '0.37.2'
