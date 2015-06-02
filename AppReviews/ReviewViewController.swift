@@ -39,7 +39,20 @@ class ReviewViewController: NSViewController {
     required init?(coder: NSCoder) {
         super.init(coder: coder)
         managedObjectContext = ReviewManager.managedObjectContext()
+        
+        let applicationMonitor = NSNotificationCenter.defaultCenter().addObserverForName(NSViewFrameDidChangeNotification, object: nil, queue: nil) {  [weak self] notification in
+            
+            // Resize TableViewCellHeights when View is resized.
+            if let tableView = notification.object as? NSTableView {
+                let visibleRows = tableView.rowsInRect(self!.view.frame)
+                NSAnimationContext.beginGrouping()
+                NSAnimationContext.currentContext().duration = 0
+                tableView.noteHeightOfRowsWithIndexesChanged(NSIndexSet(indexesInRange: visibleRows))
+                NSAnimationContext.endGrouping()
+            }
+        }
     }
+    
 }
 
 // MARK: NSTableViewDelegate
