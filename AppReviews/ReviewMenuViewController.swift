@@ -68,6 +68,10 @@ class ReviewMenuViewController: NSViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        // Force Updated label to position on top of other views
+        reviewsUpdatedAtLabel.superview?.wantsLayer = true;
+        reviewsUpdatedAtLabel.superview?.layer?.zPosition = 1000;
+        
         if application != nil {
             updateApplicationInfo()
         }
