@@ -55,6 +55,10 @@ class ReviewWindowController: NSWindowController {
     override func awakeFromNib() {
         super.awakeFromNib()
         
+        // Update frame manually
+        let frame = self.window!.frame
+        self.window?.setFrame(NSRect(x: frame.origin.x, y: frame.origin.y, width: 800, height: 700), display: true)
+        
         if let reviewController = contentViewController as? ReviewSplitViewController {
             reviewController.application = application
         }
