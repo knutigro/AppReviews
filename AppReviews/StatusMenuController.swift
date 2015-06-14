@@ -56,6 +56,7 @@ class StatusMenuController: NSObject {
 
         var newReviews = false
 
+        var idx = 1
         for application in applications {
             
 //            application.addObserver(self, forKeyPath: "settings.newReviews", options: .New, context: &kvoContext)
@@ -65,23 +66,25 @@ class StatusMenuController: NSObject {
                 newReviews = true
                 title = title + " (" + String(application.settings.newReviews.integerValue) +  ")"
             }
-
-            var menuItem = NSMenuItem(title: title, action: Selector("openReviewsForApp:"), keyEquivalent: "")
+            
+            let shortKey = idx < 10 ? String(idx) : ""
+            var menuItem = NSMenuItem(title: title, action: Selector("openReviewsForApp:"), keyEquivalent: shortKey)
 
             menuItem.representedObject = application
             menuItem.target = self
             menu.addItem(menuItem)
+            idx++
         }
         
         if (applications.count > 0) {
             menu.addItem(NSMenuItem.separatorItem())
         }
         
-        var menuItemApplications = NSMenuItem(title: NSLocalizedString("Add / Remove Applications", comment: "statusbar.menu.applications"), action: Selector("openApplications:"), keyEquivalent: "")
+        var menuItemApplications = NSMenuItem(title: NSLocalizedString("Add / Remove Applications", comment: "statusbar.menu.applications"), action: Selector("openApplications:"), keyEquivalent: "a")
         var menuItemAbout = NSMenuItem(title: NSLocalizedString("About Appstore Reviews", comment: "statusbar.menu.about"), action: Selector("openAbout:"), keyEquivalent: "")
         var menuItemProvidFeedback = NSMenuItem(title: NSLocalizedString("Provide Feedback...", comment: "statusbar.menu.feedback"), action: Selector("openFeedback:"), keyEquivalent: "")
 
-        var menuItemQuit = NSMenuItem(title: NSLocalizedString("Quit", comment: "statusbar.menu.quit"), action: Selector("quit:"), keyEquivalent: "")
+        var menuItemQuit = NSMenuItem(title: NSLocalizedString("Quit", comment: "statusbar.menu.quit"), action: Selector("quit:"), keyEquivalent: "q")
         
         var menuItemLaunchAtStartup = NSMenuItem(title: NSLocalizedString("Launch at startup", comment: "statusbar.menu.startup"), action: Selector("launchAtStartUpToggle:"), keyEquivalent: "")
         menuItemLaunchAtStartup.state = NSApplication.shouldLaunchAtStartup() ? NSOnState : NSOffState
@@ -116,7 +119,7 @@ class StatusMenuController: NSObject {
 
 extension StatusMenuController {
     
-    func openReviewsForApp(sender: AnyObject) {
+    func openReviewsForApp(sender: AnyObject?) {
         if let menuItem = sender as? NSMenuItem {
             if let application = menuItem.representedObject as? Application {
                 ReviewWindowController.show(application.objectID)
@@ -124,32 +127,32 @@ extension StatusMenuController {
         }
     }
     
-    func openAbout(sender: AnyObject) {
+    func openAbout(sender: AnyObject?) {
         let appdelegate = NSApplication.sharedApplication().delegate as! AppDelegate
         let windowController = appdelegate.aboutWindowController
         windowController.showWindow(self)
         NSApp.activateIgnoringOtherApps(true)
     }
     
-    func openApplications(sender: AnyObject) {
+    func openApplications(sender: AnyObject?) {
         let appdelegate = NSApplication.sharedApplication().delegate as! AppDelegate
         let windowController = appdelegate.applicationWindowController
         windowController.showWindow(self)
         NSApp.activateIgnoringOtherApps(true)
     }
     
-    func openFeedback(sender: AnyObject) {
+    func openFeedback(sender: AnyObject?) {
         NSWorkspace.sharedWorkspace().openURL(NSURL(string: "http://knutigro.github.io/apps/app-reviews/#Feedback")!)
     }
     
-    func launchAtStartUpToggle(sender : AnyObject) {
+    func launchAtStartUpToggle(sender : AnyObject?) {
         if let menu =  sender as? NSMenuItem {
             NSApplication.toggleShouldLaunchAtStartup()
             menu.state = NSApplication.shouldLaunchAtStartup() ? NSOnState : NSOffState
         }
     }
     
-    func quit(sender: AnyObject) {
+    func quit(sender: AnyObject?) {
         NSApplication.sharedApplication().terminate(sender)
     }
 }

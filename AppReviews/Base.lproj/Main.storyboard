@@ -750,18 +750,18 @@ If you like App Reviews, please consider making a donation. Feature requests, is
                                     <popUpButton key="view" verticalHuggingPriority="750" id="86s-19-3Op">
                                         <rect key="frame" x="0.0" y="14" width="38" height="28"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                        <popUpButtonCell key="cell" type="roundTextured" bezelStyle="texturedRounded" alignment="center" lineBreakMode="truncatingTail" state="on" borderStyle="border" imageScaling="proportionallyDown" inset="2" pullsDown="YES" arrowPosition="arrowAtCenter" selectedItem="cFs-J6-JGM" id="QDp-ep-0Ia">
+                                        <popUpButtonCell key="cell" type="roundTextured" bezelStyle="texturedRounded" alignment="center" lineBreakMode="truncatingTail" state="on" borderStyle="border" imageScaling="proportionallyDown" inset="2" pullsDown="YES" arrowPosition="arrowAtCenter" selectedItem="3if-UU-Y8u" id="QDp-ep-0Ia">
                                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                             <font key="font" metaFont="menu"/>
                                             <menu key="menu" id="hQD-RF-WYJ">
                                                 <items>
                                                     <menuItem state="on" image="NSActionTemplate" hidden="YES" id="n7W-XG-F69"/>
-                                                    <menuItem title="Open in Appstore ..." id="cFs-J6-JGM">
+                                                    <menuItem title="Open in Appstore ..." keyEquivalent="I" id="cFs-J6-JGM">
                                                         <connections>
                                                             <action selector="openInAppstore:" target="E8W-Gv-fjB" id="UXn-0T-f8W"/>
                                                         </connections>
                                                     </menuItem>
-                                                    <menuItem title="Export reviews..." id="f1n-ML-MFv">
+                                                    <menuItem title="Export reviews..." keyEquivalent="e" id="f1n-ML-MFv">
                                                         <connections>
                                                             <action selector="exportReviewsClicked:" target="E8W-Gv-fjB" id="Jup-9X-7qX"/>
                                                         </connections>
@@ -773,7 +773,7 @@ If you like App Reviews, please consider making a donation. Feature requests, is
                                                             <action selector="automaticUpdateDidChangeState:" target="E8W-Gv-fjB" id="4T1-HM-vPR"/>
                                                         </connections>
                                                     </menuItem>
-                                                    <menuItem title="Refresh" id="3if-UU-Y8u">
+                                                    <menuItem title="Refresh" keyEquivalent="r" id="3if-UU-Y8u">
                                                         <connections>
                                                             <action selector="refreshApplication:" target="E8W-Gv-fjB" id="FTS-dK-P88"/>
                                                         </connections>
