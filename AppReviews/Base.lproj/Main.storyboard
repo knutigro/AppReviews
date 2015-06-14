@@ -662,28 +662,24 @@ If you like App Reviews, please consider making a donation. Feature requests, is
                 <userDefaultsController representsSharedInstance="YES" id="k2v-RE-iNo"/>
                 <menu id="2Yu-5N-btV">
                     <items>
-                        <menuItem title="Open review in Itunes..." id="RIo-Ld-Lrp" userLabel="Open in Itunes...">
-                            <modifierMask key="keyEquivalentModifierMask"/>
+                        <menuItem title="Open review in Itunes..." keyEquivalent="i" id="RIo-Ld-Lrp" userLabel="Open in Itunes...">
                             <connections>
-                                <action selector="openReviewClicked:" target="XfG-lQ-9wD" id="nwT-kC-2ji"/>
+                                <action selector="openInItunesSelectedReview:" target="XfG-lQ-9wD" id="tPv-51-T4B"/>
                             </connections>
                         </menuItem>
-                        <menuItem title="Copy to clipboard" id="IF9-s7-pCd">
-                            <modifierMask key="keyEquivalentModifierMask"/>
+                        <menuItem title="Copy to clipboard" keyEquivalent="c" id="IF9-s7-pCd">
                             <connections>
-                                <action selector="copyReviewToClipBoardClicked:" target="XfG-lQ-9wD" id="7Cf-TP-QOl"/>
+                                <action selector="copyToClipBoardSelectedReview:" target="XfG-lQ-9wD" id="mTx-Hn-lcA"/>
                             </connections>
                         </menuItem>
-                        <menuItem title="Save review as..." id="coS-nj-CgC" userLabel="Save as...">
-                            <modifierMask key="keyEquivalentModifierMask"/>
+                        <menuItem title="Save review as..." keyEquivalent="s" id="coS-nj-CgC" userLabel="Save as...">
                             <connections>
-                                <action selector="saveReviewClicked:" target="XfG-lQ-9wD" id="qVA-bP-cGc"/>
+                                <action selector="saveSelectedReview:" target="XfG-lQ-9wD" id="a82-iM-6LT"/>
                             </connections>
                         </menuItem>
-                        <menuItem title="Share..." id="h6h-fH-hv6">
-                            <modifierMask key="keyEquivalentModifierMask"/>
+                        <menuItem title="Share..." keyEquivalent="f" id="h6h-fH-hv6">
                             <connections>
-                                <action selector="shareSelectedReview:" target="XfG-lQ-9wD" id="cc8-rd-Cbs"/>
+                                <action selector="shareSelectedReview:" target="XfG-lQ-9wD" id="Q4q-9l-OVc"/>
                             </connections>
                         </menuItem>
                     </items>

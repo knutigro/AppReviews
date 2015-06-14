@@ -40,9 +40,8 @@ class ReviewViewController: NSViewController {
         super.init(coder: coder)
         managedObjectContext = ReviewManager.managedObjectContext()
         
+        // Resize TableViewCellHeights when View is resized.
         let applicationMonitor = NSNotificationCenter.defaultCenter().addObserverForName(NSViewFrameDidChangeNotification, object: nil, queue: nil) {  [weak self] notification in
-            
-            // Resize TableViewCellHeights when View is resized.
             if let tableView = notification.object as? NSTableView {
                 let visibleRows = tableView.rowsInRect(self!.view.frame)
                 NSAnimationContext.beginGrouping()
@@ -51,6 +50,28 @@ class ReviewViewController: NSViewController {
                 NSAnimationContext.endGrouping()
             }
         }
+        
+        // Register Keyboard shortcuts.
+        NSEvent.addLocalMonitorForEventsMatchingMask(NSEventMaskFromType(.KeyDown), handler: { [weak self]  (event: NSEvent!) -> NSEvent! in
+            
+            let cChar : UInt16 = 8
+            let sChar : UInt16 = 1
+            let fChar : UInt16 = 3
+            let iChar : UInt16 = 34
+            
+            // Cmd-C -> Copy current selected review
+            if event.modifierFlags & NSEventModifierFlags.CommandKeyMask != nil && cChar == event.keyCode{
+                self?.copyToClipBoardSelectedReview(nil)
+            } else if event.modifierFlags & NSEventModifierFlags.CommandKeyMask != nil && sChar ==  event.keyCode{
+                self?.saveSelectedReview(nil)
+            } else if event.modifierFlags & NSEventModifierFlags.CommandKeyMask != nil && fChar ==  event.keyCode{
+                self?.shareSelectedReview(nil)
+            } else if event.modifierFlags & NSEventModifierFlags.CommandKeyMask != nil && iChar ==  event.keyCode{
+                self?.openInItunesSelectedReview(nil)
+            }
+
+            return event
+        })
     }
     
 }
@@ -90,7 +111,7 @@ extension ReviewViewController {
         }
     }
     
-    @IBAction func copyReviewToClipBoardClicked(menuItem: NSMenuItem) {
+    @IBAction func copyToClipBoardSelectedReview(sender: AnyObject?) {
         if let review = self.selectedReview {
             var pasteBoard = NSPasteboard.generalPasteboard()
             pasteBoard.clearContents()
@@ -98,7 +119,7 @@ extension ReviewViewController {
         }
     }
 
-    @IBAction func openReviewClicked(menuItem: NSMenuItem) {
+    @IBAction func openInItunesSelectedReview(sender: AnyObject?) {
         if let review = self.selectedReview {
             if let url = NSURL(string: review.uri) {
                 NSWorkspace.sharedWorkspace().openURL(url)
@@ -106,7 +127,7 @@ extension ReviewViewController {
         }
     }
 
-    @IBAction func saveReviewClicked(menuItem: NSMenuItem) {
+    @IBAction func saveSelectedReview(sender: AnyObject?) {
         if let review = self.selectedReview {
             var savePanel = NSSavePanel()
             savePanel.title = review.title
