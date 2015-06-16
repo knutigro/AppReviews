@@ -214,6 +214,7 @@ If you like App Reviews, please consider making a donation. Feature requests, is
                                     <constraint firstAttribute="height" constant="64" id="jov-AH-c0h"/>
                                 </constraints>
                                 <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyDown" image="AppIcon" id="hzR-DQ-zYZ"/>
+                                <accessibility description="App icon"/>
                             </imageView>
                             <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="0NS-o1-xLG">
                                 <rect key="frame" x="90" y="315" width="201" height="25"/>
@@ -230,6 +231,7 @@ If you like App Reviews, please consider making a donation. Feature requests, is
                                     <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                                     <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                 </textFieldCell>
+                                <accessibility description="Current version"/>
                             </textField>
                             <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" setsMaxLayoutWidthAtFirstLayout="YES" translatesAutoresizingMaskIntoConstraints="NO" id="5CB-ef-M70">
                                 <rect key="frame" x="8" y="196" width="284" height="70"/>
@@ -449,7 +451,9 @@ If you like App Reviews, please consider making a donation. Feature requests, is
                                             <font key="font" metaFont="system"/>
                                             <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
                                             <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                            <accessibility description="Search app in Itunes" help="Search app by name"/>
                                         </searchFieldCell>
+                                        <accessibility description="Search app in Itunes" help="Search app by name"/>
                                         <connections>
                                             <outlet property="delegate" destination="B8D-0N-5wS" id="JGe-OU-i4Y"/>
                                         </connections>
@@ -517,6 +521,7 @@ If you like App Reviews, please consider making a donation. Feature requests, is
                                                                         <constraint firstAttribute="height" constant="50" id="tfH-q3-YAX"/>
                                                                     </constraints>
                                                                     <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyDown" image="NSActionTemplate" id="XEr-nP-1ca"/>
+                                                                    <accessibility description="App icon"/>
                                                                     <connections>
                                                                         <binding destination="tQe-YB-VfM" name="value" keyPath="objectValue.application.artworkUrl60" id="Ddp-uF-jnT">
                                                                             <dictionary key="options">
@@ -536,6 +541,7 @@ If you like App Reviews, please consider making a donation. Feature requests, is
                                                                         <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                                                                         <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                                                     </textFieldCell>
+                                                                    <accessibility description="App version"/>
                                                                     <connections>
                                                                         <binding destination="tQe-YB-VfM" name="value" keyPath="objectValue.version" id="Ac4-wO-B4B"/>
                                                                     </connections>
@@ -546,6 +552,7 @@ If you like App Reviews, please consider making a donation. Feature requests, is
                                                                         <constraint firstAttribute="height" constant="20" id="3ud-d2-Pzr"/>
                                                                         <constraint firstAttribute="width" constant="100" id="YTh-7a-KdY"/>
                                                                     </constraints>
+                                                                    <accessibility description="Number of stars"/>
                                                                 </customView>
                                                                 <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="Izq-Vw-AH7">
                                                                     <rect key="frame" x="70" y="55" width="515" height="20"/>
@@ -557,6 +564,7 @@ If you like App Reviews, please consider making a donation. Feature requests, is
                                                                         <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                                                                         <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                                                     </textFieldCell>
+                                                                    <accessibility description="Review title"/>
                                                                     <connections>
                                                                         <binding destination="tQe-YB-VfM" name="value" keyPath="objectValue.title" id="L0O-rq-tr6"/>
                                                                     </connections>
@@ -568,6 +576,7 @@ If you like App Reviews, please consider making a donation. Feature requests, is
                                                                         <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
                                                                         <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                                                     </textFieldCell>
+                                                                    <accessibility description="Review content"/>
                                                                     <connections>
                                                                         <binding destination="tQe-YB-VfM" name="value" keyPath="objectValue.content" id="Ig4-i4-d16">
                                                                             <dictionary key="options">
@@ -586,6 +595,7 @@ If you like App Reviews, please consider making a donation. Feature requests, is
                                                                         <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                                                                         <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                                                     </textFieldCell>
+                                                                    <accessibility description="review author"/>
                                                                     <connections>
                                                                         <binding destination="tQe-YB-VfM" name="value" keyPath="objectValue.author" id="cAE-6V-KmU"/>
                                                                     </connections>
@@ -895,6 +905,7 @@ If you like App Reviews, please consider making a donation. Feature requests, is
                                                     <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                                                     <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                                 </textFieldCell>
+                                                <accessibility description="App title"/>
                                             </textField>
                                             <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="HHC-HY-5wl">
                                                 <rect key="frame" x="-2" y="40" width="194" height="15"/>
@@ -903,6 +914,7 @@ If you like App Reviews, please consider making a donation. Feature requests, is
                                                     <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                                                     <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                                 </textFieldCell>
+                                                <accessibility description="Current appversion"/>
                                             </textField>
                                             <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="ihI-xp-9G0">
                                                 <rect key="frame" x="-2" y="85" width="194" height="15"/>
@@ -914,6 +926,7 @@ If you like App Reviews, please consider making a donation. Feature requests, is
                                                     <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                                                     <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                                 </textFieldCell>
+                                                <accessibility description="App author"/>
                                             </textField>
                                             <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="8ES-l5-Xac">
                                                 <rect key="frame" x="-2" y="55" width="194" height="15"/>
@@ -922,6 +935,7 @@ If you like App Reviews, please consider making a donation. Feature requests, is
                                                     <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                                                     <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                                 </textFieldCell>
+                                                <accessibility description="Last update"/>
                                             </textField>
                                             <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="CuZ-iK-m4n">
                                                 <rect key="frame" x="-2" y="70" width="194" height="15"/>
@@ -930,6 +944,7 @@ If you like App Reviews, please consider making a donation. Feature requests, is
                                                     <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                                                     <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                                 </textFieldCell>
+                                                <accessibility description="Category"/>
                                             </textField>
                                             <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="x4R-ys-63b">
                                                 <rect key="frame" x="-2" y="25" width="194" height="15"/>
@@ -938,6 +953,7 @@ If you like App Reviews, please consider making a donation. Feature requests, is
                                                     <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                                                     <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                                 </textFieldCell>
+                                                <accessibility description="Size of app"/>
                                             </textField>
                                         </subviews>
                                         <constraints>
@@ -979,6 +995,7 @@ If you like App Reviews, please consider making a donation. Feature requests, is
                                                     <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                                                     <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                                 </textFieldCell>
+                                                <accessibility description="Current version info"/>
                                             </textField>
                                             <customView translatesAutoresizingMaskIntoConstraints="NO" id="Q7a-CE-04U" customClass="EDStarRating">
                                                 <rect key="frame" x="0.0" y="60" width="100" height="20"/>
@@ -986,6 +1003,7 @@ If you like App Reviews, please consider making a donation. Feature requests, is
                                                     <constraint firstAttribute="height" constant="20" id="oXM-mP-iik"/>
                                                     <constraint firstAttribute="width" constant="100" id="zmI-85-sP9"/>
                                                 </constraints>
+                                                <accessibility description="Current version rating"/>
                                             </customView>
                                             <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="Ord-3f-03p">
                                                 <rect key="frame" x="-2" y="40" width="194" height="20"/>
@@ -997,6 +1015,7 @@ If you like App Reviews, please consider making a donation. Feature requests, is
                                                     <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                                                     <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                                 </textFieldCell>
+                                                <accessibility description="Current version average userrating"/>
                                             </textField>
                                             <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="BQ4-gv-NpL">
                                                 <rect key="frame" x="-2" y="20" width="194" height="20"/>
@@ -1005,6 +1024,7 @@ If you like App Reviews, please consider making a donation. Feature requests, is
                                                     <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                                                     <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                                 </textFieldCell>
+                                                <accessibility description="Current version number of ratings"/>
                                             </textField>
                                         </subviews>
                                         <constraints>
@@ -1036,6 +1056,7 @@ If you like App Reviews, please consider making a donation. Feature requests, is
                                                     <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                                                     <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                                 </textFieldCell>
+                                                <accessibility description="All versions info"/>
                                             </textField>
                                             <customView translatesAutoresizingMaskIntoConstraints="NO" id="cZd-Bn-78Y" customClass="EDStarRating">
                                                 <rect key="frame" x="0.0" y="60" width="100" height="20"/>
@@ -1043,6 +1064,7 @@ If you like App Reviews, please consider making a donation. Feature requests, is
                                                     <constraint firstAttribute="height" constant="20" id="n2g-we-2PT"/>
                                                     <constraint firstAttribute="width" constant="100" id="zqd-UI-BHK"/>
                                                 </constraints>
+                                                <accessibility description="All versions rating"/>
                                             </customView>
                                             <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="oOD-Iw-tqx">
                                                 <rect key="frame" x="-2" y="40" width="194" height="20"/>
@@ -1054,6 +1076,7 @@ If you like App Reviews, please consider making a donation. Feature requests, is
                                                     <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                                                     <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                                 </textFieldCell>
+                                                <accessibility description="All versions average userrating"/>
                                             </textField>
                                             <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="HBC-En-0J8">
                                                 <rect key="frame" x="-2" y="20" width="194" height="20"/>
@@ -1062,6 +1085,7 @@ If you like App Reviews, please consider making a donation. Feature requests, is
                                                     <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                                                     <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                                 </textFieldCell>
+                                                <accessibility description="All version number of userratings"/>
                                             </textField>
                                         </subviews>
                                         <constraints>
@@ -1093,12 +1117,14 @@ If you like App Reviews, please consider making a donation. Feature requests, is
                                                     <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                                                     <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                                 </textFieldCell>
+                                                <accessibility description="Local data info"/>
                                             </textField>
                                             <containerView translatesAutoresizingMaskIntoConstraints="NO" id="zAm-hj-OVs">
                                                 <rect key="frame" x="0.0" y="20" width="190" height="190"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" secondItem="zAm-hj-OVs" secondAttribute="height" multiplier="1:1" id="lJA-qJ-MPz"/>
                                                 </constraints>
+                                                <accessibility description="Piechartrepresentation of  local review data"/>
                                                 <connections>
                                                     <segue destination="229-bS-8xR" kind="embed" id="jrC-Az-k8X"/>
                                                 </connections>
@@ -1156,6 +1182,7 @@ If you like App Reviews, please consider making a donation. Feature requests, is
                                             <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                                             <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                         </textFieldCell>
+                                        <accessibility description="Last update"/>
                                     </textField>
                                 </subviews>
                                 <constraints>
@@ -1254,6 +1281,7 @@ If you like App Reviews, please consider making a donation. Feature requests, is
                                                                         <constraint firstAttribute="width" constant="30" id="Z6K-Ix-5jM"/>
                                                                     </constraints>
                                                                     <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyDown" image="NSActionTemplate" id="qWd-vJ-voa"/>
+                                                                    <accessibility description="App icon"/>
                                                                     <connections>
                                                                         <binding destination="Ith-aP-WLf" name="value" keyPath="objectValue.artworkUrl60" id="Ge6-fQ-1DX">
                                                                             <dictionary key="options">
@@ -1272,6 +1300,7 @@ If you like App Reviews, please consider making a donation. Feature requests, is
                                                                         <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
                                                                         <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                                                     </textFieldCell>
+                                                                    <accessibility description="App title"/>
                                                                     <connections>
                                                                         <binding destination="Ith-aP-WLf" name="value" keyPath="objectValue.trackName" id="guU-LF-p5w"/>
                                                                     </connections>
@@ -1286,6 +1315,7 @@ If you like App Reviews, please consider making a donation. Feature requests, is
                                                                         <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                                                                         <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                                                     </textFieldCell>
+                                                                    <accessibility description="App author"/>
                                                                     <connections>
                                                                         <binding destination="Ith-aP-WLf" name="value" keyPath="objectValue.sellerName" id="QE9-gA-V7e"/>
                                                                     </connections>
@@ -1350,6 +1380,7 @@ If you like App Reviews, please consider making a donation. Feature requests, is
                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                     <font key="font" metaFont="system"/>
                                 </buttonCell>
+                                <accessibility description="Remove app"/>
                                 <connections>
                                     <binding destination="3uf-4a-TMD" name="argument" keyPath="arrangedObjects" id="aEo-MI-pR4">
                                         <dictionary key="options">
@@ -1432,6 +1463,7 @@ If you like App Reviews, please consider making a donation. Feature requests, is
                                                                         <constraint firstAttribute="height" constant="30" id="gpr-Es-YQV"/>
                                                                     </constraints>
                                                                     <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyDown" image="NSActionTemplate" id="2EZ-Oa-RD2"/>
+                                                                    <accessibility description="App icon"/>
                                                                 </imageView>
                                                                 <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" allowsExpansionToolTips="YES" translatesAutoresizingMaskIntoConstraints="NO" id="wH3-Ck-2xy">
                                                                     <rect key="frame" x="50" y="20" width="285" height="20"/>
@@ -1443,6 +1475,7 @@ If you like App Reviews, please consider making a donation. Feature requests, is
                                                                         <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
                                                                         <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                                                     </textFieldCell>
+                                                                    <accessibility description="App title"/>
                                                                 </textField>
                                                                 <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="a9J-mR-Fek">
                                                                     <rect key="frame" x="50" y="5" width="285" height="15"/>
@@ -1454,6 +1487,7 @@ If you like App Reviews, please consider making a donation. Feature requests, is
                                                                         <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                                                                         <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                                                     </textFieldCell>
+                                                                    <accessibility description="App author"/>
                                                                 </textField>
                                                             </subviews>
                                                             <constraints>
@@ -1505,6 +1539,7 @@ If you like App Reviews, please consider making a donation. Feature requests, is
 Gw
 </string>
                                 </buttonCell>
+                                <accessibility description="Cancel"/>
                                 <connections>
                                     <action selector="cancelButtonClicked:" target="TwO-IP-OJ1" id="GUI-3L-m1t"/>
                                 </connections>
