@@ -1,5 +1,5 @@
 # App Reviews
-
+![Icon](/Screenshots/appreviews-icon-100.jpg?raw=true)
 [![Build Status](https://travis-ci.org/knutigro/AppReviews.svg?branch=master)](https://travis-ci.org/knutigro/AppReviews)
 ![Platform](https://img.shields.io/badge/platform-osx-orange.svg)
 [![License](http://img.shields.io/:license-GNU-blue.svg)](https://github.com/knutigro/AppReviews/blob/develop/LICENSE)
