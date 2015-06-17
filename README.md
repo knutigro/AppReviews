@@ -3,7 +3,7 @@
 ![Platform](https://img.shields.io/badge/platform-osx-orange.svg)
 [![License](http://img.shields.io/:license-GNU-blue.svg)](https://github.com/knutigro/AppReviews/blob/develop/LICENSE)
 
-![Icon](/Screenshots/appreviews-icon-100.jpg?raw=true)
+[![Icon](/Screenshots/appreviews-icon-100.jpg?raw=true)](http://knutigro.github.io/apps/app-reviews/)
 App Reviews for Mac is an app that makes it super simple for Mac OS X users to keep track of user reviews for iPhone apps. App Reviews runs in the statusbar and notifies you when new reviews come in.
 
 Please have a look at the [App Reviews website](http://knutigro.github.io/apps/app-reviews/) for link to latest signed binary and more info about the app. 
