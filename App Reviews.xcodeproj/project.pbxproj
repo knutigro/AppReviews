@@ -141,6 +141,7 @@
 		4910B49B1B0E906800FDC0EA /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = AppReviews/Base.lproj/Main.storyboard; sourceTree = SOURCE_ROOT; };
 		4910B49E1B0F2FAF00FDC0EA /* LICENSE */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = LICENSE; sourceTree = "<group>"; };
 		495E80751B055B7700D0AFC0 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
+		498FD1B61B53DDD70010B0C4 /* Playground.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; path = Playground.playground; sourceTree = "<group>"; };
 		49ACB83B1AD5CAA00050C1B7 /* App Reviews.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "App Reviews.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		49ACB8501AD5CAA00050C1B7 /* App ReviewsTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "App ReviewsTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		49FD79D61B166A3E00E99F4B /* LegalViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = LegalViewController.swift; path = AppReviews/LegalViewController.swift; sourceTree = SOURCE_ROOT; };
@@ -238,6 +239,7 @@
 				495E80751B055B7700D0AFC0 /* README.md */,
 				4910B49E1B0F2FAF00FDC0EA /* LICENSE */,
 				49FD79D81B166B4D00E99F4B /* 3dPartyLicenses.rtf */,
+				498FD1B61B53DDD70010B0C4 /* Playground.playground */,
 				49ACB83D1AD5CAA00050C1B7 /* App Reviews */,
 				49ACB8531AD5CAA00050C1B7 /* App Reviews Tests */,
 				49ACB83C1AD5CAA00050C1B7 /* Products */,
@@ -431,6 +433,7 @@
 		49ACB8331AD5CAA00050C1B7 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
+				LastSwiftUpdateCheck = 0700;
 				LastUpgradeCheck = 0620;
 				ORGANIZATIONNAME = Cocmoc;
 				TargetAttributes = {
