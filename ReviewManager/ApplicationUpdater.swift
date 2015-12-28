@@ -25,15 +25,15 @@ class ApplicationUpdater {
     
     init() {
         
-        let applicationMonitor = NSNotificationCenter.defaultCenter().addObserverForName(kDidUpdateApplicationNotification, object: nil, queue: nil) {  [weak self] notification in
+        let _ = NSNotificationCenter.defaultCenter().addObserverForName(kDidUpdateApplicationNotification, object: nil, queue: nil) {  [weak self] notification in
             self?.updateMonitoredApplications()
         }
 
-        let applicationSettingsMonitor = NSNotificationCenter.defaultCenter().addObserverForName(kDidUpdateApplicationSettingsNotification, object: nil, queue: nil) {  [weak self] notification in
+        let _ = NSNotificationCenter.defaultCenter().addObserverForName(kDidUpdateApplicationSettingsNotification, object: nil, queue: nil) {  [weak self] notification in
             self?.updateMonitoredApplications()
         }
 
-        let reviewMonitor = NSNotificationCenter.defaultCenter().addObserverForName(kDidUpdateReviewsNotification, object: nil, queue: nil) {  [weak self] notification in
+        let _ = NSNotificationCenter.defaultCenter().addObserverForName(kDidUpdateReviewsNotification, object: nil, queue: nil) {  [weak self] notification in
             self?.updateMonitoredApplications()
         }
 
@@ -60,7 +60,7 @@ class ApplicationUpdater {
             
             if let dBApplications = DatabaseHandler.allApplications(ReviewManager.managedObjectContext()) {
                 for dBApplication in dBApplications {
-                    if !contains(self.applications, dBApplication) {
+                    if !self.applications.contains(dBApplication) {
                         self.applications.append(dBApplication)
                         self.fetchReviewsForApplication(dBApplication.objectID)
                     }
@@ -68,7 +68,7 @@ class ApplicationUpdater {
                 
                 var applicationsToRemove = [Application]()
                 for application in self.applications {
-                    if !contains(dBApplications, application) {
+                    if !dBApplications.contains(application) {
                         applicationsToRemove.append(application)
                     }
                 }
@@ -87,24 +87,32 @@ class ApplicationUpdater {
         
         var error: NSError?
         
-        if let fetchApplication = ReviewManager.managedObjectContext().existingObjectWithID(objectId, error: &error) as? Application {
-            
-            if error != nil {
-                println(error)
-            }
-            let itunesService = ItunesService(apId: fetchApplication.trackId, storeId: nil)
-            
-            itunesService.fetchReviews(itunesService.url) {  [weak self]
-                (success: Bool, reviews: [JSON]?, error: NSError?) in
+        do {
+            if let fetchApplication = try ReviewManager.managedObjectContext().existingObjectWithID(objectId) as? Application {
                 
-                if let reviews = reviews {
-                    if reviews.count > 0 {
-                        DatabaseHandler.saveReviews(reviews, applactionObjectId: fetchApplication.objectID)
-                    }
+                if error != nil {
+                    print(error)
                 }
+                let itunesService = ItunesService(apId: fetchApplication.trackId, storeId: nil)
                 
+                itunesService.fetchReviews(itunesService.url) {
+                    (success: Bool, reviews: [JSON]?, error: NSError?) in
+                    
+                    if let reviews = reviews {
+                        if reviews.count > 0 {
+                            DatabaseHandler.saveReviews(reviews, applactionObjectId: fetchApplication.objectID)
+                        }
+                    }
+                    
+                }
             }
+        } catch let error1 as NSError {
+            error = error1
+            print(error)
+        } catch {
+            fatalError()
         }
+
     }
     
     func resetNewReviewsCountForApplication(objectId: NSManagedObjectID) {

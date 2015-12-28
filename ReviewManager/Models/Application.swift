@@ -45,8 +45,8 @@ class Application: NSManagedObject {
 
     var fileSizeMb: Float {
         get {
-            var fileSize = fileSizeBytes.toInt() ?? 0
-            var mb = Float(fileSize) / 1000000
+            let fileSize = Int(fileSizeBytes) ?? 0
+            let mb = Float(fileSize) / 1000000
             return max(mb, 0.0)
         }
     }
@@ -70,10 +70,16 @@ class Application: NSManagedObject {
         fetchRequest.predicate = NSPredicate(format: "self in %@", Array(ids))
         var error: NSError?
         
-        let result = context.executeFetchRequest(fetchRequest, error: &error)
+        let result: [AnyObject]?
+        do {
+            result = try context.executeFetchRequest(fetchRequest)
+        } catch let error1 as NSError {
+            error = error1
+            result = nil
+        }
         
         if error != nil {
-            println(error)
+            print(error)
         }
         return result as? [Application]
     }
@@ -84,10 +90,16 @@ class Application: NSManagedObject {
         fetchRequest.predicate = NSPredicate(format: "trackId = %@", identifier)
         var error: NSError?
         
-        let result = context.executeFetchRequest(fetchRequest, error: &error)
+        let result: [AnyObject]?
+        do {
+            result = try context.executeFetchRequest(fetchRequest)
+        } catch let error1 as NSError {
+            error = error1
+            result = nil
+        }
         
         if error != nil {
-            println(error)
+            print(error)
         }
         return result?.last as? Application
     }
@@ -159,7 +171,7 @@ extension JSON {
     var fileSizeBytes: String? { return self["fileSizeBytes"].string}
     var sellerUrl: String?     { return self["sellerUrl"].string }
     var averageUserRatingForCurrentVersion: NSNumber { return NSNumber(float:(self["averageUserRatingForCurrentVersion"].stringValue as NSString).floatValue) }
-    var userRatingCountForCurrentVersion: NSNumber { return NSNumber(integer: self["userRatingCountForCurrentVersion"].stringValue.toInt() ?? 0) }
+    var userRatingCountForCurrentVersion: NSNumber { return NSNumber(integer: Int(self["userRatingCountForCurrentVersion"].stringValue) ?? 0) }
     var trackViewUrl: String? { return self["trackViewUrl"].string }
     var version: String? { return self["version"].string }
     var releaseDate: NSDate? {
@@ -183,7 +195,7 @@ extension JSON {
     var releaseNotes: String? { return self["releaseNotes"].string }
     var minimumOsVersion: String? { return self["minimumOsVersion"].string }
     var averageUserRating: NSNumber { return NSNumber(float:(self["averageUserRating"].stringValue as NSString).floatValue) }
-    var userRatingCount: NSNumber { return NSNumber(integer: self["userRatingCount"].stringValue.toInt() ?? 0) }
+    var userRatingCount: NSNumber { return NSNumber(integer: Int(self["userRatingCount"].stringValue) ?? 0) }
 
     var isApplicationEntity: Bool{ return trackId != nil   }
 }

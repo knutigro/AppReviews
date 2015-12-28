@@ -38,7 +38,7 @@ class ReviewCellView: NSTableCellView {
         }
     }
     
-    override func observeValueForKeyPath(keyPath: String, ofObject object: AnyObject, change: [NSObject: AnyObject], context: UnsafeMutablePointer<Void>) {
+    override func observeValueForKeyPath(keyPath: String?, ofObject object: AnyObject?, change: [String: AnyObject]?, context: UnsafeMutablePointer<Void>) {
         if context == &kvoContext {
             if let starRating = starRating, objectValue = objectValue as? NSManagedObject {
                 starRating.bind("rating", toObject: objectValue, withKeyPath: "rating", options: nil)

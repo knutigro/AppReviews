@@ -22,19 +22,19 @@ class AppVersionTests: XCTestCase {
         let version5 = "2.0"
         let version6 = "2.beta1"
         
-        var test1 = [version0, version1, version2, version3, version4, version0, version5, version6]
-        var test2 = [version6, version5, version4, version3, version2, version1, version0, version0]
+        let test1 = [version0, version1, version2, version3, version4, version0, version5, version6]
+        let test2 = [version6, version5, version4, version3, version2, version1, version0, version0]
         
         let sortDescriptors = [NSSortDescriptor(key: "self", ascending: true, selector: Selector("compareVersion:"))]
         
-        var sortedArray1 = NSArray(array: test1).sortedArrayUsingDescriptors(sortDescriptors)
-        var sortedArray2 = NSArray(array: test2).sortedArrayUsingDescriptors(sortDescriptors)
+        let sortedArray1 = NSArray(array: test1).sortedArrayUsingDescriptors(sortDescriptors)
+        let sortedArray2 = NSArray(array: test2).sortedArrayUsingDescriptors(sortDescriptors)
         
-        XCTAssertEqual(sortedArray1.first as! String, sortedArray1.first as! String, "The two first versions should be the same")
-        XCTAssertEqual(sortedArray1.last as! String, version6, "The biggest version is 2.beta1")
+        XCTAssertEqual(sortedArray1.first as? String, sortedArray2.first as? String, "The two first versions should be the same")
+        XCTAssertEqual(sortedArray1.last as? String, version6, "The biggest version is 2.beta1")
         
-        println("sortedArray1 \(sortedArray1)")
-        println("sortedArray2 \(sortedArray2)")
+        print("sortedArray1 \(sortedArray1)")
+        print("sortedArray2 \(sortedArray2)")
     }
     
 }

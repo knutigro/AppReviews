@@ -32,17 +32,20 @@ class StatusMenuController: NSObject {
         applicationArrayController = ApplicationArrayController(content: nil)
         applicationArrayController.managedObjectContext = ReviewManager.managedObjectContext()
         applicationArrayController.entityName = kEntityNameApplication
-        var error: NSError? = nil
-        var result = applicationArrayController.fetchWithRequest(nil, merge: true, error: &error)
+        do {
+            try applicationArrayController.fetchWithRequest(nil, merge: true)
+        } catch let error as NSError {
+            print(error)
+        }
         
         bind("applications", toObject: applicationArrayController, withKeyPath: "arrangedObjects", options: nil)
         
         addObserver(self, forKeyPath: "applications", options: .New, context: &kvoContext)
         
-        let applicationMonitor = NSNotificationCenter.defaultCenter().addObserverForName(kDidUpdateApplicationNotification, object: nil, queue: nil) {  [weak self] notification in
+        _ = NSNotificationCenter.defaultCenter().addObserverForName(kDidUpdateApplicationNotification, object: nil, queue: nil) { notification in
         }
         
-        let applicationSettingsMonitor = NSNotificationCenter.defaultCenter().addObserverForName(kDidUpdateApplicationSettingsNotification, object: nil, queue: nil) {  [weak self] notification in
+        _ = NSNotificationCenter.defaultCenter().addObserverForName(kDidUpdateApplicationSettingsNotification, object: nil, queue: nil) {  [weak self] notification in
             self?.updateMenu()
         }
 
@@ -52,7 +55,7 @@ class StatusMenuController: NSObject {
     // MARK: - Handling menu items
 
     func updateMenu() {
-        var menu = NSMenu()
+        let menu = NSMenu()
 
         var newReviews = false
 
@@ -68,7 +71,7 @@ class StatusMenuController: NSObject {
             }
             
             let shortKey = idx < 10 ? String(idx) : ""
-            var menuItem = NSMenuItem(title: title, action: Selector("openReviewsForApp:"), keyEquivalent: shortKey)
+            let menuItem = NSMenuItem(title: title, action: Selector("openReviewsForApp:"), keyEquivalent: shortKey)
 
             menuItem.representedObject = application
             menuItem.target = self
@@ -80,13 +83,13 @@ class StatusMenuController: NSObject {
             menu.addItem(NSMenuItem.separatorItem())
         }
         
-        var menuItemApplications = NSMenuItem(title: NSLocalizedString("Add / Remove Applications", comment: "statusbar.menu.applications"), action: Selector("openApplications:"), keyEquivalent: "a")
-        var menuItemAbout = NSMenuItem(title: NSLocalizedString("About Appstore Reviews", comment: "statusbar.menu.about"), action: Selector("openAbout:"), keyEquivalent: "")
-        var menuItemProvidFeedback = NSMenuItem(title: NSLocalizedString("Provide Feedback...", comment: "statusbar.menu.feedback"), action: Selector("openFeedback:"), keyEquivalent: "")
+        let menuItemApplications = NSMenuItem(title: NSLocalizedString("Add / Remove Applications", comment: "statusbar.menu.applications"), action: Selector("openApplications:"), keyEquivalent: "a")
+        let menuItemAbout = NSMenuItem(title: NSLocalizedString("About Appstore Reviews", comment: "statusbar.menu.about"), action: Selector("openAbout:"), keyEquivalent: "")
+        let menuItemProvidFeedback = NSMenuItem(title: NSLocalizedString("Provide Feedback...", comment: "statusbar.menu.feedback"), action: Selector("openFeedback:"), keyEquivalent: "")
 
-        var menuItemQuit = NSMenuItem(title: NSLocalizedString("Quit", comment: "statusbar.menu.quit"), action: Selector("quit:"), keyEquivalent: "q")
+        let menuItemQuit = NSMenuItem(title: NSLocalizedString("Quit", comment: "statusbar.menu.quit"), action: Selector("quit:"), keyEquivalent: "q")
         
-        var menuItemLaunchAtStartup = NSMenuItem(title: NSLocalizedString("Launch at startup", comment: "statusbar.menu.startup"), action: Selector("launchAtStartUpToggle:"), keyEquivalent: "")
+        let menuItemLaunchAtStartup = NSMenuItem(title: NSLocalizedString("Launch at startup", comment: "statusbar.menu.startup"), action: Selector("launchAtStartUpToggle:"), keyEquivalent: "")
         menuItemLaunchAtStartup.state = NSApplication.shouldLaunchAtStartup() ? NSOnState : NSOffState
 
         menuItemApplications.target = self
@@ -161,7 +164,7 @@ extension StatusMenuController {
 
 extension StatusMenuController {
     
-    override func observeValueForKeyPath(keyPath: String, ofObject object: AnyObject, change: [NSObject: AnyObject], context: UnsafeMutablePointer<Void>) {
+    override func observeValueForKeyPath(keyPath: String?, ofObject object: AnyObject?, change: [String: AnyObject]?, context: UnsafeMutablePointer<Void>) {
         if context == &kvoContext {
 //            println("observeValueForKeyPath: " + keyPath +  "change: \(change)" )
 //            updateMenu()

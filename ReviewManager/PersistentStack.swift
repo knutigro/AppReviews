@@ -31,7 +31,7 @@ class PersistentStack {
         managedObjectContext = setupManagedObjectContextWithConcurrencyType(.MainQueueConcurrencyType)
         managedObjectContext.undoManager = NSUndoManager()
 
-        let managedObjectDidSave = NSNotificationCenter.defaultCenter().addObserverForName(NSManagedObjectContextDidSaveNotification, object: nil, queue: nil) { [weak self] notification in
+        _ = NSNotificationCenter.defaultCenter().addObserverForName(NSManagedObjectContextDidSaveNotification, object: nil, queue: nil) { [weak self] notification in
                 self?.managedObjectDidSave(notification)
         }
     }
@@ -116,7 +116,14 @@ class PersistentStack {
         if let updatedObjects = notification.userInfo?[NSInsertedObjectsKey] as? NSSet {
             for anyObject in updatedObjects {
                 if let managedObject = anyObject as? NSManagedObject {
-                    context.existingObjectWithID(managedObject.objectID, error: nil)
+                    do {
+                        try context.existingObjectWithID(managedObject.objectID)
+                    } catch let error as NSError {
+                        print(error)
+                    } catch {
+                        fatalError()
+                    }
+
                 }
             }
         }
@@ -130,10 +137,14 @@ class PersistentStack {
         if let managedObjectModel = managedObjectModel() {
             managedObjectContext.persistentStoreCoordinator = NSPersistentStoreCoordinator(managedObjectModel: managedObjectModel)
             var error: NSError?
-            managedObjectContext.persistentStoreCoordinator?.addPersistentStoreWithType(NSSQLiteStoreType, configuration: nil, URL: storeURL, options: nil, error: &error)
+            do {
+                try managedObjectContext.persistentStoreCoordinator?.addPersistentStoreWithType(NSSQLiteStoreType, configuration: nil, URL: storeURL, options: nil)
+            } catch let error1 as NSError {
+                error = error1
+            }
             if error != nil {
-                println(error)
-                println(storeURL.path)
+                print(error)
+                print(storeURL.path)
             }
         }
         

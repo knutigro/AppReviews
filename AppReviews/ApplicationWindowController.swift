@@ -38,11 +38,11 @@ extension ApplicationWindowController  {
             (success: Bool, applications: JSON?, error: NSError?)
             in
             
-            let blockSuccess = success as Bool
+            let _ = success as Bool
             let blockError = error
             
             if blockError != nil {
-                println("error: " + blockError!.localizedDescription)
+                print("error: " + blockError!.localizedDescription)
             }
             
             if let applications = applications?.arrayValue {
@@ -64,9 +64,9 @@ extension ApplicationWindowController  {
     }
     
     func openSearchResultController() {
-        let storyboard = NSStoryboard(name: "Main", bundle: nil)!
+        let storyboard = NSStoryboard(name: "Main", bundle: nil)
         searchWindowController = storyboard.instantiateControllerWithIdentifier("SearchResultWindowController") as? NSWindowController
-        var window = searchWindowController?.window
+        let window = searchWindowController?.window
         
         if let searchViewController = window?.contentViewController as? SearchViewController {
             searchViewController.delegate = self

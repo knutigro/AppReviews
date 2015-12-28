@@ -41,7 +41,7 @@ class ReviewViewController: NSViewController {
         managedObjectContext = ReviewManager.managedObjectContext()
         
         // Resize TableViewCellHeights when View is resized.
-        let applicationMonitor = NSNotificationCenter.defaultCenter().addObserverForName(NSViewFrameDidChangeNotification, object: nil, queue: nil) {  [weak self] notification in
+        _ = NSNotificationCenter.defaultCenter().addObserverForName(NSViewFrameDidChangeNotification, object: nil, queue: nil) {  [weak self] notification in
             if let tableView = notification.object as? NSTableView {
                 let visibleRows = tableView.rowsInRect(self!.view.frame)
                 NSAnimationContext.beginGrouping()
@@ -61,7 +61,7 @@ extension ReviewViewController: NSTableViewDelegate {
     func tableView(tableView: NSTableView, heightOfRow row: Int) -> CGFloat {
 
         let review = reviewArrayController?.arrangedObjects[row] as? Review
-        var height = review?.content.size(tableView.frame.size.width - 85, font: NSFont.systemFontOfSize(13)).height ?? 0
+        let height = review?.content.size(tableView.frame.size.width - 85, font: NSFont.systemFontOfSize(13)).height ?? 0
         
         return height + 80
     }
@@ -79,11 +79,11 @@ extension ReviewViewController {
     
     @IBAction func shareSelectedReview(sender: AnyObject?) {
         if let review = self.selectedReview, let textField = self.selectedCell?.textField {
-            var sharingServicePicker = NSSharingServicePicker(items: [review.toString()])
+            let sharingServicePicker = NSSharingServicePicker(items: [review.toString()])
             sharingServicePicker.delegate = self
-            sharingServicePicker.showRelativeToRect(textField.bounds, ofView: textField, preferredEdge: NSMinYEdge)
+            sharingServicePicker.showRelativeToRect(textField.bounds, ofView: textField, preferredEdge: NSRectEdge.MinY)
         } else {
-            var alert = NSAlert()
+            let alert = NSAlert()
             alert.messageText = NSLocalizedString("Select a review to share.", comment: "review.share.nothingSelected")
             alert.beginSheetModalForWindow(self.view.window!, completionHandler:nil)
         }
@@ -91,7 +91,7 @@ extension ReviewViewController {
     
     @IBAction func copyToClipBoardSelectedReview(sender: AnyObject?) {
         if let review = self.selectedReview {
-            var pasteBoard = NSPasteboard.generalPasteboard()
+            let pasteBoard = NSPasteboard.generalPasteboard()
             pasteBoard.clearContents()
             pasteBoard.writeObjects([review.toString()])
         }
@@ -107,15 +107,18 @@ extension ReviewViewController {
 
     @IBAction func saveSelectedReview(sender: AnyObject?) {
         if let review = self.selectedReview {
-            var savePanel = NSSavePanel()
+            let savePanel = NSSavePanel()
             savePanel.title = review.title
             savePanel.nameFieldStringValue = review.title
-            savePanel.allowedFileTypes = [kUTTypeText]
+            savePanel.allowedFileTypes = [kUTTypeText as String]
             let result = savePanel.runModal()
             if result != NSFileHandlingPanelCancelButton {
                 if let url = savePanel.URL {
-                    var error: NSError?
-                    review.toString().writeToURL(url, atomically: true, encoding: NSUTF8StringEncoding, error: &error)
+                    do {
+                        try review.toString().writeToURL(url, atomically: true, encoding: NSUTF8StringEncoding)
+                    } catch let error as NSError {
+                        print(error)
+                    }
                 }
             }
         }

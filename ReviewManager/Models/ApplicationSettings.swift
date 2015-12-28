@@ -40,10 +40,16 @@ class ApplicationSettings: NSManagedObject {
         fetchRequest.predicate = NSPredicate(format: "application = %@", application)
         var error: NSError?
         
-        let result = context.executeFetchRequest(fetchRequest, error: &error)
+        let result: [AnyObject]?
+        do {
+            result = try context.executeFetchRequest(fetchRequest)
+        } catch let error1 as NSError {
+            error = error1
+            result = nil
+        }
         
         if error != nil {
-            println(error)
+            print(error)
         }
         return result?.last as? ApplicationSettings
     }
@@ -79,7 +85,7 @@ extension ApplicationSettings {
         if !automaticUpdate  {
             return false
         }
-        if let reviewsUpdatedAt = reviewsUpdatedAt, nextUpdateAt = nextUpdateAt {
+        if let _ = reviewsUpdatedAt, nextUpdateAt = nextUpdateAt {
             return nextUpdateAt.compare(NSDate()) == .OrderedAscending
         } else {
             return true
@@ -87,7 +93,7 @@ extension ApplicationSettings {
     }
     
     func increaseNewReviews() {
-        var int = newReviews.integerValue
+        let int = newReviews.integerValue
         newReviews = NSNumber(integer: int + 1)
     }
     

@@ -41,7 +41,7 @@ final class ReviewManager: NSObject {
     
     class func start() -> ReviewManager {
         
-        var manager = ReviewManager.defaultManager
+        let manager = ReviewManager.defaultManager
         manager.applicationUpdater = ApplicationUpdater()
 
         return manager
@@ -58,7 +58,7 @@ final class ReviewManager: NSObject {
     }
 
     class func backgroundObjectContext() -> NSManagedObjectContext {
-        var context =  ReviewManager.defaultManager.persistentStack.setupManagedObjectContextWithConcurrencyType(.PrivateQueueConcurrencyType)
+        let context =  ReviewManager.defaultManager.persistentStack.setupManagedObjectContextWithConcurrencyType(.PrivateQueueConcurrencyType)
         context.undoManager = nil
         context.mergePolicy = NSMergePolicy(mergeType: NSMergePolicyType.OverwriteMergePolicyType)
         return context
@@ -66,25 +66,39 @@ final class ReviewManager: NSObject {
 
     class func saveContext() {
         var error: NSError? = nil
-        ReviewManager.defaultManager.persistentStack.managedObjectContext.save(&error)
+        do {
+            try ReviewManager.defaultManager.persistentStack.managedObjectContext.save()
+        } catch let error1 as NSError {
+            error = error1
+        }
         if error != nil {
-            println("error saving: \(error?.localizedDescription)")
+            print("error saving: \(error?.localizedDescription)")
         }
     }
     
     func storeURL() -> NSURL {
         var error: NSError? = nil
-        var failureReason = "There was an error creating or loading the application's saved data."
+        var _ = "There was an error creating or loading the application's saved data."
         
         // Make sure the application files directory is there
-        let propertiesOpt = self.applicationDocumentsDirectory.resourceValuesForKeys([NSURLIsDirectoryKey], error: &error)
+        let propertiesOpt: [NSObject: AnyObject]?
+        do {
+            propertiesOpt = try self.applicationDocumentsDirectory.resourceValuesForKeys([NSURLIsDirectoryKey])
+        } catch let error1 as NSError {
+            error = error1
+            propertiesOpt = nil
+        }
         if let properties = propertiesOpt {
             if !properties[NSURLIsDirectoryKey]!.boolValue {
-                failureReason = "Expected a folder to store application data, found a file \(self.applicationDocumentsDirectory.path)."
+                let _ = "Expected a folder to store application data, found a file \(self.applicationDocumentsDirectory.path)."
             }
         } else if error!.code == NSFileReadNoSuchFileError {
             error = nil
-            NSFileManager.defaultManager().createDirectoryAtPath(self.applicationDocumentsDirectory.path!, withIntermediateDirectories: true, attributes: nil, error: &error)
+            do {
+                try NSFileManager.defaultManager().createDirectoryAtPath(self.applicationDocumentsDirectory.path!, withIntermediateDirectories: true, attributes: nil)
+            } catch let error1 as NSError {
+                error = error1
+            }
         }
         
         return self.applicationDocumentsDirectory.URLByAppendingPathComponent(kSQLiteFileName)
@@ -92,7 +106,7 @@ final class ReviewManager: NSObject {
     
     lazy var applicationDocumentsDirectory: NSURL = {
         let urls = NSFileManager.defaultManager().URLsForDirectory(.ApplicationSupportDirectory, inDomains: .UserDomainMask)
-        let appSupportURL = urls[urls.count - 1] as! NSURL
+        let appSupportURL = urls[urls.count - 1] 
         
         let appName = NSBundle.mainBundle().objectForInfoDictionaryKey("CFBundleName") as? String ?? "App Reviews"
         return appSupportURL.URLByAppendingPathComponent(appName)
@@ -108,11 +122,11 @@ final class ReviewManager: NSObject {
 extension ReviewManager: CDEPersistentStoreEnsembleDelegate {
     
     func persistentStoreEnsembleWillImportStore(ensemble: CDEPersistentStoreEnsemble!) {
-        println("persistentStoreEnsembleWillImportStore")
+        print("persistentStoreEnsembleWillImportStore")
     }
     
     func persistentStoreEnsemble(ensemble: CDEPersistentStoreEnsemble!, didSaveMergeChangesWithNotification notification: NSNotification!) {
-        println("persistentStoreEnsemble didSaveMergeChangesWithNotification")
+        print("persistentStoreEnsemble didSaveMergeChangesWithNotification")
         ReviewManager.managedObjectContext().mergeChangesFromContextDidSaveNotification(notification)
     }
     
