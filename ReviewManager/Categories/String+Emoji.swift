@@ -12,11 +12,11 @@ extension Int {
     
     func toEmojiStars() -> String {
         var starArray = [String]()
-        for star in 1 ... self {
+        for _ in 1 ... self {
             starArray.append("⭐️")
         }
         
-        return "".join(starArray)
+        return starArray.joinWithSeparator("")
     }
 
 

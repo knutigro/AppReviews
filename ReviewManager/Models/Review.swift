@@ -43,13 +43,19 @@ class Review: NSManagedObject {
     
     class func getWithId(id: NSManagedObjectID, context: NSManagedObjectContext) -> Review? {
         
-        let fetchRequest = NSFetchRequest(entityName: kEntityNameReview)
+        let _ = NSFetchRequest(entityName: kEntityNameReview)
         
         var error: NSError?
-        let result = context.existingObjectWithID(id, error: &error)
+        let result: NSManagedObject?
+        do {
+            result = try context.existingObjectWithID(id)
+        } catch let error1 as NSError {
+            error = error1
+            result = nil
+        }
         
         if error != nil {
-            println(error)
+            print(error)
         }
         
         return result as? Review
@@ -59,9 +65,15 @@ class Review: NSManagedObject {
         let fetchRequest = NSFetchRequest(entityName: kEntityNameReview)
         fetchRequest.predicate = NSPredicate(format: "apId = %@", apId)
         var error: NSError?
-        let result = context.executeFetchRequest(fetchRequest, error: &error)
+        let result: [AnyObject]?
+        do {
+            result = try context.executeFetchRequest(fetchRequest)
+        } catch let error1 as NSError {
+            error = error1
+            result = nil
+        }
         if error != nil {
-            println(error)
+            print(error)
         }
         
         return result?.last as? Review
@@ -115,9 +127,9 @@ extension JSON {
     var reviewUri: String? { return self["author"]["uri"]["label"].string }
     var reviewTitle: String? { return self["title"]["label"].string }
     var reviewVersion: String? { return self["im:version"]["label"].string }
-    var reviewRating: NSNumber { return NSNumber(integer: self["im:rating"]["label"].stringValue.toInt() ?? 0) }
-    var reviewVoteCount: NSNumber { return NSNumber(integer: self["im:voteCount"]["label"].stringValue.toInt() ?? 0)  }
+    var reviewRating: NSNumber { return NSNumber(integer: Int(self["im:rating"]["label"].stringValue) ?? 0) }
+    var reviewVoteCount: NSNumber { return NSNumber(integer: Int(self["im:voteCount"]["label"].stringValue) ?? 0)  }
     var reviewVoteSum: NSNumber { return NSNumber(float:(self["im:voteSum"]["label"].stringValue as NSString).floatValue) }
     
-    var isReviewEntity: Bool { return (self.reviewContent != nil || self.reviewRating > 0)    }
+    var isReviewEntity: Bool { return (self.reviewContent != nil || self.reviewRating.integerValue > 0)    }
 }

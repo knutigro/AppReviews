@@ -34,8 +34,14 @@ class DatabaseHandler {
     class func removeApplication(objectId: NSManagedObjectID) {
         DatabaseHandler.saveDataInContext({ (context) -> Void in
             var error: NSError?
-            if let application = context.existingObjectWithID(objectId, error: &error) {
+            do {
+                let application = try context.existingObjectWithID(objectId)
                 context.deleteObject(application)
+            } catch let error1 as NSError {
+                error = error1
+                print(error)
+            } catch {
+                fatalError()
             }
         })
     }
@@ -43,8 +49,15 @@ class DatabaseHandler {
     class func resetNewReviewsCountForApplication(objectId: NSManagedObjectID) {
         DatabaseHandler.saveDataInContext({ (context) -> Void in
             var error: NSError?
-            if let application = context.existingObjectWithID(objectId, error: &error) as? Application {
-                application.settings.resetNewReviews()
+            do {
+                if let application = try context.existingObjectWithID(objectId) as? Application {
+                    application.settings.resetNewReviews()
+                }
+            } catch let error1 as NSError {
+                error = error1
+                print(error)
+            } catch {
+                fatalError()
             }
         })
     }
@@ -53,9 +66,15 @@ class DatabaseHandler {
         
         let fetchRequest = NSFetchRequest(entityName: kEntityNameApplication)
         var error: NSError?
-        let result = context.executeFetchRequest(fetchRequest, error: &error)
+        let result: [AnyObject]?
+        do {
+            result = try context.executeFetchRequest(fetchRequest)
+        } catch let error1 as NSError {
+            error = error1
+            result = nil
+        }
         if error != nil {
-            println(error)
+            print(error)
         }
         
         return result as? [Application]
@@ -64,28 +83,34 @@ class DatabaseHandler {
     class func numberOfReviewsForApplication(objectId: NSManagedObjectID, rating: Int?, context: NSManagedObjectContext) -> (Int, Int, Int, Int, Int) {
         var error: NSError?
         var one = 0, two = 0, three = 0, four = 0, five = 0
-
-        if let application = context.existingObjectWithID(objectId, error: &error) as? Application {
-            var fetchRequest = NSFetchRequest(entityName: kEntityNameReview)
-            
-            fetchRequest.predicate = NSPredicate(format: "application = %@ AND rating == 1", application)
-            one = context.countForFetchRequest(fetchRequest, error: &error)
-
-            fetchRequest.predicate = NSPredicate(format: "application = %@ AND rating == 2", application)
-            two = context.countForFetchRequest(fetchRequest, error: &error)
-
-            fetchRequest.predicate = NSPredicate(format: "application = %@ AND rating == 3", application)
-            three = context.countForFetchRequest(fetchRequest, error: &error)
-
-            fetchRequest.predicate = NSPredicate(format: "application = %@ AND rating == 4", application)
-            four = context.countForFetchRequest(fetchRequest, error: &error)
-
-            fetchRequest.predicate = NSPredicate(format: "application = %@ AND rating == 5", application)
-            five = context.countForFetchRequest(fetchRequest, error: &error)
-
-            if error != nil { println(error) }
+        do {
+            if let application = try context.existingObjectWithID(objectId) as? Application {
+                let fetchRequest = NSFetchRequest(entityName: kEntityNameReview)
+                
+                fetchRequest.predicate = NSPredicate(format: "application = %@ AND rating == 1", application)
+                one = context.countForFetchRequest(fetchRequest, error: &error)
+                
+                fetchRequest.predicate = NSPredicate(format: "application = %@ AND rating == 2", application)
+                two = context.countForFetchRequest(fetchRequest, error: &error)
+                
+                fetchRequest.predicate = NSPredicate(format: "application = %@ AND rating == 3", application)
+                three = context.countForFetchRequest(fetchRequest, error: &error)
+                
+                fetchRequest.predicate = NSPredicate(format: "application = %@ AND rating == 4", application)
+                four = context.countForFetchRequest(fetchRequest, error: &error)
+                
+                fetchRequest.predicate = NSPredicate(format: "application = %@ AND rating == 5", application)
+                five = context.countForFetchRequest(fetchRequest, error: &error)
+                
+                if error != nil { print(error) }
+            }
+        } catch let error1 as NSError {
+            error = error1
+            print(error)
+        } catch {
+            fatalError()
         }
-        
+
         return (one, two, three, four, five)
     }
     
@@ -94,42 +119,46 @@ class DatabaseHandler {
             
             var error: NSError?
             
-            if let application = context.existingObjectWithID(objectId, error: &error) as? Application {
-                
-                if error != nil {
-                    println(error)
-                }
-                
-                var updatedReviews = [Review]()
-                
-                for var index = 0; index < reviews.count; index++ {
-                    let entry = reviews[index]
+            do {
+                if let application = try context.existingObjectWithID(objectId) as? Application {
                     
-                    if entry.isReviewEntity, let apID = entry.reviewApID {
-                        var review: Review!
+                    var updatedReviews = [Review]()
+                    
+                    for var index = 0; index < reviews.count; index++ {
+                        let entry = reviews[index]
                         
-                        if let newReview = Review.get(apID, context: context) {
-                            // Review allready exist in database
-                            review = newReview
-                        } else {
-                            // create new review
-                            review = Review.new(apID, context: context)
-                            application.settings.increaseNewReviews()
+                        if entry.isReviewEntity, let apID = entry.reviewApID {
+                            var review: Review!
+                            
+                            if let newReview = Review.get(apID, context: context) {
+                                // Review allready exist in database
+                                review = newReview
+                            } else {
+                                // create new review
+                                review = Review.new(apID, context: context)
+                                application.settings.increaseNewReviews()
+                            }
+                            
+                            review.updateWithJSON(entry)
+                            review.country = ""
+                            review.updatedAt = NSDate()
+                            let reviews = application.mutableSetValueForKey("reviews")
+                            reviews.addObject(review)
+                            review.application = application
+                            updatedReviews.append(review)
                         }
-                        
-                        review.updateWithJSON(entry)
-                        review.country = ""
-                        review.updatedAt = NSDate()
-                        var reviews = application.mutableSetValueForKey("reviews")
-                        reviews.addObject(review)
-                        review.application = application
-                        updatedReviews.append(review)
                     }
+                    application.settings.updatedAt = NSDate()
+                    application.settings.reviewsUpdatedAt = NSDate()
+                    application.settings.nextUpdateAt = NSDate().dateByAddingTimeInterval(kDefaultReviewUpdateInterval)
                 }
-                application.settings.updatedAt = NSDate()
-                application.settings.reviewsUpdatedAt = NSDate()
-                application.settings.nextUpdateAt = NSDate().dateByAddingTimeInterval(kDefaultReviewUpdateInterval)
+            } catch let error1 as NSError {
+                error = error1
+                print(error)
+            } catch {
+                fatalError()
             }
+
         })
     }
 
@@ -141,15 +170,21 @@ class DatabaseHandler {
 
     class func saveDataInContext(saveBlock: (context: NSManagedObjectContext) -> Void, completion: CompletionBlock?)  {
 
-        var context = ReviewManager.backgroundObjectContext()
+        let context = ReviewManager.backgroundObjectContext()
         
         context.performBlock { () -> Void in
             saveBlock(context: context)
             
             if context.hasChanges {
                 var error: NSError? = nil
-                context.save(&error)
-                if error != nil { println("error: " + error!.localizedDescription) }
+                do {
+                    try context.save()
+                } catch let error1 as NSError {
+                    error = error1
+                } catch {
+                    fatalError()
+                }
+                if error != nil { print("error: " + error!.localizedDescription) }
             }
 
             if let completion = completion {

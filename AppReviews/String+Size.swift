@@ -14,9 +14,9 @@ extension String {
     func size(width: CGFloat, font: NSFont) -> NSSize {
         let range =  NSMakeRange(0, (self as NSString).length)
         var size = NSMakeSize(width, CGFloat(MAXFLOAT))
-        var textStorage = NSTextStorage(string: self)
-        var textContainer = NSTextContainer(containerSize: size)
-        var layoutManager = NSLayoutManager()
+        let textStorage = NSTextStorage(string: self)
+        let textContainer = NSTextContainer(containerSize: size)
+        let layoutManager = NSLayoutManager()
         layoutManager.addTextContainer(textContainer)
         textStorage.addLayoutManager(layoutManager)
         textStorage.addAttribute(NSFontAttributeName, value: font, range: range)

@@ -36,7 +36,7 @@ extension NSApplication {
 
     private class func itemReferencesInLoginItems() -> (existingReference: LSSharedFileListItemRef?, lastReference: LSSharedFileListItemRef?) {
         
-        var itemUrl : UnsafeMutablePointer<Unmanaged<CFURL>?> = UnsafeMutablePointer<Unmanaged<CFURL>?>.alloc(1)
+        let itemUrl : UnsafeMutablePointer<Unmanaged<CFURL>?> = UnsafeMutablePointer<Unmanaged<CFURL>?>.alloc(1)
         if let appUrl : NSURL = NSURL.fileURLWithPath(NSBundle.mainBundle().bundlePath) {
             let loginItemsRef = LSSharedFileListCreate(
                 nil,
@@ -58,7 +58,7 @@ extension NSApplication {
                             }
                         }
                     } else {
-                        println("Unknown login application")
+                        print("Unknown login application")
                     }
                 }
                 //The application was not found in the startup list

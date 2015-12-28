@@ -51,15 +51,15 @@ class ItunesService {
     func fetchReviews(url: String, completion: (success: Bool, reviews: [JSON]?, error: NSError?) -> Void) {
         
         Alamofire.request(.GET, url, parameters: nil)
-            .responseJSON { (request, response, json, error) in
+            .responseJSON { response in
                 
-                if error != nil {
-                    NSLog("Error: \(error)")
-                    println(request)
-                    println(response)
-                    completion(success: false, reviews: nil, error: error)
+                if response.result.error != nil {
+                    NSLog("Error: \(response.result.error)")
+                    print(response.request)
+                    print(response)
+                    completion(success: false, reviews: nil, error: response.result.error)
                 } else {
-                    var json = JSON(json!)
+                    let json = JSON(response.result.value!)
                     let reviews = json.itunesReviews
                     
                     completion(success: true, reviews: reviews, error: nil)
@@ -77,19 +77,19 @@ class ItunesService {
     
     class func fetchApplications(name: String, completion: (success: Bool, applications: JSON?, error: NSError?) -> Void) {
         
-        var url = "https://itunes.apple.com/search"
+        let url = "https://itunes.apple.com/search"
         let params = ["term": name, "entity": "software"]
         
         Alamofire.request(.GET, url, parameters: params)
-            .responseJSON { (request, response, json, error) in
+            .responseJSON { response in
                 
-                if(error != nil) {
-                    NSLog("Error: \(error)")
-                    println(request)
-                    println(response)
-                    completion(success: false, applications: nil, error: error)
+                if(response.result.error != nil) {
+                    NSLog("Error: \(response.result.error)")
+                    print(response.request)
+                    print(response)
+                    completion(success: false, applications: nil, error: response.result.error)
                 } else {
-                    var json = JSON(json!)
+                    var json = JSON(response.result.value!)
                     completion(success: true, applications: json["results"], error: nil)
                 }
         }

@@ -71,7 +71,7 @@ extension SearchViewController: NSTableViewDataSource {
     }
     
     func tableView(tableView: NSTableView, viewForTableColumn: NSTableColumn, row: Int) -> NSView {
-        var cell = tableView.makeViewWithIdentifier(kApplicationCellIdentifier, owner: self) as! ApplicationCellView
+        let cell = tableView.makeViewWithIdentifier(kApplicationCellIdentifier, owner: self) as! ApplicationCellView
         let application = items[row]
         cell.textField?.stringValue = application.trackName ?? ""
         cell.authorTextField?.stringValue = application.sellerName ?? ""

@@ -24,10 +24,12 @@ class ItunesUrlHandlerTest: XCTestCase {
         
         urlHandler = ItunesUrlHandler(apId: "123", storeId: nil)
         
-        var error: NSError?
         if let path = NSBundle.mainBundle().pathForResource("reviews", ofType: "json") {
-            if let string = NSString(contentsOfFile: path, encoding: NSUTF8StringEncoding, error: &error) as? String {
+            do {
+                let string = try NSString(contentsOfFile: path, encoding: NSUTF8StringEncoding)
                 reviewJSON = JSON(string)
+            } catch {
+                print("Failed at try")
             }
         }
         if reviewJSON == nil {
@@ -36,15 +38,15 @@ class ItunesUrlHandlerTest: XCTestCase {
     }
     
     func testIfLinkExist() {
-        let feed = reviewJSON[0]
+        _ = reviewJSON[0]
 
-        println("reviewJSON \(reviewJSON)")
+        print("reviewJSON \(reviewJSON)")
 
 //        println("reviewJSON \(reviewJSON)")
-        let reviews1 = reviewJSON.itunesReviews
+        _ = reviewJSON.itunesReviews
 
         let reviews = reviewJSON.itunesFeedLinks
-        println("reviews count = \(reviews)")
+        print("reviews count = \(reviews)")
 
 //        let count = reviewJSON?["feed"]["link"].array?.count
 //
@@ -65,7 +67,7 @@ class ItunesUrlHandlerTest: XCTestCase {
 //        } else {
 //        }
 
-        println("nextUrl \(urlHandler.nextUrl)")
+        print("nextUrl \(urlHandler.nextUrl)")
     }
     
     

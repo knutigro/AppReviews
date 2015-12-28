@@ -44,8 +44,7 @@ class ItunesPage {
     
     class func urlByIncreasingPage(urlString: String?, page: Int?) -> (url: String, page: Int)?  {
         if let urlstring = urlString, let page = page {
-            var nextUrl: String?
-            if let url = NSURL(string: urlstring) {
+            if let _ = NSURL(string: urlstring) {
                 let old = String(format: "page=%i", page)
                 let next = String(format: "page=%i", page + 1)
                 return (urlstring.stringByReplacingOccurrencesOfString(old, withString: next), page + 1)
@@ -105,9 +104,9 @@ extension String {
     }
     
     func stringByRemovingItunesFormatting() -> String {
-        var temp =  stringByRemovingDoubleSlashes()
+        let temp =  stringByRemovingDoubleSlashes()
         if let url = NSURL(string: temp) {
-            if let pathcomponents = url.pathComponents as? [String] {
+            if let pathComponents = url.pathComponents {
                 var newUrlString = ""
                 var newPathSet = Set<String>()
                 
@@ -137,11 +136,11 @@ extension String {
     
     func page() -> Int? {
         if let url = NSURL(string: self) {
-            if let pathcomponents = url.pathComponents as? [String] {
+            if let pathComponents = url.pathComponents {
                 for path in pathComponents {
                     if path.rangeOfString("page=") != nil {
                         let page = path.stringByReplacingOccurrencesOfString("page=", withString: "")
-                        return page.toInt()
+                        return Int(page)
                     }
                 }
             }

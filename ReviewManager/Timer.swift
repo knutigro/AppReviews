@@ -37,7 +37,7 @@ class Timer {
     /// Convenience class method that creates and start a timer
     class func repeatEvery(repeatEvery: Double, closure: Closure) -> Timer {
         let timer = Timer(queue: dispatch_get_global_queue(0, 0), closure: closure)
-        timer.resume(0, repeat: repeatEvery, leeway: 0)
+        timer.resume(0, `repeat`: repeatEvery, leeway: 0)
         return timer
     }
     
@@ -47,16 +47,16 @@ class Timer {
     }
     
     /// Start or resume the timer with the specified double values
-    func resume(start: Double, repeat: Double, leeway: Double) {
+    func resume(start: Double, `repeat`: Double, leeway: Double) {
         let NanosecondsPerSecond = Double(NSEC_PER_SEC)
-        resume(Int64(start * NanosecondsPerSecond), repeat: UInt64(repeat * NanosecondsPerSecond), leeway: UInt64(leeway * NanosecondsPerSecond))
+        resume(Int64(start * NanosecondsPerSecond), `repeat`: UInt64(`repeat` * NanosecondsPerSecond), leeway: UInt64(leeway * NanosecondsPerSecond))
     }
     
     /// Start or resume the timer with the specified integer values
-    func resume(start: Int64, repeat: UInt64, leeway: UInt64) {
+    func resume(start: Int64, `repeat`: UInt64, leeway: UInt64) {
         if isSuspended {
             let startTime = dispatch_time(DISPATCH_TIME_NOW, start)
-            dispatch_source_set_timer(source, startTime, repeat, leeway)
+            dispatch_source_set_timer(source, startTime, `repeat`, leeway)
             dispatch_source_set_event_handler(source) { [weak self] in
                 if let timer = self {
                     timer.fire()

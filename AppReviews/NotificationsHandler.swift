@@ -19,7 +19,7 @@ class NotificationsHandler: NSObject {
     override init() {
         super.init()
         
-        let applicationSettingsMonitor = NSNotificationCenter.defaultCenter().addObserverForName(kDidAddReviewsNotification, object: nil, queue: nil) {  [weak self] notification in
+        _ = NSNotificationCenter.defaultCenter().addObserverForName(kDidAddReviewsNotification, object: nil, queue: nil) {  [weak self] notification in
             if let newReviewsIds = notification.object as? Set<NSManagedObjectID> {
                 
                 var newReviews = [Application: [Review]]()
@@ -63,17 +63,16 @@ class NotificationsHandler: NSObject {
             message = message + "\n" + reviews[0].title
         }
         
-        var notification:NSUserNotification = NSUserNotification()
+        let notification:NSUserNotification = NSUserNotification()
         notification.title = application.trackName
 
-        if let urlString = application.objectID.URIRepresentation().absoluteString {
-            notification.userInfo = [kNotificaObjectIdKey: urlString]
-        }
+        let urlString = application.objectID.URIRepresentation().absoluteString
+        notification.userInfo = [kNotificaObjectIdKey: urlString]
 
         notification.informativeText = message
         notification.actionButtonTitle = NSLocalizedString("Open Reviews", comment: "review.notification.openReviews")
         notification.hasActionButton = true
-        var center: NSUserNotificationCenter = NSUserNotificationCenter.defaultUserNotificationCenter()
+        let center: NSUserNotificationCenter = NSUserNotificationCenter.defaultUserNotificationCenter()
         center.delegate = self
         
         dispatch_async(dispatch_get_main_queue(), { () -> Void in

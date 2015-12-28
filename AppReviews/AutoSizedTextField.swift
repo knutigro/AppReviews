@@ -11,7 +11,7 @@ import AppKit
 class AutoSizedTextField: NSTextField {
     
     override var intrinsicContentSize: NSSize {
-        if cell()?.wraps == nil{
+        if cell?.wraps == nil{
             return super.intrinsicContentSize
         }
         
@@ -24,7 +24,7 @@ class AutoSizedTextField: NSTextField {
         // Calculate new height within the frame
         // with practically infinite height.
         
-        let height = cell()?.cellSizeForBounds(frame).height
+        let height = cell?.cellSizeForBounds(frame).height
         
         return NSMakeSize(width, height!)
     }
@@ -52,9 +52,9 @@ extension NSTextFieldCell {
     }
 
     func scaleToAspectFit(size:CGSize, text: String, font: NSFont) {
-        var sampleFont = NSFont(descriptor: font.fontDescriptor, size: 12)!
-        var sampleSize = (text as NSString).sizeWithAttributes([NSFontAttributeName: sampleFont])
-        var scale = scaleToAspectFit(sampleSize, into: size, padding: 10)
+        let sampleFont = NSFont(descriptor: font.fontDescriptor, size: 12)!
+        let sampleSize = (text as NSString).sizeWithAttributes([NSFontAttributeName: sampleFont])
+        let _ = scaleToAspectFit(sampleSize, into: size, padding: 10)
         
     }
     

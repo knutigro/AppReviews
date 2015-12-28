@@ -13,18 +13,21 @@ import Foundation
 extension NSString {
     
     private func versionAsIntegerArray() -> [Int] {
-        let versionComponents = (componentsSeparatedByString("."))
-        var versionComponentsAsIntegers = [Int]()
+//TODO: FIX RANGE Error
         
-        for component in versionComponents {
-            // NSRegularExpressionSearch
-            let componentString = component.stringByReplacingOccurrencesOfString("[^0-9]", withString: "", options: NSStringCompareOptions(1024), range: NSMakeRange(0, component.length))
-            if let intComponent = componentString.toInt() {
-                versionComponentsAsIntegers.append(intComponent)
-            }
-        }
-        
-        return versionComponentsAsIntegers
+        return [0]
+//        let versionComponents = (componentsSeparatedByString("."))
+//        var versionComponentsAsIntegers = [Int]()
+//        
+//        for component in versionComponents {
+//            // NSRegularExpressionSearch
+//            let componentString = component.stringByReplacingOccurrencesOfString("[^0-9]", withString: "", options: NSStringCompareOptions(rawValue: 1024), range: NSMakeRange(0, component.length))
+//            if let intComponent = Int(componentString) {
+//                versionComponentsAsIntegers.append(intComponent)
+//            }
+//        }
+//        
+//        return versionComponentsAsIntegers
     }
     
     func compareVersion(version: NSString) -> NSComparisonResult {

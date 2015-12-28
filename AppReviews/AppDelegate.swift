@@ -31,12 +31,12 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         Fabric.with([Crashlytics()])
 
         // Google Analytics
-        var analyticsHelper = AnalyticsHelper.sharedInstance()
+        let analyticsHelper = AnalyticsHelper.sharedInstance()
         analyticsHelper.recordScreenWithName("Launch")
         analyticsHelper.beginPeriodicReportingWithAccount("UA-62792522-3", name: "App Reviews OSX", version: NSApplication.v_versionBuild())
         
         // Create ReviewManager shared object
-        var manager = ReviewManager.start()
+        _ = ReviewManager.start()
         
         if NSUserDefaults.review_isFirstLaunch() {
             NSUserDefaults.review_setDidLaunch()
@@ -79,29 +79,29 @@ class AppDelegate: NSObject, NSApplicationDelegate {
 extension AppDelegate {
     
     func initialLaunchWindowController() -> NSWindowController {
-        let storyboard = NSStoryboard(name: "Main", bundle: nil)!
-        var windowController = storyboard.instantiateControllerWithIdentifier("LaunchWindowController") as! NSWindowController
+        let storyboard = NSStoryboard(name: "Main", bundle: nil)
+        let windowController = storyboard.instantiateControllerWithIdentifier("LaunchWindowController") as! NSWindowController
         
         return windowController
     }
     
     func initialApplicationWindowController() -> NSWindowController {
-        let storyboard = NSStoryboard(name: "Main", bundle: nil)!
-        var windowController = storyboard.instantiateControllerWithIdentifier("ApplicationWindowController") as! NSWindowController
+        let storyboard = NSStoryboard(name: "Main", bundle: nil)
+        let windowController = storyboard.instantiateControllerWithIdentifier("ApplicationWindowController") as! NSWindowController
         
         return windowController
     }
     
     func initialReviewWindowController() -> ReviewWindowController {
-        let storyboard = NSStoryboard(name: "Main", bundle: nil)!
-        var windowController = storyboard.instantiateControllerWithIdentifier("ReviewWindowsController") as! ReviewWindowController
+        let storyboard = NSStoryboard(name: "Main", bundle: nil)
+        let windowController = storyboard.instantiateControllerWithIdentifier("ReviewWindowsController") as! ReviewWindowController
         
         return windowController
     }
     
     func initialAboutWindowController() -> NSWindowController {
-        let storyboard = NSStoryboard(name: "Main", bundle: nil)!
-        var windowController = storyboard.instantiateControllerWithIdentifier("AboutWindowController") as! NSWindowController
+        let storyboard = NSStoryboard(name: "Main", bundle: nil)
+        let windowController = storyboard.instantiateControllerWithIdentifier("AboutWindowController") as! NSWindowController
         
         return windowController
     }

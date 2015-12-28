@@ -94,13 +94,13 @@ class ReviewMenuViewController: NSViewController {
             starRating.rating = 3.5
         }
         
-        let applicationMonitor = NSNotificationCenter.defaultCenter().addObserverForName(kDidUpdateApplicationNotification, object: nil, queue: nil) {  [weak self] notification in
+        _ = NSNotificationCenter.defaultCenter().addObserverForName(kDidUpdateApplicationNotification, object: nil, queue: nil) {  [weak self] notification in
             dispatch_async(dispatch_get_main_queue(), { () -> Void in
                 self?.updateApplicationInfo()
             })
         }
         
-        let applicationSettingsMonitor = NSNotificationCenter.defaultCenter().addObserverForName(kDidUpdateApplicationSettingsNotification, object: nil, queue: nil) {  [weak self] notification in
+        _ = NSNotificationCenter.defaultCenter().addObserverForName(kDidUpdateApplicationSettingsNotification, object: nil, queue: nil) {  [weak self] notification in
             dispatch_async(dispatch_get_main_queue(), { () -> Void in
                 self?.updateApplicationInfo()
             })
@@ -117,8 +117,8 @@ class ReviewMenuViewController: NSViewController {
     
     func updateApplicationInfo() {
 
-        let number = (application?.averageUserRatingForCurrentVersion ?? "")
-        var fileSize = NSString(format: "%.01f", application?.fileSizeMb ?? 0) as String
+        _ = (application?.averageUserRatingForCurrentVersion ?? "")
+        let fileSize = NSString(format: "%.01f", application?.fileSizeMb ?? 0) as String
         let averageUserRatingForCurrentVersion = application?.averageUserRatingForCurrentVersion.floatValue ?? 0
         var averageUserRatingForCurrentVersionString = ""
         if averageUserRatingForCurrentVersion > 0 {

@@ -30,10 +30,17 @@ class ReviewWindowController: NSWindowController {
     var objectId: NSManagedObjectID? {
         didSet {
             if oldValue != objectId {
-                var context = ReviewManager.managedObjectContext()
+                let context = ReviewManager.managedObjectContext()
                 var error: NSError?
                 if let objectId = objectId {
-                    application = context.existingObjectWithID(objectId, error: &error) as? Application
+                    do {
+                        application = try context.existingObjectWithID(objectId) as? Application
+                    } catch let error1 as NSError {
+                        error = error1
+                        print(error)
+                    } catch {
+                        fatalError()
+                    }
                 }
             }
         }
@@ -76,14 +83,14 @@ class ReviewWindowController: NSWindowController {
             let fChar: UInt16 = 3
             let aChar: UInt16 = 0
             
-            if event.modifierFlags & NSEventModifierFlags.CommandKeyMask != nil {
+            if event.modifierFlags.intersect(NSEventModifierFlags.CommandKeyMask) != [] {
                 switch event.keyCode {
                 case rChar:
                         self?.refreshApplication(nil)
                 case aChar:
                         self?.openApplications(nil)
                 case iChar:
-                        if (event.modifierFlags & NSEventModifierFlags.ShiftKeyMask == nil) {
+                        if (event.modifierFlags.intersect(NSEventModifierFlags.ShiftKeyMask) == []) {
                             self?.reviewController?.openInItunesSelectedReview(nil)
                         }
                 case cChar:
@@ -97,7 +104,7 @@ class ReviewWindowController: NSWindowController {
                     let appdelegate = NSApplication.sharedApplication().delegate as! AppDelegate
                     let menuItems = appdelegate.statusMenuController.statusItem.menu?.itemArray
                     if menuItems?.count > key {
-                        if let menuItem = menuItems![key] as? NSMenuItem {
+                        if let menuItem = menuItems?[key] {
                             if let application = menuItem.representedObject as? Application {
                                 ReviewWindowController.show(application.objectID)
                             }
@@ -137,8 +144,15 @@ extension ReviewWindowController {
             menuItem.state = newState ? NSOnState: NSOffState;
             DatabaseHandler.saveDataInContext({ (context) -> Void in
                 var error: NSError?
-                if let application = context.existingObjectWithID(objectId, error: &error) as? Application {
-                    application.settings.automaticUpdate = newState
+                do {
+                    if let application = try context.existingObjectWithID(objectId) as? Application {
+                        application.settings.automaticUpdate = newState
+                    }
+                } catch let error1 as NSError {
+                    error = error1
+                    print(error)
+                } catch {
+                    fatalError()
                 }
             })
         }
@@ -172,8 +186,8 @@ extension ReviewWindowController {
                         string += "_________________________________"
                     }
                     
-                    var savePanel = NSSavePanel()
-                    savePanel.allowedFileTypes = [kUTTypeText]
+                    let savePanel = NSSavePanel()
+                    savePanel.allowedFileTypes = [kUTTypeText as String]
                     let result = savePanel.runModal()
                     savePanel.title = application.trackName
                     savePanel.nameFieldStringValue = application.trackName
@@ -181,11 +195,15 @@ extension ReviewWindowController {
                     if result != NSFileHandlingPanelCancelButton {
                         if let url = savePanel.URL {
                             var error: NSError?
-                            string.writeToURL(url, atomically: true, encoding: NSUTF8StringEncoding, error: &error)
+                            do {
+                                try string.writeToURL(url, atomically: true, encoding: NSUTF8StringEncoding)
+                            } catch let error1 as NSError {
+                                error = error1
+                            }
                             
                             if error != nil {
-                                var alert = NSAlert()
-                                alert.messageText = error?.localizedDescription
+                                let alert = NSAlert()
+                                alert.messageText = (error?.localizedDescription)!
                                 alert.beginSheetModalForWindow(window!, completionHandler:nil)
                             }
                         }
