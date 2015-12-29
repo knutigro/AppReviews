@@ -29,6 +29,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
 
         // Fabric CrashAlytics
         Fabric.with([Crashlytics()])
+        NSUserDefaults.standardUserDefaults().registerDefaults(["NSApplicationCrashOnExceptions": true])
 
         // Google Analytics
         let analyticsHelper = AnalyticsHelper.sharedInstance()
