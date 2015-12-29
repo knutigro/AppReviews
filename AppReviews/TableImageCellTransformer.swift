@@ -16,15 +16,10 @@ class TableImageCellTransformer: NSValueTransformer{
     }
     
     override func transformedValue(value: AnyObject!) -> AnyObject? {
-        if let value = value as? String {
-            if let url = NSURL(string: value) {
-                let image = NSImage(contentsOfURL: url)
-                return image
-            } else {
-                return nil
-            }
-        } else {
+        guard let value = value as? String, let url = NSURL(string: value) else {
             return nil
         }
+        
+        return NSImage(contentsOfURL: url)
     }
 }

@@ -38,19 +38,13 @@ class ApplicationSettings: NSManagedObject {
     class func get(application: Application, context: NSManagedObjectContext) -> ApplicationSettings? {
         let fetchRequest = NSFetchRequest(entityName: kEntityNameApplicationSettings)
         fetchRequest.predicate = NSPredicate(format: "application = %@", application)
-        var error: NSError?
-        
-        let result: [AnyObject]?
+        var result: [AnyObject]?
         do {
             result = try context.executeFetchRequest(fetchRequest)
-        } catch let error1 as NSError {
-            error = error1
-            result = nil
-        }
-        
-        if error != nil {
+        } catch let error as NSError {
             print(error)
         }
+        
         return result?.last as? ApplicationSettings
     }
     

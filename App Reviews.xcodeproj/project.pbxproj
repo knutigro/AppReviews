@@ -211,8 +211,8 @@
 			children = (
 				4910B3F11B0E200200FDC0EA /* Application.swift */,
 				4910B3F21B0E200200FDC0EA /* ApplicationSettings.swift */,
-				4910B3F31B0E200200FDC0EA /* AppReviews.xcdatamodeld */,
 				4910B3F51B0E200200FDC0EA /* Review.swift */,
+				4910B3F31B0E200200FDC0EA /* AppReviews.xcdatamodeld */,
 			);
 			path = Models;
 			sourceTree = "<group>";

@@ -166,7 +166,7 @@ extension StatusMenuController {
     
     override func observeValueForKeyPath(keyPath: String?, ofObject object: AnyObject?, change: [String: AnyObject]?, context: UnsafeMutablePointer<Void>) {
         if context == &kvoContext {
-//            println("observeValueForKeyPath: " + keyPath +  "change: \(change)" )
+//            print("observeValueForKeyPath: " + keyPath +  "change: \(change)" )
 //            updateMenu()
         }
         else {

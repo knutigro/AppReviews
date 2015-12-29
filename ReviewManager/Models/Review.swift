@@ -42,19 +42,10 @@ class Review: NSManagedObject {
     // MARK: - Class functions for create and insert
     
     class func getWithId(id: NSManagedObjectID, context: NSManagedObjectContext) -> Review? {
-        
-        let _ = NSFetchRequest(entityName: kEntityNameReview)
-        
-        var error: NSError?
-        let result: NSManagedObject?
+        var result: NSManagedObject?
         do {
             result = try context.existingObjectWithID(id)
-        } catch let error1 as NSError {
-            error = error1
-            result = nil
-        }
-        
-        if error != nil {
+        } catch let error as NSError {
             print(error)
         }
         
@@ -64,15 +55,10 @@ class Review: NSManagedObject {
     class func get(apId: String, context: NSManagedObjectContext) -> Review? {
         let fetchRequest = NSFetchRequest(entityName: kEntityNameReview)
         fetchRequest.predicate = NSPredicate(format: "apId = %@", apId)
-        var error: NSError?
-        let result: [AnyObject]?
+        var result: [AnyObject]?
         do {
             result = try context.executeFetchRequest(fetchRequest)
-        } catch let error1 as NSError {
-            error = error1
-            result = nil
-        }
-        if error != nil {
+        } catch let error as NSError {
             print(error)
         }
         

@@ -39,9 +39,9 @@ class PersistentStack {
     func managedObjectDidSave(notification: NSNotification) {
         let moc = managedObjectContext;
         if notification.object as? NSManagedObjectContext != moc {
-            moc.performBlock({ () -> Void in
+            moc.performBlock({ [weak self] () -> Void in
                 
-                self.mergeChangesFromSaveNotification(notification, intoContext: moc)
+                self?.mergeChangesFromSaveNotification(notification, intoContext: moc)
                 
                 var newReviews =  Set<NSManagedObjectID>()
                 var updatedReviews = Set<NSManagedObjectID>()
@@ -102,7 +102,6 @@ class PersistentStack {
                 if !updatedApplicationSettings.isEmpty {
                     NSNotificationCenter.defaultCenter().postNotificationName(kDidUpdateApplicationSettingsNotification, object: updatedApplicationSettings)
                 }
-                
             })
         }
     }
@@ -123,7 +122,6 @@ class PersistentStack {
                     } catch {
                         fatalError()
                     }
-
                 }
             }
         }
@@ -133,18 +131,13 @@ class PersistentStack {
     func setupManagedObjectContextWithConcurrencyType(concurrencyType: NSManagedObjectContextConcurrencyType) -> NSManagedObjectContext {
         
         let managedObjectContext = NSManagedObjectContext(concurrencyType: concurrencyType)
-        
         if let managedObjectModel = managedObjectModel() {
             managedObjectContext.persistentStoreCoordinator = NSPersistentStoreCoordinator(managedObjectModel: managedObjectModel)
-            var error: NSError?
             do {
                 try managedObjectContext.persistentStoreCoordinator?.addPersistentStoreWithType(NSSQLiteStoreType, configuration: nil, URL: storeURL, options: nil)
-            } catch let error1 as NSError {
-                error = error1
-            }
-            if error != nil {
-                print(error)
+            } catch let error as NSError {
                 print(storeURL.path)
+                print(error)
             }
         }
         

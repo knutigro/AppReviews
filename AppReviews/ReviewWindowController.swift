@@ -31,12 +31,10 @@ class ReviewWindowController: NSWindowController {
         didSet {
             if oldValue != objectId {
                 let context = ReviewManager.managedObjectContext()
-                var error: NSError?
                 if let objectId = objectId {
                     do {
                         application = try context.existingObjectWithID(objectId) as? Application
-                    } catch let error1 as NSError {
-                        error = error1
+                    } catch let error as NSError {
                         print(error)
                     } catch {
                         fatalError()
@@ -104,10 +102,8 @@ class ReviewWindowController: NSWindowController {
                     let appdelegate = NSApplication.sharedApplication().delegate as! AppDelegate
                     let menuItems = appdelegate.statusMenuController.statusItem.menu?.itemArray
                     if menuItems?.count > key {
-                        if let menuItem = menuItems?[key] {
-                            if let application = menuItem.representedObject as? Application {
-                                ReviewWindowController.show(application.objectID)
-                            }
+                        if let menuItem = menuItems?[key], let application = menuItem.representedObject as? Application {
+                            ReviewWindowController.show(application.objectID)
                         }
                     }
                 default:
@@ -117,7 +113,6 @@ class ReviewWindowController: NSWindowController {
 
             return event
         })
-        
     }
 }
 
@@ -139,23 +134,22 @@ extension ReviewWindowController {
     }
 
     @IBAction func automaticUpdateDidChangeState(sender: AnyObject) {
-        if let menuItem = sender as? NSMenuItem, objectId = application?.objectID {
-            let newState = !Bool(menuItem.state)
-            menuItem.state = newState ? NSOnState: NSOffState;
-            DatabaseHandler.saveDataInContext({ (context) -> Void in
-                var error: NSError?
-                do {
-                    if let application = try context.existingObjectWithID(objectId) as? Application {
-                        application.settings.automaticUpdate = newState
-                    }
-                } catch let error1 as NSError {
-                    error = error1
-                    print(error)
-                } catch {
-                    fatalError()
+        
+        guard let menuItem = sender as? NSMenuItem, objectId = application?.objectID else { return  }
+        
+        let newState = !Bool(menuItem.state)
+        menuItem.state = newState ? NSOnState: NSOffState;
+        DatabaseHandler.saveDataInContext({ (context) -> Void in
+            do {
+                if let application = try context.existingObjectWithID(objectId) as? Application {
+                    application.settings.automaticUpdate = newState
                 }
-            })
-        }
+            } catch let error as NSError {
+                print(error)
+            } catch {
+                fatalError()
+            }
+        })
     }
 
     @IBAction func openInAppstore(objects: AnyObject?) {
@@ -172,43 +166,29 @@ extension ReviewWindowController {
     }
     
     @IBAction func exportReviewsClicked(sender: AnyObject?) {
-        if let application = application {
-            
-            if let reviewController = contentViewController as? ReviewSplitViewController {
-                if let reviews = reviewController.reviewViewController?.reviewArrayController?.arrangedObjects as? [Review] {
-                  
-                    var string = ""
-                    
-                    for review in reviews {
-                        string += "\n\n"
-                        string += review.toString()
-                        string += "\n\n"
-                        string += "_________________________________"
-                    }
-                    
-                    let savePanel = NSSavePanel()
-                    savePanel.allowedFileTypes = [kUTTypeText as String]
-                    let result = savePanel.runModal()
-                    savePanel.title = application.trackName
-                    savePanel.nameFieldStringValue = application.trackName
+        
+        guard let application = application else { return  }
+        guard let reviewController = contentViewController as? ReviewSplitViewController else {  return  }
+        guard let reviews = reviewController.reviewViewController?.reviewArrayController?.arrangedObjects as? [Review] else {          return   }
 
-                    if result != NSFileHandlingPanelCancelButton {
-                        if let url = savePanel.URL {
-                            var error: NSError?
-                            do {
-                                try string.writeToURL(url, atomically: true, encoding: NSUTF8StringEncoding)
-                            } catch let error1 as NSError {
-                                error = error1
-                            }
-                            
-                            if error != nil {
-                                let alert = NSAlert()
-                                alert.messageText = (error?.localizedDescription)!
-                                alert.beginSheetModalForWindow(window!, completionHandler:nil)
-                            }
-                        }
-                    }
-                }
+        var stringToExport = ""
+        for review in reviews {
+            stringToExport += "\n\n" + review.toString() + "\n\n_________________________________"
+        }
+        
+        let savePanel = NSSavePanel()
+        savePanel.allowedFileTypes = [kUTTypeText as String]
+        let result = savePanel.runModal()
+        savePanel.title = application.trackName
+        savePanel.nameFieldStringValue = application.trackName
+        
+        if result != NSFileHandlingPanelCancelButton, let url = savePanel.URL {
+            do {
+                try stringToExport.writeToURL(url, atomically: true, encoding: NSUTF8StringEncoding)
+            } catch let error as NSError {
+                let alert = NSAlert()
+                alert.messageText = (error.localizedDescription)
+                alert.beginSheetModalForWindow(window!, completionHandler:nil)
             }
         }
     }

@@ -29,5 +29,4 @@ extension NSUserDefaults {
         NSUserDefaults.standardUserDefaults().setBool(true, forKey: "DidRun")
         NSUserDefaults.standardUserDefaults().synchronize()
     }
-
 }

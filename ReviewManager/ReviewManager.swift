@@ -65,34 +65,29 @@ final class ReviewManager: NSObject {
     }
 
     class func saveContext() {
-        var error: NSError? = nil
         do {
             try ReviewManager.defaultManager.persistentStack.managedObjectContext.save()
-        } catch let error1 as NSError {
-            error = error1
-        }
-        if error != nil {
-            print("error saving: \(error?.localizedDescription)")
+        } catch let error as NSError {
+            print(error)
         }
     }
     
     func storeURL() -> NSURL {
-        var error: NSError? = nil
-        var _ = "There was an error creating or loading the application's saved data."
+        var error: NSError?
+        var message = "There was an error creating or loading the application's saved data."
         
         // Make sure the application files directory is there
-        let propertiesOpt: [NSObject: AnyObject]?
+        var propertiesOpt: [NSObject: AnyObject]?
         do {
             propertiesOpt = try self.applicationDocumentsDirectory.resourceValuesForKeys([NSURLIsDirectoryKey])
         } catch let error1 as NSError {
             error = error1
-            propertiesOpt = nil
         }
         if let properties = propertiesOpt {
             if !properties[NSURLIsDirectoryKey]!.boolValue {
-                let _ = "Expected a folder to store application data, found a file \(self.applicationDocumentsDirectory.path)."
+                message = "Expected a folder to store application data, found a file \(self.applicationDocumentsDirectory.path)."
             }
-        } else if error!.code == NSFileReadNoSuchFileError {
+        } else if error?.code == NSFileReadNoSuchFileError {
             error = nil
             do {
                 try NSFileManager.defaultManager().createDirectoryAtPath(self.applicationDocumentsDirectory.path!, withIntermediateDirectories: true, attributes: nil)
@@ -100,6 +95,7 @@ final class ReviewManager: NSObject {
                 error = error1
             }
         }
+        if (error != nil) { print(message + " Error: \(error)") }
         
         return self.applicationDocumentsDirectory.URLByAppendingPathComponent(kSQLiteFileName)
     }

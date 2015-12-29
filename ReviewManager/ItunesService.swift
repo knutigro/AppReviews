@@ -48,7 +48,7 @@ class ItunesService {
     
     // MARK: - Fetching
 
-    func fetchReviews(url: String, completion: (success: Bool, reviews: [JSON]?, error: NSError?) -> Void) {
+    func fetchReviews(url: String, completion: (reviews: [JSON], error: NSError?) -> Void) {
         
         Alamofire.request(.GET, url, parameters: nil)
             .responseJSON { response in
@@ -57,12 +57,12 @@ class ItunesService {
                     NSLog("Error: \(response.result.error)")
                     print(response.request)
                     print(response)
-                    completion(success: false, reviews: nil, error: response.result.error)
+                    completion(reviews: [], error: response.result.error)
                 } else {
                     let json = JSON(response.result.value!)
                     let reviews = json.itunesReviews
                     
-                    completion(success: true, reviews: reviews, error: nil)
+                    completion(reviews: reviews, error: nil)
                     
                     // TODO: THIS WILL ALLWAYS FAIL SINCE nexturl is nil from the first round
                     if let nextUrl = self.urlHandler.nextUrl {

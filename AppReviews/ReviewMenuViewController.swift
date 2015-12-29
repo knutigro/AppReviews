@@ -41,7 +41,6 @@ class ReviewMenuViewController: NSViewController {
     @IBOutlet weak var updatedAtLabel: NSTextField!
     @IBOutlet weak var versionLabel: NSTextField!
     @IBOutlet weak var sizeLabel: NSTextField!
-
     @IBOutlet weak var averageRatingCurrentLabel: NSTextField!
     @IBOutlet weak var numberOfRatingsCurrentLabel: NSTextField!
     @IBOutlet weak var averageRatingAllLabel: NSTextField!
@@ -165,8 +164,6 @@ class ReviewMenuViewController: NSViewController {
             let total = reviews.0 + reviews.1 + reviews.2 + reviews.3 + reviews.4
             localTotalRatingsLabel.stringValue = NSLocalizedString("Total: ", comment: "review.menu.localRatingCount") + (NSString(format: "%i", total) as String)
         }
-
-        
     }
     
     @IBAction func toogleUpdateLabel(objects:AnyObject?) {

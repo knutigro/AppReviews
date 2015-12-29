@@ -45,36 +45,37 @@ class ApplicationUpdater {
     }
     
     private func updateReviewsForAllApplications() {
-        dispatch_async(dispatch_get_main_queue(), { () -> Void in
-            for application in self.applications {
+        dispatch_async(dispatch_get_main_queue(), { [weak self]  () -> Void in
+            guard let strongSelf = self else { return  }
+            for application in strongSelf.applications {
                 if application.settings.shouldUpdateReviews {
-                    self.fetchReviewsForApplication(application.objectID)
+                    strongSelf.fetchReviewsForApplication(application.objectID)
                 }
             }
         })
     }
     
-    private func updateMonitoredApplications(){
+    private func updateMonitoredApplications() {
         
-        dispatch_async(dispatch_get_main_queue(), { () -> Void in
-            
+        dispatch_async(dispatch_get_main_queue(), { [weak self] () -> Void in
+            guard let strongSelf = self else { return  }
             if let dBApplications = DatabaseHandler.allApplications(ReviewManager.managedObjectContext()) {
                 for dBApplication in dBApplications {
-                    if !self.applications.contains(dBApplication) {
-                        self.applications.append(dBApplication)
-                        self.fetchReviewsForApplication(dBApplication.objectID)
+                    if !strongSelf.applications.contains(dBApplication) {
+                        strongSelf.applications.append(dBApplication)
+                        strongSelf.fetchReviewsForApplication(dBApplication.objectID)
                     }
                 }
                 
                 var applicationsToRemove = [Application]()
-                for application in self.applications {
+                for application in strongSelf.applications {
                     if !dBApplications.contains(application) {
                         applicationsToRemove.append(application)
                     }
                 }
                 
                 for applicationToRemove in applicationsToRemove {
-                    self.applications.removeObject(applicationToRemove)
+                    strongSelf.applications.removeObject(applicationToRemove)
                 }
             }
         })
@@ -84,35 +85,19 @@ class ApplicationUpdater {
     // MARK: - Reviews handling
     
     func fetchReviewsForApplication(objectId: NSManagedObjectID) {
-        
-        var error: NSError?
-        
         do {
             if let fetchApplication = try ReviewManager.managedObjectContext().existingObjectWithID(objectId) as? Application {
-                
-                if error != nil {
-                    print(error)
-                }
                 let itunesService = ItunesService(apId: fetchApplication.trackId, storeId: nil)
-                
                 itunesService.fetchReviews(itunesService.url) {
-                    (success: Bool, reviews: [JSON]?, error: NSError?) in
-                    
-                    if let reviews = reviews {
-                        if reviews.count > 0 {
-                            DatabaseHandler.saveReviews(reviews, applactionObjectId: fetchApplication.objectID)
-                        }
-                    }
-                    
+                    (reviews: [JSON], error: NSError?) in
+                    DatabaseHandler.saveReviews(reviews, applactionObjectId: fetchApplication.objectID)
                 }
             }
-        } catch let error1 as NSError {
-            error = error1
+        } catch let error as NSError {
             print(error)
         } catch {
             fatalError()
         }
-
     }
     
     func resetNewReviewsCountForApplication(objectId: NSManagedObjectID) {

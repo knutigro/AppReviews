@@ -66,21 +66,14 @@ class Application: NSManagedObject {
     
     class func getWithIds(ids: Set<NSManagedObjectID>, context: NSManagedObjectContext) -> [Application]? {
         let fetchRequest = NSFetchRequest(entityName: kEntityNameApplication)
-        
         fetchRequest.predicate = NSPredicate(format: "self in %@", Array(ids))
-        var error: NSError?
-        
-        let result: [AnyObject]?
+        var result: [AnyObject]?
         do {
             result = try context.executeFetchRequest(fetchRequest)
-        } catch let error1 as NSError {
-            error = error1
-            result = nil
-        }
-        
-        if error != nil {
+        } catch let error as NSError {
             print(error)
         }
+        
         return result as? [Application]
     }
 
@@ -88,19 +81,14 @@ class Application: NSManagedObject {
 
         let fetchRequest = NSFetchRequest(entityName: kEntityNameApplication)
         fetchRequest.predicate = NSPredicate(format: "trackId = %@", identifier)
-        var error: NSError?
         
-        let result: [AnyObject]?
+        var result: [AnyObject]?
         do {
             result = try context.executeFetchRequest(fetchRequest)
-        } catch let error1 as NSError {
-            error = error1
-            result = nil
-        }
-        
-        if error != nil {
+        } catch let error as NSError {
             print(error)
         }
+        
         return result?.last as? Application
     }
     

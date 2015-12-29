@@ -18,7 +18,6 @@ class DatabaseHandler {
 
     class func saveApplication(applicationJSON: JSON) {
         DatabaseHandler.saveDataInContext({ (context) -> Void in
-            
             if applicationJSON.isApplicationEntity, let apID = applicationJSON.trackId {
                 if let application = Application.getWithAppId(apID, context: context) {
                     application.updatedAt = NSDate()
@@ -33,12 +32,10 @@ class DatabaseHandler {
     
     class func removeApplication(objectId: NSManagedObjectID) {
         DatabaseHandler.saveDataInContext({ (context) -> Void in
-            var error: NSError?
             do {
                 let application = try context.existingObjectWithID(objectId)
                 context.deleteObject(application)
-            } catch let error1 as NSError {
-                error = error1
+            } catch let error as NSError {
                 print(error)
             } catch {
                 fatalError()
@@ -48,13 +45,11 @@ class DatabaseHandler {
     
     class func resetNewReviewsCountForApplication(objectId: NSManagedObjectID) {
         DatabaseHandler.saveDataInContext({ (context) -> Void in
-            var error: NSError?
             do {
                 if let application = try context.existingObjectWithID(objectId) as? Application {
                     application.settings.resetNewReviews()
                 }
-            } catch let error1 as NSError {
-                error = error1
+            } catch let error as NSError {
                 print(error)
             } catch {
                 fatalError()
@@ -65,15 +60,10 @@ class DatabaseHandler {
     class func allApplications(context: NSManagedObjectContext) -> [Application]? {
         
         let fetchRequest = NSFetchRequest(entityName: kEntityNameApplication)
-        var error: NSError?
-        let result: [AnyObject]?
+        var result: [AnyObject]?
         do {
             result = try context.executeFetchRequest(fetchRequest)
-        } catch let error1 as NSError {
-            error = error1
-            result = nil
-        }
-        if error != nil {
+        } catch let error as NSError {
             print(error)
         }
         
@@ -101,24 +91,22 @@ class DatabaseHandler {
                 
                 fetchRequest.predicate = NSPredicate(format: "application = %@ AND rating == 5", application)
                 five = context.countForFetchRequest(fetchRequest, error: &error)
-                
-                if error != nil { print(error) }
             }
         } catch let error1 as NSError {
             error = error1
-            print(error)
         } catch {
             fatalError()
         }
+
+        if error != nil { print(error) }
 
         return (one, two, three, four, five)
     }
     
     class func saveReviews(reviews: [JSON], applactionObjectId objectId: NSManagedObjectID) {
+        if reviews.count == 0 { return  }
+
         DatabaseHandler.saveDataInContext({ (context) -> Void in
-            
-            var error: NSError?
-            
             do {
                 if let application = try context.existingObjectWithID(objectId) as? Application {
                     
@@ -152,13 +140,11 @@ class DatabaseHandler {
                     application.settings.reviewsUpdatedAt = NSDate()
                     application.settings.nextUpdateAt = NSDate().dateByAddingTimeInterval(kDefaultReviewUpdateInterval)
                 }
-            } catch let error1 as NSError {
-                error = error1
+            } catch let error as NSError {
                 print(error)
             } catch {
                 fatalError()
             }
-
         })
     }
 
@@ -171,20 +157,17 @@ class DatabaseHandler {
     class func saveDataInContext(saveBlock: (context: NSManagedObjectContext) -> Void, completion: CompletionBlock?)  {
 
         let context = ReviewManager.backgroundObjectContext()
-        
         context.performBlock { () -> Void in
             saveBlock(context: context)
             
             if context.hasChanges {
-                var error: NSError? = nil
                 do {
                     try context.save()
-                } catch let error1 as NSError {
-                    error = error1
+                } catch let error as NSError {
+                    print(error)
                 } catch {
                     fatalError()
                 }
-                if error != nil { print("error: " + error!.localizedDescription) }
             }
 
             if let completion = completion {
@@ -194,8 +177,4 @@ class DatabaseHandler {
             }
         }
     }
-    
-
-
-
 }

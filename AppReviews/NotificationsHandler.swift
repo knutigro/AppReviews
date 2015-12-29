@@ -20,23 +20,23 @@ class NotificationsHandler: NSObject {
         super.init()
         
         _ = NSNotificationCenter.defaultCenter().addObserverForName(kDidAddReviewsNotification, object: nil, queue: nil) {  [weak self] notification in
-            if let newReviewsIds = notification.object as? Set<NSManagedObjectID> {
-                
-                var newReviews = [Application: [Review]]()
-                for objectID in newReviewsIds {
-                    if let newReview = Review.getWithId(objectID, context: ReviewManager.managedObjectContext()) {
-                        if newReviews[newReview.application]?.append(newReview) == nil {
-                            var reviewArray = [Review]()
-                            reviewArray.append(newReview)
-                            newReviews[newReview.application] = reviewArray
-                        }
+            
+            guard let newReviewsIds = notification.object as? Set<NSManagedObjectID> else { return  }
+            
+            var newReviews = [Application: [Review]]()
+            for objectID in newReviewsIds {
+                if let newReview = Review.getWithId(objectID, context: ReviewManager.managedObjectContext()) {
+                    if newReviews[newReview.application]?.append(newReview) == nil {
+                        var reviewArray = [Review]()
+                        reviewArray.append(newReview)
+                        newReviews[newReview.application] = reviewArray
                     }
                 }
-                
-                for application in newReviews.keys {
-                    if let reviews = newReviews[application] {
-                        self?.newReviewsNotification(application, reviews: reviews)
-                    }
+            }
+            
+            for application in newReviews.keys {
+                if let reviews = newReviews[application] {
+                    self?.newReviewsNotification(application, reviews: reviews)
                 }
             }
         }
@@ -91,12 +91,14 @@ extension NotificationsHandler: NSUserNotificationCenterDelegate {
     }
     
     func userNotificationCenter(center: NSUserNotificationCenter, didActivateNotification notification: NSUserNotification) {
-        if let urlString = notification.userInfo?[kNotificaObjectIdKey] as? String {
-            if let url = NSURL(string: urlString) {
-                if let objectID = ReviewManager.managedObjectContext().persistentStoreCoordinator?.managedObjectIDForURIRepresentation(url) {
-                    ReviewWindowController.show(objectID)
-                }
-            }
+        guard let urlString = notification.userInfo?[kNotificaObjectIdKey] as? String, let url = NSURL(string: urlString) else {
+            return
         }
+        
+        guard let objectID = ReviewManager.managedObjectContext().persistentStoreCoordinator?.managedObjectIDForURIRepresentation(url) else {
+            return
+        }
+
+        ReviewWindowController.show(objectID)
     }
 }

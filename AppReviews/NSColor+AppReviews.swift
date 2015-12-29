@@ -8,7 +8,7 @@
 
 
 extension NSColor {
-
+    
     class func reviewRed() -> NSColor {
         return NSColor(deviceRed: 0.941, green: 0.306, blue: 0.314, alpha: 1)
     }
