@@ -16,7 +16,7 @@ class ItunesUrlHandlerTest: XCTestCase {
     
     var urlHandler: ItunesUrlHandler!
     let kInitialUrl = "https://itunes.apple.com/rss/customerreviews/id=123/json"
-    var reviewJSON: JSON!
+    var reviewJSON: JSON?
 
     override func setUp() {
         super.setUp()
@@ -24,35 +24,41 @@ class ItunesUrlHandlerTest: XCTestCase {
         
         urlHandler = ItunesUrlHandler(apId: "123", storeId: nil)
         
-        if let path = NSBundle.mainBundle().pathForResource("reviews", ofType: "json") {
+        if let path = NSBundle(forClass: ItunesUrlHandlerTest.self).pathForResource("reviews", ofType: "json") {
             do {
                 let string = try NSString(contentsOfFile: path, encoding: NSUTF8StringEncoding)
-                reviewJSON = JSON(string)
+                if let dataFromString = string.dataUsingEncoding(NSUTF8StringEncoding, allowLossyConversion: false) {
+                    reviewJSON = JSON(data: dataFromString)
+                }
             } catch {
-                print("Failed at try")
+                XCTFail("contentsOfFile did fail")
             }
         }
-        if reviewJSON == nil {
-            XCTFail("reviewJSON Should not be nil")
+        XCTAssertNotNil(reviewJSON)
+    }
+    
+    func testIfFeedExist() {
+        guard let reviewJSON = self.reviewJSON else {
+            return
         }
+        
+        XCTAssertNotNil(reviewJSON.itunesFeed)
+    }
+    
+    func testIfReviewsExist() {
+        guard let reviewJSON = self.reviewJSON else {
+            return
+        }
+        
+        XCTAssertNotNil(reviewJSON.itunesReviews)
+        XCTAssertGreaterThan(reviewJSON.itunesReviews.count, 0)
     }
     
     func testIfLinkExist() {
-        _ = reviewJSON[0]
-
-        print("reviewJSON \(reviewJSON)")
-
-//        println("reviewJSON \(reviewJSON)")
-        _ = reviewJSON.itunesReviews
-
-        let reviews = reviewJSON.itunesFeedLinks
-        print("reviews count = \(reviews)")
-
-//        let count = reviewJSON?["feed"]["link"].array?.count
-//
-//        let count = reviewJSON?["feed"]["link"].array?.count
-//        println("count \(count)")
-//        XCTAssertNotNil(reviewJSON?["feed"]["link"].arrayObject, "JSON should have an Array with links")
+        guard let reviewJSON = self.reviewJSON else {
+            return
+        }
+        XCTAssertGreaterThan(reviewJSON.itunesFeedLinks.count, 0)
     }
     
     func testInitialUrl() {
@@ -69,7 +75,4 @@ class ItunesUrlHandlerTest: XCTestCase {
 
         print("nextUrl \(urlHandler.nextUrl)")
     }
-    
-    
-
 }
