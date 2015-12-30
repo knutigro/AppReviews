@@ -13,6 +13,8 @@ import Ensembles
 let kSQLiteFileName = "db.sqlite"
 
 final class ReviewManager: NSObject {
+    
+    static let defaultManager = ReviewManager()
 
     private var persistentStack: PersistentStack!
     private var applicationUpdater: ApplicationUpdater!
@@ -30,13 +32,6 @@ final class ReviewManager: NSObject {
         cloudFileSystem = CDEICloudFileSystem(ubiquityContainerIdentifier: "iCloud.com.cocmoc.appreviews")
         persistentStoreEnsemble = CDEPersistentStoreEnsemble(ensembleIdentifier: "MainStore", persistentStoreURL: self.storeURL(), managedObjectModelURL: modelURL(), cloudFileSystem: cloudFileSystem)
         persistentStoreEnsemble.delegate = self
-    }
-    
-    class var defaultManager: ReviewManager {
-        struct Singleton {
-            static let instance = ReviewManager()
-        }
-        return Singleton.instance
     }
     
     class func start() -> ReviewManager {
