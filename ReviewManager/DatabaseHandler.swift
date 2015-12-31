@@ -70,7 +70,7 @@ class DatabaseHandler {
         return result as? [Application]
     }
     
-    class func numberOfReviewsForApplication(objectId: NSManagedObjectID, rating: Int?, context: NSManagedObjectContext) -> (Int, Int, Int, Int, Int) {
+    class func numberOfReviewsForApplication(objectId: NSManagedObjectID, rating: Int?, context: NSManagedObjectContext) -> (one: Int, two:  Int, three: Int, four: Int, five: Int) {
         var error: NSError?
         var one = 0, two = 0, three = 0, four = 0, five = 0
         do {

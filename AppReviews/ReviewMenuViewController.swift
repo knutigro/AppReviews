@@ -159,7 +159,7 @@ class ReviewMenuViewController: NSViewController {
         
         if let application = application {
             let reviews = DatabaseHandler.numberOfReviewsForApplication(application.objectID, rating: nil, context: ReviewManager.managedObjectContext())
-            pieChartController?.slices = [Float(reviews.0), Float(reviews.1), Float(reviews.2), Float(reviews.3), Float(reviews.4)]
+            pieChartController?.slices = [Float(reviews.one), Float(reviews.two), Float(reviews.three), Float(reviews.four), Float(reviews.five)]
             pieChartController?.pieChart?.reloadData()
             let total = reviews.0 + reviews.1 + reviews.2 + reviews.3 + reviews.4
             localTotalRatingsLabel.stringValue = NSLocalizedString("Total: ", comment: "review.menu.localRatingCount") + (NSString(format: "%i", total) as String)

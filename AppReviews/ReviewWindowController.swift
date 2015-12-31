@@ -23,7 +23,7 @@ class ReviewWindowController: NSWindowController {
                 if let reviewSplitViewController = contentViewController as? ReviewSplitViewController {
                     reviewSplitViewController.application = application
                 }
-            } 
+            }
         }
     }
     
