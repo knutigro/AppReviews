@@ -29,4 +29,14 @@ extension NSUserDefaults {
         NSUserDefaults.standardUserDefaults().setBool(true, forKey: "DidRun")
         NSUserDefaults.standardUserDefaults().synchronize()
     }
+    
+    class func review_isLeftMenuCollapsed() -> Bool {
+        return NSUserDefaults.standardUserDefaults().boolForKey("LeftMenuCollapsed")
+    }
+    
+    class func review_setLeftMenuCollapsed(collapsed: Bool) {
+        NSUserDefaults.standardUserDefaults().setBool(collapsed, forKey: "LeftMenuCollapsed")
+        NSUserDefaults.standardUserDefaults().synchronize()
+    }
+
 }

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="8187.4" systemVersion="14F27" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
+<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="9531" systemVersion="15C50" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="8187.4"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="9531"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
     </dependencies>
     <scenes>
@@ -396,11 +396,11 @@ If you like App Reviews, please consider making a donation. Feature requests, is
                         <rect key="frame" x="0.0" y="0.0" width="450" height="300"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <clipView key="contentView" id="qRK-O0-cbS">
-                            <rect key="frame" x="1" y="1" width="238" height="133"/>
+                            <rect key="frame" x="1" y="1" width="448" height="298"/>
                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                             <subviews>
                                 <textView editable="NO" selectable="NO" importsGraphics="NO" findStyle="panel" continuousSpellChecking="YES" allowsUndo="YES" usesRuler="YES" usesFontPanel="YES" verticallyResizable="YES" allowsNonContiguousLayout="YES" quoteSubstitution="YES" dashSubstitution="YES" spellingCorrection="YES" smartInsertDelete="YES" id="pjo-wB-QPl">
-                                    <rect key="frame" x="0.0" y="0.0" width="248" height="298"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="458" height="298"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                     <size key="minSize" width="448" height="298"/>
@@ -487,11 +487,11 @@ If you like App Reviews, please consider making a donation. Feature requests, is
                             <scrollView autohidesScrollers="YES" horizontalLineScroll="82" horizontalPageScroll="10" verticalLineScroll="82" verticalPageScroll="10" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Azk-8Z-Yg6">
                                 <rect key="frame" x="0.0" y="0.0" width="600" height="700"/>
                                 <clipView key="contentView" drawsBackground="NO" id="Hjc-Hf-Qgr">
-                                    <rect key="frame" x="1" y="17" width="238" height="117"/>
+                                    <rect key="frame" x="1" y="0.0" width="598" height="699"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <subviews>
                                         <tableView appearanceType="vibrantLight" verticalHuggingPriority="750" allowsExpansionToolTips="YES" columnAutoresizingStyle="lastColumnOnly" alternatingRowBackgroundColors="YES" columnSelection="YES" multipleSelection="NO" autosaveColumns="NO" rowHeight="80" headerView="eX8-pU-nlO" viewBased="YES" id="9mP-dQ-umL">
-                                            <rect key="frame" x="0.0" y="0.0" width="598" height="0.0"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="598" height="676"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <size key="intercellSpacing" width="3" height="2"/>
                                             <color key="backgroundColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
@@ -646,7 +646,7 @@ If you like App Reviews, please consider making a donation. Feature requests, is
                                     <autoresizingMask key="autoresizingMask"/>
                                 </scroller>
                                 <tableHeaderView key="headerView" id="eX8-pU-nlO">
-                                    <rect key="frame" x="0.0" y="0.0" width="598" height="17"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="598" height="23"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                 </tableHeaderView>
                             </scrollView>
@@ -740,7 +740,7 @@ If you like App Reviews, please consider making a donation. Feature requests, is
                                     <size key="minSize" width="100" height="28"/>
                                     <size key="maxSize" width="100" height="28"/>
                                     <popUpButton key="view" verticalHuggingPriority="750" id="nYc-C3-4tk">
-                                        <rect key="frame" x="0.0" y="0.0" width="100" height="28"/>
+                                        <rect key="frame" x="0.0" y="14" width="100" height="28"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                         <popUpButtonCell key="cell" type="roundTextured" title="All versions" bezelStyle="texturedRounded" alignment="left" lineBreakMode="truncatingTail" state="on" borderStyle="border" imageScaling="proportionallyDown" inset="2" selectedItem="oVF-F1-7ta" id="iaI-e6-adX">
                                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
@@ -798,7 +798,7 @@ If you like App Reviews, please consider making a donation. Feature requests, is
                                     <size key="minSize" width="30" height="30"/>
                                     <size key="maxSize" width="48" height="48"/>
                                     <button key="view" id="U90-rD-3bJ">
-                                        <rect key="frame" x="0.0" y="14" width="30" height="30"/>
+                                        <rect key="frame" x="4" y="14" width="30" height="30"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                         <buttonCell key="cell" type="square" bezelStyle="shadowlessSquare" image="NSShareTemplate" imagePosition="only" alignment="center" controlSize="mini" imageScaling="proportionallyDown" inset="2" id="PD8-QE-f60">
                                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
@@ -809,9 +809,25 @@ If you like App Reviews, please consider making a donation. Feature requests, is
                                         </connections>
                                     </button>
                                 </toolbarItem>
+                                <toolbarItem implicitItemIdentifier="1E7ABDA6-985C-4F92-B2DC-89C79DD12977" label="Sidebar" paletteLabel="Sidebar" image="sidebar-icon" id="pIH-S2-krP">
+                                    <nil key="toolTip"/>
+                                    <size key="minSize" width="15" height="15"/>
+                                    <size key="maxSize" width="40" height="19"/>
+                                    <button key="view" verticalHuggingPriority="750" id="jev-Iu-Ahu">
+                                        <rect key="frame" x="4" y="14" width="40" height="19"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                        <buttonCell key="cell" type="roundTextured" bezelStyle="texturedRounded" image="sidebar-icon" imagePosition="only" alignment="center" state="on" borderStyle="border" imageScaling="axesIndependently" inset="2" id="lSv-Br-to1">
+                                            <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                            <font key="font" metaFont="system"/>
+                                        </buttonCell>
+                                    </button>
+                                    <connections>
+                                        <action selector="sideBarButtonClicked:" target="E8W-Gv-fjB" id="Ee9-KO-8Tj"/>
+                                    </connections>
+                                </toolbarItem>
                             </allowedToolbarItems>
                             <defaultToolbarItems>
-                                <toolbarItem reference="eJg-3d-Guv"/>
+                                <toolbarItem reference="pIH-S2-krP"/>
                                 <toolbarItem reference="lWF-mc-dTc"/>
                                 <toolbarItem reference="eJg-3d-Guv"/>
                                 <toolbarItem reference="bWn-8i-V4e"/>
@@ -1582,5 +1598,6 @@ Gw
         <image name="NSActionTemplate" width="14" height="14"/>
         <image name="NSRefreshFreestandingTemplate" width="14" height="14"/>
         <image name="NSShareTemplate" width="11" height="16"/>
+        <image name="sidebar-icon" width="100" height="80"/>
     </resources>
 </document>

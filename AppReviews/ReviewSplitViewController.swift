@@ -20,16 +20,31 @@ class ReviewSplitViewController: NSSplitViewController {
     var reviewMenuViewController: ReviewMenuViewController?
     var reviewViewController: ReviewViewController?
     
+    var menuSplitViewItem: NSSplitViewItem {
+        return splitViewItems[0]
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        if let reviewMenuViewController = splitViewItems[0].viewController as? ReviewMenuViewController {
+        if let reviewMenuViewController = menuSplitViewItem.viewController as? ReviewMenuViewController {
             self.reviewMenuViewController = reviewMenuViewController
             self.reviewMenuViewController?.application = application
         }
-        if let reviewViewController = splitViewItems[1].viewController as? ReviewViewController {
+        if let reviewViewController = menuSplitViewItem.viewController as? ReviewViewController {
             self.reviewViewController = reviewViewController
             self.reviewViewController?.application = application
         }
+        
+        menuSplitViewItem.animator().collapsed = NSUserDefaults.review_isLeftMenuCollapsed()
+    }
+    
+    override func viewDidDisappear() {
+        super.viewDidDisappear()
+        NSUserDefaults.review_setLeftMenuCollapsed(menuSplitViewItem.collapsed)
+    }
+    
+    func toggleLeftMenu() {
+        menuSplitViewItem.animator().collapsed = !menuSplitViewItem.collapsed
     }
 }

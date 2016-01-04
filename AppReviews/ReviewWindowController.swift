@@ -164,7 +164,12 @@ extension ReviewWindowController {
             reviewSplitController.reviewViewController?.shareSelectedReview(sender)
         }
     }
-    
+
+    @IBAction func sideBarButtonClicked(sender: AnyObject?) {
+        guard let reviewSplitViewController = contentViewController as? ReviewSplitViewController else {  return  }
+        reviewSplitViewController.toggleLeftMenu()
+    }
+
     @IBAction func exportReviewsClicked(sender: AnyObject?) {
         
         guard let application = application else { return  }
